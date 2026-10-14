@@ -12,7 +12,8 @@ Logic in short:
   randomizer, MONEY_FACTOR) and the Senbei they cost (some slots charge Senbei too; those cannot be farmed, so the
   logic counts exactly the Senbei received). Shop slots never hold this world's own Konpeito (a wasted purchase).
   What a finished seed makes everybody buy in the shops is checked against that budget in shop_budget.py.
-- Harumi needs Sakura Petals: PETALS_PER_CHAPTER for every cleared chapter plus the Sakura items held.
+- Harumi needs a cleared chapter (HARUMI_MIN_CLEARED) and Sakura Petals: PETALS_PER_CHAPTER for every cleared chapter plus the
+  Sakura items held.
 The large Konpeito and Sakura items are progression for the generator (only advancement items are counted by the
 logic) and stand for all of that currency in the pool (COUNTED_KONPEITO_MIN); clients see every currency item as filler
 (HomuraHimeItem.flags).
@@ -75,6 +76,8 @@ COUNTED: Dict[str, Tuple[str, int]] = {
 # Every shop slot waits for at least this many cleared chapters, on top of its tier and its price: a pacing rule, so a
 # seed never expects shopping from what the tutorial alone pays.
 SHOP_MIN_CLEARED = 1
+# The same pacing rule for Harumi: no reward before the first chapter is cleared, however many Sakura items are held.
+HARUMI_MIN_CLEARED = 1
 
 # Hub events that only happen after some chapters are cleared (the hub follows the number of cleared chapters).
 HUB_CLEARS_REQUIRED = {"handover/desire_circle": 1}  # the merchant hands over Desire Circle after the first chapter
@@ -571,7 +574,8 @@ class HomuraHimeWorld(World):
             number = self.chapter_number[loc["chapter"]]
             rule = lambda state, number=number: state.has(f"Chapter {number} Cleared", self.player)
         elif category == "harumi":
-            rule = lambda state, need=loc["petals"]: self._petals(state) >= need
+            rule = lambda state, need=loc["petals"]: \
+                self._cleared(state) >= HARUMI_MIN_CLEARED and self._petals(state) >= need
         elif loc["key"] in HUB_CLEARS_REQUIRED:
             rule = lambda state, clears=HUB_CLEARS_REQUIRED[loc["key"]]: self._cleared(state) >= clears
         elif category == "stall":

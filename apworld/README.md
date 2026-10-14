@@ -69,7 +69,7 @@ sample was not regenerated. Copy it into `Players/` and edit the values to gener
   Built for large multiworlds: replays only check each original sphere's locations once and stop at the last sphere
   where the budget could fail, the state is only copied before spheres that hold a purchase, and a repair resumes the
   playthrough from before the moved item instead of starting again.
-- **Harumi**: 280 Sakura per cleared chapter plus the Sakura items held. The highest threshold (2,300) is above what
+- **Harumi**: one cleared chapter at least (HARUMI_MIN_CLEARED), then 280 Sakura per cleared chapter plus the Sakura items held. The highest threshold (2,300) is above what
   eight chapters give (2,240), so the pool always holds at least 60 Sakura in items.
 - **Counted items**: the large Konpeito (3,000 and up) and Sakura (30 and up) items and the "2 Senbei" pieces (the single
   Senbei when the pool has no pairs) are `progression_skip_balancing` so

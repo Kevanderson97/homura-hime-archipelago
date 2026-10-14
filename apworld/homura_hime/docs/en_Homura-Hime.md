@@ -65,7 +65,8 @@ Konpeito, Sakura Petals and Senbei count for the logic but are shown to everyone
 
 Harumi rewards you at 100, 300, 600, 1,000, 1,400, 1,800 and 2,300 Sakura Petals. The flowers on the maps give about 320
 petals per chapter; the logic counts on 280 per cleared chapter plus the Sakura Petals items you have received. The pool
-always holds enough Sakura Petals items to reach the last reward.
+always holds enough Sakura Petals items to reach the last reward. Harumi's rewards are never expected before your first
+chapter is cleared, however many Sakura Petals you hold.
 
 ## What does another world's item look like in Homura-Hime?
 

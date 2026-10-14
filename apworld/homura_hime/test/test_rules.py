@@ -229,6 +229,13 @@ class TestHarumi(HomuraHimeLogicBase):
         self.assertTrue(self.harumi(3).access_rule(self.state_with([f"Chapter {n} Cleared" for n in (1, 2, 3)],
                                                                    sweep=False)))
 
+    def test_nothing_before_the_first_chapter_is_cleared(self):
+        # 8 x 50 Sakura would pay for the first reward many times over, but Harumi waits for one cleared chapter
+        state = self.state_with(["50 Sakura Petals"] * 8, sweep=False)
+        self.assertFalse(self.harumi(1).access_rule(state))
+        state.collect(self._make("Chapter 1 Cleared"), True)
+        self.assertTrue(self.harumi(1).access_rule(state))
+
     def test_sakura_items_add_to_the_chapters(self):
         state = self.state_with(["Chapter 1 Cleared", "Chapter 2 Cleared", "30 Sakura Petals"], sweep=False)
         self.assertFalse(self.harumi(3).access_rule(state))  # 560 + 30
