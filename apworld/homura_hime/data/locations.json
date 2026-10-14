@@ -1,0 +1,4187 @@
+[
+ {
+  "id": 7300000,
+  "key": "chest/Level_1_Area_1_Main/1",
+  "category": "chest",
+  "region": "Level1_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_1_Area_1_Main",
+  "pos": [
+   -164.2,
+   -1.7,
+   -230.4
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 1 Area 1: Chest 1",
+  "konpeito": 3000,
+  "scene_req": [
+   "Pretty Little Flower"
+  ]
+ },
+ {
+  "id": 7300001,
+  "key": "chest/Level_1_Area_2_Main/1",
+  "category": "chest",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_1_Area_2_Main",
+  "pos": [
+   -20.5,
+   0.0,
+   -58.8
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 1 Area 2: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300002,
+  "key": "chest/Level_1_Area_3_Main/1",
+  "category": "chest",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_1_Area_3_Main",
+  "pos": [
+   -40.1,
+   21.9,
+   46.1
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 1 Area 3: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300003,
+  "key": "chest/Level_1_Ikai_Part_1_Main/1",
+  "category": "chest",
+  "region": "Level1_Ikai_Part1_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_1_Ikai_Part_1_Main",
+  "pos": [
+   -15.5,
+   25.5,
+   368.0
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 1 Demonic Realm 1: Chest 1"
+ },
+ {
+  "id": 7300004,
+  "key": "chest/Level_2_Area_2_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_2_Area_2_Main",
+  "pos": [
+   88.0,
+   20.1,
+   11.5
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 2 Area 2: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300005,
+  "key": "chest/Level_2_Area_3_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Omamori_DefenseValue_Big",
+  "scene": "Level_2_Area_3_Main",
+  "pos": [
+   -52.2,
+   25.1,
+   23.9
+  ],
+  "object": "TreasureChest_Omamori",
+  "name": "Level 2 Area 3: Chest 1"
+ },
+ {
+  "id": 7300006,
+  "key": "chest/Level_2_Area_3_Main/2",
+  "category": "chest",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_2_Area_3_Main",
+  "pos": [
+   -38.6,
+   12.0,
+   24.7
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Level 2 Area 3: Chest 2"
+ },
+ {
+  "id": 7300007,
+  "key": "chest/Level_2_Area_3_Main/3",
+  "category": "chest",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_2_Area_3_Main",
+  "pos": [
+   -10.0,
+   25.1,
+   -24.9
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 2 Area 3: Chest 3"
+ },
+ {
+  "id": 7300008,
+  "key": "chest/Level_2_Area_4_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_2_Area_4_Main",
+  "pos": [
+   72.9,
+   40.8,
+   74.3
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Level 2 Area 4: Chest 1"
+ },
+ {
+  "id": 7300009,
+  "key": "chest/Level_2_Area_5_2F_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_2_Area_5_2F_Main",
+  "pos": [
+   16.0,
+   14.0,
+   -118.5
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 2 Area 5 2F: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300010,
+  "key": "chest/Level_2_Area_5_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_2_Area_5_Main",
+  "pos": [
+   -56.9,
+   -21.8,
+   -23.5
+  ],
+  "object": "TreasureChest_HPChip",
+  "name": "Level 2 Area 5: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300011,
+  "key": "chest/Level_2_Area_5_Main/2",
+  "category": "chest",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_2_Area_5_Main",
+  "pos": [
+   -16.5,
+   -14.1,
+   -3.5
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 2 Area 5: Chest 2"
+ },
+ {
+  "id": 7300012,
+  "key": "chest/Level_2_Area_8_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_2_Area_8_Main",
+  "pos": [
+   -13.9,
+   0.0,
+   -12.6
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 2 Area 8: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300013,
+  "key": "chest/Level_2_Ikai_Part1_Main/1",
+  "category": "chest",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "Omamori_IncreaseHealingDropValue",
+  "scene": "Level_2_Ikai_Part1_Main",
+  "pos": [
+   51.5,
+   7.3,
+   183.5
+  ],
+  "object": "TreasureChest_Omamori",
+  "name": "Level 2 Demonic Realm 1: Chest 1"
+ },
+ {
+  "id": 7300014,
+  "key": "chest/Level_3_Area_2_Main/1",
+  "category": "chest",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_3_Area_2_Main",
+  "pos": [
+   90.5,
+   0.0,
+   -216.0
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 3 Area 2: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300015,
+  "key": "chest/Level_3_Area_2_Main/2",
+  "category": "chest",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_3_Area_2_Main",
+  "pos": [
+   141.0,
+   -2.8,
+   -235.3
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Level 3 Area 2: Chest 2"
+ },
+ {
+  "id": 7300016,
+  "key": "chest/Level_3_Area_3_Main/1",
+  "category": "chest",
+  "region": "Level3_Area_3_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_3_Area_3_Main",
+  "pos": [
+   -76.0,
+   7.0,
+   -28.5
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 3 Area 3: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300017,
+  "key": "chest/Level_3_Area_5_Main/1",
+  "category": "chest",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_3_Area_5_Main",
+  "pos": [
+   213.8,
+   0.0,
+   -132.4
+  ],
+  "object": "TreasureChest_Konpeitou (3)",
+  "name": "Level 3 Area 5: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300018,
+  "key": "chest/Level_3_Area_5_Main/2",
+  "category": "chest",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Omamori_AttackValue_Big",
+  "scene": "Level_3_Area_5_Main",
+  "pos": [
+   223.4,
+   0.2,
+   -81.7
+  ],
+  "object": "TreasureChest_Omamori (1)",
+  "name": "Level 3 Area 5: Chest 2"
+ },
+ {
+  "id": 7300019,
+  "key": "chest/Level_3_Area_7_Main/1",
+  "category": "chest",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_3_Area_7_Main",
+  "pos": [
+   38.1,
+   0.0,
+   101.6
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 3 Area 7: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300020,
+  "key": "chest/Level_3_Area_7_Main/2",
+  "category": "chest",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_3_Area_7_Main",
+  "pos": [
+   270.0,
+   0.3,
+   30.0
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Level 3 Area 7: Chest 2"
+ },
+ {
+  "id": 7300021,
+  "key": "chest/Level_3_Ikai_Part1_Main/1",
+  "category": "chest",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "pos": [
+   -16.0,
+   -5.0,
+   -134.0
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Level 3 Demonic Realm 1: Chest 1"
+ },
+ {
+  "id": 7300022,
+  "key": "chest/Level_3_Ikai_Part1_Main/2",
+  "category": "chest",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "pos": [
+   68.0,
+   0.0,
+   96.0
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 3 Demonic Realm 1: Chest 2",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300023,
+  "key": "chest/Level_3_Ikai_Part2_Main/1",
+  "category": "chest",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "pos": [
+   -28.0,
+   91.0,
+   -808.0
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 3 Demonic Realm 2: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300024,
+  "key": "chest/Level_3_Ikai_Part2_Main/2",
+  "category": "chest",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "pos": [
+   30.5,
+   91.0,
+   -807.5
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 3 Demonic Realm 2: Chest 2"
+ },
+ {
+  "id": 7300025,
+  "key": "chest/Level_4_Area_1_Main/1",
+  "category": "chest",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_4_Area_1_Main",
+  "pos": [
+   9.5,
+   -14.1,
+   114.3
+  ],
+  "object": "TreasureChest_Konpeitou (3)",
+  "name": "Level 4 Area 1: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300026,
+  "key": "chest/Level_4_Area_1_Main/2",
+  "category": "chest",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_4_Area_1_Main",
+  "pos": [
+   20.7,
+   21.8,
+   -144.9
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 4 Area 1: Chest 2",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300027,
+  "key": "chest/Level_4_Area_1_Main/3",
+  "category": "chest",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_4_Area_1_Main",
+  "pos": [
+   69.3,
+   -11.0,
+   175.7
+  ],
+  "object": "TreasureChest_Konpeitou (2)",
+  "name": "Level 4 Area 1: Chest 3",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300028,
+  "key": "chest/Level_4_Area_2_Main/1",
+  "category": "chest",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_4_Area_2_Main",
+  "pos": [
+   -53.1,
+   3.0,
+   -132.8
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 4 Area 2: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300029,
+  "key": "chest/Level_4_Area_2_Main/2",
+  "category": "chest",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_4_Area_2_Main",
+  "pos": [
+   31.0,
+   30.0,
+   -303.3
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 4 Area 2: Chest 2"
+ },
+ {
+  "id": 7300030,
+  "key": "chest/Level_4_Area_3_Main/1",
+  "category": "chest",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Omamori_MoneyGain",
+  "scene": "Level_4_Area_3_Main",
+  "pos": [
+   -56.1,
+   1.6,
+   -25.2
+  ],
+  "object": "TreasureChest_Omamori",
+  "name": "Level 4 Area 3: Chest 1"
+ },
+ {
+  "id": 7300031,
+  "key": "chest/Level_4_Area_3_Main/2",
+  "category": "chest",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_4_Area_3_Main",
+  "pos": [
+   58.0,
+   35.4,
+   -198.5
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 4 Area 3: Chest 2",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300032,
+  "key": "chest/Level_4_Area_4_Main/1",
+  "category": "chest",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_4_Area_4_Main",
+  "pos": [
+   73.9,
+   -8.2,
+   70.6
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Level 4 Area 4: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300033,
+  "key": "chest/Level_5_Area_3_Main/1",
+  "category": "chest",
+  "region": "Level5_Area_1_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_5_Area_3_Main",
+  "pos": [
+   5.8,
+   3.8,
+   126.3
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 5 Area 3: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300034,
+  "key": "chest/Level_5_Area_4_Main/1",
+  "category": "chest",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_5_Area_4_Main",
+  "pos": [
+   -24.3,
+   0.0,
+   44.6
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 5 Area 4: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300035,
+  "key": "chest/Level_5_Area_4_Main/2",
+  "category": "chest",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_5_Area_4_Main",
+  "pos": [
+   15.3,
+   0.0,
+   41.2
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 5 Area 4: Chest 2"
+ },
+ {
+  "id": 7300036,
+  "key": "chest/Level_5_Area_5_Main/1",
+  "category": "chest",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Omamori_ParrySkillCharge",
+  "scene": "Level_5_Area_5_Main",
+  "pos": [
+   -21.5,
+   0.0,
+   -60.0
+  ],
+  "object": "TreasureChest_Omamori",
+  "name": "Level 5 Area 5: Chest 1"
+ },
+ {
+  "id": 7300037,
+  "key": "chest/Level_5_Area_5_Main/2",
+  "category": "chest",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_5_Area_5_Main",
+  "pos": [
+   18.0,
+   0.0,
+   -94.0
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Level 5 Area 5: Chest 2"
+ },
+ {
+  "id": 7300038,
+  "key": "chest/Level_5_Ikai_Part1_Main/1",
+  "category": "chest",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_5_Ikai_Part1_Main",
+  "pos": [
+   143.2,
+   -3.2,
+   166.3
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Level 5 Demonic Realm 1: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300039,
+  "key": "chest/Level_FinalP1_L1_A3_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "pos": [
+   -99.0,
+   20.2,
+   76.5
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Chapter 6 (Level 1) Area 3: Chest 1"
+ },
+ {
+  "id": 7300040,
+  "key": "chest/Level_FinalP1_L1_Ikai_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_FinalP1_L1_Ikai_Main",
+  "pos": [
+   113.2,
+   -0.1,
+   245.9
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Chapter 6 (Level 1) Demonic Realm: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300041,
+  "key": "chest/Level_FinalP1_L1Boss_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_FinalP1_L1Boss_Main",
+  "pos": [
+   -6.9,
+   0.0,
+   -17.4
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Chapter 6 (Level 1) Boss: Chest 1"
+ },
+ {
+  "id": 7300042,
+  "key": "chest/Level_FinalP1_L2_Ikai_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "Omamori_IncreaseGunRecoverValue",
+  "scene": "Level_FinalP1_L2_Ikai_Main",
+  "pos": [
+   -9.0,
+   6.5,
+   235.0
+  ],
+  "object": "TreasureChest_Omamori",
+  "name": "Chapter 6 (Level 2) Demonic Realm: Chest 1"
+ },
+ {
+  "id": 7300043,
+  "key": "chest/Level_FinalP1_L2_Ikai_Main/2",
+  "category": "chest",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_FinalP1_L2_Ikai_Main",
+  "pos": [
+   21.0,
+   30.4,
+   265.5
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Chapter 6 (Level 2) Demonic Realm: Chest 2",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300044,
+  "key": "chest/Level_FinalP2_L3_A5_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   285.6,
+   0.0,
+   22.4
+  ],
+  "object": "TreasureChest_HPCrystal",
+  "name": "Chapter 7 (Level 3) Area 5: Chest 1"
+ },
+ {
+  "id": 7300045,
+  "key": "chest/Level_FinalP2_L3_A5_Main/2",
+  "category": "chest",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   359.7,
+   0.0,
+   -62.8
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Chapter 7 (Level 3) Area 5: Chest 2"
+ },
+ {
+  "id": 7300046,
+  "key": "chest/Level_FinalP2_L4_A2_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   -127.8,
+   30.4,
+   -457.3
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Chapter 7 (Level 4) Area 2: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300047,
+  "key": "chest/Level_FinalP2_L4_A2_Main/2",
+  "category": "chest",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   -13.1,
+   0.0,
+   19.9
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Chapter 7 (Level 4) Area 2: Chest 2"
+ },
+ {
+  "id": 7300048,
+  "key": "chest/Level_FinalP3_L5_A5_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   -9.5,
+   0.0,
+   -92.0
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Chapter 8 (Level 5) Area 5: Chest 1",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300049,
+  "key": "chest/Level_FinalP3_L5_A5_Main/2",
+  "category": "chest",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   4.5,
+   -1.3,
+   23.8
+  ],
+  "object": "TreasureChest_Konpeitou",
+  "name": "Chapter 8 (Level 5) Area 5: Chest 2",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300050,
+  "key": "chest/Level_FinalP3_L5_Ikai_Main/1",
+  "category": "chest",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "SP Shard",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "pos": [
+   -434.0,
+   62.5,
+   387.0
+  ],
+  "object": "TreasureChest_SPCrystal",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Chest 1"
+ },
+ {
+  "id": 7300051,
+  "key": "chest/Level_FinalP3_L5_Ikai_Main/2",
+  "category": "chest",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "Konpeitou x3000",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "pos": [
+   30.6,
+   -1.7,
+   182.8
+  ],
+  "object": "TreasureChest_Konpeitou (1)",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Chest 2",
+  "konpeito": 3000
+ },
+ {
+  "id": 7300052,
+  "key": "ambush/L1C01",
+  "category": "ambush_chest",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_1_Area_2_Main",
+  "name": "Level 1 Area 2: Ambush Chest (C01)",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300053,
+  "key": "ambush/L2C01",
+  "category": "ambush_chest",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_2_Area_3_Main",
+  "name": "Level 2 Area 3: Ambush Chest (C01)",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300054,
+  "key": "ambush/L2C03",
+  "category": "ambush_chest",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_2_Area_5_Main",
+  "name": "Level 2 Area 5: Ambush Chest (C03)",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300055,
+  "key": "ambush/L3C01",
+  "category": "ambush_chest",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_3_Area_2_Main",
+  "name": "Level 3 Area 2: Ambush Chest (C01)",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300056,
+  "key": "head/Level1",
+  "category": "head_chase",
+  "region": "Level1_Ikai_Part1_Entrance",
+  "vanilla": "HP Shard",
+  "scene": "Level_1_Ikai_Part_1_Main",
+  "name": "Level 1: Kushinada Head Chase"
+ },
+ {
+  "id": 7300057,
+  "key": "head/Level2",
+  "category": "head_chase",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_2_Ikai_Part1_Main",
+  "name": "Level 2: Kushinada Head Chase",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300058,
+  "key": "head/Level3",
+  "category": "head_chase",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "name": "Level 3: Kushinada Head Chase",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300059,
+  "key": "head/Level4",
+  "category": "head_chase",
+  "region": "Level4_Ikai_Part1_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_4_Ikai_Part1_Main",
+  "name": "Level 4: Kushinada Head Chase",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300060,
+  "key": "head/Level5",
+  "category": "head_chase",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Konpeitou x5000",
+  "scene": "Level_5_Ikai_Part2_Main",
+  "name": "Level 5: Kushinada Head Chase",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300061,
+  "key": "ambush/L2C02",
+  "category": "ambush_reward",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_3_Main",
+  "option": "encounter_rewards",
+  "name": "Level 2 Area 3: Ambush Reward (C02)"
+ },
+ {
+  "id": 7300062,
+  "key": "ambush/L2BI01",
+  "category": "ambush_reward",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Ikai_Part1_Main",
+  "option": "encounter_rewards",
+  "name": "Level 2 Demonic Realm 1: Ambush Reward (BI01)"
+ },
+ {
+  "id": 7300063,
+  "key": "ambush/L4C01",
+  "category": "ambush_reward",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_1_Main",
+  "option": "encounter_rewards",
+  "name": "Level 4 Area 1: Ambush Reward (C01)"
+ },
+ {
+  "id": 7300064,
+  "key": "ambush/L5C01",
+  "category": "ambush_reward",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Area_5_Main",
+  "option": "encounter_rewards",
+  "name": "Level 5 Area 5: Ambush Reward (C01)"
+ },
+ {
+  "id": 7300065,
+  "key": "senbei/Level_1_Area_1_Main/1",
+  "category": "senbei",
+  "region": "Level1_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_1_Area_1_Main",
+  "pos": [
+   -9.0,
+   -9.4,
+   -149.4
+  ],
+  "senbei_type": "map",
+  "name": "Level 1 Area 1: Senbei 1"
+ },
+ {
+  "id": 7300066,
+  "key": "senbei/Level_2_Area_2_Main/1",
+  "category": "senbei",
+  "region": "Level2_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_2_Area_2_Main",
+  "pos": [
+   75.1,
+   24.8,
+   -37.2
+  ],
+  "senbei_type": "map",
+  "name": "Level 2 Area 2: Senbei 1"
+ },
+ {
+  "id": 7300067,
+  "key": "senbei/Level_2_Area_3_Main/1",
+  "category": "senbei",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_2_Area_3_Main",
+  "pos": [
+   -69.8,
+   26.1,
+   -8.2
+  ],
+  "senbei_type": "map",
+  "name": "Level 2 Area 3: Senbei 1"
+ },
+ {
+  "id": 7300068,
+  "key": "senbei/Level_2_Area_4_Main/1",
+  "category": "senbei",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_2_Area_4_Main",
+  "pos": [
+   36.5,
+   42.9,
+   75.4
+  ],
+  "senbei_type": "map",
+  "name": "Level 2 Area 4: Senbei 1"
+ },
+ {
+  "id": 7300069,
+  "key": "senbei/Level_2_Area_5_Main/1",
+  "category": "senbei",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_2_Area_5_Main",
+  "pos": [
+   34.0,
+   -13.6,
+   -46.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 2 Area 5: Senbei 1"
+ },
+ {
+  "id": 7300070,
+  "key": "senbei/Level_2_Area_7_Main/1",
+  "category": "senbei",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_2_Area_7_Main",
+  "pos": [
+   76.8,
+   116.4,
+   140.7
+  ],
+  "senbei_type": "map",
+  "name": "Level 2 Area 7: Senbei 1"
+ },
+ {
+  "id": 7300071,
+  "key": "senbei/Level_2_Area_8_Main/1",
+  "category": "senbei",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_2_Area_8_Main",
+  "pos": [
+   -4.5,
+   1.3,
+   26.8
+  ],
+  "senbei_type": "map",
+  "name": "Level 2 Area 8: Senbei 1"
+ },
+ {
+  "id": 7300072,
+  "key": "senbei/Level_3_Area_1_Main/1",
+  "category": "senbei",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_1_Main",
+  "pos": [
+   110.5,
+   4.4,
+   -96.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 1: Senbei 1"
+ },
+ {
+  "id": 7300073,
+  "key": "senbei/Level_3_Area_2_Main/1",
+  "category": "senbei",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_2_Main",
+  "pos": [
+   129.3,
+   -1.9,
+   -195.6
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 2: Senbei 1"
+ },
+ {
+  "id": 7300074,
+  "key": "senbei/Level_3_Area_3_Main/1",
+  "category": "senbei",
+  "region": "Level3_Area_3_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_3_Main",
+  "pos": [
+   -97.7,
+   -1.2,
+   108.9
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 3: Senbei 1"
+ },
+ {
+  "id": 7300075,
+  "key": "senbei/Level_3_Area_4_Main/1",
+  "category": "senbei",
+  "region": "Level3_Area_3_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_4_Main",
+  "pos": [
+   -37.0,
+   2.1,
+   -129.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 4: Senbei 1"
+ },
+ {
+  "id": 7300076,
+  "key": "senbei/Level_3_Area_5_Main/1",
+  "category": "senbei",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_5_Main",
+  "pos": [
+   223.7,
+   0.8,
+   -94.2
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 5: Senbei 1"
+ },
+ {
+  "id": 7300077,
+  "key": "senbei/Level_3_Area_5_Main/2",
+  "category": "senbei",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_5_Main",
+  "pos": [
+   387.7,
+   0.8,
+   -95.4
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 5: Senbei 2"
+ },
+ {
+  "id": 7300078,
+  "key": "senbei/Level_3_Area_7_Main/1",
+  "category": "senbei",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_3_Area_7_Main",
+  "pos": [
+   0.0,
+   -2.3,
+   63.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 3 Area 7: Senbei 1"
+ },
+ {
+  "id": 7300079,
+  "key": "senbei/Level_4_Area_1_Main/1",
+  "category": "senbei",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_4_Area_1_Main",
+  "pos": [
+   37.9,
+   0.6,
+   61.8
+  ],
+  "senbei_type": "map",
+  "name": "Level 4 Area 1: Senbei 1"
+ },
+ {
+  "id": 7300080,
+  "key": "senbei/Level_4_Area_1_Main/2",
+  "category": "senbei",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_4_Area_1_Main",
+  "pos": [
+   80.3,
+   9.8,
+   -48.8
+  ],
+  "senbei_type": "map",
+  "name": "Level 4 Area 1: Senbei 2"
+ },
+ {
+  "id": 7300081,
+  "key": "senbei/Level_4_Area_2_Main/1",
+  "category": "senbei",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_4_Area_2_Main",
+  "pos": [
+   -88.0,
+   10.9,
+   -184.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 4 Area 2: Senbei 1"
+ },
+ {
+  "id": 7300082,
+  "key": "senbei/Level_4_Area_2_Main/2",
+  "category": "senbei",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_4_Area_2_Main",
+  "pos": [
+   -16.0,
+   2.1,
+   -57.3
+  ],
+  "senbei_type": "map",
+  "name": "Level 4 Area 2: Senbei 2"
+ },
+ {
+  "id": 7300083,
+  "key": "senbei/Level_4_Area_3_Main/1",
+  "category": "senbei",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_4_Area_3_Main",
+  "pos": [
+   -66.9,
+   24.5,
+   -94.2
+  ],
+  "senbei_type": "map",
+  "name": "Level 4 Area 3: Senbei 1"
+ },
+ {
+  "id": 7300084,
+  "key": "senbei/Level_4_Area_3_Main/2",
+  "category": "senbei",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_4_Area_3_Main",
+  "pos": [
+   60.3,
+   17.9,
+   -66.7
+  ],
+  "senbei_type": "map",
+  "name": "Level 4 Area 3: Senbei 2"
+ },
+ {
+  "id": 7300085,
+  "key": "senbei/Level_5_Area_1_Main/1",
+  "category": "senbei",
+  "region": "Level5_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_5_Area_1_Main",
+  "pos": [
+   -74.4,
+   28.5,
+   160.7
+  ],
+  "senbei_type": "map",
+  "name": "Level 5 Area 1: Senbei 1"
+ },
+ {
+  "id": 7300086,
+  "key": "senbei/Level_5_Area_3_Main/1",
+  "category": "senbei",
+  "region": "Level5_Area_1_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_5_Area_3_Main",
+  "pos": [
+   0.4,
+   1.3,
+   37.5
+  ],
+  "senbei_type": "map",
+  "name": "Level 5 Area 3: Senbei 1"
+ },
+ {
+  "id": 7300087,
+  "key": "senbei/Level_5_Area_4_Main/1",
+  "category": "senbei",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_5_Area_4_Main",
+  "pos": [
+   1.4,
+   5.8,
+   79.7
+  ],
+  "senbei_type": "map",
+  "name": "Level 5 Area 4: Senbei 1"
+ },
+ {
+  "id": 7300088,
+  "key": "senbei/Level_5_Area_5_Main/1",
+  "category": "senbei",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_5_Area_5_Main",
+  "pos": [
+   -16.0,
+   1.0,
+   -2.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 5 Area 5: Senbei 1"
+ },
+ {
+  "id": 7300089,
+  "key": "senbei/Level_5_Area_5_Main/2",
+  "category": "senbei",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_5_Area_5_Main",
+  "pos": [
+   -9.0,
+   1.3,
+   -92.0
+  ],
+  "senbei_type": "map",
+  "name": "Level 5 Area 5: Senbei 2"
+ },
+ {
+  "id": 7300090,
+  "key": "senbei/Level_FinalP1_L1_A3_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "pos": [
+   -80.0,
+   2.8,
+   -74.5
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 6 (Level 1) Area 3: Senbei 1"
+ },
+ {
+  "id": 7300091,
+  "key": "senbei/Level_FinalP1_L1_A3_Main/2",
+  "category": "senbei",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "pos": [
+   -78.3,
+   3.8,
+   0.5
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 6 (Level 1) Area 3: Senbei 2"
+ },
+ {
+  "id": 7300092,
+  "key": "senbei/Level_FinalP1_L1_Ikai_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP1_L1_Ikai_Main",
+  "pos": [
+   139.1,
+   7.4,
+   399.0
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 6 (Level 1) Demonic Realm: Senbei 1"
+ },
+ {
+  "id": 7300093,
+  "key": "senbei/Level_FinalP1_L1Boss_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP1_L1Boss_Main",
+  "pos": [
+   9.4,
+   1.3,
+   -17.5
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 6 (Level 1) Boss: Senbei 1"
+ },
+ {
+  "id": 7300094,
+  "key": "senbei/Level_FinalP1_L2_Ikai_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP1_L2_Ikai_Main",
+  "pos": [
+   202.8,
+   111.9,
+   398.1
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 6 (Level 2) Demonic Realm: Senbei 1"
+ },
+ {
+  "id": 7300095,
+  "key": "senbei/Level_FinalP2_L3_A5_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   183.7,
+   0.8,
+   -12.1
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 7 (Level 3) Area 5: Senbei 1"
+ },
+ {
+  "id": 7300096,
+  "key": "senbei/Level_FinalP2_L3_A5_Main/2",
+  "category": "senbei",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   387.7,
+   0.8,
+   -95.4
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 7 (Level 3) Area 5: Senbei 2"
+ },
+ {
+  "id": 7300097,
+  "key": "senbei/Level_FinalP2_L3_A5_Main/3",
+  "category": "senbei",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   9999.1,
+   4.8,
+   -47.5
+  ],
+  "senbei_type": "settlement",
+  "name": "Chapter 7 (Level 3) Area 5: Encounter Reward Senbei 3"
+ },
+ {
+  "id": 7300098,
+  "key": "senbei/Level_FinalP2_L3_A5_Main/4",
+  "category": "senbei",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   10000.7,
+   4.8,
+   -47.4
+  ],
+  "senbei_type": "settlement",
+  "name": "Chapter 7 (Level 3) Area 5: Encounter Reward Senbei 4"
+ },
+ {
+  "id": 7300099,
+  "key": "senbei/Level_FinalP2_L4_A2_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   -125.5,
+   34.6,
+   -444.4
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 7 (Level 4) Area 2: Senbei 1"
+ },
+ {
+  "id": 7300100,
+  "key": "senbei/Level_FinalP2_L4_A2_Main/2",
+  "category": "senbei",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   16.4,
+   31.8,
+   -316.1
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 7 (Level 4) Area 2: Senbei 2"
+ },
+ {
+  "id": 7300101,
+  "key": "senbei/Level_FinalP2_L4_A2_Main/3",
+  "category": "senbei",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   6969.0,
+   4.8,
+   -7386.1
+  ],
+  "senbei_type": "settlement",
+  "name": "Chapter 7 (Level 4) Area 2: Encounter Reward Senbei 3"
+ },
+ {
+  "id": 7300102,
+  "key": "senbei/Level_FinalP2_L4_A2_Main/4",
+  "category": "senbei",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   6970.2,
+   4.8,
+   -7386.2
+  ],
+  "senbei_type": "settlement",
+  "name": "Chapter 7 (Level 4) Area 2: Encounter Reward Senbei 4"
+ },
+ {
+  "id": 7300103,
+  "key": "senbei/Level_FinalP3_L5_A5_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   -7.5,
+   5.0,
+   -65.2
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 8 (Level 5) Area 5: Senbei 1"
+ },
+ {
+  "id": 7300104,
+  "key": "senbei/Level_FinalP3_L5_A5_Main/2",
+  "category": "senbei",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   22.6,
+   2.9,
+   -86.8
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 8 (Level 5) Area 5: Senbei 2"
+ },
+ {
+  "id": 7300105,
+  "key": "senbei/Level_FinalP3_L5_Ikai_Main/1",
+  "category": "senbei",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "pos": [
+   -17.3,
+   6.4,
+   165.9
+  ],
+  "senbei_type": "map",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Senbei 1"
+ },
+ {
+  "id": 7300106,
+  "key": "senbei/Level_FinalP3_L5_Ikai_Main/2",
+  "category": "senbei",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "Senbei x1",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "pos": [
+   3181.2,
+   4.8,
+   10253.1
+  ],
+  "senbei_type": "settlement",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Encounter Reward Senbei 2"
+ },
+ {
+  "id": 7300107,
+  "key": "journal/Codex_Note_FinalLevel_BurntNotebook",
+  "category": "journal",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_BurntNotebook",
+  "scene": "Level_FinalP1_L1Boss_Main",
+  "pos": [
+   5.2,
+   0.0,
+   -13.8
+  ],
+  "name": "Journal: Final Burnt Notebook"
+ },
+ {
+  "id": 7300108,
+  "key": "journal/Codex_Note_FinalLevel_Law",
+  "category": "journal",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Law",
+  "scene": "Level_FinalP1_L1_Ikai_Main",
+  "pos": [
+   -7.8,
+   25.6,
+   361.8
+  ],
+  "name": "Journal: Final Law"
+ },
+ {
+  "id": 7300109,
+  "key": "journal/Codex_Note_FinalLevel_Nagi",
+  "category": "journal",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Nagi",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   7.6,
+   -1.3,
+   -152.0
+  ],
+  "name": "Journal: Final Nagi"
+ },
+ {
+  "id": 7300110,
+  "key": "journal/Codex_Note_Level1_Diary1",
+  "category": "journal",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Codex_Note_Level1_Diary1",
+  "scene": "Level_1_Area_3_Main",
+  "pos": [
+   -127.8,
+   1.5,
+   -1.6
+  ],
+  "name": "Journal: Level 1 Diary 1"
+ },
+ {
+  "id": 7300111,
+  "key": "journal/Codex_Note_Level1_Diary2",
+  "category": "journal",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Codex_Note_Level1_Diary2",
+  "scene": "Level_1_Area_2_Main",
+  "name": "Journal: Level 1 Diary 2"
+ },
+ {
+  "id": 7300112,
+  "key": "journal/Codex_Note_Level1_Diary3",
+  "category": "journal",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Codex_Note_Level1_Diary3",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "pos": [
+   -127.3,
+   2.2,
+   -18.2
+  ],
+  "name": "Journal: Level 1 Diary 3"
+ },
+ {
+  "id": 7300113,
+  "key": "journal/Codex_Note_Level1_History",
+  "category": "journal",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Codex_Note_Level1_History",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "pos": [
+   -72.5,
+   16.7,
+   146.9
+  ],
+  "name": "Journal: Level 1 History"
+ },
+ {
+  "id": 7300114,
+  "key": "journal/Codex_Note_Level1_Newspaper",
+  "category": "journal",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Codex_Note_Level1_Newspaper",
+  "scene": "Level_1_Area_2_Main",
+  "pos": [
+   -26.3,
+   0.0,
+   -44.6
+  ],
+  "name": "Journal: Level 1 Newspaper"
+ },
+ {
+  "id": 7300115,
+  "key": "journal/Codex_Note_Level1_RuralHorror",
+  "category": "journal",
+  "region": "Level1_Area_1_Entrance",
+  "vanilla": "Codex_Note_Level1_RuralHorror",
+  "scene": "Level_1_Area_1_Main",
+  "pos": [
+   -144.2,
+   -2.0,
+   -221.9
+  ],
+  "name": "Journal: Level 1 Rural Horror",
+  "scene_req": [
+   "Pretty Little Flower"
+  ]
+ },
+ {
+  "id": 7300116,
+  "key": "journal/Codex_Note_Level2_Diary1",
+  "category": "journal",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "Codex_Note_Level2_Diary1",
+  "scene": "Level_FinalP1_L2_Ikai_Main",
+  "pos": [
+   158.5,
+   139.8,
+   661.0
+  ],
+  "name": "Journal: Level 2 Diary 1"
+ },
+ {
+  "id": 7300117,
+  "key": "journal/Codex_Note_Level2_Diary2",
+  "category": "journal",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Codex_Note_Level2_Diary2",
+  "scene": "Level_2_Area_4_Main",
+  "pos": [
+   -33.1,
+   40.4,
+   97.0
+  ],
+  "name": "Journal: Level 2 Diary 2"
+ },
+ {
+  "id": 7300118,
+  "key": "journal/Codex_Note_Level2_Diary3",
+  "category": "journal",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "Codex_Note_Level2_Diary3",
+  "scene": "Level_2_Area_8_Main",
+  "pos": [
+   -0.3,
+   -0.4,
+   13.1
+  ],
+  "name": "Journal: Level 2 Diary 3"
+ },
+ {
+  "id": 7300119,
+  "key": "journal/Codex_Note_Level2_Handwriting1",
+  "category": "journal",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "Codex_Note_Level2_Handwriting1",
+  "scene": "Level_2_Area_5_2F_Main",
+  "pos": [
+   -50.6,
+   14.1,
+   -68.7
+  ],
+  "name": "Journal: Level 2 Handwriting 1"
+ },
+ {
+  "id": 7300120,
+  "key": "journal/Codex_Note_Level2_Handwriting2",
+  "category": "journal",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "Codex_Note_Level2_Handwriting2",
+  "scene": "Level_FinalP1_L2_Ikai_Main",
+  "pos": [
+   -8.5,
+   6.5,
+   232.0
+  ],
+  "name": "Journal: Level 2 Handwriting 2"
+ },
+ {
+  "id": 7300121,
+  "key": "journal/Codex_Note_Level2_Memo",
+  "category": "journal",
+  "region": "Level2_Area_1_Entrance",
+  "vanilla": "Codex_Note_Level2_Memo",
+  "scene": "Level_2_Area_1_Main",
+  "pos": [
+   46.0,
+   0.3,
+   -45.2
+  ],
+  "name": "Journal: Level 2 Memo"
+ },
+ {
+  "id": 7300122,
+  "key": "journal/Codex_Note_Level2_Research",
+  "category": "journal",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Codex_Note_Level2_Research",
+  "scene": "Level_2_Area_3_Main",
+  "pos": [
+   -76.9,
+   12.1,
+   17.9
+  ],
+  "name": "Journal: Level 2 Research"
+ },
+ {
+  "id": 7300123,
+  "key": "journal/Codex_Note_Level2_RuralHorror",
+  "category": "journal",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "Codex_Note_Level2_RuralHorror",
+  "scene": "Level_FinalP1_L2_Ikai_Main",
+  "pos": [
+   -2.5,
+   25.5,
+   7.5
+  ],
+  "name": "Journal: Level 2 Rural Horror"
+ },
+ {
+  "id": 7300124,
+  "key": "journal/Codex_Note_Level3_Diary1",
+  "category": "journal",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Codex_Note_Level3_Diary1",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   341.6,
+   0.0,
+   -69.8
+  ],
+  "name": "Journal: Level 3 Diary 1"
+ },
+ {
+  "id": 7300125,
+  "key": "journal/Codex_Note_Level3_Diary2",
+  "category": "journal",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Codex_Note_Level3_Diary2",
+  "scene": "Level_3_Area_6_Main",
+  "pos": [
+   -95.5,
+   -3.3,
+   -56.9
+  ],
+  "name": "Journal: Level 3 Diary 2"
+ },
+ {
+  "id": 7300126,
+  "key": "journal/Codex_Note_Level3_Doctrine",
+  "category": "journal",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Codex_Note_Level3_Doctrine",
+  "scene": "Level_3_Area_5_Main",
+  "pos": [
+   279.0,
+   0.0,
+   12.9
+  ],
+  "name": "Journal: Level 3 Doctrine"
+ },
+ {
+  "id": 7300127,
+  "key": "journal/Codex_Note_Level3_Memo",
+  "category": "journal",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Codex_Note_Level3_Memo",
+  "scene": "Level_3_Area_7_Main",
+  "pos": [
+   274.1,
+   0.2,
+   34.3
+  ],
+  "name": "Journal: Level 3 Memo"
+ },
+ {
+  "id": 7300128,
+  "key": "journal/Codex_Note_Level3_Record1",
+  "category": "journal",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "Codex_Note_Level3_Record1",
+  "scene": "Level_3_Area_1_Main",
+  "pos": [
+   9.7,
+   0.3,
+   -114.5
+  ],
+  "name": "Journal: Level 3 Record 1"
+ },
+ {
+  "id": 7300129,
+  "key": "journal/Codex_Note_Level3_Record2",
+  "category": "journal",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Codex_Note_Level3_Record2",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   185.2,
+   0.0,
+   4.8
+  ],
+  "name": "Journal: Level 3 Record 2"
+ },
+ {
+  "id": 7300130,
+  "key": "journal/Codex_Note_Level3_RuralHorror",
+  "category": "journal",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Codex_Note_Level3_RuralHorror",
+  "scene": "Level_3_Area_5_Main",
+  "pos": [
+   388.8,
+   0.0,
+   -118.8
+  ],
+  "name": "Journal: Level 3 Rural Horror"
+ },
+ {
+  "id": 7300131,
+  "key": "journal/Codex_Note_Level3_Sacrifice",
+  "category": "journal",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Codex_Note_Level3_Sacrifice",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "pos": [
+   301.8,
+   0.0,
+   -3.4
+  ],
+  "name": "Journal: Level 3 Sacrifice"
+ },
+ {
+  "id": 7300132,
+  "key": "journal/Codex_Note_Level4_Flyers",
+  "category": "journal",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Codex_Note_Level4_Flyers",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "pos": [
+   -7.0,
+   0.0,
+   -111.6
+  ],
+  "name": "Journal: Level 4 Flyers"
+ },
+ {
+  "id": 7300133,
+  "key": "journal/Codex_Note_Level4_DogDiary",
+  "category": "journal",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "Codex_Note_Level4_DogDiary",
+  "scene": "Level_4_Area_4_Main",
+  "pos": [
+   0.6,
+   4.7,
+   -39.2
+  ],
+  "name": "Journal: Level 4 Dog Diary"
+ },
+ {
+  "id": 7300134,
+  "key": "journal/Codex_Note_Level5_Letter",
+  "category": "journal",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Codex_Note_Level5_Letter",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   -21.9,
+   -0.3,
+   -14.4
+  ],
+  "name": "Journal: Level 5 Letter"
+ },
+ {
+  "id": 7300135,
+  "key": "journal/Codex_Note_Level5_LetterAgasa",
+  "category": "journal",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "Codex_Note_Level5_LetterAgasa",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "pos": [
+   -327.3,
+   27.4,
+   351.0
+  ],
+  "name": "Journal: Level 5 Letter Agasa"
+ },
+ {
+  "id": 7300136,
+  "key": "journal/Codex_Note_Level5_Newspaper1",
+  "category": "journal",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "Codex_Note_Level5_Newspaper1",
+  "scene": "Level_5_Area_4_Main",
+  "pos": [
+   2.0,
+   0.0,
+   43.2
+  ],
+  "name": "Journal: Level 5 Newspaper 1"
+ },
+ {
+  "id": 7300137,
+  "key": "journal/Codex_Note_Level5_Newspaper2",
+  "category": "journal",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Codex_Note_Level5_Newspaper2",
+  "scene": "Level_5_Area_5_Main",
+  "pos": [
+   1.8,
+   0.0,
+   -78.0
+  ],
+  "name": "Journal: Level 5 Newspaper 2"
+ },
+ {
+  "id": 7300138,
+  "key": "journal/Codex_Note_Level5_Newspaper3",
+  "category": "journal",
+  "region": "Level5_Area_1_Entrance",
+  "vanilla": "Codex_Note_Level5_Newspaper3",
+  "scene": "Level_5_Area_1_Main",
+  "pos": [
+   -79.7,
+   24.7,
+   284.9
+  ],
+  "name": "Journal: Level 5 Newspaper 3"
+ },
+ {
+  "id": 7300139,
+  "key": "journal/Codex_Note_Level5_Proof",
+  "category": "journal",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Codex_Note_Level5_Proof",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "pos": [
+   -25.3,
+   0.0,
+   -45.7
+  ],
+  "name": "Journal: Level 5 Proof"
+ },
+ {
+  "id": 7300140,
+  "key": "journal/Codex_Note_Level5_RuralHorror",
+  "category": "journal",
+  "region": "Level5_Area_1_Entrance",
+  "vanilla": "Codex_Note_Level5_RuralHorror",
+  "scene": "Level_5_Area_3_Main",
+  "pos": [
+   -9.6,
+   0.0,
+   14.7
+  ],
+  "name": "Journal: Level 5 Rural Horror"
+ },
+ {
+  "id": 7300141,
+  "key": "shop/ComboB",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "ComboB",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 8000,
+  "senbei": 0,
+  "name": "Shop: Combo Dancing Embers"
+ },
+ {
+  "id": 7300142,
+  "key": "shop/ComboCTCA",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "ComboCTCA",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 8000,
+  "senbei": 0,
+  "name": "Shop: Combo Fire Wheel"
+ },
+ {
+  "id": 7300143,
+  "key": "shop/ComboCTCB",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "ComboCTCB",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 12000,
+  "senbei": 0,
+  "name": "Shop: Combo Fire Wheel: Ascend"
+ },
+ {
+  "id": 7300144,
+  "key": "shop/ComboD",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "ComboD",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 16000,
+  "senbei": 0,
+  "name": "Shop: Combo Blazing Thrust"
+ },
+ {
+  "id": 7300145,
+  "key": "shop/Combo KnockOutAerialRave",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Combo KnockOutAerialRave",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 12000,
+  "senbei": 0,
+  "name": "Shop: Combo Raining Flames"
+ },
+ {
+  "id": 7300146,
+  "key": "shop/HeavyComboB",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HeavyComboB",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 8000,
+  "senbei": 0,
+  "name": "Shop: Combo Fire Wheel: Dual"
+ },
+ {
+  "id": 7300147,
+  "key": "shop/HeavyComboC",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HeavyComboC",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 12000,
+  "senbei": 0,
+  "name": "Shop: Combo Molten Impact"
+ },
+ {
+  "id": 7300148,
+  "key": "shop/HeavyCombo KnockOutAerialRave",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HeavyCombo KnockOutAerialRave",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 16000,
+  "senbei": 0,
+  "name": "Shop: Combo Weaving Fireworks"
+ },
+ {
+  "id": 7300149,
+  "key": "shop/AerialComboB",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "AerialComboB",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 10000,
+  "senbei": 0,
+  "name": "Shop: Combo Sky Dance: Fall"
+ },
+ {
+  "id": 7300150,
+  "key": "shop/AerialComboC",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "AerialComboC",
+  "tier": 0,
+  "shop_type": "combo",
+  "price": 10000,
+  "senbei": 0,
+  "name": "Shop: Combo Sky Dance: Break"
+ },
+ {
+  "id": 7300151,
+  "key": "shop/Skill_Explosion Charm",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Explosion Charm",
+  "tier": 0,
+  "shop_type": "skill",
+  "price": 16000,
+  "senbei": 1,
+  "name": "Shop: Skill Traction Charm"
+ },
+ {
+  "id": 7300152,
+  "key": "shop/Skill_Blaze Rush",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Blaze Rush",
+  "tier": 0,
+  "shop_type": "skill",
+  "price": 8000,
+  "senbei": 1,
+  "name": "Shop: Skill Spark Rush"
+ },
+ {
+  "id": 7300153,
+  "key": "shop/Skill_Thousand Cuts",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Thousand Cuts",
+  "tier": 0,
+  "shop_type": "skill",
+  "price": 8000,
+  "senbei": 1,
+  "name": "Shop: Skill Thousand Cuts"
+ },
+ {
+  "id": 7300154,
+  "key": "shop/Skill_Suzaku",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Suzaku",
+  "tier": 0,
+  "shop_type": "skill",
+  "price": 36000,
+  "senbei": 3,
+  "name": "Shop: Skill Suzaku"
+ },
+ {
+  "id": 7300155,
+  "key": "shop/Skill_Gale Blade",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Gale Blade",
+  "tier": 3,
+  "shop_type": "skill",
+  "price": 8000,
+  "senbei": 1,
+  "name": "Shop: Skill Sharp Claws"
+ },
+ {
+  "id": 7300156,
+  "key": "shop/Skill_Heart Prison",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Heart Prison",
+  "tier": 3,
+  "shop_type": "skill",
+  "price": 12000,
+  "senbei": 2,
+  "name": "Shop: Skill Dark Prison"
+ },
+ {
+  "id": 7300157,
+  "key": "shop/Skill_Binding Curse",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Binding Curse",
+  "tier": 2,
+  "shop_type": "skill",
+  "price": 16000,
+  "senbei": 1,
+  "name": "Shop: Skill Binding Curse"
+ },
+ {
+  "id": 7300158,
+  "key": "shop/Skill_Bloodflame Palm",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Bloodflame Palm",
+  "tier": 2,
+  "shop_type": "skill",
+  "price": 16000,
+  "senbei": 1,
+  "name": "Shop: Skill Bloodflame Palm"
+ },
+ {
+  "id": 7300159,
+  "key": "shop/Skill_Heavenly Guardian",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Heavenly Guardian",
+  "tier": 4,
+  "shop_type": "skill",
+  "price": 36000,
+  "senbei": 1,
+  "name": "Shop: Skill Heavenly Guardians"
+ },
+ {
+  "id": 7300160,
+  "key": "shop/Skill_Kagemusha",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Kagemusha",
+  "tier": 4,
+  "shop_type": "skill",
+  "price": 36000,
+  "senbei": 2,
+  "name": "Shop: Skill Phantom Warrior"
+ },
+ {
+  "id": 7300161,
+  "key": "shop/Skill_Needle Rain",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Skill_Needle Rain",
+  "tier": 5,
+  "shop_type": "skill",
+  "price": 12000,
+  "senbei": 1,
+  "name": "Shop: Skill Needle Rain"
+ },
+ {
+  "id": 7300162,
+  "key": "shop/Omamori_AttackValue",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_AttackValue",
+  "tier": 1,
+  "shop_type": "omamori",
+  "price": 16000,
+  "senbei": 0,
+  "name": "Shop: Omamori Strength Charm (S)"
+ },
+ {
+  "id": 7300163,
+  "key": "shop/Omamori_DefenseValue",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_DefenseValue",
+  "tier": 1,
+  "shop_type": "omamori",
+  "price": 16000,
+  "senbei": 0,
+  "name": "Shop: Omamori Bone Charm (S)"
+ },
+ {
+  "id": 7300164,
+  "key": "shop/Omamori_HP",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_HP",
+  "tier": 1,
+  "shop_type": "omamori",
+  "price": 16000,
+  "senbei": 0,
+  "name": "Shop: Omamori Life Charm (S)"
+ },
+ {
+  "id": 7300165,
+  "key": "shop/Omamori_ParryIncreaseHealingDropRate",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_ParryIncreaseHealingDropRate",
+  "tier": 1,
+  "shop_type": "omamori",
+  "price": 16000,
+  "senbei": 0,
+  "name": "Shop: Omamori Heal Blessing Charm"
+ },
+ {
+  "id": 7300166,
+  "key": "shop/Omamori_BulletAtkReduce",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_BulletAtkReduce",
+  "tier": 1,
+  "shop_type": "omamori",
+  "price": 16000,
+  "senbei": 3,
+  "name": "Shop: Omamori Golden Fragment"
+ },
+ {
+  "id": 7300167,
+  "key": "shop/Omamori_ExtendParryTime",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_ExtendParryTime",
+  "tier": 1,
+  "shop_type": "omamori",
+  "price": 24000,
+  "senbei": 1,
+  "name": "Shop: Omamori Evasion Gem"
+ },
+ {
+  "id": 7300168,
+  "key": "shop/Omamori_MeleeAtkReduce",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_MeleeAtkReduce",
+  "tier": 2,
+  "shop_type": "omamori",
+  "price": 16000,
+  "senbei": 3,
+  "name": "Shop: Omamori Aegis Fragment"
+ },
+ {
+  "id": 7300169,
+  "key": "shop/Omamori_ParryInvincibleTime",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_ParryInvincibleTime",
+  "tier": 3,
+  "shop_type": "omamori",
+  "price": 32000,
+  "senbei": 1,
+  "name": "Shop: Omamori Invincible Blade"
+ },
+ {
+  "id": 7300170,
+  "key": "shop/Omamori_IncreaseDashInvincibleTime",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_IncreaseDashInvincibleTime",
+  "tier": 3,
+  "shop_type": "omamori",
+  "price": 32000,
+  "senbei": 1,
+  "name": "Shop: Omamori Invincible Gale"
+ },
+ {
+  "id": 7300171,
+  "key": "shop/Omamori_TransformCharge",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Omamori_TransformCharge",
+  "tier": 6,
+  "shop_type": "omamori",
+  "price": 24000,
+  "senbei": 2,
+  "name": "Shop: Omamori Shura Ashes"
+ },
+ {
+  "id": 7300172,
+  "key": "shop/OmamoriCostUpgrade_1",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "OmamoriCostUpgrade_1",
+  "tier": 0,
+  "shop_type": "other",
+  "price": 12000,
+  "senbei": 0,
+  "name": "Shop: Omamori Cost Up (1)"
+ },
+ {
+  "id": 7300173,
+  "key": "shop/OmamoriCostUpgrade_2",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "OmamoriCostUpgrade_2",
+  "tier": 0,
+  "shop_type": "other",
+  "price": 36000,
+  "senbei": 0,
+  "name": "Shop: Omamori Cost Up (2)"
+ },
+ {
+  "id": 7300174,
+  "key": "shop/HP Crystal",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HP Crystal",
+  "tier": 0,
+  "shop_type": "other",
+  "price": 48000,
+  "senbei": 0,
+  "name": "Shop: Life Crystal"
+ },
+ {
+  "id": 7300175,
+  "key": "shop/SP Crystal",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "SP Crystal",
+  "tier": 0,
+  "shop_type": "other",
+  "price": 48000,
+  "senbei": 0,
+  "name": "Shop: Blessed Crystal"
+ },
+ {
+  "id": 7300176,
+  "key": "shop/Kushinada_Dango",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "tier": 0,
+  "shop_type": "other",
+  "price": 24000,
+  "senbei": 0,
+  "name": "Shop: Special Hanami Dango"
+ },
+ {
+  "id": 7300177,
+  "key": "shop/HP Shard#1",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HP Shard",
+  "tier": 0,
+  "shop_type": "shard",
+  "price": 4000,
+  "senbei": 0,
+  "name": "Shop: Life Crystal Shard (1)"
+ },
+ {
+  "id": 7300178,
+  "key": "shop/HP Shard#2",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HP Shard",
+  "tier": 0,
+  "shop_type": "shard",
+  "price": 12000,
+  "senbei": 0,
+  "name": "Shop: Life Crystal Shard (2)"
+ },
+ {
+  "id": 7300179,
+  "key": "shop/HP Shard#3",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "HP Shard",
+  "tier": 0,
+  "shop_type": "shard",
+  "price": 24000,
+  "senbei": 0,
+  "name": "Shop: Life Crystal Shard (3)"
+ },
+ {
+  "id": 7300180,
+  "key": "shop/SP Shard#1",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "SP Shard",
+  "tier": 0,
+  "shop_type": "shard",
+  "price": 4000,
+  "senbei": 0,
+  "name": "Shop: Blessed Crystal Shard (1)"
+ },
+ {
+  "id": 7300181,
+  "key": "shop/SP Shard#2",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "SP Shard",
+  "tier": 0,
+  "shop_type": "shard",
+  "price": 12000,
+  "senbei": 0,
+  "name": "Shop: Blessed Crystal Shard (2)"
+ },
+ {
+  "id": 7300182,
+  "key": "shop/SP Shard#3",
+  "category": "shop",
+  "region": "Hub",
+  "vanilla": "SP Shard",
+  "tier": 0,
+  "shop_type": "shard",
+  "price": 24000,
+  "senbei": 0,
+  "name": "Shop: Blessed Crystal Shard (3)"
+ },
+ {
+  "id": 7300183,
+  "key": "stage/Level1",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Senbei x1; Omamori_Jinguu",
+  "chapter": "Level1",
+  "name": "Level 1 Clear Reward",
+  "konpeito": 6000
+ },
+ {
+  "id": 7300184,
+  "key": "stage/Level2",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Gun_Funnel",
+  "chapter": "Level2",
+  "name": "Level 2 Clear Reward",
+  "konpeito": 6000
+ },
+ {
+  "id": 7300185,
+  "key": "stage/Level3",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "chapter": "Level3",
+  "name": "Level 3 Clear Reward",
+  "konpeito": 6000
+ },
+ {
+  "id": 7300186,
+  "key": "stage/Level4",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Skill_Chain Lightning",
+  "chapter": "Level4",
+  "name": "Level 4 Clear Reward",
+  "konpeito": 6000
+ },
+ {
+  "id": 7300187,
+  "key": "stage/Level5",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Skill_Quaking Strike",
+  "chapter": "Level5",
+  "name": "Level 5 Clear Reward",
+  "konpeito": 6000
+ },
+ {
+  "id": 7300188,
+  "key": "stage/LevelFinalP1",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "chapter": "LevelFinalP1",
+  "name": "Chapter 6 Clear Reward",
+  "konpeito": 10000
+ },
+ {
+  "id": 7300189,
+  "key": "stage/LevelFinalP2",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "chapter": "LevelFinalP2",
+  "name": "Chapter 7 Clear Reward",
+  "konpeito": 14000
+ },
+ {
+  "id": 7300190,
+  "key": "stage/LevelFinalP3",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "chapter": "LevelFinalP3",
+  "name": "Chapter 8 Clear Reward",
+  "konpeito": 14000
+ },
+ {
+  "id": 7300191,
+  "key": "harumi/1",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "petals": 100,
+  "name": "Harumi: Stage 1"
+ },
+ {
+  "id": 7300192,
+  "key": "harumi/2",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Omamori_HP_Big",
+  "petals": 300,
+  "name": "Harumi: Stage 2"
+ },
+ {
+  "id": 7300193,
+  "key": "harumi/3",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Konpeitou x5000",
+  "petals": 600,
+  "name": "Harumi: Stage 3",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300194,
+  "key": "harumi/4",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Kushinada_Dango",
+  "petals": 1000,
+  "name": "Harumi: Stage 4"
+ },
+ {
+  "id": 7300195,
+  "key": "harumi/5",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Skill_Rising Serpent",
+  "petals": 1400,
+  "name": "Harumi: Stage 5"
+ },
+ {
+  "id": 7300196,
+  "key": "harumi/6",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Konpeitou x10000",
+  "petals": 1800,
+  "name": "Harumi: Stage 6",
+  "konpeito": 10000
+ },
+ {
+  "id": 7300197,
+  "key": "harumi/7",
+  "category": "harumi",
+  "region": "Hub",
+  "vanilla": "Konpeitou x15000",
+  "petals": 2300,
+  "name": "Harumi: Stage 7",
+  "konpeito": 15000
+ },
+ {
+  "id": 7300198,
+  "key": "tournament/reward",
+  "category": "tournament",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "Codex_Important_Level4_ProofOfTheLnugami; Senbei x3; HP Crystal",
+  "scene": "Level_4_Area_Arena_Main",
+  "name": "Tournament Reward"
+ },
+ {
+  "id": 7300199,
+  "key": "stall/festival",
+  "category": "stall",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "Codex_Important_Level4_AppleCandy; Codex_Important_Level4_ChocolBanana; Codex_Important_Level4_Takoyaki; Codex_Important_Level4_WaterBall",
+  "scene": "Level_4_Area_4_Main",
+  "name": "Festival Stall Treat"
+ },
+ {
+  "id": 7300200,
+  "key": "trial/FC01",
+  "category": "trial",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_ExorcismArts",
+  "scene": "Level_3_Area_7_Main",
+  "name": "Level 3 Area 7: Glitched Spirit Trial 01",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300201,
+  "key": "trial/FC02",
+  "category": "trial",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Negai",
+  "scene": "Level_4_Area_3_Main",
+  "name": "Level 4 Area 3: Glitched Spirit Trial 02",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300202,
+  "key": "trial/FC03",
+  "category": "trial",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Demon",
+  "scene": "Level_5_Area_4_Main",
+  "name": "Level 5 Area 4: Glitched Spirit Trial 03",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300203,
+  "key": "trial/FC04",
+  "category": "trial",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Jinguu",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "name": "Chapter 6 (Level 1) Area 3: Glitched Spirit Trial 04",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300204,
+  "key": "trial/FC05",
+  "category": "trial",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_SomeoneNotes",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "name": "Chapter 7 (Level 3) Area 5: Glitched Spirit Trial 05",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300205,
+  "key": "trial/FC06",
+  "category": "trial",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Senbei x3; Codex_Note_FinalLevel_Soul",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "name": "Chapter 7 (Level 3) Area 5: Glitched Spirit Trial 06"
+ },
+ {
+  "id": 7300206,
+  "key": "trial/FC07",
+  "category": "trial",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Senbei x3; Codex_Note_FinalLevel_ObservationRecords2",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "name": "Chapter 7 (Level 4) Area 2: Glitched Spirit Trial 07"
+ },
+ {
+  "id": 7300207,
+  "key": "trial/FC08",
+  "category": "trial",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "Senbei x3; Codex_Note_FinalLevel_HighPriestess",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Glitched Spirit Trial 08"
+ },
+ {
+  "id": 7300208,
+  "key": "trial/FC09",
+  "category": "trial",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_TatteredMissionLogs",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 09",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300209,
+  "key": "trial/FC10",
+  "category": "trial",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Ikai",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 10",
+  "konpeito": 5000
+ },
+ {
+  "id": 7300210,
+  "key": "handover/flower",
+  "category": "handover",
+  "region": "Level1_Area_1_Entrance",
+  "vanilla": "Codex_Important_Level1_Flower",
+  "scene": "Level_1_Area_1_Main",
+  "hand_type": "gate",
+  "name": "Level 1 Area 1: Pretty Little Flower"
+ },
+ {
+  "id": 7300211,
+  "key": "handover/launcher",
+  "category": "handover",
+  "region": "Level2_Area_1_Entrance",
+  "vanilla": "Codex_Important_Level2_Launcher",
+  "scene": "Level_2_Area_1_Main",
+  "hand_type": "gate",
+  "name": "Level 2 Area 1: Elevator Lever"
+ },
+ {
+  "id": 7300212,
+  "key": "handover/boot",
+  "category": "handover",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "Codex_Important_Level2_Boot",
+  "scene": "Level_2_Area_4_Main",
+  "hand_type": "gate",
+  "name": "Level 2 Area 4: Nurikabe's Shoe"
+ },
+ {
+  "id": 7300213,
+  "key": "handover/hat",
+  "category": "handover",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Codex_Important_Level3_Nurikabe'sHat",
+  "scene": "Level_3_Area_5_Main",
+  "hand_type": "gate",
+  "name": "Level 3 Area 5: Nurikabe's Hat"
+ },
+ {
+  "id": 7300214,
+  "key": "handover/fresh_fish",
+  "category": "handover",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Codex_Important_Level4_FreshFish",
+  "scene": "Level_4_Area_3_Main",
+  "hand_type": "gate",
+  "name": "Level 4 Area 3: Fresh Fish"
+ },
+ {
+  "id": 7300215,
+  "key": "handover/gloves",
+  "category": "handover",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "Codex_Important_Level5_Nurikabe'sGloves",
+  "scene": "Level_5_Area_5_Main",
+  "hand_type": "gate",
+  "name": "Level 5 Area 5: Nurikabe's Gloves"
+ },
+ {
+  "id": 7300216,
+  "key": "handover/ultimate",
+  "category": "handover",
+  "region": "Level3_Area_3_Entrance",
+  "vanilla": "HH_SpecialMove",
+  "scene": "Level3_SecretZone_Main",
+  "hand_type": "ability",
+  "name": "Level 3 Secret Zone: Mirage Daydream: Slash"
+ },
+ {
+  "id": 7300217,
+  "key": "handover/omamori_ann",
+  "category": "handover",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "Omamori_Ann",
+  "scene": "Level_4_Area_4_Main",
+  "hand_type": "omamori",
+  "name": "Level 4 Area 4: Ann's Handmade Omamori"
+ },
+ {
+  "id": 7300218,
+  "key": "handover/transformation",
+  "category": "handover",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "TransformationAbility",
+  "scene": "Level_FinalP1_L2_A5_Main",
+  "hand_type": "ability",
+  "name": "Chapter 6 (Level 2) Area 5: TransformationAbility"
+ },
+ {
+  "id": 7300219,
+  "key": "handover/desire_circle",
+  "category": "handover",
+  "region": "Hub",
+  "vanilla": "Gun_Laser",
+  "hand_type": "gun",
+  "name": "None: Desire Circle"
+ },
+ {
+  "id": 7300220,
+  "key": "tutorial/clear",
+  "category": "tutorial_clear",
+  "region": "Hub",
+  "vanilla": "Konpeitou x8000",
+  "name": "Tutorial Clear Reward",
+  "konpeito": 8000
+ },
+ {
+  "id": 7300221,
+  "key": "handover/phantom_blade",
+  "category": "handover",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "Skill_Blade Warp",
+  "scene": "Level_1_Area_2_Main",
+  "hand_type": "skill_equip",
+  "scene_req": [
+   "Pretty Little Flower"
+  ],
+  "name": "Level 1 Area 2: Skill Phantom Blade"
+ },
+ {
+  "id": 7300222,
+  "key": "encounter/Level1Boss_Main/main",
+  "category": "encounter",
+  "region": "Level1_BossRoom_Pass1",
+  "vanilla": "None",
+  "scene": "Level1Boss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 1 Boss: Fight"
+ },
+ {
+  "id": 7300223,
+  "key": "encounter/Level2Boss_Main/main",
+  "category": "encounter",
+  "region": "Level2_BossRoom",
+  "vanilla": "None",
+  "scene": "Level2Boss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 2 Boss: Fight"
+ },
+ {
+  "id": 7300224,
+  "key": "encounter/Level3Boss_Main/main",
+  "category": "encounter",
+  "region": "Level3_BossRoom",
+  "vanilla": "None",
+  "scene": "Level3Boss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 3 Boss: Fight"
+ },
+ {
+  "id": 7300225,
+  "key": "encounter/Level3_SecretZone_Main/main",
+  "category": "encounter",
+  "region": "Level3_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level3_SecretZone_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < 詛咒小黑流程 < 中心點",
+  "name": "Level 3 Secret Zone: Fight"
+ },
+ {
+  "id": 7300226,
+  "key": "encounter/Level_0_Main/main",
+  "category": "encounter",
+  "region": "Hub",
+  "vanilla": "None",
+  "scene": "Level_0_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_ < FSM_最終驗收GamePlay < FSM < Gameplay_實戰練習 < GameplayRound_戰鬥教學",
+  "name": "Tutorial: Fight"
+ },
+ {
+  "id": 7300227,
+  "key": "encounter/Level_1_Area_1_Main/main",
+  "category": "encounter",
+  "region": "Level1_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_1_Area_1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_ < FSM BattleRound < Gameplay_B02 < GameplayRound_B02與祭品事件 < GameplayRoundHandler",
+  "name": "Level 1 Area 1: Fight"
+ },
+ {
+  "id": 7300228,
+  "key": "encounter/Level_1_Area_1_Main/B01",
+  "category": "encounter",
+  "region": "Level1_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_1_Area_1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥B01 < GameplayRoundHandler",
+  "name": "Level 1 Area 1: Encounter B01"
+ },
+ {
+  "id": 7300229,
+  "key": "encounter/Level_1_Area_2_Main/B03",
+  "category": "encounter",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_1_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B03 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
+  "name": "Level 1 Area 2: Encounter B03"
+ },
+ {
+  "id": 7300230,
+  "key": "encounter/Level_1_Area_2_Main/C01",
+  "category": "encounter",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_1_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_額外戰鬥C01 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 1 Area 2: Encounter C01"
+ },
+ {
+  "id": 7300231,
+  "key": "encounter/Level_1_Area_3_Main/B04",
+  "category": "encounter",
+  "region": "Level1_Area_2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_1_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B04 < FSM BattleRound < Gameplay_B04必要戰鬥 < GameplayRound_小梅與玩偶和B04 < GameplayRoundHandler",
+  "name": "Level 1 Area 3: Encounter B04"
+ },
+ {
+  "id": 7300232,
+  "key": "encounter/Level_1_BossPass2/main",
+  "category": "encounter",
+  "region": "Level1_BossRoom_Pass1",
+  "vanilla": "None",
+  "scene": "Level_1_BossPass2",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 1 Boss (Pass 2): Fight"
+ },
+ {
+  "id": 7300233,
+  "key": "encounter/Level_1_Ikai_Part_1_Main/B01",
+  "category": "encounter",
+  "region": "Level1_Ikai_Part1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_1_Ikai_Part_1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B01 < FSM BattleRound B01 < Gameplay_B01必要戰鬥 < GameplayRound_DemoBattle < GameplayRoundHandler",
+  "name": "Level 1 Demonic Realm 1: Encounter B01"
+ },
+ {
+  "id": 7300234,
+  "key": "encounter/Level_2_Area_2_Main/B01",
+  "category": "encounter",
+  "region": "Level2_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥B01與離開 < GameplayRoundHandler",
+  "name": "Level 2 Area 2: Encounter B01"
+ },
+ {
+  "id": 7300235,
+  "key": "encounter/Level_2_Area_3_Main/B02",
+  "category": "encounter",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B02 < FSM BattleRound < Gameplay_B02&DE < GameplayRound_戰鬥B02&結尾DE < GameplayRoundHandler",
+  "name": "Level 2 Area 3: Encounter B02"
+ },
+ {
+  "id": 7300236,
+  "key": "encounter/Level_2_Area_3_Main/C01",
+  "category": "encounter",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 2 Area 3: Encounter C01"
+ },
+ {
+  "id": 7300237,
+  "key": "encounter/Level_2_Area_3_Main/C02",
+  "category": "encounter",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C02 < FSM BattleRound Template < Gameplay_C02 < GameplayRound_C02 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 2 Area 3: Encounter C02"
+ },
+ {
+  "id": 7300238,
+  "key": "encounter/Level_2_Area_4_Main/B03",
+  "category": "encounter",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_4_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B03 < FSM < Gameplay_B03 < GameplayRound_大水與塗壁流程 < GameplayRoundHandler",
+  "name": "Level 2 Area 4: Encounter B03"
+ },
+ {
+  "id": 7300239,
+  "key": "encounter/Level_2_Area_4_Main/B04",
+  "category": "encounter",
+  "region": "Level2_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_4_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B04 < FSM BattleRound B04 < Gameplay_B04 < GameplayRound_大水與塗壁流程 < GameplayRoundHandler",
+  "name": "Level 2 Area 4: Encounter B04"
+ },
+ {
+  "id": 7300240,
+  "key": "encounter/Level_2_Area_5_2F_Main/B05",
+  "category": "encounter",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_5_2F_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
+  "name": "Level 2 Area 5 2F: Encounter B05"
+ },
+ {
+  "id": 7300241,
+  "key": "encounter/Level_2_Area_5_2F_Main/B06",
+  "category": "encounter",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_5_2F_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B06 < FSM BattleRound TriggerCollider < Gameplay_B06 < GameplayRound_B06與追逐環節 < GameplayRoundHandler",
+  "name": "Level 2 Area 5 2F: Encounter B06"
+ },
+ {
+  "id": 7300242,
+  "key": "encounter/Level_2_Area_5_Main/C03",
+  "category": "encounter",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C03 < FSM BattleRound Template < Gameplay_C03 < GameplayRound_C03 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 2 Area 5: Encounter C03"
+ },
+ {
+  "id": 7300243,
+  "key": "encounter/Level_2_Area_6_Main/B07",
+  "category": "encounter",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Area_6_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B07 < FSM BattleRound < Gameplay_B07 < GameplayRound_B07與離開 < GameplayRoundHandler",
+  "name": "Level 2 Area 6: Encounter B07"
+ },
+ {
+  "id": 7300244,
+  "key": "encounter/Level_2_Ikai_Part1_Main/BI01",
+  "category": "encounter",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_BI01 < FSM BattleRound TriggerCollider < Gameplay_BI01 < GameplayRound_戰鬥BI01與離開 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 2 Demonic Realm 1: Encounter BI01"
+ },
+ {
+  "id": 7300245,
+  "key": "encounter/Level_2_Ikai_Part1_Main/C04",
+  "category": "encounter",
+  "region": "Level2_Area_6_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C04 < FSM BattleRound TriggerCollider < Gameplay_C04 < GameplayRound_C04 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 2 Demonic Realm 1: Encounter C04"
+ },
+ {
+  "id": 7300246,
+  "key": "encounter/Level_2_MidBoss_Main/main",
+  "category": "encounter",
+  "region": "Level2_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_2_MidBoss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 2 Mid-Boss: Fight"
+ },
+ {
+  "id": 7300247,
+  "key": "encounter/Level_3_Area_1_Main/main",
+  "category": "encounter",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < B01必要戰鬥 < Gameplay_B01 < GameplayRound_戰鬥B01與等待離開 < GameplayRoundHandler",
+  "name": "Level 3 Area 1: Fight"
+ },
+ {
+  "id": 7300248,
+  "key": "encounter/Level_3_Area_2_Main/B02",
+  "category": "encounter",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B02 < FSM BattleRound TriggerCollider < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
+  "name": "Level 3 Area 2: Encounter B02"
+ },
+ {
+  "id": 7300249,
+  "key": "encounter/Level_3_Area_2_Main/C01",
+  "category": "encounter",
+  "region": "Level3_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 3 Area 2: Encounter C01"
+ },
+ {
+  "id": 7300250,
+  "key": "encounter/Level_3_Area_3_Main/B03",
+  "category": "encounter",
+  "region": "Level3_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B03 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
+  "name": "Level 3 Area 3: Encounter B03"
+ },
+ {
+  "id": 7300251,
+  "key": "encounter/Level_3_Area_5_Main/B05",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_塗壁與戰鬥B05 < GameplayRoundHandler",
+  "name": "Level 3 Area 5: Encounter B05"
+ },
+ {
+  "id": 7300252,
+  "key": "encounter/Level_3_Area_6_Main/B06",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_6_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B06 < B06FinalBattle < Gameplay_戰鬥B06 < GameplayRound_開場與戰鬥B06 < GameplayRoundHandler",
+  "name": "Level 3 Area 6: Encounter B06"
+ },
+ {
+  "id": 7300253,
+  "key": "encounter/Level_3_Area_7_Main/B07",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_7_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B07 < 開場戰鬥 < Gameplay_B07 < GameplayRound_戰鬥B07 < GameplayRoundHandler",
+  "name": "Level 3 Area 7: Encounter B07"
+ },
+ {
+  "id": 7300254,
+  "key": "encounter/Level_3_Area_7_Main/FC01",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Area_7_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC01 < FSM BattleRound TriggerCollider < Gameplay_Battle_FC01 < GameplayRound_FC01 < ExtraChallengeController_BattleRound_FC01",
+  "optional": true,
+  "name": "Level 3 Area 7: Encounter FC01"
+ },
+ {
+  "id": 7300255,
+  "key": "encounter/Level_3_Ikai_Part1_Main/BI01",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < BattleRound_BI01 < Gameplay_BI01 < GameplayRound_戰鬥BI01 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter BI01"
+ },
+ {
+  "id": 7300256,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room1",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room1 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room1"
+ },
+ {
+  "id": 7300257,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room2",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room2 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room2"
+ },
+ {
+  "id": 7300258,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room3",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room3 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room3"
+ },
+ {
+  "id": 7300259,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room4",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room4 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room4"
+ },
+ {
+  "id": 7300260,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room5",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room5 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room5"
+ },
+ {
+  "id": 7300261,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room6",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room6 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room6"
+ },
+ {
+  "id": 7300262,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room7",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room7 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room7"
+ },
+ {
+  "id": 7300263,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room8",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room8 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room8"
+ },
+ {
+  "id": 7300264,
+  "key": "encounter/Level_3_Ikai_Part1_Main/Room9",
+  "category": "encounter",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room9 < MechanicDoor",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 1: Encounter Room9"
+ },
+ {
+  "id": 7300278,
+  "key": "encounter/Level_3_Ikai_Part2_Main/BI02",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_BI02 < FSM BattleRound < Gameplay_BI01 < GameplayRound_戰鬥BI02 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter BI02"
+ },
+ {
+  "id": 7300279,
+  "key": "encounter/Level_4_Area_1_Main/B01",
+  "category": "encounter",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B01 < B01Battle_FSM < Gameplay_B01BattleStart < GameplayRound_廣場事件 < GameplayRoundHandler",
+  "name": "Level 4 Area 1: Encounter B01"
+ },
+ {
+  "id": 7300280,
+  "key": "encounter/Level_4_Area_1_Main/C01",
+  "category": "encounter",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C01 < C01Battle_FSM < Gameplay_C01Battle < GameplayRound_C01Battle < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 4 Area 1: Encounter C01"
+ },
+ {
+  "id": 7300281,
+  "key": "encounter/Level_4_Area_2_Main/B02",
+  "category": "encounter",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B02 < FSM < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
+  "name": "Level 4 Area 2: Encounter B02"
+ },
+ {
+  "id": 7300282,
+  "key": "encounter/Level_4_Area_2_Main/B03",
+  "category": "encounter",
+  "region": "Level4_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B03 < FSM < Gameplay_B03 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
+  "name": "Level 4 Area 2: Encounter B03"
+ },
+ {
+  "id": 7300283,
+  "key": "encounter/Level_4_Area_3_Main/B04",
+  "category": "encounter",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B04 < FSM < Gameplay_釣魚Dialog+B04 < GameplayRound_戰鬥B04 < GameplayRoundHandler",
+  "name": "Level 4 Area 3: Encounter B04"
+ },
+ {
+  "id": 7300284,
+  "key": "encounter/Level_4_Area_3_Main/B05",
+  "category": "encounter",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B05 < Gameplay_路燈後B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
+  "name": "Level 4 Area 3: Encounter B05"
+ },
+ {
+  "id": 7300285,
+  "key": "encounter/Level_4_Area_3_Main/B06",
+  "category": "encounter",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B06 < Gameplay_B06 < GameplayRound_線人與逃跑流程 < GameplayRoundHandler",
+  "name": "Level 4 Area 3: Encounter B06"
+ },
+ {
+  "id": 7300286,
+  "key": "encounter/Level_4_Area_3_Main/FC02",
+  "category": "encounter",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC02 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_L4A3_FC02 < ExtraChallengeController_BattleRound_L4A3_FC02",
+  "optional": true,
+  "name": "Level 4 Area 3: Encounter FC02"
+ },
+ {
+  "id": 7300287,
+  "key": "encounter/Level_4_Area_Arena_Main/Round1",
+  "category": "encounter",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_Arena_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round1 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "name": "Level 4 Arena: Encounter Round1"
+ },
+ {
+  "id": 7300288,
+  "key": "encounter/Level_4_Area_Arena_Main/Round2",
+  "category": "encounter",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_Arena_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round2 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "name": "Level 4 Arena: Encounter Round2"
+ },
+ {
+  "id": 7300289,
+  "key": "encounter/Level_4_Area_Arena_Main/Round3",
+  "category": "encounter",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_Arena_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round3 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "name": "Level 4 Arena: Encounter Round3"
+ },
+ {
+  "id": 7300290,
+  "key": "encounter/Level_4_Area_Arena_Main/Round4",
+  "category": "encounter",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Area_Arena_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round4 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "name": "Level 4 Arena: Encounter Round4"
+ },
+ {
+  "id": 7300291,
+  "key": "encounter/Level_4_Boss/main",
+  "category": "encounter",
+  "region": "Level4_BossRoom",
+  "vanilla": "None",
+  "scene": "Level_4_Boss",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 4 Boss: Fight"
+ },
+ {
+  "id": 7300292,
+  "key": "encounter/Level_4_BossPhase2/main",
+  "category": "encounter",
+  "region": "Level4_BossRoom",
+  "vanilla": "None",
+  "scene": "Level_4_BossPhase2",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 4 Boss (Phase 2): Fight"
+ },
+ {
+  "id": 7300293,
+  "key": "encounter/Level_4_Ikai_Part1_Main/BI01",
+  "category": "encounter",
+  "region": "Level4_Ikai_Part1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Ikai_Part1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_BI01 < FSM BattleRound < Gameplay_BI01 < GameplayRound_莉佳AC與戰鬥 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 4 Demonic Realm 1: Encounter BI01"
+ },
+ {
+  "id": 7300294,
+  "key": "encounter/Level_4_Ikai_Part2_Main/B07",
+  "category": "encounter",
+  "region": "Level4_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B07 < FSM < Gameplay_必要戰鬥_B07 < GameplayRound_飛船一 < GameplayRoundHandler",
+  "name": "Level 4 Demonic Realm 2: Encounter B07"
+ },
+ {
+  "id": 7300295,
+  "key": "encounter/Level_4_Ikai_Part2_Main/B08",
+  "category": "encounter",
+  "region": "Level4_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B08 < FSM < Gameplay_必要戰鬥B08 < GameplayRound_飛船二 < GameplayRoundHandler",
+  "name": "Level 4 Demonic Realm 2: Encounter B08"
+ },
+ {
+  "id": 7300296,
+  "key": "encounter/Level_4_Ikai_Part2_Main/B09",
+  "category": "encounter",
+  "region": "Level4_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_4_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B09 < FSM < Gameplay_雙子戰鬥撐45 < GameplayRound_飛船三 < GameplayRoundHandler",
+  "name": "Level 4 Demonic Realm 2: Encounter B09"
+ },
+ {
+  "id": 7300297,
+  "key": "encounter/Level_5_Area_2_Main/B01",
+  "category": "encounter",
+  "region": "Level5_Area_1_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Area_2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥 < GameplayRoundHandler",
+  "name": "Level 5 Area 2: Encounter B01"
+ },
+ {
+  "id": 7300298,
+  "key": "encounter/Level_5_Area_4_Main/B02",
+  "category": "encounter",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Area_4_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B02 < FSM BattleRound TriggerCollider < Gameplay_B02 < GameplayRound_戰鬥B02與離開 < GameplayRoundHandler",
+  "name": "Level 5 Area 4: Encounter B02"
+ },
+ {
+  "id": 7300299,
+  "key": "encounter/Level_5_Area_4_Main/FC03",
+  "category": "encounter",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Area_4_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC03 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_L5A4_FC03 < ExtraChallengeController_BattleRound_L5A4_FC03",
+  "optional": true,
+  "name": "Level 5 Area 4: Encounter FC03"
+ },
+ {
+  "id": 7300300,
+  "key": "encounter/Level_5_Area_5_Main/B03",
+  "category": "encounter",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Area_5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B3 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
+  "name": "Level 5 Area 5: Encounter B03"
+ },
+ {
+  "id": 7300301,
+  "key": "encounter/Level_5_Area_5_Main/C01",
+  "category": "encounter",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Area_5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 5 Area 5: Encounter C01"
+ },
+ {
+  "id": 7300302,
+  "key": "encounter/Level_5_Boss/main",
+  "category": "encounter",
+  "region": "Level5_BossRoom",
+  "vanilla": "None",
+  "scene": "Level_5_Boss",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Level 5 Boss: Fight"
+ },
+ {
+  "id": 7300303,
+  "key": "encounter/Level_5_Ikai_Part2_Main/BI01",
+  "category": "encounter",
+  "region": "Level5_Area_5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_5_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_BI01 < FSM BattleRound TriggerCollider < Gameplay_BI01 < GameplayRound_戰鬥BI01與追頭 < GameplayRoundHandler",
+  "optional": true,
+  "name": "Level 5 Demonic Realm 2: Encounter BI01"
+ },
+ {
+  "id": 7300304,
+  "key": "encounter/Level_FinalP0_Jinguu_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP0_Jinguu",
+  "vanilla": "None",
+  "scene": "Level_FinalP0_Jinguu_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < FSM BattleRound TriggerCollider < Gameplay_必要戰鬥 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
+  "name": "Climax: Fight"
+ },
+ {
+  "id": 7300305,
+  "key": "encounter/Level_FinalP1_L1_A3_Main/B02",
+  "category": "encounter",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B02 < FSM BattleRound < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
+  "name": "Chapter 6 (Level 1) Area 3: Encounter B02"
+ },
+ {
+  "id": 7300306,
+  "key": "encounter/Level_FinalP1_L1_A3_Main/FC04",
+  "category": "encounter",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC04 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP1L1A3_FC04 < ExtraChallengeController_BattleRound_LFP1L1A3_FC04",
+  "optional": true,
+  "name": "Chapter 6 (Level 1) Area 3: Encounter FC04"
+ },
+ {
+  "id": 7300307,
+  "key": "encounter/Level_FinalP1_L1_Ikai_Main/B01",
+  "category": "encounter",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP1_L1_Ikai_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B01 < FSM BattleRound B01 < Gameplay_B01必要戰鬥 < GameplayRound_B01 < GameplayRoundHandler",
+  "name": "Chapter 6 (Level 1) Demonic Realm: Encounter B01"
+ },
+ {
+  "id": 7300308,
+  "key": "encounter/Level_FinalP1_L2Boss_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP1_L2_Boss",
+  "vanilla": "None",
+  "scene": "Level_FinalP1_L2Boss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 6 (Level 2) Boss: Fight"
+ },
+ {
+  "id": 7300309,
+  "key": "encounter/Level_FinalP1_L2_A5_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP1_L2_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < FSM BattleRound < Gameplay_B03 < GameplayRound_黑炎姬戰鬥 < GameplayRoundHandler",
+  "name": "Chapter 6 (Level 2) Area 5: Fight"
+ },
+ {
+  "id": 7300310,
+  "key": "encounter/Level_FinalP1_L2_A5_Main/B03",
+  "category": "encounter",
+  "region": "LevelFinalP1_L2_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP1_L2_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B03 < GameplayRound_黑炎姬戰鬥 < GameplayRoundHandler",
+  "name": "Chapter 6 (Level 2) Area 5: Encounter B03"
+ },
+ {
+  "id": 7300311,
+  "key": "encounter/Level_FinalP2_L3Boss_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP2_L3_Boss",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L3Boss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 7 (Level 3) Boss: Fight"
+ },
+ {
+  "id": 7300312,
+  "key": "encounter/Level_FinalP2_L3_A5_Main/B04",
+  "category": "encounter",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B04 < FSM BattleRound TriggerCollider < Gameplay_B04 < GameplayRound_B04 < GameplayRoundHandler",
+  "name": "Chapter 7 (Level 3) Area 5: Encounter B04"
+ },
+ {
+  "id": 7300313,
+  "key": "encounter/Level_FinalP2_L3_A5_Main/B05",
+  "category": "encounter",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_B05 < GameplayRoundHandler",
+  "name": "Chapter 7 (Level 3) Area 5: Encounter B05"
+ },
+ {
+  "id": 7300314,
+  "key": "encounter/Level_FinalP2_L3_A5_Main/FC05",
+  "category": "encounter",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC05 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L3A5_FC05 < ExtraChallengeController_BattleRound_LFP2L3A5_FC05",
+  "optional": true,
+  "name": "Chapter 7 (Level 3) Area 5: Encounter FC05"
+ },
+ {
+  "id": 7300315,
+  "key": "encounter/Level_FinalP2_L3_A5_Main/FC06",
+  "category": "encounter",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC06 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L3A5_FC06 < ExtraChallengeController_BattleRound_LFP2L3A5_FC06",
+  "optional": true,
+  "name": "Chapter 7 (Level 3) Area 5: Encounter FC06"
+ },
+ {
+  "id": 7300316,
+  "key": "encounter/Level_FinalP2_L4Boss_Phase1_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP2_L4_Boss",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L4Boss_Phase1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 7 (Level 4) Boss Phase 1: Fight"
+ },
+ {
+  "id": 7300317,
+  "key": "encounter/Level_FinalP2_L4Boss_Phase2_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP2_L4_Boss",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L4Boss_Phase2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 7 (Level 4) Boss Phase 2: Fight"
+ },
+ {
+  "id": 7300318,
+  "key": "encounter/Level_FinalP2_L4_A2_Main/B06",
+  "category": "encounter",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B06 < FSM BattleRound B06 < Gameplay_B06 < GameplayRound_DE與戰鬥B06 < GameplayRoundHandler",
+  "name": "Chapter 7 (Level 4) Area 2: Encounter B06"
+ },
+ {
+  "id": 7300319,
+  "key": "encounter/Level_FinalP2_L4_A2_Main/FC07",
+  "category": "encounter",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC07 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L4A2_FC07 < ExtraChallengeController_BattleRound_LFP2L4A2_FC07",
+  "optional": true,
+  "name": "Chapter 7 (Level 4) Area 2: Encounter FC07"
+ },
+ {
+  "id": 7300320,
+  "key": "encounter/Level_FinalP2_L4_Ikai_Main/W1",
+  "category": "encounter",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L4_Ikai_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_W1 < FSM BattleRound B07 < Gameplay_B07 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
+  "name": "Chapter 7 (Level 4) Demonic Realm: Encounter W1"
+ },
+ {
+  "id": 7300321,
+  "key": "encounter/Level_FinalP2_L4_Ikai_Main/W2",
+  "category": "encounter",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP2_L4_Ikai_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_W2 < FSM BattleRound B07 < Gameplay_B07 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
+  "name": "Chapter 7 (Level 4) Demonic Realm: Encounter W2"
+ },
+ {
+  "id": 7300322,
+  "key": "encounter/Level_FinalP3_L5Boss_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_Boss",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5Boss_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 8 (Level 5) Boss: Fight"
+ },
+ {
+  "id": 7300323,
+  "key": "encounter/Level_FinalP3_L5_A2_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_A2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_A2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 8 (Level 5) Area 2: Fight"
+ },
+ {
+  "id": 7300324,
+  "key": "encounter/Level_FinalP3_L5_A2_Phase2_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_A2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_A2_Phase2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Chapter 8 (Level 5) Area 2 Phase 2: Fight"
+ },
+ {
+  "id": 7300325,
+  "key": "encounter/Level_FinalP3_L5_A5_Main/B09",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B09 < FSM BattleRound < Gameplay_B09 < GameplayRound_B09 < GameplayRoundHandler",
+  "name": "Chapter 8 (Level 5) Area 5: Encounter B09"
+ },
+ {
+  "id": 7300326,
+  "key": "encounter/Level_FinalP3_L5_A5_Main/FC09",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC09 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5A5_FC09 < ExtraChallengeController_BattleRound_LFP3L5A5_FC09",
+  "optional": true,
+  "name": "Chapter 8 (Level 5) Area 5: Encounter FC09"
+ },
+ {
+  "id": 7300327,
+  "key": "encounter/Level_FinalP3_L5_A5_Main/FC10",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC10 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5A5_FC10 < ExtraChallengeController_BattleRound_LFP3L5A5_FC10",
+  "optional": true,
+  "name": "Chapter 8 (Level 5) Area 5: Encounter FC10"
+ },
+ {
+  "id": 7300328,
+  "key": "encounter/Level_FinalP3_L5_Ikai_Main/B08",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_B08 < FSM BattleRound TriggerCollider < Gameplay_B08 < GameplayRound_戰鬥B08 < GameplayRoundHandler",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Encounter B08"
+ },
+ {
+  "id": 7300329,
+  "key": "encounter/Level_FinalP3_L5_Ikai_Main/FC08",
+  "category": "encounter",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "None",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound_FC08 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5Ikai2_FC08 < ExtraChallengeController_BattleRound_LFP3L5Ikai2_FC08",
+  "optional": true,
+  "name": "Chapter 8 (Level 5) Demonic Realm: Encounter FC08"
+ },
+ {
+  "id": 7300330,
+  "key": "encounter/Level_FinalP4_Jinguu_Phase1_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP4_Jinguu_Phase1",
+  "vanilla": "None",
+  "scene": "Level_FinalP4_Jinguu_Phase1_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Finale Phase 1: Fight"
+ },
+ {
+  "id": 7300331,
+  "key": "encounter/Level_FinalP4_Jinguu_Phase2_Main/main",
+  "category": "encounter",
+  "region": "LevelFinalP4_Jinguu_Phase1",
+  "vanilla": "None",
+  "scene": "Level_FinalP4_Jinguu_Phase2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound",
+  "name": "Finale Phase 2: Fight"
+ },
+ {
+  "id": 7300332,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room1",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 1 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room1"
+ },
+ {
+  "id": 7300333,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room10",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 10 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room10"
+ },
+ {
+  "id": 7300334,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room11",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 11 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room11"
+ },
+ {
+  "id": 7300335,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room12",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 12 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room12"
+ },
+ {
+  "id": 7300336,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room13",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 13 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room13"
+ },
+ {
+  "id": 7300337,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room2",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 2 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room2"
+ },
+ {
+  "id": 7300338,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room3",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 3 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room3"
+ },
+ {
+  "id": 7300339,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room4",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 4 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room4"
+ },
+ {
+  "id": 7300340,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room5",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 5 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room5"
+ },
+ {
+  "id": 7300341,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room6",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 6 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room6"
+ },
+ {
+  "id": 7300342,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room7",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 7 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room7"
+ },
+ {
+  "id": 7300343,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room8",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 8 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room8"
+ },
+ {
+  "id": 7300344,
+  "key": "encounter/Level_3_Ikai_Part2_Main/Room9",
+  "category": "encounter",
+  "region": "Level3_Ikai_Part2_Entrance",
+  "vanilla": "None",
+  "scene": "Level_3_Ikai_Part2_Main",
+  "option": "encounter_clears",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 9 < Door",
+  "optional": true,
+  "name": "Level 3 Demonic Realm 2: Encounter Room9"
+ }
+]

@@ -1,0 +1,969 @@
+[
+    {
+        "scene":  "Level_1_Area_1_Main",
+        "idx":  7,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    -164.2,
+                    -1.7,
+                    -230.4
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_1_Area_2_Main",
+        "idx":  8,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    -20.5,
+                    0.0,
+                    -58.8
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_1_Area_2_Main",
+        "idx":  8,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c ExitFSM \u003c BattleRound_C01 \u003c FSM BattleRound Template \u003c Gameplay_C01 \u003c GameplayRound_額外戰鬥C01",
+        "pos":  [
+                    -22.2,
+                    0.0,
+                    -77.4
+                ],
+        "table":  "TreasureChestAddItemTable_CreatChestFlow_CBattle_Konpeitou",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_1_Area_3_Main",
+        "idx":  9,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou",
+        "pos":  [
+                    -40.1,
+                    21.9,
+                    46.1
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_1_Ikai_Part_1_Main",
+        "idx":  11,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -15.5,
+                    25.5,
+                    368.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_1_Ikai_Part_1_Main",
+        "idx":  11,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c FSM CatchHead \u003c ChasingHeadMission",
+        "pos":  [
+                    123.0,
+                    -1.3,
+                    234.8
+                ],
+        "table":  "TreasureChestAddItemTable_CatchHeadMission_L1Ikai",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_2_Main",
+        "idx":  14,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c PickUp",
+        "pos":  [
+                    88.0,
+                    20.1,
+                    11.5
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_3_Main",
+        "idx":  15,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -10.0,
+                    25.1,
+                    -24.9
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_3_Main",
+        "idx":  15,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Omamori \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -52.2,
+                    25.1,
+                    23.9
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Omamori_L2A3",
+        "items":  [
+                      "[table] Omamori_DefenseValue_Big x1"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_3_Main",
+        "idx":  15,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -38.6,
+                    12.0,
+                    24.7
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_3_Main",
+        "idx":  15,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c ExitFSM \u003c BattleRound_C01 \u003c FSM BattleRound Template \u003c Gameplay_C01 \u003c GameplayRound_C01",
+        "pos":  [
+                    -26.9,
+                    -1.0,
+                    -44.8
+                ],
+        "table":  "TreasureChestAddItemTable_CreatChestFlow_CBattle_Konpeitou",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_4_Main",
+        "idx":  16,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c TreasureChest \u003c PickUp \u003c Interactor \u003c AterWaterEvent \u003c Mechanism",
+        "pos":  [
+                    72.9,
+                    40.8,
+                    74.3
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_5_2F_Main",
+        "idx":  17,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    16.0,
+                    14.0,
+                    -118.5
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_5_Main",
+        "idx":  18,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c PickUp",
+        "pos":  [
+                    -16.5,
+                    -14.1,
+                    -3.5
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_5_Main",
+        "idx":  18,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPChip \u003c LimitedTimeObject \u003c Mechanic_MechLauncher_TriggerAction_限時跑酷 \u003c Mechanism",
+        "pos":  [
+                    -56.9,
+                    -21.8,
+                    -23.5
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_5_Main",
+        "idx":  18,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c ExitFSM \u003c BattleRound_C03 \u003c FSM BattleRound Template \u003c Gameplay_C03 \u003c GameplayRound_C03",
+        "pos":  [
+                    50.3,
+                    -14.0,
+                    -9.0
+                ],
+        "table":  "TreasureChestAddItemTable_CreatChestFlow_CBattle_Konpeitou",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Area_8_Main",
+        "idx":  21,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -13.9,
+                    0.0,
+                    -12.6
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Ikai_Part1_Main",
+        "idx":  23,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Omamori \u003c PickUp",
+        "pos":  [
+                    51.5,
+                    7.3,
+                    183.5
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Omamori_L2Ikai",
+        "items":  [
+                      "[table] Omamori_IncreaseHealingDropValue x1"
+                  ]
+    },
+    {
+        "scene":  "Level_2_Ikai_Part1_Main",
+        "idx":  23,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c FSM CatchHead \u003c ChasingHeadMission \u003c ChasingHeadMission",
+        "pos":  [
+                    -89.2,
+                    110.1,
+                    561.7
+                ],
+        "table":  "TreasureChestAddItemTable_CatchHeadMission_Default",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_2_Main",
+        "idx":  27,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    90.5,
+                    0.0,
+                    -216.0
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_2_Main",
+        "idx":  27,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    141.0,
+                    -2.8,
+                    -235.3
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_2_Main",
+        "idx":  27,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c ExitFSM \u003c BattleRound_C01 \u003c FSM BattleRound Template \u003c Gameplay_C01 \u003c GameplayRound_C01",
+        "pos":  [
+                    93.9,
+                    0.0,
+                    -224.4
+                ],
+        "table":  "TreasureChestAddItemTable_CreatChestFlow_CBattle_Konpeitou",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_3_Main",
+        "idx":  28,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -76.0,
+                    7.0,
+                    -28.5
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_5_Main",
+        "idx":  30,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Omamori (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    223.4,
+                    0.2,
+                    -81.7
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Omamori_L3A5",
+        "items":  [
+                      "[table] Omamori_AttackValue_Big x1"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_5_Main",
+        "idx":  30,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (3) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    213.8,
+                    0.0,
+                    -132.4
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_7_Main",
+        "idx":  32,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    38.1,
+                    0.0,
+                    101.6
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Area_7_Main",
+        "idx":  32,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    270.0,
+                    0.3,
+                    30.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Ikai_Part1_Main",
+        "idx":  33,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    68.0,
+                    0.0,
+                    96.0
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Ikai_Part1_Main",
+        "idx":  33,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    -16.0,
+                    -5.0,
+                    -134.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Ikai_Part1_Main",
+        "idx":  33,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c FSM CatchHead \u003c 追頭任務 \u003c Mechanism",
+        "pos":  [
+                    -94.0,
+                    71.7,
+                    -649.8
+                ],
+        "table":  "TreasureChestAddItemTable_CatchHeadMission_Default",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Ikai_Part2_Main",
+        "idx":  34,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    -28.0,
+                    91.0,
+                    -808.0
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_3_Ikai_Part2_Main",
+        "idx":  34,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    30.5,
+                    91.0,
+                    -807.5
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_1_Main",
+        "idx":  36,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    20.7,
+                    21.8,
+                    -144.9
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_1_Main",
+        "idx":  36,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (2) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    69.3,
+                    -11.0,
+                    175.7
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_1_Main",
+        "idx":  36,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (3) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    9.5,
+                    -14.1,
+                    114.3
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_2_Main",
+        "idx":  37,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -53.1,
+                    3.0,
+                    -132.8
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_2_Main",
+        "idx":  37,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    31.0,
+                    30.0,
+                    -303.3
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_3_Main",
+        "idx":  38,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Omamori \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -56.1,
+                    1.6,
+                    -25.2
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Omamori_L4A3",
+        "items":  [
+                      "[table] Omamori_MoneyGain x1"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_3_Main",
+        "idx":  38,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    58.0,
+                    35.4,
+                    -198.5
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Area_4_Main",
+        "idx":  39,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c PickUp",
+        "pos":  [
+                    73.9,
+                    -8.2,
+                    70.6
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_4_Ikai_Part1_Main",
+        "idx":  43,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c FSM CatchHead \u003c ChasingHeadMission \u003c Mechanism",
+        "pos":  [
+                    862.3,
+                    -18.1,
+                    -199.5
+                ],
+        "table":  "TreasureChestAddItemTable_CatchHeadMission_Default",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Area_3_Main",
+        "idx":  47,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    5.8,
+                    3.8,
+                    126.3
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Area_4_Main",
+        "idx":  48,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    15.3,
+                    0.0,
+                    41.2
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Area_4_Main",
+        "idx":  48,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -24.3,
+                    0.0,
+                    44.6
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Area_5_Main",
+        "idx":  49,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Omamori \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -21.5,
+                    0.0,
+                    -60.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Omamori_L5A5",
+        "items":  [
+                      "[table] Omamori_ParrySkillCharge x1"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Area_5_Main",
+        "idx":  49,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    18.0,
+                    0.0,
+                    -94.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Ikai_Part1_Main",
+        "idx":  51,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    143.2,
+                    -3.2,
+                    166.3
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_5_Ikai_Part2_Main",
+        "idx":  52,
+        "type":  "CreatTreasureChestFlow",
+        "go":  "Settlement_TreasureChestWithCam \u003c FSM CatchHead \u003c ChasingHeadMission \u003c Mechanism",
+        "pos":  [
+                    -312.9,
+                    27.6,
+                    340.8
+                ],
+        "table":  "TreasureChestAddItemTable_CatchHeadMission_Default",
+        "items":  [
+                      "Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP1_L1_A3_Main",
+        "idx":  54,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c PickUp",
+        "pos":  [
+                    -99.0,
+                    20.2,
+                    76.5
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP1_L1_Ikai_Main",
+        "idx":  55,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c PickUp",
+        "pos":  [
+                    113.2,
+                    -0.1,
+                    245.9
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP1_L1Boss_Main",
+        "idx":  56,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c PickUp",
+        "pos":  [
+                    -6.9,
+                    0.0,
+                    -17.4
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP1_L2_Ikai_Main",
+        "idx":  58,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Omamori \u003c PickUp",
+        "pos":  [
+                    -9.0,
+                    6.5,
+                    235.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_Omamori_LFP1L2Ikai",
+        "items":  [
+                      "[table] Omamori_IncreaseGunRecoverValue x1"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP1_L2_Ikai_Main",
+        "idx":  58,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c PickUp",
+        "pos":  [
+                    21.0,
+                    30.4,
+                    265.5
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP2_L3_A5_Main",
+        "idx":  60,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    359.7,
+                    0.0,
+                    -62.8
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP2_L3_A5_Main",
+        "idx":  60,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_HPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    285.6,
+                    0.0,
+                    22.4
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_HPCrystal",
+        "items":  [
+                      "[table] HP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP2_L4_A2_Main",
+        "idx":  62,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -127.8,
+                    30.4,
+                    -457.3
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP2_L4_A2_Main",
+        "idx":  62,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -13.1,
+                    0.0,
+                    19.9
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP3_L5_A5_Main",
+        "idx":  68,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    -9.5,
+                    0.0,
+                    -92.0
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP3_L5_A5_Main",
+        "idx":  68,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou \u003c TreasureChest \u003c PickUp",
+        "pos":  [
+                    4.5,
+                    -1.3,
+                    23.8
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP3_L5_Ikai_Main",
+        "idx":  69,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_Konpeitou (1) \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    30.6,
+                    -1.7,
+                    182.8
+                ],
+        "konpeitou":  25,
+        "table":  "TreasureChestAddItemTable_Default",
+        "items":  [
+                      "[table] Konpeitou x3000"
+                  ]
+    },
+    {
+        "scene":  "Level_FinalP3_L5_Ikai_Main",
+        "idx":  69,
+        "type":  "TreasureChest",
+        "go":  "TreasureChest_SPCrystal \u003c PickUp \u003c Mechanism",
+        "pos":  [
+                    -434.0,
+                    62.5,
+                    387.0
+                ],
+        "konpeitou":  null,
+        "table":  "TreasureChestAddItemTable_SPCrystal",
+        "items":  [
+                      "[table] SP Shard x1"
+                  ]
+    }
+]

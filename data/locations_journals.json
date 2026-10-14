@@ -1,0 +1,723 @@
+[
+    {
+        "item":  "Codex_Note_FinalLevel_BurntNotebook",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L1Boss_Main",
+                            "pos":  [
+                                        5.2,
+                                        0.0,
+                                        -13.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L1Boss_BurntNotebook"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_CLIO",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "HubWorld_PostGame_Main",
+                            "pos":  [
+                                        -4.3,
+                                        2.4,
+                                        -15.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_P5Hub_CLIO"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Demon",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC03 Level_5_Area_4",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_ExorcismArts",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC01 Level_3_Area_7",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_HighPriestess",
+        "sources":  [
+                        {
+                            "type":  "operator:Reward",
+                            "scene":  "Level_FinalP3_L5_Ikai_Main",
+                            "pos":  [
+                                        3177.2,
+                                        13.6,
+                                        10300.8
+                                    ],
+                            "object":  "InventoryItem \u003c NPC_InventoryOperator \u003c NPC_MVC_Controller \u003c NPC_StaffSpirit_Glitched Exit"
+                        },
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC08 Level_FinalP3_L5_Ikai",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Ikai",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC10 Level_FinalP3_L5_A5",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Jinguu",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC04 Level_FinalP1_L1_A3",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Law",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L1_Ikai_Main",
+                            "pos":  [
+                                        -7.8,
+                                        25.6,
+                                        361.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L1Ikai_Law"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Nagi",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP3_L5_A5_Main",
+                            "pos":  [
+                                        7.6,
+                                        -1.3,
+                                        -152.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_P3L5A5_Nagi"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Negai",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC02 Level_4_Area_3",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Null1",
+        "sources":  [
+
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Null2",
+        "sources":  [
+
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Null3",
+        "sources":  [
+
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_ObservationRecords1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "HubWorld_PostGame_Main",
+                            "pos":  [
+                                        2.1,
+                                        2.4,
+                                        -4.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_P5Hub_ObservationRecords1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_ObservationRecords2",
+        "sources":  [
+                        {
+                            "type":  "operator:Reward",
+                            "scene":  "Level_FinalP2_L4_A2_Main",
+                            "pos":  [
+                                        6965.6,
+                                        13.6,
+                                        -7339.0
+                                    ],
+                            "object":  "InventoryItem \u003c NPC_InventoryOperator \u003c NPC_MVC_Controller \u003c NPC_StaffSpirit_Glitched Exit"
+                        },
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC07 Level_FinalP2_L4_A2",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_ObservationRecords3",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "HubWorld_PostGame_Main",
+                            "pos":  [
+                                        15.4,
+                                        2.0,
+                                        -4.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_P5Hub_ObservationRecords3"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_SomeoneNotes",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC05 Level_FinalP2_L3_A5",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_Soul",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC06 Level_FinalP2_L3_A5",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_FinalLevel_TatteredMissionLogs",
+        "sources":  [
+                        {
+                            "type":  "extra-challenge-reward",
+                            "scene":  "FC09 Level_FinalP3_L5_A5",
+                            "pos":  null,
+                            "object":  "exit NPC operator (first-load seed)"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level1_Diary1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_1_Area_3_Main",
+                            "pos":  [
+                                        -127.8,
+                                        1.5,
+                                        -1.6
+                                    ],
+                            "object":  "HH_NoteItemPickup_L1A3_Diary1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level1_Diary2",
+        "sources":  [
+                        {
+                            "type":  "operator:HandOver",
+                            "scene":  "Level_1_Area_2_Main",
+                            "pos":  [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                            "object":  "InventoryItem \u003c InventoryCommunicator_Note_L1A2_Diary2 \u003c Gameplay_Dialog姊姊的房間 \u003c GameplayRound_姐姐房間與小式神"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level1_Diary3",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L1_A3_Main",
+                            "pos":  [
+                                        -127.3,
+                                        2.2,
+                                        -18.2
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L1Boss_Diary3"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level1_History",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L1_A3_Main",
+                            "pos":  [
+                                        -72.5,
+                                        16.7,
+                                        146.9
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L1A3_History"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level1_Newspaper",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_1_Area_2_Main",
+                            "pos":  [
+                                        -26.3,
+                                        0.0,
+                                        -44.6
+                                    ],
+                            "object":  "HH_NoteItemPickup_L1A2_Newspaper"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level1_RuralHorror",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_1_Area_1_Main",
+                            "pos":  [
+                                        -144.2,
+                                        -2.0,
+                                        -221.9
+                                    ],
+                            "object":  "HH_NoteItemPickup_L1A1_RuralHorror"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Diary1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L2_Ikai_Main",
+                            "pos":  [
+                                        158.5,
+                                        139.8,
+                                        661.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L2Ikai_Diary1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Diary2",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_2_Area_4_Main",
+                            "pos":  [
+                                        -33.1,
+                                        40.4,
+                                        97.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_L2A4_Diary2"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Diary3",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_2_Area_8_Main",
+                            "pos":  [
+                                        -0.3,
+                                        -0.4,
+                                        13.1
+                                    ],
+                            "object":  "HH_NoteItemPickup_L2A8_Diary3"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Handwriting1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_2_Area_5_2F_Main",
+                            "pos":  [
+                                        -50.6,
+                                        14.1,
+                                        -68.7
+                                    ],
+                            "object":  "HH_NoteItemPickup_L2A5_Handwriting1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Handwriting2",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L2_Ikai_Main",
+                            "pos":  [
+                                        -8.5,
+                                        6.5,
+                                        232.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L2Ikai_Handwriting2"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Memo",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_2_Area_1_Main",
+                            "pos":  [
+                                        46.0,
+                                        0.3,
+                                        -45.2
+                                    ],
+                            "object":  "HH_NoteItemPickup_L2A1_Memo"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_Research",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_2_Area_3_Main",
+                            "pos":  [
+                                        -76.9,
+                                        12.1,
+                                        17.9
+                                    ],
+                            "object":  "HH_NoteItemPickup_L2A3_Research"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level2_RuralHorror",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP1_L2_Ikai_Main",
+                            "pos":  [
+                                        -2.5,
+                                        25.5,
+                                        7.5
+                                    ],
+                            "object":  "HH_NoteItemPickup_P1L2Ikai_RuralHorror"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Diary1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP2_L3_A5_Main",
+                            "pos":  [
+                                        341.6,
+                                        0.0,
+                                        -69.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_P2L3A5_Diary1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Diary2",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_3_Area_6_Main",
+                            "pos":  [
+                                        -95.5,
+                                        -3.3,
+                                        -56.9
+                                    ],
+                            "object":  "HH_NoteItemPickup_L3A6_Diary2"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Doctrine",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_3_Area_5_Main",
+                            "pos":  [
+                                        279.0,
+                                        0.0,
+                                        12.9
+                                    ],
+                            "object":  "HH_NoteItemPickup_L3A5_Doctrine"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Memo",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_3_Area_7_Main",
+                            "pos":  [
+                                        274.1,
+                                        0.2,
+                                        34.3
+                                    ],
+                            "object":  "HH_NoteItemPickup_L3A7_Memo"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Record1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_3_Area_1_Main",
+                            "pos":  [
+                                        9.7,
+                                        0.3,
+                                        -114.5
+                                    ],
+                            "object":  "HH_NoteItemPickup_L3A1_Record1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Record2",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP2_L3_A5_Main",
+                            "pos":  [
+                                        185.2,
+                                        0.0,
+                                        4.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_P2L3A5_Record2"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_RuralHorror",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_3_Area_5_Main",
+                            "pos":  [
+                                        388.8,
+                                        0.0,
+                                        -118.8
+                                    ],
+                            "object":  "HH_NoteItemPickup_L3A5_RuralHorror"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level3_Sacrifice",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP2_L3_A5_Main",
+                            "pos":  [
+                                        301.8,
+                                        0.0,
+                                        -3.4
+                                    ],
+                            "object":  "HH_NoteItemPickup_P2L3A5_Sacrifice"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level4_Flyers",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP2_L4_A2_Main",
+                            "pos":  [
+                                        -7.0,
+                                        0.0,
+                                        -111.6
+                                    ],
+                            "object":  "HH_NoteItemPickup_P2L4A2_Flyers"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level4_Gauntlet",
+        "sources":  [
+
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level4_Map",
+        "sources":  [
+
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level4_Poem",
+        "sources":  [
+
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level4_DogDiary",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_4_Area_4_Main",
+                            "pos":  [
+                                        0.6,
+                                        4.7,
+                                        -39.2
+                                    ],
+                            "object":  "HH_NoteItemPickup_L4A4_DogDiary"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_Letter",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP3_L5_A5_Main",
+                            "pos":  [
+                                        -21.9,
+                                        -0.3,
+                                        -14.4
+                                    ],
+                            "object":  "HH_NoteItemPickup_P3L5A5_Letter"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_LetterAgasa",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP3_L5_Ikai_Main",
+                            "pos":  [
+                                        -327.3,
+                                        27.4,
+                                        351.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_P3L5Ikai2_LetterAgasa"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_Newspaper1",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_5_Area_4_Main",
+                            "pos":  [
+                                        2.0,
+                                        0.0,
+                                        43.2
+                                    ],
+                            "object":  "HH_NoteItemPickup_L5A4_Newspaper1"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_Newspaper2",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_5_Area_5_Main",
+                            "pos":  [
+                                        1.8,
+                                        0.0,
+                                        -78.0
+                                    ],
+                            "object":  "HH_NoteItemPickup_L5A5_Newspaper2"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_Newspaper3",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_5_Area_1_Main",
+                            "pos":  [
+                                        -79.7,
+                                        24.7,
+                                        284.9
+                                    ],
+                            "object":  "HH_NoteItemPickup_L5A1_Newspaper3"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_Proof",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_FinalP3_L5_A5_Main",
+                            "pos":  [
+                                        -25.3,
+                                        0.0,
+                                        -45.7
+                                    ],
+                            "object":  "HH_NoteItemPickup_P3L5A5_Proof"
+                        }
+                    ]
+    },
+    {
+        "item":  "Codex_Note_Level5_RuralHorror",
+        "sources":  [
+                        {
+                            "type":  "pickup",
+                            "scene":  "Level_5_Area_3_Main",
+                            "pos":  [
+                                        -9.6,
+                                        0.0,
+                                        14.7
+                                    ],
+                            "object":  "HH_NoteItemPickup_L5A3_RuralHorror"
+                        }
+                    ]
+    }
+]

@@ -1,0 +1,373 @@
+{
+ "chapters": [
+  {
+   "id": "Level1",
+   "number": 1,
+   "name": "Chapter 1: The Skeleton Girl",
+   "sub_chapters": [
+    {
+     "key": "Level1_Area_1_Entrance",
+     "name": "Adashino - Spiriting Away Border",
+     "scenes": [
+      "Level_1_Area_1_Main"
+     ]
+    },
+    {
+     "key": "Level1_Ikai_Part1_Entrance",
+     "name": "Demonic Realm - Carcass Ravine",
+     "scenes": [
+      "Level_1_Ikai_Part_1_Main"
+     ]
+    },
+    {
+     "key": "Level1_Area_2_Entrance",
+     "name": "Adashino - Beyond The Carcass Ravine",
+     "scenes": [
+      "Level_1_Area_2_Main",
+      "Level_1_Area_3_Main"
+     ]
+    },
+    {
+     "key": "Level1_BossRoom_Pass1",
+     "name": "Agasa, Skeleton Girl",
+     "scenes": [
+      "Level1Boss_Main",
+      "Level_1_BossPass2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Level2",
+   "number": 2,
+   "name": "Chapter 2: The Flower and Corpse Princess",
+   "sub_chapters": [
+    {
+     "key": "Level2_Area_1_Entrance",
+     "name": "??? - Hidden Path",
+     "scenes": [
+      "Level_2_Area_1_Main",
+      "Level_2_Area_2_Main"
+     ]
+    },
+    {
+     "key": "Level2_Area_3_Entrance",
+     "name": "Tanka Castle - Ninomaru Palace",
+     "scenes": [
+      "Level_2_Area_3_Main",
+      "Level_2_Area_4_Main"
+     ]
+    },
+    {
+     "key": "Level2_Area_5_Entrance",
+     "name": "Tanka Castle - Sannomaru Palace",
+     "scenes": [
+      "Level_2_Area_5_Main",
+      "Level_2_Area_5_2F_Main",
+      "Level_2_MidBoss_Main"
+     ]
+    },
+    {
+     "key": "Level2_Area_6_Entrance",
+     "name": "Tanka Castle - Rakka Observatory",
+     "scenes": [
+      "Level_2_Area_6_Main",
+      "Level_2_Area_7_Main",
+      "Level_2_Area_8_Main",
+      "Level_2_Area_9_Main",
+      "Level_2_Ikai_Part1_Main"
+     ]
+    },
+    {
+     "key": "Level2_BossRoom",
+     "name": "Ling Ling, Flower and Corpse Princess",
+     "scenes": [
+      "Level2Boss_Main"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Level3",
+   "number": 3,
+   "name": "Chapter 3: The Holy Maiden of the Full Moon Order",
+   "sub_chapters": [
+    {
+     "key": "Level3_Area_1_Entrance",
+     "name": "Chirakuin - Front Gates",
+     "scenes": [
+      "Level_3_Area_1_Main",
+      "Level_3_Area_2_Main"
+     ]
+    },
+    {
+     "key": "Level3_Area_3_Entrance",
+     "name": "Chirakuin - Study",
+     "scenes": [
+      "Level_3_Area_3_Main",
+      "Level_3_Area_4_Main",
+      "Level3_SecretZone_Main"
+     ]
+    },
+    {
+     "key": "Level3_Area_5_Entrance",
+     "name": "Chirakuin - Confessional",
+     "scenes": [
+      "Level_3_Area_5_Main",
+      "Level_3_Area_5_Boss_Main",
+      "Level_3_Area_6_Main",
+      "Level_3_Area_7_Main",
+      "Level_3_Ikai_Part1_Main"
+     ]
+    },
+    {
+     "key": "Level3_Ikai_Part2_Entrance",
+     "name": "Demonic Realm - Twisted Utopia",
+     "scenes": [
+      "Level_3_Ikai_Part2_Main"
+     ]
+    },
+    {
+     "key": "Level3_BossRoom",
+     "name": "Chirakuin, Holy Maiden of the Full Moon Order",
+     "scenes": [
+      "Level3Boss_Main"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Level4",
+   "number": 4,
+   "name": "Chapter 4: The Twin Watchdogs",
+   "sub_chapters": [
+    {
+     "key": "Level4_Area_1_Entrance",
+     "name": "Kemono Island - Inugami Hill",
+     "scenes": [
+      "Level_4_Area_1_Main",
+      "Level_4_Area_2_Main"
+     ]
+    },
+    {
+     "key": "Level4_Ikai_Part1_Entrance",
+     "name": "Demonic Realm - Twilight Demonic Capital",
+     "scenes": [
+      "Level_4_Ikai_Part1_Main"
+     ]
+    },
+    {
+     "key": "Level4_Area_3_Entrance",
+     "name": "Inumachi 1st District - Riverside",
+     "scenes": [
+      "Level_4_Area_3_Main"
+     ]
+    },
+    {
+     "key": "Level4_Area_4_Entrance",
+     "name": "Mikan Festival - Shiba Shrine Approach",
+     "scenes": [
+      "Level_4_Area_4_Main",
+      "Level_4_Area_Arena_Main"
+     ]
+    },
+    {
+     "key": "Level4_Ikai_Part2_Entrance",
+     "name": "Demonic Realm - Airship",
+     "scenes": [
+      "Level_4_Ikai_Part2_Main"
+     ]
+    },
+    {
+     "key": "Level4_BossRoom",
+     "name": "Yumiko & Kumiko, Twin Watchdogs",
+     "scenes": [
+      "Level_4_Boss",
+      "Level_4_BossPhase2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Level5",
+   "number": 5,
+   "name": "Chapter 5: The Fallen Samurai",
+   "sub_chapters": [
+    {
+     "key": "Level5_Area_1_Entrance",
+     "name": "Adashino - Firefly Bridges",
+     "scenes": [
+      "Level_5_Area_1_Main",
+      "Level_5_Area_2_Main",
+      "Level_5_Area_3_Main"
+     ]
+    },
+    {
+     "key": "Level5_Area_4_Entrance",
+     "name": "Memory - Break of Dawn",
+     "scenes": [
+      "Level_5_Area_4_Main"
+     ]
+    },
+    {
+     "key": "Level5_Area_5_Entrance",
+     "name": "Memory - Home",
+     "scenes": [
+      "Level_5_Area_5_Main",
+      "Level_5_Ikai_Part1_Main",
+      "Level_5_Ikai_Part2_Main"
+     ]
+    },
+    {
+     "key": "Level5_BossRoom",
+     "name": "Mamiya, Fallen Samurai",
+     "scenes": [
+      "Level_5_Boss"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LevelFinalP1",
+   "number": 6,
+   "name": "Chapter 6: Where it All Began",
+   "sub_chapters": [
+    {
+     "key": "LevelFinalP0_Jinguu",
+     "name": "Jinguu (Climax: The Choice)",
+     "scenes": [
+      "Level_FinalP0_Jinguu_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP1_L1_Ikai_Entrance",
+     "name": "Demonic Realm - Carcass Ravine (Ch6)",
+     "scenes": [
+      "Level_FinalP1_L1_Ikai_Main",
+      "Level_FinalP1_L1_A3_Main",
+      "Level_FinalP1_L1Boss_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP1_L2_A5_Entrance",
+     "name": "Tanka Castle - Sannomaru Palace (Ch6)",
+     "scenes": [
+      "Level_FinalP1_L2_A5_Main",
+      "Level_FinalP1_L2_Ikai_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP1_L2_Boss",
+     "name": "Reunion: Ling Ling",
+     "scenes": [
+      "Level_FinalP1_L2Boss_Main"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LevelFinalP2",
+   "number": 7,
+   "name": "Chapter 7: The Brambled Path of Rebellion",
+   "sub_chapters": [
+    {
+     "key": "LevelFinalP2_L3_A5_Entrance",
+     "name": "Chirakuin - Confessional (Ch7)",
+     "scenes": [
+      "Level_FinalP2_L3_A5_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP2_L3_Boss",
+     "name": "Reunion: Nozomi",
+     "scenes": [
+      "Level_FinalP2_L3Boss_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP2_L4_A2_Entrance",
+     "name": "Inumachi 2nd District - Shopping District",
+     "scenes": [
+      "Level_FinalP2_L4_A2_Main",
+      "Level_FinalP2_L4_Ikai_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP2_L4_Boss",
+     "name": "Reunion: Yumiko & Kumiko",
+     "scenes": [
+      "Level_FinalP2_L4Boss_Phase1_Main",
+      "Level_FinalP2_L4Boss_Phase2_Main"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LevelFinalP3",
+   "number": 8,
+   "name": "Chapter 8: The Future of Reunion",
+   "sub_chapters": [
+    {
+     "key": "LevelFinalP3_L5_Ikai_Entrance",
+     "name": "Demonic Realm - Snowy End",
+     "scenes": [
+      "Level_FinalP3_L5_Ikai_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP3_L5_A2_Entrance",
+     "name": "Reunion: Agasa",
+     "scenes": [
+      "Level_FinalP3_L5_A2_Main",
+      "Level_FinalP3_L5_A2_Phase2_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP3_L5_A5_Entrance",
+     "name": "Memory - Home (Ch8)",
+     "scenes": [
+      "Level_FinalP3_L5_A5_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP3_L5_Boss",
+     "name": "Reunion: Mamiya",
+     "scenes": [
+      "Level_FinalP3_L5Boss_Main"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LevelFinalP4",
+   "number": 9,
+   "name": "Finale: Desire",
+   "sub_chapters": [
+    {
+     "key": "LevelFinalP4_Passage_Entrance",
+     "name": "Jinguu - Pathway",
+     "scenes": [
+      "Level_FinalP4_Passage_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP4_Jinguu_Phase1",
+     "name": "Admini",
+     "scenes": [
+      "Level_FinalP4_Jinguu_Phase1_Main",
+      "Level_FinalP4_Jinguu_Phase2_Main"
+     ]
+    },
+    {
+     "key": "LevelFinalP4_Jinguu_Ending",
+     "name": "Ann's wish",
+     "scenes": [
+      "Level_FinalP4_Jinguu_Ending_Main",
+      "Level_FinalP4_EndFinale_Main"
+     ]
+    }
+   ]
+  }
+ ],
+ "hub_tiers": "shop tier t needs cleared_world_count >= t"
+}

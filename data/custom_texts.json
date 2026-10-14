@@ -1,0 +1,6 @@
+﻿{
+  "Gun_Board": { "name": "Ann's Board", "override": true },
+  "Gun_Missile": { "name": "Fortunate Misfortune", "override": true },
+  "Gun_Shotgun": { "name": "Ruptured Bones", "override": true },
+  "Skill_Double Charm": { "name": "Flame-Stoking Explosion Charm", "override": true }
+}

@@ -1,0 +1,9 @@
+﻿name: HimeTest
+game: Homura-Hime
+Homura-Hime:
+  level_order: vanilla
+  level_unlock_items: false
+  include_cut_content: true
+  encounter_rewards: true
+  death_link: true
+  encounter_clears: true

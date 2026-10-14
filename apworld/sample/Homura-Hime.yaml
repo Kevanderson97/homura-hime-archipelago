@@ -1,0 +1,318 @@
+﻿# Q. What is this file?
+# A. This file contains options which allow you to configure your multiworld experience while allowing
+#    others to play how they want as well.
+#
+# Q. How do I use it?
+# A. The options in this file are weighted. This means the higher number you assign to a value, the
+#    more chances you have for that option to be chosen. For example, an option like this:
+#
+#    map_shuffle:
+#      on: 5
+#      off: 15
+#
+#    Means you have 5 chances for map shuffle to occur, and 15 chances for map shuffle to be turned
+#    off.
+#
+# Q. I've never seen a file like this before. What characters am I allowed to use?
+# A. This is a .yaml file. You are allowed to use most characters.
+#    To test if your yaml is valid or not, you can use this website:
+#        http://www.yamllint.com/
+#    You can also verify that your Archipelago options are valid at this site:
+#        https://archipelago.gg/check
+
+# Your name in-game, limited to 16 characters.
+#     {player} will be replaced with the player's slot number.
+#     {PLAYER} will be replaced with the player's slot number, if that slot number is greater than 1.
+#     {number} will be replaced with the counter value of the name.
+#     {NUMBER} will be replaced with the counter value of the name, if the counter value is greater than 1.
+name: Player{number}
+
+# Used to describe your yaml. Useful if you have multiple files.
+description: Sample Homura-Hime yaml with every option (tools/make_sample_yaml.py writes it)
+
+game: Homura-Hime
+requires:
+  version: 0.6.6 # Version of Archipelago required for this yaml to work as expected.
+  game:
+    Homura-Hime: 0.3.2 # Version of the world required for this yaml to work as expected.
+
+Homura-Hime:
+  ################
+  # Game Options #
+  ################
+  progression_balancing:
+    # A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.
+    # 
+    # A lower setting means more getting stuck. A higher setting means less getting stuck.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 99
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
+    disabled: 0 # equivalent to 0
+    normal: 50 # equivalent to 50
+    extreme: 0 # equivalent to 99
+
+  accessibility:
+    # Set rules for reachability of your items/locations.
+    # 
+    # **Full:** ensure everything can be reached and acquired.
+    # 
+    # **Minimal:** ensure what is needed to reach your goal can be acquired.
+    full: 50
+    minimal: 0
+
+  ############
+  # Chapters #
+  ############
+  level_order:
+    # How the eight chapters are ordered.
+    # 
+    # vanilla: Chapters 1-8 in story order.
+    # randomized: the eight chapters are played in a random order (the final chapter stays last).
+    # In both cases the Chapter Select is always available; see the unlock rules in the setup guide.
+    vanilla: 50
+    randomized: 0
+
+  level_unlock_items:
+    # Chapters are unlocked by items ("Chapter N Unlock") that can be anywhere in the multiworld.
+    # With vanilla order a chapter also needs the previous chapter beaten; with randomized order the item alone is
+    # enough.
+    'false': 50
+    'true': 0
+
+  dash_skill_start:
+    # Start with one random dash skill (Phantom Blade, Spark Rush, Quake Strike or Bloodflame Palm).
+    # Level 1 needs one of them to cross a large gap at the start of its second area. When this is off (the default)
+    # the logic requires a dash skill there and one is placed early, in your world or in another player's world.
+    # (With advanced_movement_required the logic does not ask for a dash skill at all; this still gives you one.)
+    'false': 50
+    'true': 0
+
+  advanced_movement_required:
+    # The logic does not require a dash skill: it expects you to get past the gap at the start of Level 1's second
+    # area with advanced movement instead (parrying the laser of the enemy that shoots across it carries you over).
+    # On: dash skills are only useful items, none is placed early, and shops may sell them. Off (the default): the logic
+    # requires one of the four dash skills there and places one early.
+    'false': 50
+    'true': 0
+
+  #############
+  # Locations #
+  #############
+  encounter_clears:
+    # Clearing any fight (every encounter, ambush, trial arena and boss phase, 110 of them) is a location.
+    'false': 0
+    'true': 50
+
+  encounter_rewards:
+    # Optional Ambush fights that normally give no item (4 of them) become locations.
+    'false': 50
+    'true': 0
+
+  include_cut_content:
+    # Add content that exists in the game files but is never obtained normally: Ann's Board, Fortunate Misfortune,
+    # Ruptured Bones (guns) and the Flame-Stoking Explosion Charm (skill).
+    'false': 50
+    'true': 0
+
+  optional_location_importance:
+    # How many of the optional locations (ambushes, trials, head chases, Ikai dungeon rooms) may hold progression or
+    # useful items, in percent. The default is all of them: the level select is always available, so optional fights can
+    # be replayed. Lower it to keep what you need out of optional fights; the rest then only hold filler.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    100: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  ##################
+  # Shuffled Items #
+  ##################
+  shuffle_combos:
+    # On: combos can be anywhere. Off: every combo stays at the shop slot that sells it in the base game.
+    'false': 0
+    'true': 50
+
+  shuffle_skills:
+    # On: skills can be anywhere. Off: every skill stays where the base game gives it (shop slots, stage rewards,
+    # Harumi).
+    'false': 0
+    'true': 50
+
+  shuffle_omamori:
+    # On: omamori can be anywhere. Off: every omamori stays where the base game gives it (shop, chests, rewards).
+    'false': 0
+    'true': 50
+
+  shuffle_guns:
+    # On: blessed shots (guns) can be anywhere. Off: they stay where the base game gives them.
+    'false': 0
+    'true': 50
+
+  shuffle_shards:
+    # On: HP/SP shards and crystals can be anywhere. Off: they stay in their chests, shop slots and rewards.
+    'false': 0
+    'true': 50
+
+  shuffle_upgrades:
+    # On: the two omamori cost upgrades can be anywhere. Off: they stay at their shop slots.
+    'false': 0
+    'true': 50
+
+  shuffle_key_items:
+    # On: the story key items (Pretty Little Flower, Elevator Lever, Nurikabe's items, ...) can be anywhere. Off: they
+    # stay with the characters and events that hand them over in the base game.
+    'false': 0
+    'true': 50
+
+  #############
+  # Item Pool #
+  #############
+  minimum_konpeito:
+    # The item pool holds at least this much Konpeito in total: the payouts of chests, trials, Harumi and level clears
+    # (which the randomizer takes away and hands out as items) plus Konpeito filler, which grows in size when more is
+    # needed. The hub currency boards pay nothing; enemies, boxes and other pickups on the map still drop Konpeito on top.
+    # 550,000 is a little more than S-ranking every mission in the base game pays; 750,000 is the in-game achievement.
+    # With fewer locations (encounter_clears off) the pool may not have room for high values; the most it can hold is used
+    # and a warning is logged.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 1000000
+    550000: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-1000000: 0 # random value between 0 and 1000000
+
+  filler_sakura_ratio:
+    # Percent of the currency filler that is Sakura Petals instead of Konpeito. Harumi's last rewards need more Sakura
+    # than the logic counts on from the levels, so the pool always holds at least 60 Sakura Petals in items, whatever
+    # this is set to.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    20: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  senbei_count:
+    # How many Senbei are handed out in total (shop items cost 1-3 each). Above 40 some of them come as "2 Senbei"
+    # items, so the pool does not fill up with them. The base game has 55.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 20
+    # Maximum value is 80
+    55: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-20-80: 0 # random value between 20 and 80
+
+  dango_count:
+    # How many Special Hanami Dango are added to the item pool. The shop's Dango slot is a single location
+    # regardless.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 99
+    15: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
+
+  full_heal_count:
+    # How many Full Heal items are in the pool.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 50
+    10: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-50: 0 # random value between 0 and 50
+
+  ultimate_charge_count:
+    # How many Ultimate Charge items are in the pool.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 50
+    10: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-50: 0 # random value between 0 and 50
+
+  ##############
+  # Multiworld #
+  ##############
+  shop_hints:
+    # Opening a shop tells the players concerned what the visible Archipelago items in it are: every shop entry you
+    # can see that holds an item for another player is sent as a hint (free, no hint points). Entries the shop hides are
+    # not hinted.
+    'false': 0
+    'true': 50
+
+  death_link:
+    # When you die, everyone who enabled death link dies. Of course, the reverse is true too.
+    'false': 50
+    'true': 0
+
+  death_link_skip_revives:
+    # Off: a death is sent as soon as you die. On: reviving with a Special Hanami Dango does not send it, the death
+    # is only sent when you pick any other option in the death menu.
+    'false': 50
+    'true': 0
+
+  ###########################
+  # Item & Location Options #
+  ###########################
+  local_items:
+    # Forces these items to be in their native world.
+    []
+
+  non_local_items:
+    # Forces these items to be outside their native world.
+    []
+
+  start_inventory:
+    # Start with the specified amount of these items. Example: {Bomb: 1, Arrow: 3}
+    {}
+
+  start_hints:
+    # Start with these item's locations prefilled into the ``!hint`` command.
+    []
+
+  start_location_hints:
+    # Start with these locations and their item prefilled into the ``!hint`` command.
+    []
+
+  exclude_locations:
+    # Prevent these locations from having an important item.
+    []
+
+  priority_locations:
+    # Prevent these locations from having an unimportant item.
+    []
+
+  item_links:
+    # Share part of your item pool with other players.
+    []
+
+  plando_items:
+    # Generic items plando.
+    []

@@ -1,0 +1,21 @@
+# build output
+bin/
+obj/
+dist/
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# local-only folders and files (editor / assistant state, notes, credentials)
+.*/
+.mcp.json
+_memories/
+
+# game files must never be committed
+*.assets
+*.bundle
+*.resS
+*.resource
+Managed/
+BepInEx/

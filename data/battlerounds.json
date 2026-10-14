@@ -1,0 +1,1707 @@
+[
+ {
+  "scene": "Level_0_Main",
+  "idx": 5,
+  "type": "BattleRound",
+  "chain": "BattleRound_ < FSM_最終驗收GamePlay < FSM < Gameplay_實戰練習 < GameplayRound_戰鬥教學",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level1Boss_Main",
+  "idx": 6,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_1_Area_1_Main",
+  "idx": 7,
+  "type": "BattleRound",
+  "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥B01 < GameplayRoundHandler",
+  "pos": [
+   -2.8,
+   -11.2,
+   -96.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_1_Area_1_Main",
+  "idx": 7,
+  "type": "BattleRound",
+  "chain": "BattleRound_ < FSM BattleRound < Gameplay_B02 < GameplayRound_B02與祭品事件 < GameplayRoundHandler",
+  "pos": [
+   -86.3,
+   -8.3,
+   -186.2
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_1_Area_2_Main",
+  "idx": 8,
+  "type": "BattleRound",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_額外戰鬥C01 < GameplayRoundHandler",
+  "pos": [
+   -16.5,
+   0.0,
+   -76.6
+  ],
+  "extra": 1,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_1_Area_2_Main",
+  "idx": 8,
+  "type": "BattleRound",
+  "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B03 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
+  "pos": [
+   22.0,
+   0.0,
+   -34.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_1_Area_2_Main",
+  "idx": 8,
+  "type": "FreeBattleRound",
+  "chain": "FreeBattleRound < FSM EnemyIntro_TriggerCollider < Gameplay_EenemyIntro < GameplayRound_初見金平糖 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "scene": "Level_1_Area_3_Main",
+  "idx": 9,
+  "type": "BattleRound",
+  "chain": "BattleRound_B04 < FSM BattleRound < Gameplay_B04必要戰鬥 < GameplayRound_小梅與玩偶和B04 < GameplayRoundHandler",
+  "pos": [
+   -72.9,
+   1.8,
+   -28.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_1_BossPass2",
+  "idx": 10,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_1_Ikai_Part_1_Main",
+  "idx": 11,
+  "type": "BattleRound",
+  "chain": "BattleRound_B01 < FSM BattleRound B01 < Gameplay_B01必要戰鬥 < GameplayRound_DemoBattle < GameplayRoundHandler",
+  "pos": [
+   109.5,
+   -1.6,
+   227.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level2Boss_Main",
+  "idx": 12,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_1_Main",
+  "idx": 13,
+  "type": "FreeBattleRound",
+  "chain": "FreeBattleRound < FSM EnemyIntro_TriggerCollider < Gameplay_EenemyIntro < GameplayRound_開場與醜醜花任務 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "scene": "Level_2_Area_2_Main",
+  "idx": 14,
+  "type": "BattleRound",
+  "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥B01與離開 < GameplayRoundHandler",
+  "pos": [
+   110.1,
+   21.0,
+   -43.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_3_Main",
+  "idx": 15,
+  "type": "BattleRound",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
+  "pos": [
+   -18.7,
+   -1.0,
+   -45.7
+  ],
+  "extra": 1,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_3_Main",
+  "idx": 15,
+  "type": "BattleRound",
+  "chain": "BattleRound_C02 < FSM BattleRound Template < Gameplay_C02 < GameplayRound_C02 < GameplayRoundHandler",
+  "pos": [
+   -12.8,
+   12.1,
+   -8.2
+  ],
+  "extra": 1,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_3_Main",
+  "idx": 15,
+  "type": "BattleRound",
+  "chain": "BattleRound_B02 < FSM BattleRound < Gameplay_B02&DE < GameplayRound_戰鬥B02&結尾DE < GameplayRoundHandler",
+  "pos": [
+   -19.0,
+   24.9,
+   48.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_2_Area_4_Main",
+  "idx": 16,
+  "type": "BattleRound",
+  "chain": "BattleRound_B04 < FSM BattleRound B04 < Gameplay_B04 < GameplayRound_大水與塗壁流程 < GameplayRoundHandler",
+  "pos": [
+   33.3,
+   40.2,
+   167.3
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_4_Main",
+  "idx": 16,
+  "type": "BattleRound",
+  "chain": "BattleRound_B03 < FSM < Gameplay_B03 < GameplayRound_大水與塗壁流程 < GameplayRoundHandler",
+  "pos": [
+   105.9,
+   40.2,
+   113.5
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_5_2F_Main",
+  "idx": 17,
+  "type": "BattleRound",
+  "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
+  "pos": [
+   -17.5,
+   13.7,
+   -81.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_5_2F_Main",
+  "idx": 17,
+  "type": "BattleRound",
+  "chain": "BattleRound_B06 < FSM BattleRound TriggerCollider < Gameplay_B06 < GameplayRound_B06與追逐環節 < GameplayRoundHandler",
+  "pos": [
+   35.0,
+   14.1,
+   -96.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_5_Main",
+  "idx": 18,
+  "type": "BattleRound",
+  "chain": "BattleRound_C03 < FSM BattleRound Template < Gameplay_C03 < GameplayRound_C03 < GameplayRoundHandler",
+  "pos": [
+   39.5,
+   -14.0,
+   -11.4
+  ],
+  "extra": 1,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Area_6_Main",
+  "idx": 19,
+  "type": "BattleRound",
+  "chain": "BattleRound_B07 < FSM BattleRound < Gameplay_B07 < GameplayRound_B07與離開 < GameplayRoundHandler",
+  "pos": [
+   24.8,
+   109.2,
+   -13.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_2_Ikai_Part1_Main",
+  "idx": 23,
+  "type": "BattleRound",
+  "chain": "BattleRound_C04 < FSM BattleRound TriggerCollider < Gameplay_C04 < GameplayRound_C04 < GameplayRoundHandler",
+  "pos": [
+   168.2,
+   97.4,
+   675.2
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_2_Ikai_Part1_Main",
+  "idx": 23,
+  "type": "BattleRound",
+  "chain": "BattleRound_BI01 < FSM BattleRound TriggerCollider < Gameplay_BI01 < GameplayRound_戰鬥BI01與離開 < GameplayRoundHandler",
+  "pos": [
+   165.2,
+   139.9,
+   662.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_2_MidBoss_Main",
+  "idx": 24,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level3Boss_Main",
+  "idx": 25,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_1_Main",
+  "idx": 26,
+  "type": "BattleRound",
+  "chain": "BattleRound < B01必要戰鬥 < Gameplay_B01 < GameplayRound_戰鬥B01與等待離開 < GameplayRoundHandler",
+  "pos": [
+   -156.9,
+   0.7,
+   93.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_3_Area_2_Main",
+  "idx": 27,
+  "type": "BattleRound",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
+  "pos": [
+   88.4,
+   -3.0,
+   -236.7
+  ],
+  "extra": 1,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_2_Main",
+  "idx": 27,
+  "type": "BattleRound",
+  "chain": "BattleRound_B02 < FSM BattleRound TriggerCollider < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
+  "pos": [
+   14.5,
+   -3.0,
+   -188.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_3_Main",
+  "idx": 28,
+  "type": "BattleRound",
+  "chain": "BattleRound_B03 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
+  "pos": [
+   -91.3,
+   0.0,
+   21.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_5_Main",
+  "idx": 30,
+  "type": "BattleRound",
+  "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_塗壁與戰鬥B05 < GameplayRoundHandler",
+  "pos": [
+   211.7,
+   -3.0,
+   4.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_6_Main",
+  "idx": 31,
+  "type": "BattleRound",
+  "chain": "BattleRound_B06 < B06FinalBattle < Gameplay_戰鬥B06 < GameplayRound_開場與戰鬥B06 < GameplayRoundHandler",
+  "pos": [
+   -92.0,
+   -3.0,
+   -31.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_7_Main",
+  "idx": 32,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC01 < FSM BattleRound TriggerCollider < Gameplay_Battle_FC01 < GameplayRound_FC01 < ExtraChallengeController_BattleRound_FC01",
+  "pos": [
+   -8311.9,
+   4.0,
+   -5376.4
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_7_Main",
+  "idx": 32,
+  "type": "BattleRound",
+  "chain": "BattleRound_B07 < 開場戰鬥 < Gameplay_B07 < GameplayRound_戰鬥B07 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   -6.0,
+   14.4
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Area_7_Main",
+  "idx": 32,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_FC01 < GameplayRoundHandler",
+  "pos": [
+   17.4,
+   -0.0,
+   128.7
+  ]
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room9 < MechanicDoor",
+  "pos": [
+   -67.8,
+   50.6,
+   -569.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room6 < MechanicDoor",
+  "pos": [
+   84.0,
+   15.6,
+   -121.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room8 < MechanicDoor",
+  "pos": [
+   46.0,
+   18.6,
+   -146.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room7 < MechanicDoor",
+  "pos": [
+   0.0,
+   0.6,
+   -146.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room1 < MechanicDoor",
+  "pos": [
+   35.0,
+   89.6,
+   -766.3
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room3 < MechanicDoor",
+  "pos": [
+   59.0,
+   5.6,
+   83.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room2 < MechanicDoor",
+  "pos": [
+   12.0,
+   1.6,
+   83.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room4 < MechanicDoor",
+  "pos": [
+   -0.0,
+   14.6,
+   31.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room5 < MechanicDoor",
+  "pos": [
+   0.0,
+   8.6,
+   -98.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "BattleRound",
+  "chain": "BattleRound < BattleRound_BI01 < Gameplay_BI01 < GameplayRound_戰鬥BI01 < GameplayRoundHandler",
+  "pos": [
+   10.2,
+   14.8,
+   -258.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "FreeBattleRound",
+  "chain": "FreeBattleRound < FSM EnemyIntro_TriggerCollider < Gameplay_EenemyIntro < GameplayRound_結尾移動環節 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "scene": "Level_3_Ikai_Part1_Main",
+  "idx": 33,
+  "type": "FreeBattleRound",
+  "chain": "FreeBattleRound < FSM EnemyIntro_TriggerCollider < Gameplay_EenemyIntro < GameplayRound_移動環節 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 10 < Door",
+  "pos": [
+   0.0,
+   58.6,
+   -273.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 13 < Door",
+  "pos": [
+   -21.0,
+   96.6,
+   -808.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 8 < Door",
+  "pos": [
+   -268.8,
+   77.9,
+   -956.3
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 12 < Door",
+  "pos": [
+   24.0,
+   96.6,
+   -808.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 1 < Door",
+  "pos": [
+   1.5,
+   99.6,
+   -811.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 5 < Door",
+  "pos": [
+   270.9,
+   51.5,
+   -991.2
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound_BI02 < FSM BattleRound < Gameplay_BI01 < GameplayRound_戰鬥BI02 < GameplayRoundHandler",
+  "pos": [
+   1.6,
+   55.0,
+   -456.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 11 < Door",
+  "pos": [
+   1.5,
+   83.6,
+   -688.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 2 < Door",
+  "pos": [
+   1.5,
+   102.6,
+   -847.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 6 < Door",
+  "pos": [
+   327.2,
+   18.4,
+   -1022.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 7 < Door",
+  "pos": [
+   261.1,
+   137.8,
+   -809.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 9 < Door",
+  "pos": [
+   1.5,
+   83.6,
+   -552.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 3 < Door",
+  "pos": [
+   1.5,
+   105.6,
+   -888.4
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_3_Ikai_Part2_Main",
+  "idx": 34,
+  "type": "BattleRound",
+  "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 4 < Door",
+  "pos": [
+   -170.5,
+   113.6,
+   -977.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level3_SecretZone_Main",
+  "idx": 35,
+  "type": "BattleRound",
+  "chain": "BattleRound < 詛咒小黑流程 < 中心點",
+  "pos": [
+   219.8,
+   223.2,
+   476.1
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_1_Main",
+  "idx": 36,
+  "type": "BattleRound",
+  "chain": "BattleRound_C01 < C01Battle_FSM < Gameplay_C01Battle < GameplayRound_C01Battle < GameplayRoundHandler",
+  "pos": [
+   51.5,
+   -9.5,
+   153.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_1_Main",
+  "idx": 36,
+  "type": "BattleRound",
+  "chain": "BattleRound_B01 < B01Battle_FSM < Gameplay_B01BattleStart < GameplayRound_廣場事件 < GameplayRoundHandler",
+  "pos": [
+   49.0,
+   32.0,
+   -268.5
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_2_Main",
+  "idx": 37,
+  "type": "BattleRound",
+  "chain": "BattleRound_B03 < FSM < Gameplay_B03 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
+  "pos": [
+   -79.9,
+   30.0,
+   -313.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Area_2_Main",
+  "idx": 37,
+  "type": "BattleRound",
+  "chain": "BattleRound_B02 < FSM < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
+  "pos": [
+   -34.2,
+   0.0,
+   -70.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Area_3_Main",
+  "idx": 38,
+  "type": "BattleRound",
+  "chain": "BattleRound_B04 < FSM < Gameplay_釣魚Dialog+B04 < GameplayRound_戰鬥B04 < GameplayRoundHandler",
+  "pos": [
+   19.2,
+   -3.3,
+   -35.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Area_3_Main",
+  "idx": 38,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC02 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_L4A3_FC02 < ExtraChallengeController_BattleRound_L4A3_FC02",
+  "pos": [
+   -7322.2,
+   -130.8,
+   -6952.2
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Area_3_Main",
+  "idx": 38,
+  "type": "BattleRound",
+  "chain": "BattleRound_B05 < Gameplay_路燈後B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
+  "pos": [
+   46.4,
+   35.5,
+   -218.4
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Area_3_Main",
+  "idx": 38,
+  "type": "BattleRound",
+  "chain": "BattleRound_B06 < Gameplay_B06 < GameplayRound_線人與逃跑流程 < GameplayRoundHandler",
+  "pos": [
+   118.3,
+   53.6,
+   -306.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_3_Main",
+  "idx": 38,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_L4A3_FC02 < GameplayRoundHandler",
+  "pos": [
+   -17.6,
+   21.9,
+   -98.3
+  ]
+ },
+ {
+  "scene": "Level_4_Area_Arena_Main",
+  "idx": 40,
+  "type": "BattleRound",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round4 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   4.8,
+   -0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_Arena_Main",
+  "idx": 40,
+  "type": "BattleRound",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round1 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   4.8,
+   -0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_Arena_Main",
+  "idx": 40,
+  "type": "BattleRound",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round3 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   4.8,
+   -0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Area_Arena_Main",
+  "idx": 40,
+  "type": "BattleRound",
+  "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round2 < GameplayRound_武鬥大會 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   4.8,
+   -0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Boss",
+  "idx": 41,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_BossPhase2",
+  "idx": 42,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Ikai_Part1_Main",
+  "idx": 43,
+  "type": "BattleRound",
+  "chain": "BattleRound_BI01 < FSM BattleRound < Gameplay_BI01 < GameplayRound_莉佳AC與戰鬥 < GameplayRoundHandler",
+  "pos": [
+   360.3,
+   100.6,
+   -669.4
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_4_Ikai_Part2_Main",
+  "idx": 44,
+  "type": "BattleRound",
+  "chain": "BattleRound_B07 < FSM < Gameplay_必要戰鬥_B07 < GameplayRound_飛船一 < GameplayRoundHandler",
+  "pos": [
+   9.9,
+   -2.6,
+   -280.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Ikai_Part2_Main",
+  "idx": 44,
+  "type": "BattleRound",
+  "chain": "BattleRound_B09 < FSM < Gameplay_雙子戰鬥撐45 < GameplayRound_飛船三 < GameplayRoundHandler",
+  "pos": [
+   169.9,
+   7.9,
+   -206.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_4_Ikai_Part2_Main",
+  "idx": 44,
+  "type": "BattleRound",
+  "chain": "BattleRound_B08 < FSM < Gameplay_必要戰鬥B08 < GameplayRound_飛船二 < GameplayRoundHandler",
+  "pos": [
+   94.4,
+   7.5,
+   -280.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_5_Area_1_Main",
+  "idx": 45,
+  "type": "FreeBattleRound",
+  "chain": "FreeBattleRound < FSM EnemyIntro_TriggerCollider < Gameplay_EenemyIntro < GameplayRound_豪大布丁初登場 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "scene": "Level_5_Area_2_Main",
+  "idx": 46,
+  "type": "BattleRound",
+  "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.9
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_5_Area_4_Main",
+  "idx": 48,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC03 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_L5A4_FC03 < ExtraChallengeController_BattleRound_L5A4_FC03",
+  "pos": [
+   5455.4,
+   4.0,
+   -8341.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_5_Area_4_Main",
+  "idx": 48,
+  "type": "BattleRound",
+  "chain": "BattleRound_B02 < FSM BattleRound TriggerCollider < Gameplay_B02 < GameplayRound_戰鬥B02與離開 < GameplayRoundHandler",
+  "pos": [
+   -6.2,
+   2.2,
+   112.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_5_Area_4_Main",
+  "idx": 48,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_L5A4_FC03 < GameplayRoundHandler",
+  "pos": [
+   2.6,
+   0.0,
+   38.1
+  ]
+ },
+ {
+  "scene": "Level_5_Area_5_Main",
+  "idx": 49,
+  "type": "BattleRound",
+  "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B3 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
+  "pos": [
+   22.0,
+   0.0,
+   -34.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_5_Area_5_Main",
+  "idx": 49,
+  "type": "BattleRound",
+  "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
+  "pos": [
+   -20.1,
+   -0.1,
+   -21.4
+  ],
+  "extra": 1,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_5_Boss",
+  "idx": 50,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_5_Ikai_Part2_Main",
+  "idx": 52,
+  "type": "BattleRound",
+  "chain": "BattleRound_BI01 < FSM BattleRound TriggerCollider < Gameplay_BI01 < GameplayRound_戰鬥BI01與追頭 < GameplayRoundHandler",
+  "pos": [
+   -190.7,
+   24.5,
+   307.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP0_Jinguu_Main",
+  "idx": 53,
+  "type": "BattleRound",
+  "chain": "BattleRound < FSM BattleRound TriggerCollider < Gameplay_必要戰鬥 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "idx": 54,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC04 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP1L1A3_FC04 < ExtraChallengeController_BattleRound_LFP1L1A3_FC04",
+  "pos": [
+   260.4,
+   4.0,
+   10152.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "idx": 54,
+  "type": "BattleRound",
+  "chain": "BattleRound_B02 < FSM BattleRound < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
+  "pos": [
+   -72.9,
+   1.8,
+   -28.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "idx": 54,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP1L1A3_FC04 < GameplayRoundHandler",
+  "pos": [
+   -80.4,
+   16.7,
+   77.1
+  ]
+ },
+ {
+  "scene": "Level_FinalP1_L1_Ikai_Main",
+  "idx": 55,
+  "type": "BattleRound",
+  "chain": "BattleRound_B01 < FSM BattleRound B01 < Gameplay_B01必要戰鬥 < GameplayRound_B01 < GameplayRoundHandler",
+  "pos": [
+   109.5,
+   -1.6,
+   227.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP1_L2_A5_Main",
+  "idx": 57,
+  "type": "BattleRound",
+  "chain": "BattleRound < FSM BattleRound < Gameplay_B03 < GameplayRound_黑炎姬戰鬥 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   -14.2,
+   -51.3
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP1_L2_A5_Main",
+  "idx": 57,
+  "type": "BattleRound",
+  "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B03 < GameplayRound_黑炎姬戰鬥 < GameplayRoundHandler",
+  "pos": [
+   0.0,
+   -14.2,
+   -51.3
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_FinalP1_L2Boss_Main",
+  "idx": 59,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "idx": 60,
+  "type": "BattleRound",
+  "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_B05 < GameplayRoundHandler",
+  "pos": [
+   345.8,
+   -3.0,
+   -35.7
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "idx": 60,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC06 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L3A5_FC06 < ExtraChallengeController_BattleRound_LFP2L3A5_FC06",
+  "pos": [
+   470.0,
+   4.0,
+   -9748.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "idx": 60,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC05 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L3A5_FC05 < ExtraChallengeController_BattleRound_LFP2L3A5_FC05",
+  "pos": [
+   10000.0,
+   4.0,
+   -46.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "idx": 60,
+  "type": "BattleRound",
+  "chain": "BattleRound_B04 < FSM BattleRound TriggerCollider < Gameplay_B04 < GameplayRound_B04 < GameplayRoundHandler",
+  "pos": [
+   211.7,
+   -3.0,
+   4.6
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "idx": 60,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP2L3A5_FC05 < GameplayRoundHandler",
+  "pos": [
+   307.7,
+   0.0,
+   -76.6
+  ]
+ },
+ {
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "idx": 60,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP2L3A5_FC06 < GameplayRoundHandler",
+  "pos": [
+   383.7,
+   0.0,
+   -132.5
+  ]
+ },
+ {
+  "scene": "Level_FinalP2_L3Boss_Main",
+  "idx": 61,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "idx": 62,
+  "type": "BattleRound",
+  "chain": "BattleRound_B06 < FSM BattleRound B06 < Gameplay_B06 < GameplayRound_DE與戰鬥B06 < GameplayRoundHandler",
+  "pos": [
+   -37.2,
+   -0.0,
+   -70.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "idx": 62,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC07 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L4A2_FC07 < ExtraChallengeController_BattleRound_LFP2L4A2_FC07",
+  "pos": [
+   6969.6,
+   4.0,
+   -7385.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "idx": 62,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP2L4A2_FC07 < GameplayRoundHandler",
+  "pos": [
+   -0.7,
+   15.7,
+   -211.7
+  ]
+ },
+ {
+  "scene": "Level_FinalP2_L4_Ikai_Main",
+  "idx": 63,
+  "type": "BattleRound",
+  "chain": "BattleRound_W2 < FSM BattleRound B07 < Gameplay_B07 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
+  "pos": [
+   170.0,
+   7.6,
+   -211.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L4_Ikai_Main",
+  "idx": 63,
+  "type": "BattleRound",
+  "chain": "BattleRound_W1 < FSM BattleRound B07 < Gameplay_B07 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
+  "pos": [
+   170.0,
+   7.6,
+   -211.0
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_FinalP2_L4Boss_Phase1_Main",
+  "idx": 64,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP2_L4Boss_Phase2_Main",
+  "idx": 65,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_A2_Main",
+  "idx": 66,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_A2_Phase2_Main",
+  "idx": 67,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "idx": 68,
+  "type": "BattleRound",
+  "chain": "BattleRound_B09 < FSM BattleRound < Gameplay_B09 < GameplayRound_B09 < GameplayRoundHandler",
+  "pos": [
+   22.0,
+   0.0,
+   -34.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 0
+ },
+ {
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "idx": 68,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC10 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5A5_FC10 < ExtraChallengeController_BattleRound_LFP3L5A5_FC10",
+  "pos": [
+   -2.2,
+   4.0,
+   -9972.1
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "idx": 68,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC09 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5A5_FC09 < ExtraChallengeController_BattleRound_LFP3L5A5_FC09",
+  "pos": [
+   10000.0,
+   4.0,
+   -46.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "idx": 68,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP3L5A5_FC10 < GameplayRoundHandler",
+  "pos": [
+   35.9,
+   0.0,
+   -8.0
+  ]
+ },
+ {
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "idx": 68,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP3L5A5_FC09 < GameplayRoundHandler",
+  "pos": [
+   -21.8,
+   -0.5,
+   -51.0
+  ]
+ },
+ {
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "idx": 69,
+  "type": "BattleRound",
+  "chain": "BattleRound_FC08 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5Ikai2_FC08 < ExtraChallengeController_BattleRound_LFP3L5Ikai2_FC08",
+  "pos": [
+   3181.2,
+   4.0,
+   10254.8
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "idx": 69,
+  "type": "BattleRound",
+  "chain": "BattleRound_B08 < FSM BattleRound TriggerCollider < Gameplay_B08 < GameplayRound_戰鬥B08 < GameplayRoundHandler",
+  "pos": [
+   -191.2,
+   21.4,
+   309.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "idx": 69,
+  "type": "ExtraChallengeController",
+  "chain": "ExtraChallengeController_BattleRound_LFP3L5Ikai2_FC08 < GameplayRoundHandler",
+  "pos": [
+   -591.1,
+   0.5,
+   350.3
+  ]
+ },
+ {
+  "scene": "Level_FinalP3_L5Boss_Main",
+  "idx": 70,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP4_Jinguu_Phase1_Main",
+  "idx": 73,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 1,
+  "exitflow": 1
+ },
+ {
+  "scene": "Level_FinalP4_Jinguu_Phase2_Main",
+  "idx": 74,
+  "type": "BattleRound",
+  "chain": "BattleRound",
+  "pos": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "extra": 0,
+  "rank": 0,
+  "exitflow": 1
+ }
+]
