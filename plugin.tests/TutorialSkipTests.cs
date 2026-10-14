@@ -26,4 +26,15 @@ public class TutorialSkipTests
     {
         Assert.Equal(tutorial, TutorialSkip.IsTutorialAction(action));
     }
+
+    [Theory]
+    [InlineData("UseCatchHeadMissionAction", true)] // the Kushinada head chase
+    [InlineData("OnCatchHeadMissionSuccessAction", true)]
+    [InlineData("UseTutorialAction", false)]
+    [InlineData("GameplayFinishAction", false)]
+    [InlineData(null, false)]
+    public void ANodeThatRunsAMissionIsNotSkipped(string action, bool content)
+    {
+        Assert.Equal(content, TutorialSkip.IsContentAction(action));
+    }
 }

@@ -59,5 +59,17 @@ Remove-Item $staging -Recurse -Force
 foreach ($expected in "HomuraHimeArchipelago-plugin-$version.zip", "homura_hime.apworld", "Homura-Hime.yaml") {
     if (-not (Test-Path (Join-Path $dist $expected))) { throw "the release is missing $expected" }
 }
+# the versions inside the files must be the ones in the name: the dll reports the project version, and the manifest of the
+# .apworld must be one Archipelago accepts (otherwise the world loads as 0.0.0)
+$dllVersion = (Get-Item (Join-Path $build "HomuraHimeArchipelago.dll")).VersionInfo.FileVersion
+if ($dllVersion -ne "$version.0") { throw "the plugin dll reports version $dllVersion, expected $version.0" }
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+$archive = [IO.Compression.ZipFile]::OpenRead((Join-Path $dist "homura_hime.apworld"))
+$entry = $archive.GetEntry("homura_hime/archipelago.json")
+$manifest = (New-Object IO.StreamReader($entry.Open())).ReadToEnd() | ConvertFrom-Json
+$archive.Dispose()
+if ($manifest.world_version -ne $version) { throw "the apworld is version $($manifest.world_version), the plugin $version" }
+if (-not $manifest.compatible_version -or -not $manifest.version) { throw "the apworld manifest lacks the container versions Archipelago needs" }
+
 Write-Host "Release files:" -ForegroundColor Green
 Get-ChildItem $dist | ForEach-Object { Write-Host ("  {0}  ({1:N0} KB)" -f $_.Name, ($_.Length / 1KB)) }

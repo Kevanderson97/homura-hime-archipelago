@@ -22,6 +22,12 @@ internal static class TutorialSkip
 
     internal static bool IsTutorialAction(string typeName) => typeName != null && ActionNames.Contains(typeName);
 
+    /// <summary>
+    /// The actions of a node that does more than teach, like the mission of the Kushinada head chase (its node shows a pop-up
+    /// and then runs the chase). Such a node is not skipped, only its pop-up is.
+    /// </summary>
+    internal static bool IsContentAction(string typeName) => typeName != null && typeName.Contains("Mission");
+
     /// <summary>Tutorials are skipped in a randomizer game, everywhere but in the first tutorial.</summary>
     internal static bool Applies(bool randomizerActive, string scene) => randomizerActive && scene != InitialTutorial;
 

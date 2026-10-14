@@ -52,8 +52,10 @@ internal static class TutorialNodePatch
 
         var fsm = Traverse.Create(node).Field("fsm").GetValue<PlayMakerFSM>();
         var states = fsm?.Fsm?.States;
-        return Known[id] = states != null && states.Any(state => state.Actions != null &&
-            state.Actions.Any(action => action != null && TutorialSkip.IsTutorialAction(action.GetType().Name)));
+        if (states == null) return Known[id] = false;
+        var names = states.Where(state => state.Actions != null).SelectMany(state => state.Actions)
+            .Where(action => action != null).Select(action => action.GetType().Name).ToList();
+        return Known[id] = names.Any(TutorialSkip.IsTutorialAction) && !names.Any(TutorialSkip.IsContentAction);
     }
 }
 

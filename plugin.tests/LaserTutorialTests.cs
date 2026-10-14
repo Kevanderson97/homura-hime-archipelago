@@ -6,13 +6,32 @@ namespace HomuraHimeAP.Tests;
 public class LaserTutorialTests
 {
     [Theory]
-    [InlineData("Level_1_Area_2_Main", "Enemy_Splitter_A_Tutorial (木樁) Variant", true)]
-    [InlineData("Level_1_Area_2_Main", "Enemy_Splitter_A_Default (1)", false)] // the ordinary enemies of the area
-    [InlineData("Level_1_Area_2_Main", "Enemy_FishHead_Default", false)]
-    [InlineData("Level_1_Area_3_Main", "Enemy_Splitter_A_Tutorial (木樁) Variant", false)] // only in this area
-    [InlineData("Level_1_Area_2_Main", null, false)]
-    public void OnlyTheTutorialEnemyNextToTheGapDismissesTheTip(string scene, string name, bool dismisses)
+    [InlineData("isUseSkill", true)]
+    [InlineData("isUsePermission", false)] // the dialog stages share the check action
+    [InlineData(null, false)]
+    public void OnlyTheSkillFlagOfTheFarSideIsForced(string variable, bool forced)
     {
-        Assert.Equal(dismisses, LaserTutorialPatch.IsLaserEnemy(scene, name));
+        Assert.Equal(forced, LaserTutorial.IsSkillFlag(variable));
+    }
+
+    [Theory]
+    [InlineData("UtageSayDialog_Skill1", true)]
+    [InlineData("UtageSayDialog_Skill2", true)]
+    [InlineData("UtageSayDialog_Main", false)]
+    [InlineData(null, false)]
+    public void OnlyTheSkillSubtitlesAreRemoved(string dialog, bool removed)
+    {
+        Assert.Equal(removed, LaserTutorial.IsSkillDialog(dialog));
+    }
+
+    [Theory]
+    [InlineData("LeftSideTipPage - 技能教學L1A2", true)]
+    [InlineData("LeftSideTipPage - 彈刀", true)]
+    [InlineData("LeftSideTipPage - 畫符", false)]
+    [InlineData("LeftSideTipPage - 技能", false)]
+    [InlineData(null, false)]
+    public void OnlyTheSkillAndParryTipsAreRemoved(string tip, bool removed)
+    {
+        Assert.Equal(removed, LaserTutorial.IsTip(tip));
     }
 }
