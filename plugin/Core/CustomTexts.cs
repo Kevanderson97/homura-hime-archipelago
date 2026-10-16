@@ -47,6 +47,12 @@ internal static class CustomTexts
 
     private static bool _applied;
 
+    private static void Write(UnityEngine.Localization.Tables.StringTable table, string key, string value)
+    {
+        if (table.GetEntry(key) is { } entry) entry.Value = value;
+        else table.AddEntry(key, value);
+    }
+
     /// <summary>
     /// Writes the entries marked "override" into the game's string tables once the strings are loaded, so every place that shows
     /// the item (inventory, shop, pop-ups) uses the name. Called every frame until it has run.
@@ -63,8 +69,10 @@ internal static class CustomTexts
             foreach (var tableName in new[] { "HH_InventoryItemsCollection", "HH_Codex" })
             {
                 var table = UnityEngine.Localization.Settings.LocalizationSettings.StringDatabase.GetTableAsync(tableName).WaitForCompletion();
-                if (text.Name != null && table?.GetEntry(definition) is { } name) name.Value = text.Name;
-                if (text.Description != null && table?.GetEntry(definition + "_Description") is { } description) description.Value = text.Description;
+                if (table == null) continue;
+                // an entry the game's table lacks (the Transformation ability has no item text at all) is added
+                if (text.Name != null) Write(table, definition, text.Name);
+                if (text.Description != null) Write(table, definition + "_Description", text.Description);
             }
         }
     }

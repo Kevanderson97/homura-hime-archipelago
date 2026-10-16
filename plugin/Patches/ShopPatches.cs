@@ -35,12 +35,12 @@ internal static class ShopLocations
         return null;
     }
 
-    /// <summary>The location a shop entry would pay out if bought now, or null when it is vanilla or already collected.</summary>
-    internal static LocationRecord ForDisplay(string definitionName)
-    {
-        var location = ForPurchase(definitionName);
-        return location != null && !IsChecked(location) ? location : null;
-    }
+    /// <summary>
+    /// The location a shop entry shows: what it pays out if bought now, or what it paid out when it is sold out (the last stage
+    /// for shards), so a sold-out entry keeps the name of what it gave. Null when the entry is vanilla.
+    /// </summary>
+    internal static LocationRecord ForDisplay(string definitionName) =>
+        ForPurchase(definitionName) ?? Catalog.Location($"{Prefix}{definitionName}#{ShardStages}");
 
     internal static bool IsChecked(LocationRecord location) => ApClient.State.CheckedLocations.Contains(location.Id);
 }

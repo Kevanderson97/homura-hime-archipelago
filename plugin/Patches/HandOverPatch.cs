@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -35,7 +36,11 @@ internal static class HandOverPatch
         var loc = HarumiLocation(__0) ?? ByHandedOverItem(__0);
         if (loc == null) return;
 
-        if (BundleCategories.Contains(loc.Category)) RemoveAll(__0);
+        if (BundleCategories.Contains(loc.Category))
+        {
+            RemoveAll(__0);
+            if (RewardWaiters.NeedsRelease(__0.Purpose == ItemCollectionPurpose.Reward)) RewardWaiters.ReleaseNextFrame();
+        }
         LocationHooks.Report(loc);
     }
 

@@ -2,5 +2,6 @@
   "Gun_Board": { "name": "Ann's Board", "override": true },
   "Gun_Missile": { "name": "Fortunate Misfortune", "override": true },
   "Gun_Shotgun": { "name": "Ruptured Bones", "override": true },
-  "Skill_Double Charm": { "name": "Flame-Stoking Explosion Charm", "override": true }
+  "Skill_Double Charm": { "name": "Flame-Stoking Explosion Charm", "override": true },
+  "TransformationAbility": { "name": "Transform: Fireheart", "description": "Fill the transformation gauge in battle, then transform into Fireheart to greatly strengthen your abilities and attack power.", "override": true }
 }

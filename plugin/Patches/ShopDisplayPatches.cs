@@ -63,7 +63,8 @@ internal static class ShopDisplay
         var location = ShopLocations.ForDisplay(definition);
         if (location == null) return null;
 
-        HintSender.Seen(location); // a view only binds entries the shop lists, so this is exactly the visible ones
+        // a view only binds entries the shop lists, so this is exactly the visible ones; a sold-out entry has nothing to hint
+        if (!ShopLocations.IsChecked(location)) HintSender.Seen(location);
         return ScoutCache.Get(location.Id);
     }
 
