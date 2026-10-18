@@ -29,6 +29,9 @@ internal static class WorldProgress
         }
     }
 
+    /// <summary>How many worlds the seed has (the vanilla eight unless the order says otherwise).</summary>
+    internal static int WorldCount => Rules.WorldCount;
+
     internal static void Init()
     {
         SceneManager.sceneLoaded += (scene, _) =>

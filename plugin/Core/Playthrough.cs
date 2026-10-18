@@ -21,6 +21,9 @@ internal sealed class Playthrough
 
     /// <summary>Received items the game could not take (see ItemGranter); tried again after the next load.</summary>
     [JsonProperty] public List<UnresolvedItem> Unresolved = new();
+
+    /// <summary>True when every world and the Climax before the finale have been cleared, so the save can stand before the ending's choice.</summary>
+    internal bool ReachedFinale(int worldCount) => PreludeCleared && ClearedWorlds.Count >= worldCount;
 }
 
 /// <summary>A received item that could not be granted, and why.</summary>
