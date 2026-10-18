@@ -62,18 +62,23 @@ internal static class ShopBuyPatch
     /// </summary>
     internal static bool Taking;
 
+    /// <summary>The definition of the item the running purchase sells (only that item is kept out of the inventory).</summary>
+    internal static string Purchased;
+
     /// <summary>How many of the item the player owned before the purchase.</summary>
     private static void Prefix(ItemInfo __1, out int __state)
     {
         var definition = __1.Item.ItemDefinition.name;
         __state = PlayerApi.AmountOwned(definition);
         Taking = ShopLocations.ForPurchase(definition) != null;
+        Purchased = Taking ? definition : null;
     }
 
     /// <summary>Runs even when the purchase throws: the flag must not stay set and hide real pop-ups.</summary>
     private static Exception Finalizer(Exception __exception)
     {
         Taking = false;
+        Purchased = null;
         return __exception;
     }
 
@@ -85,6 +90,68 @@ internal static class ShopBuyPatch
 
         PlayerApi.Remove(definition, PlayerApi.AmountOwned(definition) - __state);
         LocationHooks.Report(location);
+        EnsureSoldOut(__1);
+    }
+
+    /// <summary>
+    /// A slot that left the store ends up in the merchant's sold-out collection, which is what the shop shows as "sold out".
+    /// The game does that itself while buying; this makes sure of it (and redraws the list) because the purchase no longer
+    /// gives the player the item (<see cref="ShopAddBlockPatch"/>).
+    /// </summary>
+    private static void EnsureSoldOut(ItemInfo info)
+    {
+        try
+        {
+            var store = info.ItemCollection;
+            var soldOut = store?.Inventory?.GetItemCollection("SoldOut");
+            if (store == null || soldOut == null || info.Item == null) return;
+
+            var inStore = store.GetItemAmount(info.Item);
+            var inSoldOut = soldOut.GetItemAmount(info.Item);
+            if (Plugin.CfgVerbose.Value)
+                Plugin.Log.LogInfo($"Shop purchase of {info.Item.ItemDefinition.name}: {inStore} in the store, {inSoldOut} sold out");
+            if (!NeedsSoldOutEntry(inStore, inSoldOut)) return;
+
+            soldOut.AddItem(info.Item);
+            AccessTools.Method(AccessTools.TypeByName("Opsive.Shared.Events.EventHandler"), "ExecuteEvent", new[] { typeof(object), typeof(string) })
+                ?.Invoke(null, new object[] { store.Inventory, "Inventory_OnUpdate" }); // the list redraws
+            Plugin.Log.LogInfo($"Shop: {info.Item.ItemDefinition.name} was missing from the sold-out list and has been added");
+        }
+        catch (Exception e)
+        {
+            Plugin.Log.LogWarning("Could not check the sold-out state of a purchase: " + e.Message);
+        }
+    }
+
+    /// <summary>An item that is no longer on sale and is not listed as sold out would just vanish from the shop.</summary>
+    internal static bool NeedsSoldOutEntry(int inStore, int inSoldOut) => inStore <= 0 && inSoldOut <= 0;
+}
+
+/// <summary>
+/// The item a shop slot sells never reaches the player's inventory when the slot is an Archipelago location. Adding it and
+/// taking it back is not enough: three shard fragments combine into a crystal at once (the health or spirit bar grows), and
+/// the fragments taken back afterwards leave the bar upgraded and the count at zero. Other items fire their own
+/// "obtained" effects the same way.
+/// </summary>
+[HarmonyPatch]
+internal static class ShopAddBlockPatch
+{
+    private static MethodBase TargetMethod() =>
+        AccessTools.Method(typeof(ItemCollection), "AddItem", new[] { typeof(ItemInfo), typeof(ItemStack) });
+
+    private static bool Prepare() => TargetMethod() != null;
+
+    /// <summary>The add is skipped only while a purchase of an Archipelago slot adds the item to the player's own inventory.</summary>
+    internal static bool Blocks(bool purchaseOfLocation, bool addsToPlayer) => purchaseOfLocation && addsToPlayer;
+
+    private static bool Prefix(ItemCollection __instance, ItemInfo __0, ref ItemInfo __result)
+    {
+        if (!ApClient.Active || !ShopBuyPatch.Taking) return true;
+        if (__0.Item?.ItemDefinition?.name != ShopBuyPatch.Purchased) return true; // anything else the purchase adds is left alone
+        if (!Blocks(true, __instance.Inventory is { } owner && ReferenceEquals(owner, PlayerApi.Inventory))) return true;
+
+        __result = default;
+        return false;
     }
 }
 

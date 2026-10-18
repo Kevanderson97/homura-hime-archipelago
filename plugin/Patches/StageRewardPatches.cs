@@ -42,7 +42,7 @@ internal static class StageRewardPatch
     {
         var loc = StageLocations.For(__args[2].ToString());
         if (loc == null) return true;
-        LocationHooks.Report(loc);
+        foreach (var part in Catalog.Bundle(loc)) LocationHooks.Report(part); // a board that pays several things
         (__args[0] as Action)?.Invoke();
         return false;
     }

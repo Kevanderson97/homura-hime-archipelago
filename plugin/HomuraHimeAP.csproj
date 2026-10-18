@@ -5,13 +5,15 @@
         <AssemblyName>HomuraHimeArchipelago</AssemblyName>
         <RootNamespace>HomuraHimeAP</RootNamespace>
         <Description>Archipelago randomizer plugin for Homura Hime</Description>
-        <Version>0.3.3</Version>
+        <Version>0.3.4</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>disable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <DebugType>portable</DebugType>
+        <!-- the DLL records where its symbols were built; keep the builder's folder (and user name) out of it -->
+        <PathMap>$(MSBuildProjectDirectory)=/_/plugin</PathMap>
         <!-- Override with: dotnet build -p:GameDir="D:\Games\Homura Hime" -->
         <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Homura Hime</GameDir>
         <ManagedDir>$(GameDir)\HomuraHime_Data\Managed</ManagedDir>

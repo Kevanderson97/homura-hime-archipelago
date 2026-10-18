@@ -24,9 +24,17 @@ internal static class SkillEquipPatch
     private static bool Prefix(object __instance)
     {
         if (!ApClient.Active) return true; // not playing a randomizer: vanilla behaviour
+        return !Report(__instance);
+    }
 
-        var definition = Traverse.Create(__instance).Field("skillDefinition").GetValue<UnityEngine.Object>();
-        if (definition == null || definition.name != BladeWarp) return true;
+    /// <summary>
+    /// Reports the location when the controller is the one that equips Phantom Blade; true when it was. Also used when the node
+    /// that holds the script is skipped as a tutorial (the check must not depend on the cutscene being played).
+    /// </summary>
+    internal static bool Report(object controller)
+    {
+        var definition = Traverse.Create(controller).Field("skillDefinition").GetValue<UnityEngine.Object>();
+        if (definition == null || !IsBladeWarp(definition.name)) return false;
 
         var location = Catalog.Location(LocationKey);
         if (location != null)
@@ -35,6 +43,8 @@ internal static class SkillEquipPatch
             Plugin.Log.LogInfo("Phantom Blade script -> location check " + LocationKey);
         }
 
-        return false;
+        return true;
     }
+
+    internal static bool IsBladeWarp(string definition) => definition == BladeWarp;
 }

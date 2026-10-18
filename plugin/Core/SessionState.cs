@@ -38,6 +38,9 @@ internal sealed class SessionState
     /// <summary>Ultimate Charge items received while neither ability was owned (applied when one arrives).</summary>
     [JsonProperty] public int BankedUltimateCharge;
 
+    /// <summary>The Climax prelude (the start of the Chapter 6 world) has been cleared; its hub gate then leads to the world itself.</summary>
+    [JsonProperty] public bool PreludeCleared;
+
     /// <summary>The Level 0 tutorial has been finished in the current playthrough (reset when Level 0 starts again).</summary>
     [JsonProperty] public bool TutorialDone;
 
@@ -119,6 +122,7 @@ internal sealed class SessionState
         UnlockedChapters = new HashSet<string>(UnlockedChapters),
         ClearedWorlds = new HashSet<string>(ClearedWorlds),
         TutorialDone = TutorialDone,
+        PreludeCleared = PreludeCleared,
         CompletedSubChapters = new HashSet<string>(CompletedSubChapters),
         Unresolved = Unresolved.ToList(),
     };
@@ -131,6 +135,7 @@ internal sealed class SessionState
         UnlockedChapters = new HashSet<string>(playthrough.UnlockedChapters);
         ClearedWorlds = new HashSet<string>(playthrough.ClearedWorlds);
         TutorialDone = playthrough.TutorialDone;
+        PreludeCleared = playthrough.PreludeCleared;
         CompletedSubChapters = new HashSet<string>(playthrough.CompletedSubChapters);
         Unresolved = playthrough.Unresolved.ToList();
         Save();

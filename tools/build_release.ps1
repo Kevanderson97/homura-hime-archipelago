@@ -35,7 +35,7 @@ $build = Join-Path $root "plugin\bin\Release"
 $pluginFolder = Join-Path $staging "BepInEx\plugins\HomuraHimeArchipelago"
 New-Item -ItemType Directory -Force $pluginFolder | Out-Null
 Copy-Item (Join-Path $build "HomuraHimeArchipelago.dll"), (Join-Path $build "Archipelago.MultiClient.Net.dll") $pluginFolder
-Copy-Item (Join-Path $root "LICENSE"), (Join-Path $root "THIRD-PARTY-NOTICES.md") $pluginFolder
+Copy-Item (Join-Path $root "LICENSE"), (Join-Path $root "THIRD-PARTY-NOTICES.md"), (Join-Path $root "AI-Disclosure.md") $pluginFolder
 # Zip with forward slashes in the entry names (Windows PowerShell's Compress-Archive writes backslashes, which some
 # unzip tools extract as odd file names).
 Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem

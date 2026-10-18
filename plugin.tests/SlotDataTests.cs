@@ -67,6 +67,7 @@ public class SlotDataTests
 
     [Theory]
     [InlineData("0.3.0", true)]
+    [InlineData("0.3.3", true)]
     [InlineData("0.3.7", true)]
     [InlineData("0.2.1", false)] // no Konpeito items in the pool yet
     [InlineData("0.1.0", false)]

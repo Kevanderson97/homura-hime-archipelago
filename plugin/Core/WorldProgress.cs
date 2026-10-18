@@ -38,7 +38,7 @@ internal static class WorldProgress
     }
 
     /// <summary>Where a hub board for <paramref name="chapter"/> should lead instead (see <see cref="WorldRules.RedirectBoard"/>), or null.</summary>
-    internal static string BoardTarget(Chapter chapter) => Rules.RedirectBoard(chapter, State.ClearedWorlds);
+    internal static string BoardTarget(Chapter chapter) => Rules.RedirectBoard(chapter, State.ClearedWorlds, State.PreludeCleared);
 
     internal static bool IsCleared(Chapter chapter) => State.ClearedWorlds.Contains(WorldRules.WorldOf(chapter));
 
@@ -49,7 +49,7 @@ internal static class WorldProgress
     internal static void HandleHubWrite(int value)
     {
         var rules = Rules;
-        var write = rules.Decide(value, State.ClearedWorlds);
+        var write = rules.Decide(value, State.ClearedWorlds, State.PreludeCleared);
 
         if (write.NewWorld != null)
         {
@@ -59,12 +59,25 @@ internal static class WorldProgress
             Plugin.Log.LogInfo($"World cleared: {write.Chapter.Name} ({State.ClearedWorlds.Count}/{rules.WorldCount})");
         }
 
+        if (write.PreludeCleared)
+        {
+            State.PreludeCleared = true;
+            State.Save();
+            Plugin.Log.LogInfo("The Climax prelude was cleared");
+        }
+
         if (write.HubValue.HasValue) WriteHub(write.HubValue.Value);
         if (write.Goal) ApClient.CompleteGoal();
     }
 
-    /// <summary>Makes the stored hub progress match the cleared worlds, e.g. after loading a save.</summary>
-    internal static void SyncHub() => WriteHub(State.ClearedWorlds.Count * 2);
+    /// <summary>Makes the stored hub progress match the cleared worlds (and the cleared climax prelude), e.g. after loading a save.</summary>
+    internal static void SyncHub()
+    {
+        var current = GameApi.HubProgress;
+        if (WorldRules.HubCorrection(current, State.ClearedWorlds, State.PreludeCleared) is not { } target) return;
+        Plugin.Log.LogInfo($"Hub progress {current} -> {target} (cleared worlds: {State.ClearedWorlds.Count}, climax prelude: {State.PreludeCleared})");
+        GameApi.SetHubProgressUnchecked(target);
+    }
 
     private static void WriteHub(int target)
     {

@@ -1,5 +1,7 @@
-using System;
+﻿using System;
+using System.Reflection;
 using HarmonyLib;
+using UnityEngine;
 
 namespace HomuraHimeAP.Core;
 
@@ -15,6 +17,12 @@ internal static class PostGameHub
 
     /// <summary>The hub progress from which the game itself treats the post-game as open (the Char Travel threshold).</summary>
     internal const int PostGameProgress = 20;
+
+    /// <summary>
+    /// The player arrives in the story hub at the spot the post-game hub uses, which is inside the floor there (the main plane
+    /// of the hub reaches 2.1 above the spot): the player stands below the plane until jumping. Measured at 2.1.
+    /// </summary>
+    internal const float ArrivalLift = 2.2f;
 
     /// <summary>True when a teleport to this portal is to the post-game hub before the post-game has been reached.</summary>
     internal static bool IsTooEarly(string key, int hubProgress) =>
@@ -35,6 +43,28 @@ internal static class PostGameHub
 
         Plugin.Log.LogInfo("The post-game Mihare Shrine is not open yet; going to the Mihare Shrine of the story");
         teleport.Invoke(manager, new[] { portal, onLoad });
+        LiftOnArrival();
         return true;
+    }
+
+    /// <summary>Lifts the player by <see cref="ArrivalLift"/> once the hub being loaded has placed the player and started.</summary>
+    private static void LiftOnArrival()
+    {
+        _started = AccessTools.TypeByName("MainPipelineManager")?.GetEvent("OnMainPipelienStartGameplay");
+        if (_started == null) return;
+
+        // the game's event has a delegate type of its own (no arguments)
+        _lift = Delegate.CreateDelegate(_started.EventHandlerType, typeof(PostGameHub).GetMethod(nameof(Lift), BindingFlags.Static | BindingFlags.NonPublic));
+        _started.AddEventHandler(null, _lift);
+    }
+
+    private static EventInfo _started;
+    private static Delegate _lift;
+
+    private static void Lift()
+    {
+        _started.RemoveEventHandler(null, _lift);
+        if (Items.PlayerApi.Position is { } at && Items.PlayerApi.MoveTo(at + Vector3.up * ArrivalLift))
+            Plugin.Log.LogInfo($"Arrived in the hub below its floor; moved up to {at.y + ArrivalLift:0.00}");
     }
 }

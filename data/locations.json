@@ -2552,7 +2552,7 @@
   "key": "stage/Level1",
   "category": "stage_clear",
   "region": "Hub",
-  "vanilla": "Senbei x1; Omamori_Jinguu",
+  "vanilla": "Senbei x1",
   "chapter": "Level1",
   "name": "Level 1 Clear Reward",
   "konpeito": 6000
@@ -2698,7 +2698,7 @@
   "key": "tournament/reward",
   "category": "tournament",
   "region": "Level4_Area_4_Entrance",
-  "vanilla": "Codex_Important_Level4_ProofOfTheLnugami; Senbei x3; HP Crystal",
+  "vanilla": "Codex_Important_Level4_ProofOfTheLnugami",
   "scene": "Level_4_Area_Arena_Main",
   "name": "Tournament Reward"
  },
@@ -2716,7 +2716,7 @@
   "key": "trial/FC01",
   "category": "trial",
   "region": "Level3_Area_5_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_ExorcismArts",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_3_Area_7_Main",
   "name": "Level 3 Area 7: Glitched Spirit Trial 01",
   "konpeito": 5000
@@ -2726,7 +2726,7 @@
   "key": "trial/FC02",
   "category": "trial",
   "region": "Level4_Area_3_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Negai",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_4_Area_3_Main",
   "name": "Level 4 Area 3: Glitched Spirit Trial 02",
   "konpeito": 5000
@@ -2736,7 +2736,7 @@
   "key": "trial/FC03",
   "category": "trial",
   "region": "Level5_Area_4_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Demon",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_5_Area_4_Main",
   "name": "Level 5 Area 4: Glitched Spirit Trial 03",
   "konpeito": 5000
@@ -2746,7 +2746,7 @@
   "key": "trial/FC04",
   "category": "trial",
   "region": "LevelFinalP1_L1_Ikai_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Jinguu",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_FinalP1_L1_A3_Main",
   "name": "Chapter 6 (Level 1) Area 3: Glitched Spirit Trial 04",
   "konpeito": 5000
@@ -2756,7 +2756,7 @@
   "key": "trial/FC05",
   "category": "trial",
   "region": "LevelFinalP2_L3_A5_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_SomeoneNotes",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_FinalP2_L3_A5_Main",
   "name": "Chapter 7 (Level 3) Area 5: Glitched Spirit Trial 05",
   "konpeito": 5000
@@ -2766,7 +2766,7 @@
   "key": "trial/FC06",
   "category": "trial",
   "region": "LevelFinalP2_L3_A5_Entrance",
-  "vanilla": "Senbei x3; Codex_Note_FinalLevel_Soul",
+  "vanilla": "Senbei x3",
   "scene": "Level_FinalP2_L3_A5_Main",
   "name": "Chapter 7 (Level 3) Area 5: Glitched Spirit Trial 06"
  },
@@ -2775,7 +2775,7 @@
   "key": "trial/FC07",
   "category": "trial",
   "region": "LevelFinalP2_L4_A2_Entrance",
-  "vanilla": "Senbei x3; Codex_Note_FinalLevel_ObservationRecords2",
+  "vanilla": "Senbei x3",
   "scene": "Level_FinalP2_L4_A2_Main",
   "name": "Chapter 7 (Level 4) Area 2: Glitched Spirit Trial 07"
  },
@@ -2784,7 +2784,7 @@
   "key": "trial/FC08",
   "category": "trial",
   "region": "LevelFinalP3_L5_Ikai_Entrance",
-  "vanilla": "Senbei x3; Codex_Note_FinalLevel_HighPriestess",
+  "vanilla": "Senbei x3",
   "scene": "Level_FinalP3_L5_Ikai_Main",
   "name": "Chapter 8 (Level 5) Demonic Realm: Glitched Spirit Trial 08"
  },
@@ -2793,7 +2793,7 @@
   "key": "trial/FC09",
   "category": "trial",
   "region": "LevelFinalP3_L5_A5_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_TatteredMissionLogs",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_FinalP3_L5_A5_Main",
   "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 09",
   "konpeito": 5000
@@ -2803,7 +2803,7 @@
   "key": "trial/FC10",
   "category": "trial",
   "region": "LevelFinalP3_L5_A5_Entrance",
-  "vanilla": "Konpeitou x5000; Codex_Note_FinalLevel_Ikai",
+  "vanilla": "Konpeitou x5000",
   "scene": "Level_FinalP3_L5_A5_Main",
   "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 10",
   "konpeito": 5000
@@ -4183,5 +4183,122 @@
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 9 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room9"
+ },
+ {
+  "id": 7300345,
+  "key": "stage/Level1#2",
+  "category": "stage_clear",
+  "region": "Hub",
+  "vanilla": "Omamori_Jinguu",
+  "chapter": "Level1",
+  "name": "Level 1 Clear Reward (Part 2)"
+ },
+ {
+  "id": 7300346,
+  "key": "tournament/reward#2",
+  "category": "tournament",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "Senbei x3",
+  "scene": "Level_4_Area_Arena_Main",
+  "name": "Tournament Reward (Part 2)"
+ },
+ {
+  "id": 7300347,
+  "key": "tournament/reward#3",
+  "category": "tournament",
+  "region": "Level4_Area_4_Entrance",
+  "vanilla": "HP Crystal",
+  "scene": "Level_4_Area_Arena_Main",
+  "name": "Tournament Reward (Part 3)"
+ },
+ {
+  "id": 7300348,
+  "key": "trial/FC01#2",
+  "category": "trial",
+  "region": "Level3_Area_5_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_ExorcismArts",
+  "scene": "Level_3_Area_7_Main",
+  "name": "Level 3 Area 7: Glitched Spirit Trial 01 (Part 2)"
+ },
+ {
+  "id": 7300349,
+  "key": "trial/FC02#2",
+  "category": "trial",
+  "region": "Level4_Area_3_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Negai",
+  "scene": "Level_4_Area_3_Main",
+  "name": "Level 4 Area 3: Glitched Spirit Trial 02 (Part 2)"
+ },
+ {
+  "id": 7300350,
+  "key": "trial/FC03#2",
+  "category": "trial",
+  "region": "Level5_Area_4_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Demon",
+  "scene": "Level_5_Area_4_Main",
+  "name": "Level 5 Area 4: Glitched Spirit Trial 03 (Part 2)"
+ },
+ {
+  "id": 7300351,
+  "key": "trial/FC04#2",
+  "category": "trial",
+  "region": "LevelFinalP1_L1_Ikai_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Jinguu",
+  "scene": "Level_FinalP1_L1_A3_Main",
+  "name": "Chapter 6 (Level 1) Area 3: Glitched Spirit Trial 04 (Part 2)"
+ },
+ {
+  "id": 7300352,
+  "key": "trial/FC05#2",
+  "category": "trial",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_SomeoneNotes",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "name": "Chapter 7 (Level 3) Area 5: Glitched Spirit Trial 05 (Part 2)"
+ },
+ {
+  "id": 7300353,
+  "key": "trial/FC06#2",
+  "category": "trial",
+  "region": "LevelFinalP2_L3_A5_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Soul",
+  "scene": "Level_FinalP2_L3_A5_Main",
+  "name": "Chapter 7 (Level 3) Area 5: Glitched Spirit Trial 06 (Part 2)"
+ },
+ {
+  "id": 7300354,
+  "key": "trial/FC07#2",
+  "category": "trial",
+  "region": "LevelFinalP2_L4_A2_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_ObservationRecords2",
+  "scene": "Level_FinalP2_L4_A2_Main",
+  "name": "Chapter 7 (Level 4) Area 2: Glitched Spirit Trial 07 (Part 2)"
+ },
+ {
+  "id": 7300355,
+  "key": "trial/FC08#2",
+  "category": "trial",
+  "region": "LevelFinalP3_L5_Ikai_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_HighPriestess",
+  "scene": "Level_FinalP3_L5_Ikai_Main",
+  "name": "Chapter 8 (Level 5) Demonic Realm: Glitched Spirit Trial 08 (Part 2)"
+ },
+ {
+  "id": 7300356,
+  "key": "trial/FC09#2",
+  "category": "trial",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_TatteredMissionLogs",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 09 (Part 2)"
+ },
+ {
+  "id": 7300357,
+  "key": "trial/FC10#2",
+  "category": "trial",
+  "region": "LevelFinalP3_L5_A5_Entrance",
+  "vanilla": "Codex_Note_FinalLevel_Ikai",
+  "scene": "Level_FinalP3_L5_A5_Main",
+  "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 10 (Part 2)"
  }
 ]

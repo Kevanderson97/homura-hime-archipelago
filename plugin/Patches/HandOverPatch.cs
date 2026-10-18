@@ -40,7 +40,11 @@ internal static class HandOverPatch
         {
             RemoveAll(__0);
             if (RewardWaiters.NeedsRelease(__0.Purpose == ItemCollectionPurpose.Reward)) RewardWaiters.ReleaseNextFrame();
+            // every thing the screen hands out is a location of its own (a trial pays Konpeito and a note)
+            foreach (var part in Catalog.Bundle(loc)) LocationHooks.Report(part);
+            return;
         }
+
         LocationHooks.Report(loc);
     }
 

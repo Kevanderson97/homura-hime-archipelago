@@ -162,4 +162,18 @@ public class CatalogTests : IClassFixture<CatalogTests.Fixture>
     private static System.Collections.Generic.IEnumerable<ItemRecord> AllItems() => Catalog.AllItems;
 
     private static System.Collections.Generic.IEnumerable<LocationRecord> AllLocations() => Catalog.AllLocations;
+
+    [Theory]
+    [InlineData("trial/FC01", 2)]            // the currency and the note
+    [InlineData("trial/FC01#2", 2)]          // asked for by the other part
+    [InlineData("tournament/reward#3", 3)]
+    [InlineData("stage/Level1", 2)]
+    [InlineData("stage/Level2", 1)]          // a board that pays one thing is alone
+    public void TheLocationsOfOneRewardScreenAreFoundTogether(string key, int parts)
+    {
+        var loc = Catalog.Location(key);
+        Assert.NotNull(loc);
+        Assert.Equal(parts, Catalog.Bundle(loc).Count());
+        Assert.All(Catalog.Bundle(loc), part => Assert.Equal(Catalog.BundleKey(key), Catalog.BundleKey(part.Key)));
+    }
 }

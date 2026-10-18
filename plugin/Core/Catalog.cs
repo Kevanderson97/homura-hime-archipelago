@@ -141,6 +141,19 @@ internal static class Catalog
         return inScene ?? (matches == 1 ? only : null);
     }
 
+    /// <summary>
+    /// The locations of one reward screen: a screen that hands out several things has one location per thing (keys "trial/FC01",
+    /// "trial/FC01#2", ...). A location that is alone returns just itself. Only locations of this slot are listed.
+    /// </summary>
+    internal static IEnumerable<LocationRecord> Bundle(LocationRecord loc)
+    {
+        var baseKey = BundleKey(loc.Key);
+        return Active().Where(other => other.Category == loc.Category && BundleKey(other.Key) == baseKey).ToList();
+    }
+
+    /// <summary>The key without the part number: "trial/FC01#2" -> "trial/FC01".</summary>
+    internal static string BundleKey(string key) => key.Split(new[] { (char)35 }, 2)[0];
+
     private static bool VanillaContains(LocationRecord loc, string definition) =>
         loc.Vanilla != null && loc.Vanilla.Split(';').Select(part => part.Trim()).Contains(definition);
 

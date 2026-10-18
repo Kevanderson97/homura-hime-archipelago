@@ -42,7 +42,7 @@ sample was not regenerated. Copy it into `Players/` and edit the values to gener
 
 ## Content
 
-- 332 locations: chests, Senbei, journals, 42 shop slots, stage clears, Harumi, hand-overs, trials, the tutorial reward,
+- 345 locations: chests, Senbei, journals, 42 shop slots, stage clears, Harumi, hand-overs, trials, the tutorial reward,
   110 encounter clears (`encounter_clears`, default on) and 4 ambush rewards (`encounter_rewards`).
 - 97 item definitions. Pool: the fixed progression/useful items, Special Hanami Dango, Senbei (single and "2 Senbei"),
   one Konpeito item per vanilla Konpeito payout, Full Heal / Ultimate Charge and the currency filler (Konpeito and Sakura).

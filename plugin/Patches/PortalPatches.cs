@@ -18,6 +18,9 @@ internal static class TeleportPatch
 
     private static bool Prepare() => GameApi.PortalDataType != null && TargetMethod() != null;
 
+    /// <summary>True for a teleport made from the title screen: that is a save being continued.</summary>
+    internal static bool LoadsASave(string scene) => scene == "StartScreen";
+
     private static bool Prefix(object __0, Action __1)
     {
         var key = GameApi.PortalKey(__0);
@@ -30,7 +33,8 @@ internal static class TeleportPatch
         if (HubBoards.Redirect(key, __1)) return false;
 
         // hub mission boards and story triggers start the level the story expects, which may not be unlocked yet
-        if (ChapterAccess.IsLockedDestination(key))
+        // (continuing a save from the title screen goes where the save was made, whatever the progress says)
+        if (!LoadsASave(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name) && ChapterAccess.IsLockedDestination(key))
         {
             Plugin.Log.LogInfo("Blocked teleport to locked chapter: " + key);
             UI.Toasts.Show("This chapter is not unlocked yet", UI.Toasts.Error);

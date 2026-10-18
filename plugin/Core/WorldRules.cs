@@ -9,6 +9,9 @@ internal readonly struct HubWrite
 {
     internal static readonly HubWrite None = new(null, null, false, null);
 
+    /// <summary>The climax prelude (played as the start of Chapter 6) was cleared by this write.</summary>
+    internal readonly bool PreludeCleared;
+
     /// <summary>The chapter the game thinks was entered or cleared.</summary>
     internal readonly Chapter Chapter;
 
@@ -21,8 +24,9 @@ internal readonly struct HubWrite
     /// <summary>The hub progress that should be stored instead, or null when the write is to be ignored.</summary>
     internal readonly int? HubValue;
 
-    internal HubWrite(Chapter chapter, string newWorld, bool goal, int? hubValue)
+    internal HubWrite(Chapter chapter, string newWorld, bool goal, int? hubValue, bool preludeCleared = false)
     {
+        PreludeCleared = preludeCleared;
         Chapter = chapter;
         NewWorld = newWorld;
         Goal = goal;
@@ -61,6 +65,29 @@ internal sealed class WorldRules
 
     internal int WorldCount => _order.Count;
 
+    /// <summary>
+    /// The climax prelude is one more step of the games hub progress than the eight worlds: after it, every value is two higher than
+    /// the number of cleared worlds alone would give (Chapter 6 cleared is 14 in the story, Chapter 7 16, Chapter 8 18). It counts as
+    /// cleared when the flag says so or when its world is cleared (saves from before the flag).
+    /// </summary>
+    private static int PreludeOffset(ICollection<string> cleared, bool preludeCleared) =>
+        preludeCleared || cleared.Contains(PreludeOwner) ? 2 : 0;
+
+    /// <summary>The hub progress that stands for the cleared worlds (2 each) and the cleared prelude.</summary>
+    internal static int HubValueFor(ICollection<string> cleared, bool preludeCleared) =>
+        2 * cleared.Count + PreludeOffset(cleared, preludeCleared);
+
+    /// <summary>
+    /// What the stored hub progress should be changed to when the hub loads, or null to leave it. The value that stands for the
+    /// cleared worlds is right, and so is the one above it: the midway stage of the world being played (the game writes it at the
+    /// middle of a chapter, e.g. after Reunion: Nozomi, and the hub shows it when the player comes back).
+    /// </summary>
+    internal static int? HubCorrection(int current, ICollection<string> cleared, bool preludeCleared)
+    {
+        var target = HubValueFor(cleared, preludeCleared);
+        return current == target || current == target + 1 ? null : target;
+    }
+
     /// <summary>The climax prelude is played as part of Chapter 6, it is not a world of its own.</summary>
     internal static string WorldOf(Chapter chapter) => chapter.Id == Prelude ? PreludeOwner : chapter.Id;
 
@@ -70,12 +97,13 @@ internal sealed class WorldRules
     /// the next world) to enter instead, or null when the board is right (or the game is over). The climax world starts with
     /// its prelude.
     /// </summary>
-    internal string RedirectBoard(Chapter boardChapter, ICollection<string> cleared)
+    internal string RedirectBoard(Chapter boardChapter, ICollection<string> cleared, bool preludeCleared = false)
     {
         if (boardChapter == null || boardChapter.Id == Finale || cleared.Count >= _order.Count) return null;
         var next = _order[cleared.Count];
         if (WorldOf(boardChapter) == next) return null;
-        return next == PreludeOwner ? Prelude : next;
+        // the prelude is the start of its world; once it is cleared the board leads on to the world proper
+        return next == PreludeOwner && !preludeCleared ? Prelude : next;
     }
 
     /// <summary>Whether a chapter of the Chapter Select may be listed.</summary>
@@ -97,21 +125,28 @@ internal sealed class WorldRules
     /// <summary>
     /// The game writes its hub progress as a story value (odd = a chapter entered, even = a chapter cleared). In a
     /// randomizer game the value stored counts cleared worlds instead: 2 per world, plus 1 while inside an unfinished
-    /// one; replays change nothing, the climax prelude counts as part of Chapter 6, clearing the finale ends the game.
+    /// one; replays change nothing, the climax prelude counts as part of Chapter 6, clearing the finale moves the hub to the finished game (the goal itself is the Kill ending).
     /// </summary>
-    internal HubWrite Decide(int value, ICollection<string> cleared)
+    internal HubWrite Decide(int value, ICollection<string> cleared, bool preludeCleared = false)
     {
+        var offset = PreludeOffset(cleared, preludeCleared);
         var clears = value % 2 == 0;
         var chapter = ChapterData.All.FirstOrDefault(c => clears ? c.ClearedProgress == value : c.RequiredProgress + 1 == value);
         if (chapter == null) return HubWrite.None;
 
         var world = WorldOf(chapter);
         if (!clears)
-            return cleared.Contains(world) ? HubWrite.None : new HubWrite(chapter, null, false, 2 * cleared.Count + 1);
+            return cleared.Contains(world) ? HubWrite.None : new HubWrite(chapter, null, false, 2 * cleared.Count + offset + 1);
 
-        if (chapter.Id == Prelude) return HubWrite.None;
-        if (chapter.Id == Finale) return new HubWrite(chapter, null, true, ChapterData.GameCompleteProgress);
+        // the prelude is no world of its own, but the hub changes at its end (Ann speaks of what happened, the gate leads on):
+        // the hub shows the state of the world after it, which is what clearing the world will write anyway
+        if (chapter.Id == Prelude)
+            return cleared.Contains(PreludeOwner) ? HubWrite.None : new HubWrite(chapter, null, false, 2 * cleared.Count + 2, preludeCleared: true);
+        // clearing the finale ends the story for the hub, but the goal is not reported here: only the Kill ending completes it
+        // (see KillEndingPatch), the game also gets here when Ann is spared
+        if (chapter.Id == Finale) return new HubWrite(chapter, null, false, ChapterData.GameCompleteProgress);
         if (cleared.Contains(world)) return HubWrite.None;
-        return new HubWrite(chapter, world, false, 2 * (cleared.Count + 1));
+        // clearing the world of the prelude counts the prelude too, whether or not its clear was seen
+        return new HubWrite(chapter, world, false, 2 * (cleared.Count + 1) + (world == PreludeOwner ? 2 : offset));
     }
 }

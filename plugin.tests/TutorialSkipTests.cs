@@ -37,4 +37,13 @@ public class TutorialSkipTests
     {
         Assert.Equal(content, TutorialSkip.IsContentAction(action));
     }
+
+    [Theory]
+    [InlineData("Skill_Blade Warp", true)]       // Phantom Blade: a location of the randomizer
+    [InlineData("Skill_Blaze Rush", false)]
+    [InlineData(null, false)]
+    public void OnlyPhantomBladeIsTheLocationOfTheSkillScript(string definition, bool location)
+    {
+        Assert.Equal(location, HomuraHimeAP.Patches.SkillEquipPatch.IsBladeWarp(definition));
+    }
 }

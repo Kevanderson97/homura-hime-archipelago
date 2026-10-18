@@ -150,7 +150,7 @@ class TestGeneratedShops(unittest.TestCase):
             original(a, b)
 
         with mock.patch.object(shop_budget, "swap", counting):
-            for seed in (21, 23):
+            for seed in (2, 7):
                 self.assert_affordable(generate(seed, {}, 2))
         self.assertGreater(swaps, 0, "nothing needed repairing, the test shows nothing (pick other seeds)")
 
@@ -187,7 +187,7 @@ class TestShortcutsMatchFullReplays(unittest.TestCase):
         self.assertGreater(compared, 10)
 
     def test_a_resumed_playthrough_matches_a_new_one(self):
-        multiworld = generate(21, {}, 2, check=False)  # needs a repair (see test_the_fill_repairs_...)
+        multiworld = generate(2, {}, 2, check=False)  # needs a repair (see test_the_fill_repairs_...)
         run = shop_budget.Playthrough(multiworld, homura_hime_worlds(multiworld))
         violation = shop_budget.check(run)
         self.assertIsNotNone(violation)

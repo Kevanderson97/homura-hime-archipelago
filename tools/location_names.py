@@ -99,8 +99,18 @@ def note_name(definition, localized):
 
 def location_name(rec, localized):
     """The readable name of one location record (see data/locations.json)."""
+    name = base_location_name(rec, localized)
+    part = rec["key"].partition("#")[2]
+    if part and rec["category"] in ("stage_clear", "tournament", "trial"):
+        return f"{name} (Part {part})"  # the later parts of a reward screen that hands out several things
+    return name
+
+
+def base_location_name(rec, localized):
     key, category = rec["key"], rec["category"]
     tail = key.split("/", 1)[1]  # the key without its category prefix: "chest/<scene>/2" -> "<scene>/2"
+    if category in ("stage_clear", "tournament", "trial"):
+        tail = tail.partition("#")[0]  # the parts of one reward screen are named alike (assign_names numbers them)
     scene = rec.get("scene")
     place = scene_label(scene) if scene else None
 

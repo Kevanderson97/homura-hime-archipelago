@@ -16,6 +16,7 @@ internal sealed class Playthrough
     [JsonProperty] public HashSet<string> UnlockedChapters = new();
     [JsonProperty] public HashSet<string> ClearedWorlds = new();
     [JsonProperty] public bool TutorialDone;
+    [JsonProperty] public bool PreludeCleared;
     [JsonProperty] public HashSet<string> CompletedSubChapters = new();
 
     /// <summary>Received items the game could not take (see ItemGranter); tried again after the next load.</summary>

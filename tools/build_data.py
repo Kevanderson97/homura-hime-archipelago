@@ -145,6 +145,15 @@ def item_id(name):
 locations = []
 
 
+def add_rewards(key, category, region, vanilla, scene=None, **extra):
+    """
+    A reward screen that hands out several things ("a; b; c") is one location per thing: the first keeps the key, the others get
+    "#2", "#3"... The hooks report all of them when the screen is paid (see Catalog.Bundle in the plugin).
+    """
+    for n, part in enumerate(p.strip() for p in vanilla.split(";")):
+        add(key if n == 0 else f"{key}#{n + 1}", category, region, part, scene, **extra)
+
+
 def add(key, category, region, vanilla, scene=None, pos=None, **extra):
     """Appends a location. `vanilla` is what the unmodified game gives there; `extra` are category specific fields."""
     if region is None:
@@ -268,7 +277,7 @@ for d, t, item_type in SHOP:
 STAGE = [("Level1", "Senbei x1; Omamori_Jinguu"), ("Level2", "Gun_Funnel"), ("Level3", "Kushinada_Dango"), ("Level4", "Skill_Chain Lightning"),
          ("Level5", "Skill_Quaking Strike"), ("LevelFinalP1", "Kushinada_Dango"), ("LevelFinalP2", "Kushinada_Dango"), ("LevelFinalP3", "Kushinada_Dango")]
 for cid, vanilla in STAGE:
-    add("stage/" + cid, "stage_clear", "Hub", vanilla, chapter=cid)
+    add_rewards("stage/" + cid, "stage_clear", "Hub", vanilla, chapter=cid)
 # the Level 0 tutorial reward board (a location only when the tutorial is played)
 add("tutorial/clear", "tutorial_clear", "Hub", "Konpeitou x8000")
 # Harumi (the hub's flower girl) rewards, in order, and the Sakura Petals needed for each of them.
@@ -276,7 +285,7 @@ HARUMI = ["Kushinada_Dango", "Omamori_HP_Big", "Konpeitou x5000", "Kushinada_Dan
 HARUMI_NEED = [100, 300, 600, 1000, 1400, 1800, 2300]
 for i, (v, need) in enumerate(zip(HARUMI, HARUMI_NEED), 1):
     add("harumi/%d" % i, "harumi", "Hub", v, petals=need)
-add("tournament/reward", "tournament", region_of("Level_4_Area_Arena_Main"), "Codex_Important_Level4_ProofOfTheLnugami; Senbei x3; HP Crystal", "Level_4_Area_Arena_Main")
+add_rewards("tournament/reward", "tournament", region_of("Level_4_Area_Arena_Main"), "Codex_Important_Level4_ProofOfTheLnugami; Senbei x3; HP Crystal", "Level_4_Area_Arena_Main")
 add("stall/festival", "stall", region_of("Level_4_Area_4_Main"),
     "; ".join("Codex_Important_Level4_" + n for n in ("AppleCandy", "ChocolBanana", "Takoyaki", "WaterBall")), "Level_4_Area_4_Main")
 
@@ -288,7 +297,7 @@ FC = [("FC01", "Level_3_Area_7_Main", "Konpeitou x5000; Codex_Note_FinalLevel_Ex
       ("FC07", "Level_FinalP2_L4_A2_Main", "Senbei x3; Codex_Note_FinalLevel_ObservationRecords2"), ("FC08", "Level_FinalP3_L5_Ikai_Main", "Senbei x3; Codex_Note_FinalLevel_HighPriestess"),
       ("FC09", "Level_FinalP3_L5_A5_Main", "Konpeitou x5000; Codex_Note_FinalLevel_TatteredMissionLogs"), ("FC10", "Level_FinalP3_L5_A5_Main", "Konpeitou x5000; Codex_Note_FinalLevel_Ikai")]
 for name, scene, vanilla in FC:
-    add("trial/" + name, "trial", region_of(scene), vanilla, scene)
+    add_rewards("trial/" + name, "trial", region_of(scene), vanilla, scene)
 # extra Senbei from the 5 settlement pickups are already in the Senbei section
 
 # ---------------------------------------------------------------- encounter clears (option encounter_clears)
@@ -359,7 +368,7 @@ STAGE_BOARD_MEDIAN = {"Level1": 6000, "Level2": 6000, "Level3": 6000, "Level4": 
                       "LevelFinalP1": 10000, "LevelFinalP2": 14000, "LevelFinalP3": 14000}
 for l in locations:
     amount = sum(int(m.group(1)) for m in re.finditer(r"Konpeitou x(\d+)", l["vanilla"] or ""))
-    if l["category"] == "stage_clear":
+    if l["category"] == "stage_clear" and "#" not in l["key"]:  # the board pays with the first part of the reward
         amount += STAGE_BOARD_MEDIAN[l["chapter"]]
     if amount:
         l["konpeito"] = amount

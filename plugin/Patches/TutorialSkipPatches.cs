@@ -34,6 +34,7 @@ internal static class TutorialNodePatch
             var node = Traverse.Create(__instance);
             node.Field("OnUseEvent").GetValue<UnityEvent>()?.Invoke();
             node.Method("StartGameplay").GetValue();
+            ReportEquippedSkills(__instance);
             node.Method("Finish").GetValue();
             Plugin.Log.LogInfo($"Tutorial skipped: {__instance.name}");
             return false;
@@ -43,6 +44,17 @@ internal static class TutorialNodePatch
             Plugin.Log.LogWarning($"Could not skip the tutorial {__instance.name}: {e.Message}");
             return true;
         }
+    }
+
+    /// <summary>
+    /// The skill tutorial of Level 1 Area 2 also holds the script that hands out Phantom Blade, which is a location in a randomizer
+    /// game: skipping the node must not lose it.
+    /// </summary>
+    private static void ReportEquippedSkills(MonoBehaviour node)
+    {
+        var controllerType = AccessTools.TypeByName("EquipSkillController");
+        if (controllerType == null) return;
+        foreach (var controller in node.GetComponentsInChildren(controllerType, true)) SkillEquipPatch.Report(controller);
     }
 
     private static bool IsTutorialNode(MonoBehaviour node)

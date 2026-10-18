@@ -344,7 +344,20 @@
   "encounter/Level_3_Ikai_Part2_Main/Room6": 7300341,
   "encounter/Level_3_Ikai_Part2_Main/Room7": 7300342,
   "encounter/Level_3_Ikai_Part2_Main/Room8": 7300343,
-  "encounter/Level_3_Ikai_Part2_Main/Room9": 7300344
+  "encounter/Level_3_Ikai_Part2_Main/Room9": 7300344,
+  "stage/Level1#2": 7300345,
+  "tournament/reward#2": 7300346,
+  "tournament/reward#3": 7300347,
+  "trial/FC01#2": 7300348,
+  "trial/FC02#2": 7300349,
+  "trial/FC03#2": 7300350,
+  "trial/FC04#2": 7300351,
+  "trial/FC05#2": 7300352,
+  "trial/FC06#2": 7300353,
+  "trial/FC07#2": 7300354,
+  "trial/FC08#2": 7300355,
+  "trial/FC09#2": 7300356,
+  "trial/FC10#2": 7300357
  },
  "items": {
   "Nurikabe's Hat": 7200003,

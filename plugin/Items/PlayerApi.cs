@@ -111,6 +111,19 @@ internal static class PlayerApi
         return true;
     }
 
+    /// <summary>Where the player stands, or null while there is no character.</summary>
+    internal static Vector3? Position => PlayerMotor == null ? null : PlayerMotor.transform.position;
+
+    /// <summary>Moves the player the way the game's own spawn points do. False when there is no character.</summary>
+    internal static bool MoveTo(Vector3 position)
+    {
+        var motor = PlayerMotor;
+        var move = motor == null ? null : AccessTools.Method(motor.GetType(), "SetPosition", new[] { typeof(Vector3) });
+        if (move == null) return false;
+        move.Invoke(motor, new object[] { position });
+        return true;
+    }
+
     /// <summary>Kills the player at once (DeathLink). False when there is no character to kill.</summary>
     internal static bool Kill()
     {
@@ -128,9 +141,11 @@ internal static class PlayerApi
         var motor = PlayerMotor;
         if (motor == null) return true; // nothing to heal (hub without a character); don't stall the queue
         if (!IsPlayerAlive()) return false;
-        var reset = AccessTools.Method(motor.GetType(), "ResetHP");
-        if (reset == null) return false;
-        reset.Invoke(motor, null);
+        // RecoveryAllHp heals through the status like any healing does (the heal event and the health-changed notification the
+        // health bar and the low-health effects listen to); ResetHP only writes the number, which leaves the bar as it was.
+        var heal = AccessTools.Method(motor.GetType(), "RecoveryAllHp") ?? AccessTools.Method(motor.GetType(), "ResetHP");
+        if (heal == null) return false;
+        heal.Invoke(motor, null);
         return true;
     }
 
@@ -152,9 +167,29 @@ internal static class PlayerApi
     {
         var system = TransformationSystem;
         if (system == null) return false;
+
+        // The game refuses charge while a transformation lasts (the meter is then the transformation's own health). The
+        // item refills that meter instead and gives the ultimate move of the transformation back.
+        if (AccessTools.Method(system.GetType(), "IsTransformation")?.Invoke(null, null) is true) return RefillTransformation(system);
+
         var add = AccessTools.Method(system.GetType(), "AddChargeValue", new[] { typeof(float) });
         if (add == null) return false;
         add.Invoke(system, new object[] { 100f });
+        return true;
+    }
+
+    /// <summary>Fills the running transformation and lets the ultimate move be used once more.</summary>
+    private static bool RefillTransformation(object system)
+    {
+        var type = system.GetType();
+        var full = AccessTools.Field(type, "chargeValue");
+        var current = AccessTools.Field(type, "curChargeValue");
+        var moves = AccessTools.Field(type, "canUseSpecailArtCount");
+        if (full == null || current == null || moves == null) return false;
+
+        current.SetValue(system, full.GetValue(system));
+        moves.SetValue(system, 1); // what the game sets when a transformation starts
+        (AccessTools.Field(type, "OnTransformHPValueChange")?.GetValue(null) as Delegate)?.DynamicInvoke(); // the meter on screen
         return true;
     }
 }

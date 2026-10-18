@@ -427,7 +427,7 @@ internal static class ApClient
     /// <summary>The game has been beaten: remembered in the session, then reported (now, or on the next connection).</summary>
     internal static void CompleteGoal()
     {
-        if (State == null) return;
+        if (State == null || State.GoalReached) return; // the choice at the end and the credits both report it
         Plugin.Log.LogInfo("Goal reached");
         Toasts.Show("Goal complete!", Toasts.Progression);
         GoalReporter.Reached();
