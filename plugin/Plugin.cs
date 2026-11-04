@@ -18,7 +18,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PluginGuid = "com.homurahime.archipelago";
     public const string PluginName = "Homura-Hime Archipelago";
-    public const string PluginVersion = "0.3.4";
+    public const string PluginVersion = "0.4.0";
 
     /// <summary>The plugin's log source (BepInEx/LogOutput.log); set in <see cref="Awake"/>.</summary>
     internal static ManualLogSource Log;
@@ -77,6 +77,7 @@ public class Plugin : BaseUnityPlugin
         // come last so no hook can fire before the state it reads exists.
         Catalog.Load();
         SceneClock.Init();
+        SaveBinding.Init();
         if (!IsDisabled("NOTRACKER")) TutorialTracker.Init();
         WorldProgress.Init();
         SaveState.Load();
@@ -129,8 +130,12 @@ public class Plugin : BaseUnityPlugin
         var now = Time.unscaledTime;
         // method groups and lambdas without captures are cached by the compiler: nothing is allocated per frame
         TickGuard.Run("main-thread queue", now, MainThread.Drain);
-        TickGuard.Run("connection panel", now, () => { if (Input.GetKeyDown(KeyCode.F10)) UI.ConnectionPanel.Toggle(); });
+        TickGuard.Run("connection panel", now, () => { if (Input.GetKeyDown(KeyCode.F10) && !UI.SetupOverlay.Visible) UI.ConnectionPanel.Toggle(); });
         TickGuard.Run("item granter", now, Items.ItemGranter.Tick);
+        TickGuard.Run("save panel", now, Patches.SavePanelGate.Tick);
+        TickGuard.Run("gun sounds", now, Patches.GunSoundPreload.Tick);
+        TickGuard.Run("setup cover", now, UI.SetupOverlay.Update);
+        TickGuard.Run("traps", now, Items.TrapSpawner.Tick);
         TickGuard.Run("session saving", now, SessionState.Tick);
         TickGuard.Run("save record", now, ApSaver.Tick);
         TickGuard.Run("text audit", now, TextAudit.Tick);
@@ -148,8 +153,10 @@ public class Plugin : BaseUnityPlugin
     private void OnGUI()
     {
         if (CfgShowLabel.Value) GUI.Label(new Rect(8, 4, 360, 20), $"{PluginName} v{PluginVersion}");
-        UI.ConnectionPanel.Draw();
+        if (!UI.SetupOverlay.Visible) UI.ConnectionPanel.Draw();
         UI.Toasts.Draw();
+        if (!UI.SetupOverlay.Visible) UI.MenuNotice.Draw();
+        UI.SetupOverlay.Draw(); // last: it covers everything else
     }
 
     /// <summary>Writes any session data still waiting for its deferred save.</summary>

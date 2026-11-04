@@ -3,6 +3,7 @@
   {
    "id": "Level1",
    "number": 1,
+   "label": "Chapter 1",
    "name": "Chapter 1: The Skeleton Girl",
    "sub_chapters": [
     {
@@ -40,6 +41,7 @@
   {
    "id": "Level2",
    "number": 2,
+   "label": "Chapter 2",
    "name": "Chapter 2: The Flower and Corpse Princess",
    "sub_chapters": [
     {
@@ -90,6 +92,7 @@
   {
    "id": "Level3",
    "number": 3,
+   "label": "Chapter 3",
    "name": "Chapter 3: The Holy Maiden of the Full Moon Order",
    "sub_chapters": [
     {
@@ -139,6 +142,7 @@
   {
    "id": "Level4",
    "number": 4,
+   "label": "Chapter 4",
    "name": "Chapter 4: The Twin Watchdogs",
    "sub_chapters": [
     {
@@ -191,6 +195,7 @@
   {
    "id": "Level5",
    "number": 5,
+   "label": "Chapter 5",
    "name": "Chapter 5: The Fallen Samurai",
    "sub_chapters": [
     {
@@ -228,9 +233,10 @@
    ]
   },
   {
-   "id": "LevelFinalP1",
-   "number": 6,
-   "name": "Chapter 6: Where it All Began",
+   "id": "LevelFinalP0",
+   "number": 0,
+   "label": "Climax",
+   "name": "Climax: The Choice",
    "sub_chapters": [
     {
      "key": "LevelFinalP0_Jinguu",
@@ -238,7 +244,15 @@
      "scenes": [
       "Level_FinalP0_Jinguu_Main"
      ]
-    },
+    }
+   ]
+  },
+  {
+   "id": "LevelFinalP1",
+   "number": 6,
+   "label": "Chapter 6",
+   "name": "Chapter 6: Where it All Began",
+   "sub_chapters": [
     {
      "key": "LevelFinalP1_L1_Ikai_Entrance",
      "name": "Demonic Realm - Carcass Ravine (Ch6)",
@@ -268,6 +282,7 @@
   {
    "id": "LevelFinalP2",
    "number": 7,
+   "label": "Chapter 7",
    "name": "Chapter 7: The Brambled Path of Rebellion",
    "sub_chapters": [
     {
@@ -305,6 +320,7 @@
   {
    "id": "LevelFinalP3",
    "number": 8,
+   "label": "Chapter 8",
    "name": "Chapter 8: The Future of Reunion",
    "sub_chapters": [
     {
@@ -341,6 +357,7 @@
   {
    "id": "LevelFinalP4",
    "number": 9,
+   "label": "Chapter 9",
    "name": "Finale: Desire",
    "sub_chapters": [
     {

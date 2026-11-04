@@ -208,6 +208,14 @@ internal static class ItemGranter
                 state.UnlockedChapters.Add(item.Game);
                 return GrantResult.Done;
 
+            case "unlock_progressive":
+                state.ProgressiveKeys++;
+                return GrantResult.Done;
+
+            case "trap":
+                TrapSpawner.Queue(item.Game);
+                return GrantResult.Done;
+
             case "utility":
                 return item.Game switch
                 {

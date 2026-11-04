@@ -30,28 +30,32 @@ internal static class SaveFiles
     private static List<SaveEntry> Records()
     {
         var records = new List<SaveEntry>();
+        for (var index = 0; index < SaveSlots; index++)
+            if (RecordOf(index) is { } record) records.Add(record);
+        return records;
+    }
+
+    /// <summary>The Archipelago record in one save file, read without loading the save; null when the save has none (or cannot be read).</summary>
+    internal static SaveEntry RecordOf(int index)
+    {
         try
         {
             var manager = AccessTools.Property(typeof(SaveSystemManager), "Instance")?.GetValue(null);
             var read = manager == null ? null : AccessTools.Method(manager.GetType(), "ReadSaveDataFromDisk", new[] { typeof(int) });
-            if (read == null) return records;
+            if (read?.Invoke(manager, new object[] { index }) is not SaveData data) return null;
 
-            for (var index = 0; index < SaveSlots; index++)
+            foreach (var key in data.SaveDataKeys)
             {
-                if (read.Invoke(manager, new object[] { index }) is not SaveData data) continue;
-                foreach (var key in data.SaveDataKeys)
-                {
-                    if (!key.Contains(SaverKey) || !data.TryGetValue(key, out var serialization)) continue;
-                    if (serialization.DeserializeFields(MemberVisibility.All) is ApSaveHolder holder && SaveBinding.Deserialize(holder.Json) is { } record)
-                        records.Add(record);
-                }
+                if (!key.Contains(SaverKey) || !data.TryGetValue(key, out var serialization)) continue;
+                if (serialization.DeserializeFields(MemberVisibility.All) is ApSaveHolder holder && SaveBinding.Deserialize(holder.Json) is { } record)
+                    return record;
             }
         }
         catch (Exception e)
         {
-            Plugin.Log.LogWarning("Could not read the Archipelago records of the save files: " + e.Message);
+            Plugin.Log.LogWarning($"Could not read the Archipelago record of save {index}: " + e.Message);
         }
 
-        return records;
+        return null;
     }
 }

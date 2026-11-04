@@ -5,7 +5,7 @@
         <AssemblyName>HomuraHimeArchipelago</AssemblyName>
         <RootNamespace>HomuraHimeAP</RootNamespace>
         <Description>Archipelago randomizer plugin for Homura Hime</Description>
-        <Version>0.3.4</Version>
+        <Version>0.4.0</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>disable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -32,6 +32,8 @@
         <!-- Unity (the game's own assemblies, so versions always match) -->
         <Reference Include="UnityEngine"><HintPath>$(ManagedDir)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
         <Reference Include="UnityEngine.CoreModule"><HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule"><HintPath>$(ManagedDir)\UnityEngine.ParticleSystemModule.dll</HintPath><Private>false</Private></Reference>
+        <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(ManagedDir)\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
         <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(ManagedDir)\UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
         <Reference Include="UnityEngine.UIElementsModule"><HintPath>$(ManagedDir)\UnityEngine.UIElementsModule.dll</HintPath><Private>false</Private></Reference>
         <Reference Include="PlayMaker"><HintPath>$(ManagedDir)\PlayMaker.dll</HintPath><Private>false</Private></Reference>

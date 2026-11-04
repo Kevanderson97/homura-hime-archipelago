@@ -42,9 +42,16 @@ internal enum BindingDecision
 internal static class SaveBinding
 {
     private const int FileVersion = 1;
+    private const string TitleScene = "StartScreen";
 
     /// <summary>The game save slot being played; null before a save was loaded or created.</summary>
     internal static int? CurrentSaveSlot { get; set; }
+
+    /// <summary>
+    /// True from the moment the title screen loads until a save is loaded or a new game starts. No save is played then, so a
+    /// connection made there is not judged against the save that was played before.
+    /// </summary>
+    internal static bool AtTitle { get; private set; }
 
     /// <summary>Where the file lives; tests point this at a temporary folder.</summary>
     internal static string DirectoryOverride;
@@ -103,11 +110,60 @@ internal static class SaveBinding
         return entry.Slot == connectedSlot && entry.Seed == connectedSeed ? BindingDecision.Continue : BindingDecision.Refuse;
     }
 
+    /// <summary>
+    /// Whether the main menu may load a save: a save that belongs to an Archipelago slot only loads while connected to that
+    /// slot and seed (what the plugin prepares at the title screen, and what a save needs from the moment it loads, cannot be
+    /// added by connecting afterwards). A save without a record loads as before.
+    /// </summary>
+    internal static bool MayLoad(string connectedSlot, string connectedSeed, SaveEntry entry) =>
+        entry == null || (connectedSlot != null && entry.Slot == connectedSlot && entry.Seed == connectedSeed);
+
+    /// <summary>What the player is told when <see cref="MayLoad"/> says no.</summary>
+    internal static string LoadBlockedMessage(string connectedSlot, SaveEntry entry)
+    {
+        if (connectedSlot == null) return $"This save belongs to Archipelago slot {entry.Slot}. Connect to it first (F10).";
+        if (entry.Slot == connectedSlot) return $"This save belongs to another seed of {entry.Slot}. Connect to that seed first (F10).";
+        return $"This save belongs to Archipelago slot {entry.Slot}, but you are connected as {connectedSlot}. Connect to {entry.Slot} first (F10).";
+    }
+
+    /// <summary>The line on a save of the load panel that says which Archipelago slot it belongs to (the seed stands for the server).</summary>
+    internal static string AssociationLabel(SaveEntry entry) =>
+        $"Associated with AP: {entry.Slot} (seed {(entry.Seed != null && entry.Seed.Length > 8 ? entry.Seed.Substring(0, 8) : entry.Seed)})";
+
+    /// <summary>The note shown while the Continue panel has greyed-out saves (the slots they belong to, each once).</summary>
+    internal static string GreyedNotice(IEnumerable<string> savedSlots, string connectedSlot)
+    {
+        var names = string.Join(", ", new SortedSet<string>(savedSlots));
+        return connectedSlot == null
+            ? $"Greyed-out saves belong to Archipelago slot(s): {names}. Connect to the right slot (F10) to load them."
+            : $"Greyed-out saves belong to other Archipelago slots or seeds: {names}. You are connected as {connectedSlot}; F10 changes the connection.";
+    }
+
+    /// <summary>The record of a game save slot before it is loaded: the one stored in the save file, else one from the old <c>saves.json</c>.</summary>
+    internal static SaveEntry RecordOfSlot(int saveSlot) =>
+        SaveFiles.RecordOf(saveSlot) ?? (Entries.TryGetValue(saveSlot, out var legacy) ? legacy : null);
+
     // ------------------------------------------------------------------ what the game does with its saves
+
+    internal static void Init()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += (scene, _) =>
+        {
+            if (scene.name == TitleScene) TitleScreen();
+        };
+    }
+
+    /// <summary>The title screen is up: whichever save was played is left, and the next load or new game picks the next one.</summary>
+    internal static void TitleScreen()
+    {
+        (AtTitle, CurrentSaveSlot, LoadedRecord) = (true, null, null);
+        Archipelago.ApClient.Rebind(reload: true);
+    }
 
     /// <summary>The game loaded this save slot.</summary>
     internal static void Loaded(int saveSlot)
     {
+        AtTitle = false;
         CurrentSaveSlot = saveSlot;
         if (!_saverLoaded) LoadedRecord = null; // the saver did not take part in this load, so nothing of an earlier save applies
         _saverLoaded = false;
@@ -118,8 +174,7 @@ internal static class SaveBinding
     /// <summary>A new game starts: it has no save slot until the game first writes it.</summary>
     internal static void NewGame()
     {
-        CurrentSaveSlot = null;
-        LoadedRecord = null;
+        (AtTitle, CurrentSaveSlot, LoadedRecord) = (false, null, null);
         Archipelago.ApClient.Rebind(reload: true);
     }
 
@@ -173,6 +228,6 @@ internal static class SaveBinding
     internal static void Reset()
     {
         _entries = null;
-        CurrentSaveSlot = null;
+        (AtTitle, CurrentSaveSlot) = (false, null);
     }
 }

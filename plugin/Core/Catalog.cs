@@ -24,6 +24,7 @@ internal sealed class ItemRecord
     {
         "progression" => ItemFlags.Advancement,
         "useful" => ItemFlags.NeverExclude,
+        "trap" => ItemFlags.Trap,
         _ => ItemFlags.None,
     };
     /// <summary>Game-side name: item definition, currency name, or a utility keyword.</summary>

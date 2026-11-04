@@ -35,7 +35,7 @@ public class CatalogTests : IClassFixture<CatalogTests.Fixture>
         var known = new[]
         {
             "key", "ability", "dash_skill", "skill", "combo", "omamori", "gun", "upgrade", "shard", "crystal",
-            "consumable", "currency", "utility", "unlock",
+            "consumable", "currency", "utility", "unlock", "unlock_progressive", "trap",
         };
         foreach (var type in AllItems().Select(i => i.Type).Distinct()) Assert.Contains(type, known);
     }

@@ -78,8 +78,11 @@ CHAPTERS = [
         ("Level5_Area_5_Entrance", "Memory - Home", ["Level_5_Area_5_Main", "Level_5_Ikai_Part1_Main", "Level_5_Ikai_Part2_Main"]),
         ("Level5_BossRoom", "Mamiya, Fallen Samurai", ["Level_5_Boss"]),
     ]),
-    ("LevelFinalP1", 6, "Chapter 6: Where it All Began", [
+    # the climax is a world of its own, shuffled like the chapters (chapter number 0 stands for "Climax" in item and event names)
+    ("LevelFinalP0", 0, "Climax: The Choice", [
         ("LevelFinalP0_Jinguu", "Jinguu (Climax: The Choice)", ["Level_FinalP0_Jinguu_Main"]),
+    ]),
+    ("LevelFinalP1", 6, "Chapter 6: Where it All Began", [
         ("LevelFinalP1_L1_Ikai_Entrance", "Demonic Realm - Carcass Ravine (Ch6)", ["Level_FinalP1_L1_Ikai_Main", "Level_FinalP1_L1_A3_Main", "Level_FinalP1_L1Boss_Main"]),
         ("LevelFinalP1_L2_A5_Entrance", "Tanka Castle - Sannomaru Palace (Ch6)", ["Level_FinalP1_L2_A5_Main", "Level_FinalP1_L2_Ikai_Main"]),
         ("LevelFinalP1_L2_Boss", "Reunion: Ling Ling", ["Level_FinalP1_L2Boss_Main"]),
@@ -102,6 +105,11 @@ FINALE = ("LevelFinalP4", 9, "Finale: Desire", [
     ("LevelFinalP4_Jinguu_Phase1", "Admini", ["Level_FinalP4_Jinguu_Phase1_Main", "Level_FinalP4_Jinguu_Phase2_Main"]),
     ("LevelFinalP4_Jinguu_Ending", "Ann's wish", ["Level_FinalP4_Jinguu_Ending_Main", "Level_FinalP4_EndFinale_Main"]),
 ])
+
+def chapter_label(number):
+    """How events and unlock items name a chapter: "Chapter 3", and "Climax" for the climax (number 0)."""
+    return "Climax" if number == 0 else "Chapter %d" % number
+
 
 # scene name -> key of the sub-chapter (region) it belongs to
 SCENE_TO_SUB = {}
@@ -386,7 +394,7 @@ json.dump(locations, open(os.path.join(DATA, "locations.json"), "w", encoding="u
 # ---------------------------------------------------------------- regions
 regions = {"chapters": [], "hub_tiers": "shop tier t needs cleared_world_count >= t"}
 for cid, num, name, subs in CHAPTERS + [FINALE]:
-    regions["chapters"].append({"id": cid, "number": num, "name": name, "sub_chapters": [
+    regions["chapters"].append({"id": cid, "number": num, "label": chapter_label(num), "name": name, "sub_chapters": [
         {"key": key, "name": sname, "scenes": scenes} for key, sname, scenes in subs]})
 json.dump(regions, open(os.path.join(DATA, "regions.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
@@ -464,8 +472,13 @@ item("Senbei", "currency", "filler", count=0, game="Crackers", amount=1)
 item("2 Senbei", "currency", "filler", count=0, game="Crackers", amount=2)
 # sizes a Konpeito filler item can be raised to when the pool has to reach options.MinimumKonpeito ("ladder": true)
 KONPEITO_LADDER = (500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7500, 10000)
-for amount in sorted(set(KONPEITO_LADDER) | set(FIXED_KONPEITO)):
+# larger pieces the ladder continues with ("big_ladder": true), used only without encounter_clears when the target does not fit
+# otherwise: there are about 110 fewer places for Konpeito items then, and the same target
+KONPEITO_BIG_LADDER = (15000, 20000, 30000)
+for amount in sorted(set(KONPEITO_LADDER) | set(KONPEITO_BIG_LADDER) | set(FIXED_KONPEITO)):
     extra = {"ladder": True} if amount in KONPEITO_LADDER else {}
+    if amount in KONPEITO_BIG_LADDER:
+        extra["big_ladder"] = True
     item("%d Konpeito" % amount, "currency", "filler", count=0, game="Konpeitou", amount=amount, **extra)
 for amount in (10, 20, 30, 40, 50):
     item("%d Sakura Petals" % amount, "currency", "filler", count=0, game="Sakura", amount=amount)
@@ -473,7 +486,12 @@ item("Full Heal", "utility", "filler", count=0, game="FullHeal")
 item("Ultimate Charge", "utility", "filler", count=0, game="UltimateCharge")
 # level unlock items (option): one per world
 for cid, num, name, subs in CHAPTERS:
-    item("Chapter %d Unlock" % num, "unlock", "progression", count=0, game=cid, chapter=cid)
+    item("%s Unlock" % chapter_label(num), "unlock", "progression", count=0, game=cid, chapter=cid)
+# the same keys as one progressive item (level_unlock_items: linear_progression): the n-th one opens the n-th world of the order
+item("Progressive Level Key", "unlock_progressive", "progression", count=0, game="ProgressiveLevelKey")
+# traps (puffer_swarm_traps and hexed_doll_trio_traps are pool groups like the Dango): four flying bomb and four flying spiky puffers near the player
+item("Puffer Swarm Trap", "trap", "trap", count=0, game="PufferSwarmTrap")
+item("Hexed Doll Trio Trap", "trap", "trap", count=0, game="HexedDollTrioTrap")  # one Hexed Doll of each colour near the player
 
 json.dump(ITEMS, open(os.path.join(DATA, "items.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump(registry, open(reg_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

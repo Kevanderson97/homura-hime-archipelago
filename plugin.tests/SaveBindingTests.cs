@@ -20,6 +20,48 @@ public class SaveBindingTests : System.IDisposable
     private static SaveEntry Entry(string slot, string seed) => new() { Slot = slot, Seed = seed };
 
     [Theory]
+    [InlineData(false, null, null, true)]            // no record: any save loads, connected or not
+    [InlineData(false, "Alice", "s1", true)]
+    [InlineData(true, "Alice", "s1", true)]          // the record names the connected slot and seed
+    [InlineData(true, null, null, false)]            // a bound save and no connection
+    [InlineData(true, "Bob", "s1", false)]           // another slot
+    [InlineData(true, "Alice", "s2", false)]         // another seed of the same slot
+    public void TheMenuOnlyLoadsABoundSaveWhileConnectedToIt(bool hasRecord, string connectedSlot, string connectedSeed, bool allowed)
+    {
+        var entry = hasRecord ? Entry("Alice", "s1") : null;
+        Assert.Equal(allowed, SaveBinding.MayLoad(connectedSlot, connectedSeed, entry));
+    }
+
+    [Fact]
+    public void TheSavesLabelNamesTheSlotAndAShortSeed()
+    {
+        Assert.Equal("Associated with AP: Alice (seed 35844442)", SaveBinding.AssociationLabel(Entry("Alice", "35844442109509622890")));
+        Assert.Equal("Associated with AP: Bob (seed s1)", SaveBinding.AssociationLabel(Entry("Bob", "s1")));
+    }
+
+    [Fact]
+    public void TheGreyedNoticeNamesEachSlotOnce()
+    {
+        var notConnected = SaveBinding.GreyedNotice(new[] { "Bob", "Alice", "Bob" }, null);
+        Assert.Contains("Alice, Bob", notConnected);
+        Assert.Contains("Connect to the right slot", notConnected);
+
+        var other = SaveBinding.GreyedNotice(new[] { "Bob" }, "Carol");
+        Assert.Contains("connected as Carol", other);
+    }
+
+    [Theory]
+    [InlineData(null, "Alice", "Connect to it first")]
+    [InlineData("Alice", "Alice", "another seed")]
+    [InlineData("Bob", "Alice", "connected as Bob")]
+    public void TheBlockedLoadSaysWhy(string connectedSlot, string savedSlot, string expectedPart)
+    {
+        var message = SaveBinding.LoadBlockedMessage(connectedSlot, Entry(savedSlot, "s1"));
+        Assert.Contains(expectedPart, message);
+        Assert.Contains(savedSlot, message);
+    }
+
+    [Theory]
     [InlineData(null, null, false, "Vanilla")]
     [InlineData("Alice", "s1", false, "Adopt")]
     [InlineData(null, null, true, "Offline")]
@@ -82,6 +124,25 @@ public class SaveBindingTests : System.IDisposable
         SaveBinding.LoadedRecord = Deserialize(state);
         SaveBinding.Loaded(0); // no saver this time: whatever was loaded before no longer applies
         Assert.Null(SaveBinding.LoadedRecord);
+    }
+
+    [Fact]
+    public void TheTitleScreenHasNoPlayedSaveSoAnotherSlotCanBeConnected()
+    {
+        SaveBinding.LoadStarted();
+        SaveBinding.RecordLoaded(SaveBinding.Serialize(SessionState.Load("Kay", "seedK")));
+        SaveBinding.Loaded(1);
+        Assert.NotNull(ApClient.State);
+
+        SaveBinding.TitleScreen();
+        Assert.Null(SaveBinding.CurrentSaveSlot);
+        Assert.Null(SaveBinding.CurrentEntry);
+        Assert.Null(ApClient.State); // nothing is played, so nothing is judged against the earlier save
+        Assert.Null(ApClient.Refusal);
+        Assert.True(SaveBinding.AtTitle);
+
+        SaveBinding.NewGame();
+        Assert.False(SaveBinding.AtTitle);
     }
 
     private static SaveEntry Deserialize(SessionState state) => SaveBinding.Deserialize(SaveBinding.Serialize(state));
@@ -248,13 +309,13 @@ public class SaveBindingTests : System.IDisposable
     {
         var raw = new System.Collections.Generic.Dictionary<string, object>
         {
-            ["world_version"] = "0.3.0", ["dango_count"] = 7L, ["death_link"] = true,
+            ["world_version"] = "0.4.0", ["dango_count"] = 7L, ["death_link"] = true,
             ["level_order"] = HomuraHimeAP.Core.WorldRules.VanillaOrder.Reverse().ToArray(),
         };
 
         var slot = SlotData.FromJson(SlotData.ToJson(raw));
 
-        Assert.Equal("0.3.0", slot.WorldVersion);
+        Assert.Equal("0.4.0", slot.WorldVersion);
         Assert.Equal(7, slot.DangoCount);
         Assert.True(slot.DeathLink);
         Assert.Equal(HomuraHimeAP.Core.WorldRules.VanillaOrder.Reverse(), slot.LevelOrder);

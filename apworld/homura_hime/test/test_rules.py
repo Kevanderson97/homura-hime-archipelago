@@ -14,7 +14,7 @@ def scene_location(scene):
 class HomuraHimeLogicBase(WorldTestBase):
     """Generates a world and offers helpers to ask what a player holding only certain items can reach."""
     game = "Homura-Hime"
-    options = {"dash_skill_start": False}
+    options = {}
 
     def state_with(self, names, sweep=True):
         """A fresh state holding exactly these items (event items are only added by the sweep)."""
@@ -202,7 +202,7 @@ ames is unused."""
 
 
 class TestSenbeiWithoutPairs(TestSenbeiUnit):
-    options = {"senbei_count": 30, "dash_skill_start": False}
+    options = {"senbei_count": 30}
 
     def test_pairs_count_and_stand_for_all_senbei(self):
         pool, senbei = self.total(None)
@@ -258,7 +258,7 @@ class TestHarumi(HomuraHimeLogicBase):
 
 class TestSakuraInThePool(HomuraHimeLogicBase):
     """Without Sakura filler the pool still holds what Harumi's last reward needs beyond the chapters."""
-    options = {"filler_sakura_ratio": 0, "dash_skill_start": False}
+    options = {"filler_sakura_ratio": 0}
 
     def test_minimum_sakura(self):
         from .. import MIN_SAKURA_IN_POOL, SAKURA_VALUES
@@ -269,7 +269,7 @@ class TestSakuraInThePool(HomuraHimeLogicBase):
 
 class TestAdvancedMovement(HomuraHimeLogicBase):
     """With advanced_movement_required the logic asks for no dash skill: the gap is crossed by parrying the laser."""
-    options = {"advanced_movement_required": True, "dash_skill_start": False}
+    options = {"advanced_movement_required": True}
 
     def test_level1_needs_only_the_flower(self):
         loc = scene_location("Level_1_Area_3_Main")
@@ -299,14 +299,14 @@ class TestDashSkillsAreProgressionByDefault(HomuraHimeLogicBase):
 
 
 class TestPool(HomuraHimeLogicBase):
-    """The item pool follows the options (Dango count, starting dash skill, cut content)."""
-    options = {"dango_count": 7, "dash_skill_start": True, "include_cut_content": False}
+    """The item pool follows the options (Dango count, cut content), and a dash skill is placed early."""
+    options = {"dango_count": 7, "include_cut_content": False}
 
     def test_pool_counts(self):
         names = [i.name for i in self.multiworld.itempool if i.player == self.player]
         self.assertEqual(names.count("Special Hanami Dango"), 7)
         self.assertNotIn("Ann's Board", names)
-        self.assertEqual(len([i for i in self.multiworld.precollected_items[self.player] if i.name in DASH_SKILLS]), 1)
+        self.assertEqual(len(set(self.multiworld.early_items[self.player]) & set(DASH_SKILLS)), 1)
 
     def test_one_shop_dango_location(self):
         dango = [loc for loc in self.world.get_locations() if KEY_OF_NAME.get(loc.name) == "shop/Kushinada_Dango"]

@@ -46,13 +46,12 @@ public class KillEndingTests
     }
 
     [Theory]
-    [InlineData(8, true, 8, true)]   // all eight worlds and the Climax
-    [InlineData(7, true, 8, false)]  // a world still to clear
-    [InlineData(8, false, 8, false)] // the Climax is still to clear
-    [InlineData(0, false, 8, false)] // a new game
-    public void ASaveIsAtTheEndingOnceEveryWorldAndTheClimaxAreCleared(int clearedWorlds, bool preludeCleared, int worldCount, bool atFinale)
+    [InlineData(9, 9, true)]   // all eight chapters and the Climax
+    [InlineData(8, 9, false)]  // a world still to clear
+    [InlineData(0, 9, false)]  // a new game
+    public void ASaveIsAtTheEndingOnceEveryWorldIsCleared(int clearedWorlds, int worldCount, bool atFinale)
     {
-        var progress = new HomuraHimeAP.Core.Playthrough { PreludeCleared = preludeCleared };
+        var progress = new HomuraHimeAP.Core.Playthrough();
         for (var i = 0; i < clearedWorlds; i++) progress.ClearedWorlds.Add("World" + i);
         Assert.Equal(atFinale, progress.ReachedFinale(worldCount));
     }

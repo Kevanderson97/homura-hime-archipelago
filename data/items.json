@@ -700,7 +700,28 @@
   "classification": "filler",
   "count": 0,
   "game": "Konpeitou",
-  "amount": 15000
+  "amount": 15000,
+  "big_ladder": true
+ },
+ {
+  "id": 7200097,
+  "name": "20000 Konpeito",
+  "type": "currency",
+  "classification": "filler",
+  "count": 0,
+  "game": "Konpeitou",
+  "amount": 20000,
+  "big_ladder": true
+ },
+ {
+  "id": 7200098,
+  "name": "30000 Konpeito",
+  "type": "currency",
+  "classification": "filler",
+  "count": 0,
+  "game": "Konpeitou",
+  "amount": 30000,
+  "big_ladder": true
  },
  {
   "id": 7200071,
@@ -809,6 +830,15 @@
   "chapter": "Level5"
  },
  {
+  "id": 7200099,
+  "name": "Climax Unlock",
+  "type": "unlock",
+  "classification": "progression",
+  "count": 0,
+  "game": "LevelFinalP0",
+  "chapter": "LevelFinalP0"
+ },
+ {
   "id": 7200083,
   "name": "Chapter 6 Unlock",
   "type": "unlock",
@@ -834,5 +864,29 @@
   "count": 0,
   "game": "LevelFinalP3",
   "chapter": "LevelFinalP3"
+ },
+ {
+  "id": 7200100,
+  "name": "Progressive Level Key",
+  "type": "unlock_progressive",
+  "classification": "progression",
+  "count": 0,
+  "game": "ProgressiveLevelKey"
+ },
+ {
+  "id": 7200101,
+  "name": "Puffer Swarm Trap",
+  "type": "trap",
+  "classification": "trap",
+  "count": 0,
+  "game": "PufferSwarmTrap"
+ },
+ {
+  "id": 7200102,
+  "name": "Hexed Doll Trio Trap",
+  "type": "trap",
+  "classification": "trap",
+  "count": 0,
+  "game": "HexedDollTrioTrap"
  }
 ]

@@ -14,16 +14,17 @@ internal sealed class Playthrough
     [JsonProperty] public int ReceivedIndex;
     [JsonProperty] public int BankedUltimateCharge;
     [JsonProperty] public HashSet<string> UnlockedChapters = new();
+    [JsonProperty] public int ProgressiveKeys;
     [JsonProperty] public HashSet<string> ClearedWorlds = new();
+    [JsonProperty] public string PendingReport;
     [JsonProperty] public bool TutorialDone;
-    [JsonProperty] public bool PreludeCleared;
     [JsonProperty] public HashSet<string> CompletedSubChapters = new();
 
     /// <summary>Received items the game could not take (see ItemGranter); tried again after the next load.</summary>
     [JsonProperty] public List<UnresolvedItem> Unresolved = new();
 
-    /// <summary>True when every world and the Climax before the finale have been cleared, so the save can stand before the ending's choice.</summary>
-    internal bool ReachedFinale(int worldCount) => PreludeCleared && ClearedWorlds.Count >= worldCount;
+    /// <summary>True when every world before the finale (the eight chapters and the Climax) has been cleared, so the save can stand before the ending's choice.</summary>
+    internal bool ReachedFinale(int worldCount) => ClearedWorlds.Count >= worldCount;
 }
 
 /// <summary>A received item that could not be granted, and why.</summary>

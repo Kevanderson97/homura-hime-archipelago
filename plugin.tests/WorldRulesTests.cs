@@ -19,15 +19,15 @@ public class WorldRulesTests
     private static HashSet<string> Set(params string[] items) => new(items);
 
     [Fact]
-    public void VanillaOrderHasTheEightWorlds()
+    public void VanillaOrderHasTheNineWorlds()
     {
-        Assert.Equal(new[] { "Level1", "Level2", "Level3", "Level4", "Level5", "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" }, Vanilla);
+        Assert.Equal(new[] { "Level1", "Level2", "Level3", "Level4", "Level5", "LevelFinalP0", "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" }, Vanilla);
     }
 
     [Fact]
     public void ModeA_VanillaOrder_NextWorldAfterPreviousIsCleared()
     {
-        var rules = new WorldRules(Vanilla, unlockItems: false, randomized: false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
         Assert.True(rules.IsAvailable(Chapter("Level1"), Set(), Set()));
         Assert.False(rules.IsAvailable(Chapter("Level2"), Set(), Set()));
         Assert.True(rules.IsAvailable(Chapter("Level2"), Set("Level1"), Set()));
@@ -37,8 +37,8 @@ public class WorldRulesTests
     [Fact]
     public void ModeB_RandomOrder_FollowsTheRandomOrder()
     {
-        var order = new[] { "Level3", "Level1", "Level5", "Level2", "Level4", "LevelFinalP2", "LevelFinalP1", "LevelFinalP3" };
-        var rules = new WorldRules(order, unlockItems: false, randomized: true);
+        var order = new[] { "Level3", "Level1", "Level5", "Level2", "Level4", "LevelFinalP2", "LevelFinalP0", "LevelFinalP1", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Off);
         Assert.True(rules.IsAvailable(Chapter("Level3"), Set(), Set()));
         Assert.False(rules.IsAvailable(Chapter("Level1"), Set(), Set()));
         Assert.True(rules.IsAvailable(Chapter("Level1"), Set("Level3"), Set()));
@@ -46,21 +46,46 @@ public class WorldRulesTests
     }
 
     [Fact]
-    public void ModeC_VanillaWithItems_NeedsPreviousClearAndTheItem()
+    public void ModeC_LinearKeys_NeedThePreviousClearAndOneKeyPerPlaceInTheOrder()
     {
-        var rules = new WorldRules(Vanilla, unlockItems: true, randomized: false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Linear);
+        Assert.False(rules.IsAvailable(Chapter("Level1"), Set(), Set(), progressiveKeys: 0));
+        Assert.True(rules.IsAvailable(Chapter("Level1"), Set(), Set(), progressiveKeys: 1));
+        Assert.False(rules.IsAvailable(Chapter("Level2"), Set(), Set(), progressiveKeys: 2), "the previous world is not beaten");
+        Assert.False(rules.IsAvailable(Chapter("Level2"), Set("Level1"), Set(), progressiveKeys: 1), "the second key is missing");
+        Assert.True(rules.IsAvailable(Chapter("Level2"), Set("Level1"), Set(), progressiveKeys: 2));
+        Assert.False(rules.IsAvailable(Chapter("Level3"), Set("Level1", "Level2"), Set("Level3"), progressiveKeys: 2), "a single key means nothing here");
+        Assert.True(rules.IsAvailable(Chapter("Level3"), Set("Level1", "Level2"), Set(), progressiveKeys: 3));
+    }
+
+    [Fact]
+    public void ModeC_LinearKeysFollowTheRandomOrderStrictly()
+    {
+        var order = new[] { "Level3", "Level1", "Level5", "Level2", "Level4", "LevelFinalP2", "LevelFinalP0", "LevelFinalP1", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Linear);
+        // all nine keys and Level 3 beaten: Level 1 is next, nothing further, whatever the keys allow
+        Assert.True(rules.IsAvailable(Chapter("Level1"), Set("Level3"), Set(), progressiveKeys: 9));
+        Assert.False(rules.IsAvailable(Chapter("Level5"), Set("Level3"), Set(), progressiveKeys: 9), "Level 1 is still to be beaten");
+        Assert.False(rules.IsAvailable(Chapter("Level1"), Set(), Set(), progressiveKeys: 9), "Level 3 is still to be beaten");
+        Assert.True(rules.IsAvailable(Chapter("LevelFinalP3"), new HashSet<string>(order.Take(8)), Set(), progressiveKeys: 9));
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP3"), new HashSet<string>(order.Take(8)), Set(), progressiveKeys: 8));
+    }
+
+    [Fact]
+    public void ModeD_FreeformKeys_VanillaOrderDoesNotMatterEither()
+    {
+        var rules = new WorldRules(Vanilla, UnlockMode.Freeform);
         Assert.False(rules.IsAvailable(Chapter("Level1"), Set(), Set()));
         Assert.True(rules.IsAvailable(Chapter("Level1"), Set(), Set("Level1")));
-        Assert.False(rules.IsAvailable(Chapter("Level2"), Set(), Set("Level2")));
+        Assert.True(rules.IsAvailable(Chapter("Level4"), Set(), Set("Level4")), "the key alone opens a world");
         Assert.False(rules.IsAvailable(Chapter("Level2"), Set("Level1"), Set()));
-        Assert.True(rules.IsAvailable(Chapter("Level2"), Set("Level1"), Set("Level2")));
     }
 
     [Fact]
     public void ModeD_RandomizedWithItems_TheItemAloneOpensAWorld()
     {
-        var order = new[] { "Level3", "Level1", "Level5", "Level2", "Level4", "LevelFinalP2", "LevelFinalP1", "LevelFinalP3" };
-        var rules = new WorldRules(order, unlockItems: true, randomized: true);
+        var order = new[] { "Level3", "Level1", "Level5", "Level2", "Level4", "LevelFinalP2", "LevelFinalP0", "LevelFinalP1", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Freeform);
         Assert.False(rules.IsAvailable(Chapter("Level5"), Set(), Set()));
         Assert.True(rules.IsAvailable(Chapter("Level5"), Set(), Set("Level5")));
         Assert.True(rules.IsAvailable(Chapter("LevelFinalP3"), Set(), Set("LevelFinalP3")));
@@ -69,17 +94,35 @@ public class WorldRulesTests
     [Fact]
     public void ClearedWorldsStayAvailable()
     {
-        var rules = new WorldRules(Vanilla, unlockItems: true, randomized: false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Freeform);
         Assert.True(rules.IsAvailable(Chapter("Level2"), Set("Level2"), Set()));
     }
 
     [Fact]
-    public void ClimaxPreludeFollowsChapterSixAndFinaleNeedsAllWorlds()
+    public void TheClimaxIsAWorldOfItsOwnAndChapterSixFollowsItsClear()
     {
-        var rules = new WorldRules(Vanilla, unlockItems: false, randomized: false);
-        var before = Set("Level1", "Level2", "Level3", "Level4", "Level5");
-        Assert.Equal(rules.IsAvailable(Chapter("LevelFinalP1"), before, Set()), rules.IsAvailable(Chapter("LevelFinalP0"), before, Set()));
-        Assert.False(rules.IsAvailable(Chapter("LevelFinalP4"), before, Set()));
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        var five = Set(Vanilla.Take(5).ToArray());
+        Assert.True(rules.IsAvailable(Chapter("LevelFinalP0"), five, Set()));
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP1"), five, Set()), "Chapter 6 waits for the Climax");
+        Assert.True(rules.IsAvailable(Chapter("LevelFinalP1"), Set(Vanilla.Take(6).ToArray()), Set()));
+    }
+
+    [Fact]
+    public void TheClimaxNeedsAClearedWorldEvenWhenItsKeyOpensItFirst()
+    {
+        var order = new[] { "Level3", "Level1", "Level5", "Level2", "Level4", "LevelFinalP2", "LevelFinalP0", "LevelFinalP1", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Freeform);
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP0"), Set(), Set("LevelFinalP0")), "never the first world");
+        Assert.True(rules.IsAvailable(Chapter("LevelFinalP0"), Set("Level3"), Set("LevelFinalP0")));
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP0"), Set("Level3"), Set()), "still needs its key");
+    }
+
+    [Fact]
+    public void TheFinaleNeedsAllNineWorlds()
+    {
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP4"), Set(Vanilla.Take(8).ToArray()), Set()));
         Assert.True(rules.IsAvailable(Chapter("LevelFinalP4"), new HashSet<string>(Vanilla), Set()));
     }
 
@@ -88,7 +131,7 @@ public class WorldRulesTests
     [Fact]
     public void EnteringAnUnfinishedWorldStoresTwiceTheClearedCountPlusOne()
     {
-        var rules = new WorldRules(Vanilla, false, false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
         Assert.Equal(1, rules.Decide(1, Set()).HubValue);                      // Level 1 entered
         Assert.Equal(3, rules.Decide(3, Set("Level1")).HubValue);              // Level 2 entered
         Assert.Equal(1, rules.Decide(7, Set()).HubValue);                      // Level 4 entered first (random order): count stays 0
@@ -97,7 +140,7 @@ public class WorldRulesTests
     [Fact]
     public void ClearingAWorldCountsItOnce()
     {
-        var rules = new WorldRules(Vanilla, false, false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
         var first = rules.Decide(6, Set());                                    // Level 3 cleared first
         Assert.Equal("Level3", first.NewWorld);
         Assert.Equal(2, first.HubValue);
@@ -110,7 +153,7 @@ public class WorldRulesTests
     [Fact]
     public void ReplaysChangeNothing()
     {
-        var rules = new WorldRules(Vanilla, false, false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
         var cleared = Set("Level1");
         Assert.Null(rules.Decide(2, cleared).HubValue);                        // Level 1 cleared again
         Assert.Null(rules.Decide(1, cleared).HubValue);                        // Level 1 entered again
@@ -118,11 +161,30 @@ public class WorldRulesTests
     }
 
     [Fact]
-    public void PreludeAndFinaleAreSpecial()
+    public void ClearingTheClimaxCountsItAsAWorld()
     {
-        var rules = new WorldRules(Vanilla, false, false);
-        Assert.Equal(2, rules.Decide(12, Set()).HubValue);                     // Climax cleared: the hub moves on, Chapter 6 is still to be cleared
-        Assert.Equal(1, rules.Decide(11, Set()).HubValue);                     // Climax entered counts as entering
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        var five = Set(Vanilla.Take(5).ToArray());                             // the story state before the Climax: Level 5 cleared (hub 10)
+        var write = rules.Decide(12, five);
+        Assert.Equal("LevelFinalP0", write.NewWorld);
+        Assert.Equal(12, write.HubValue);                                      // the game's own value of "Climax cleared"
+        Assert.Equal(11, rules.Decide(11, five).HubValue);                     // entered
+        Assert.Null(rules.Decide(12, Set(Vanilla.Take(6).ToArray())).HubValue); // replaying it later changes nothing
+    }
+
+    [Fact]
+    public void ClearingTheClimaxFirstInAnotherOrderCountsOneWorld()
+    {
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        var write = rules.Decide(12, Set("Level2"));
+        Assert.Equal("LevelFinalP0", write.NewWorld);
+        Assert.Equal(4, write.HubValue);
+    }
+
+    [Fact]
+    public void TheFinaleIsNotTheGoal()
+    {
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
         var finale = rules.Decide(20, new HashSet<string>(Vanilla));
         Assert.False(finale.Goal);                                             // the goal is the Kill ending, not the credits
         Assert.Equal(ChapterData.GameCompleteProgress, finale.HubValue);
@@ -132,8 +194,8 @@ public class WorldRulesTests
     public void HubBoard_LeadsToTheNextWorldOfTheSeed()
     {
         // a seed that plays Chapter 3 first, then Chapter 1
-        var order = new[] { "Level3", "Level1", "Level2", "Level4", "Level5", "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" };
-        var rules = new WorldRules(order, unlockItems: false, randomized: true);
+        var order = new[] { "Level3", "Level1", "Level2", "Level4", "Level5", "LevelFinalP0", "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Off);
 
         Assert.Equal("Level3", rules.RedirectBoard(Chapter("Level1"), Set())); // the first board of the story is up, the seed starts with 3
         Assert.Null(rules.RedirectBoard(Chapter("Level3"), Set()));             // already the right one
@@ -141,115 +203,86 @@ public class WorldRulesTests
     }
 
     [Fact]
-    public void HubBoard_ClimaxWorldStartsWithItsPrelude()
+    public void HubBoard_LeadsToTheClimaxWhenItsTurnComes()
     {
-        var order = new[] { "LevelFinalP1", "Level1", "Level2", "Level3", "Level4", "Level5", "LevelFinalP2", "LevelFinalP3" };
-        var rules = new WorldRules(order, unlockItems: false, randomized: true);
+        var order = new[] { "Level1", "LevelFinalP0", "Level2", "Level3", "Level4", "Level5", "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Off);
 
-        Assert.Equal("LevelFinalP0", rules.RedirectBoard(Chapter("Level1"), Set()));
-        Assert.Null(rules.RedirectBoard(Chapter("LevelFinalP0"), Set())); // the prelude board of that world is right
-        Assert.Null(rules.RedirectBoard(Chapter("LevelFinalP1"), Set()));
+        Assert.Equal("LevelFinalP0", rules.RedirectBoard(Chapter("Level2"), Set("Level1"))); // the board of Chapter 2 is up, the Climax is next
+        Assert.Null(rules.RedirectBoard(Chapter("LevelFinalP0"), Set("Level1")));
+        Assert.Equal("Level2", rules.RedirectBoard(Chapter("LevelFinalP1"), Set("Level1", "LevelFinalP0")));
+    }
+
+    [Fact]
+    public void HubBoard_FreeformKeysNeverRedirectThePlayerPicksTheWorld()
+    {
+        var order = new[] { "Level3", "Level1", "Level2", "Level4", "Level5", "LevelFinalP0", "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" };
+        var rules = new WorldRules(order, UnlockMode.Freeform);
+        Assert.Null(rules.RedirectBoard(Chapter("Level1"), Set()));
+        Assert.Null(rules.RedirectBoard(Chapter("Level2"), Set("Level3")));
     }
 
     [Fact]
     public void HubBoard_VanillaOrderIsLeftAlone()
     {
-        var rules = new WorldRules(Vanilla, unlockItems: false, randomized: false);
-        for (var cleared = 0; cleared < 5; cleared++)
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        for (var cleared = 0; cleared < Vanilla.Length; cleared++)
             Assert.Null(rules.RedirectBoard(Chapter(Vanilla[cleared]), Set(Vanilla.Take(cleared).ToArray())));
     }
 
     [Fact]
     public void HubBoard_NothingToRedirectOnceEveryWorldIsCleared()
     {
-        var rules = new WorldRules(Vanilla, unlockItems: false, randomized: true);
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
         Assert.Null(rules.RedirectBoard(Chapter("Level1"), Set(Vanilla)));
         Assert.Null(rules.RedirectBoard(Chapter("LevelFinalP4"), Set()));
     }
 
-    [Fact]
-    public void ClearingTheClimaxMovesTheHubOnAndRemembersIt()
-    {
-        var rules = new WorldRules(Vanilla, false, false);
-        var fiveCleared = Set(Vanilla.Take(5).ToArray());                       // the story state before the Climax: Level 5 cleared (hub 10)
-        var write = rules.Decide(12, fiveCleared);
-        Assert.Equal(12, write.HubValue);                                       // the game's own value of "Climax cleared"
-        Assert.True(write.PreludeCleared);
-        Assert.Null(write.NewWorld);                                            // Chapter 6 itself is not cleared yet
-
-        var after = Set(Vanilla.Take(6).ToArray());
-        Assert.Null(rules.Decide(12, after).HubValue);                          // replaying the Climax after Chapter 6 changes nothing
-    }
-
-    [Fact]
-    public void TheHubValueFollowsTheClearedWorldsAndTheClearedPrelude()
-    {
-        var five = Set(Vanilla.Take(5).ToArray());
-        Assert.Equal(10, WorldRules.HubValueFor(five, false));
-        Assert.Equal(12, WorldRules.HubValueFor(five, true));                   // the prelude of the sixth world is cleared
-        Assert.Equal(14, WorldRules.HubValueFor(Set(Vanilla.Take(6).ToArray()), true)); // Chapter 6 cleared: the prelude stays one step
-    }
-
-    [Fact]
-    public void AfterThePreludeTheGateLeadsOnToTheWorldItself()
-    {
-        var order = new[] { "Level3", "Level1", "LevelFinalP1", "Level2", "Level4", "Level5", "LevelFinalP2", "LevelFinalP3" };
-        var rules = new WorldRules(order, false, false);
-        var cleared = Set("Level3", "Level1");                                  // the world with the prelude is next
-        Assert.Equal("LevelFinalP0", rules.RedirectBoard(Chapter("Level2"), cleared));               // not cleared yet: start with the prelude
-        Assert.Equal("LevelFinalP1", rules.RedirectBoard(Chapter("Level2"), cleared, true));          // cleared: on to Chapter 6 proper
-        Assert.Null(rules.RedirectBoard(Chapter("LevelFinalP1"), cleared, true));                     // its own board is right
-    }
-
     [Theory]
-    [InlineData(5, true, 12)]    // Level 5 and the Climax cleared
-    [InlineData(6, true, 14)]    // Chapter 6 cleared
-    [InlineData(7, true, 16)]    // Chapter 7 cleared
-    [InlineData(8, true, 18)]    // Chapter 8 cleared: the hub of the finale
-    [InlineData(6, false, 14)]   // a save from before the prelude was remembered: its world being cleared is enough
-    [InlineData(4, false, 8)]    // before the prelude nothing changes
-    public void TheHubStaysInStepWithTheStoryAfterTheClimax(int worlds, bool prelude, int hub)
+    [InlineData(5, 10)]    // Level 5 cleared
+    [InlineData(6, 12)]    // the Climax cleared
+    [InlineData(7, 14)]    // Chapter 6 cleared
+    [InlineData(8, 16)]    // Chapter 7 cleared
+    [InlineData(9, 18)]    // Chapter 8 cleared: the hub of the finale
+    public void TheHubStaysInStepWithTheStory(int worlds, int hub)
     {
-        Assert.Equal(hub, WorldRules.HubValueFor(Set(Vanilla.Take(worlds).ToArray()), prelude));
+        Assert.Equal(hub, WorldRules.HubValueFor(Set(Vanilla.Take(worlds).ToArray())));
     }
 
     [Fact]
     public void ChaptersSixToEightWriteTheStoryValues()
     {
-        var rules = new WorldRules(Vanilla, false, false);
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        var seven = Set(Vanilla.Take(7).ToArray());                              // Level 1-5, the Climax, Chapter 6
+        Assert.Equal(15, rules.Decide(15, seven).HubValue);                      // Chapter 7 reached its midway point (after Nozomi)
+        var cleared = rules.Decide(16, seven);                                   // Chapter 7 cleared (after Yumiko and Kumiko)
+        Assert.Equal("LevelFinalP2", cleared.NewWorld);
+        Assert.Equal(16, cleared.HubValue);
         var six = Set(Vanilla.Take(6).ToArray());
-        Assert.Equal(15, rules.Decide(15, six, true).HubValue);                  // Chapter 7 reached its midway point (after Nozomi)
-        var seven = rules.Decide(16, six, true);                                 // Chapter 7 cleared (after Yumiko and Kumiko)
-        Assert.Equal("LevelFinalP2", seven.NewWorld);
-        Assert.Equal(16, seven.HubValue);
-        var five = Set(Vanilla.Take(5).ToArray());
-        Assert.Equal(14, rules.Decide(14, five, true).HubValue);                 // Chapter 6 cleared
-        Assert.Equal(14, rules.Decide(14, five).HubValue);                       // even when its prelude was not noticed
-        Assert.Equal(13, rules.Decide(13, five, true).HubValue);                 // Chapter 6 entered
+        Assert.Equal(14, rules.Decide(14, six).HubValue);                        // Chapter 6 cleared
+        Assert.Equal(13, rules.Decide(13, six).HubValue);                        // Chapter 6 entered
     }
 
     [Fact]
     public void ChapterEightHasItsOwnMidwayStage()
     {
-        var rules = new WorldRules(Vanilla, false, false);
-        var seven = Set(Vanilla.Take(7).ToArray());
-        Assert.Equal(17, rules.Decide(17, seven, true).HubValue);                // midway: Reunion: Agasa done, Mamiya not yet
-        var end = rules.Decide(18, seven, true);                                 // Reunion: Mamiya done
+        var rules = new WorldRules(Vanilla, UnlockMode.Off);
+        var eight = Set(Vanilla.Take(8).ToArray());
+        Assert.Equal(17, rules.Decide(17, eight).HubValue);                      // midway: Reunion: Agasa done, Mamiya not yet
+        var end = rules.Decide(18, eight);                                       // Reunion: Mamiya done
         Assert.Equal("LevelFinalP3", end.NewWorld);
         Assert.Equal(18, end.HubValue);
     }
 
     [Theory]
-    [InlineData(16, 7, true, 16)]     // seven worlds: the hub is right
-    [InlineData(17, 7, true, null)]   // the midway stage of the world being played is kept
-    [InlineData(16, 8, true, 18)]     // a save that is a stage behind is moved on
-    [InlineData(18, 8, true, null)]
-    [InlineData(19, 8, true, null)]
-    [InlineData(20, 8, true, 18)]     // anything else is corrected
-    public void TheHubIsCorrectedOnlyWhenItIsOffTheClearedWorlds(int current, int worlds, bool prelude, int? expected)
+    [InlineData(16, 8, null)]     // eight worlds: the hub is right
+    [InlineData(17, 8, null)]     // the midway stage of the world being played is kept
+    [InlineData(16, 9, 18)]       // a save that is a stage behind is moved on
+    [InlineData(18, 9, null)]
+    [InlineData(19, 9, null)]
+    [InlineData(20, 9, 18)]       // anything else is corrected
+    public void TheHubIsCorrectedOnlyWhenItIsOffTheClearedWorlds(int current, int worlds, int? expected)
     {
-        var cleared = Set(Vanilla.Take(worlds).ToArray());
-        var target = WorldRules.HubValueFor(cleared, prelude);
-        Assert.Equal(current == target ? (int?)null : expected, WorldRules.HubCorrection(current, cleared, prelude));
+        Assert.Equal(expected, WorldRules.HubCorrection(current, Set(Vanilla.Take(worlds).ToArray())));
     }
 }

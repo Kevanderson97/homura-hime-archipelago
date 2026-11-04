@@ -34,7 +34,7 @@ game: Homura-Hime
 requires:
   version: 0.6.6 # Version of Archipelago required for this yaml to work as expected.
   game:
-    Homura-Hime: 0.3.4 # Version of the world required for this yaml to work as expected.
+    Homura-Hime: 0.4.0 # Version of the world required for this yaml to work as expected.
 
 Homura-Hime:
   ################
@@ -69,28 +69,34 @@ Homura-Hime:
   # Chapters #
   ############
   level_order:
-    # How the eight chapters are ordered.
+    # In which order the eight chapters and the Climax are played.
     # 
-    # vanilla: Chapters 1-8 in story order.
-    # randomized: the eight chapters are played in a random order (the final chapter stays last).
-    # In both cases the Chapter Select is always available; see the unlock rules in the setup guide.
-    vanilla: 50
-    randomized: 0
+    # off: story order (the Climax comes between Chapters 5 and 6).
+    # balanced: a random order that keeps the story's pacing in mind. The first world is always one of Chapters 1-4, the
+    # second is one of them 66% of the time, the third 40% of the time, and each of the last three is one of Chapters 5-8 or
+    # the Climax 60% of the time. The three in the middle are whatever is left.
+    # full: any order is equally likely (the Climax is never the first one).
+    # The Finale always stays last. The Chapter Select is always available; see the level keys option for how worlds open.
+    # With freeform level keys the order also decides the order the keys turn up in: the key of a world is never in that
+    # world or in one that comes after it.
+    'off': 50
+    balanced: 0
+    full: 0
 
   level_unlock_items:
-    # Chapters are unlocked by items ("Chapter N Unlock") that can be anywhere in the multiworld.
-    # With vanilla order a chapter also needs the previous chapter beaten; with randomized order the item alone is
-    # enough.
-    'false': 50
-    'true': 0
-
-  dash_skill_start:
-    # Start with one random dash skill (Phantom Blade, Spark Rush, Quake Strike or Bloodflame Palm).
-    # Level 1 needs one of them to cross a large gap at the start of its second area. When this is off (the default)
-    # the logic requires a dash skill there and one is placed early, in your world or in another player's world.
-    # (With advanced_movement_required the logic does not ask for a dash skill at all; this still gives you one.)
-    'false': 50
-    'true': 0
+    # Whether the chapters and the Climax need keys, items that can be anywhere in the multiworld.
+    # 
+    # off: no keys. A world opens when the one before it in the play order is beaten.
+    # linear_progression: Progressive Level Keys (nine in all, one is yours from the start). A world needs the previous one
+    # beaten and one more key than the world before it needed, so the worlds are played strictly in order. Nothing that a
+    # world needs can be hidden in a world that comes after it.
+    # freeform_progression: every world has its own key ("Chapter N Unlock", "Climax Unlock") and opens as soon as you have
+    # it, whatever the order; you may have to jump between worlds with the Chapter Select. The first world's key is yours from
+    # the start.
+    # The Climax is never the first world you can play.
+    'off': 50
+    linear_progression: 0
+    freeform_progression: 0
 
   advanced_movement_required:
     # The logic does not require a dash skill: it expects you to get past the gap at the start of Level 1's second
@@ -222,7 +228,8 @@ Homura-Hime:
 
   dango_count:
     # How many Special Hanami Dango are added to the item pool. The shop's Dango slot is a single location
-    # regardless.
+    # regardless. When the locations in play cannot hold the count (without encounter_clears there are about 110
+    # fewer), it is lowered to what fits and the generation log says so.
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
@@ -256,6 +263,36 @@ Homura-Hime:
     random-low: 0 # random value weighted towards lower values
     random-high: 0 # random value weighted towards higher values
     random-range-0-50: 0 # random value between 0 and 50
+
+  puffer_swarm_traps:
+    # How many Puffer Swarm Traps are added to the item pool. A trap spawns 4 flying bombs and 4 flying spiky enemies
+    # around you, 6 to 20 metres away. 0 has no traps. When the locations in play cannot hold the count (without
+    # encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 99
+    20: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
+    disabled: 0 # equivalent to 0
+
+  hexed_doll_trio_traps:
+    # How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each colour,
+    # 4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play cannot hold the count (without
+    # encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 99
+    5: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
+    disabled: 0 # equivalent to 0
 
   ##############
   # Multiworld #

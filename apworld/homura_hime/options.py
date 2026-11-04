@@ -1,34 +1,46 @@
 """Options of the Homura-Hime world, as players see them in their yaml and on the options page."""
 from dataclasses import dataclass
 
-from Options import Choice, DeathLink, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range, Toggle
+from Options import Choice, DeathLink, DefaultOnToggle, NamedRange, OptionGroup, PerGameCommonOptions, Range, Toggle
 
 
 class LevelOrder(Choice):
-    """How the eight chapters are ordered.
+    """In which order the eight chapters and the Climax are played.
 
-    vanilla: Chapters 1-8 in story order.
-    randomized: the eight chapters are played in a random order (the final chapter stays last).
-    In both cases the Chapter Select is always available; see the unlock rules in the setup guide."""
-    display_name = "Level Order"
-    option_vanilla = 0
-    option_randomized = 1
+    off: story order (the Climax comes between Chapters 5 and 6).
+    balanced: a random order that keeps the story's pacing in mind. The first world is always one of Chapters 1-4, the
+    second is one of them 66% of the time, the third 40% of the time, and each of the last three is one of Chapters 5-8 or
+    the Climax 60% of the time. The three in the middle are whatever is left.
+    full: any order is equally likely (the Climax is never the first one).
+    The Finale always stays last. The Chapter Select is always available; see the level keys option for how worlds open.
+    With freeform level keys the order also decides the order the keys turn up in: the key of a world is never in that
+    world or in one that comes after it."""
+    display_name = "Randomized Order"
+    option_off = 0
+    option_balanced = 1
+    option_full = 2
+    alias_vanilla = 0  # the names of the old option
+    alias_randomized = 2
     default = 0
 
 
-class LevelUnlockItems(Toggle):
-    """Chapters are unlocked by items ("Chapter N Unlock") that can be anywhere in the multiworld.
-    With vanilla order a chapter also needs the previous chapter beaten; with randomized order the item alone is
-    enough."""
-    display_name = "Level Unlock Items"
+class LevelUnlockItems(Choice):
+    """Whether the chapters and the Climax need keys, items that can be anywhere in the multiworld.
 
-
-class DashSkillStart(Toggle):
-    """Start with one random dash skill (Phantom Blade, Spark Rush, Quake Strike or Bloodflame Palm).
-    Level 1 needs one of them to cross a large gap at the start of its second area. When this is off (the default)
-    the logic requires a dash skill there and one is placed early, in your world or in another player's world.
-    (With advanced_movement_required the logic does not ask for a dash skill at all; this still gives you one.)"""
-    display_name = "Start With A Dash Skill"
+    off: no keys. A world opens when the one before it in the play order is beaten.
+    linear_progression: Progressive Level Keys (nine in all, one is yours from the start). A world needs the previous one
+    beaten and one more key than the world before it needed, so the worlds are played strictly in order. Nothing that a
+    world needs can be hidden in a world that comes after it.
+    freeform_progression: every world has its own key ("Chapter N Unlock", "Climax Unlock") and opens as soon as you have
+    it, whatever the order; you may have to jump between worlds with the Chapter Select. The first world's key is yours from
+    the start.
+    The Climax is never the first world you can play."""
+    display_name = "Level Keys"
+    option_off = 0
+    option_linear_progression = 1
+    option_freeform_progression = 2
+    alias_false = 0
+    alias_true = 2  # the old on/off toggle: every world has its own key
     default = 0
 
 
@@ -42,7 +54,8 @@ class AdvancedMovementRequired(Toggle):
 
 class DangoCount(Range):
     """How many Special Hanami Dango are added to the item pool. The shop's Dango slot is a single location
-    regardless."""
+    regardless. When the locations in play cannot hold the count (without encounter_clears there are about 110
+    fewer), it is lowered to what fits and the generation log says so."""
     display_name = "Special Hanami Dango In Pool"
     range_start = 0
     range_end = 99
@@ -123,6 +136,28 @@ class MinimumKonpeito(Range):
     default = 550000
 
 
+class PufferSwarmTraps(NamedRange):
+    """How many Puffer Swarm Traps are added to the item pool. A trap spawns 4 flying bombs and 4 flying spiky enemies
+    around you, 6 to 20 metres away. 0 has no traps. When the locations in play cannot hold the count (without
+    encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so."""
+    display_name = "Puffer Swarm Traps In Pool"
+    range_start = 0
+    range_end = 99
+    default = 20
+    special_range_names = {"disabled": 0}
+
+
+class HexedDollTrioTraps(NamedRange):
+    """How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each colour,
+    4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play cannot hold the count (without
+    encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so."""
+    display_name = "Hexed Doll Trio Traps In Pool"
+    range_start = 0
+    range_end = 99
+    default = 5
+    special_range_names = {"disabled": 0}
+
+
 # ---------------------------------------------------------------- shuffle groups
 # A group that is not shuffled keeps its items where the base game has them (see HomuraHimeWorld._vanilla_placements).
 
@@ -181,7 +216,6 @@ class ShopHints(DefaultOnToggle):
 class HomuraHimeOptions(PerGameCommonOptions):
     level_order: LevelOrder
     level_unlock_items: LevelUnlockItems
-    dash_skill_start: DashSkillStart
     dango_count: DangoCount
     include_cut_content: IncludeCutContent
     encounter_rewards: EncounterRewards
@@ -192,6 +226,8 @@ class HomuraHimeOptions(PerGameCommonOptions):
     ultimate_charge_count: UltimateChargeCount
     filler_sakura_ratio: FillerSakuraRatio
     minimum_konpeito: MinimumKonpeito
+    puffer_swarm_traps: PufferSwarmTraps
+    hexed_doll_trio_traps: HexedDollTrioTraps
     shuffle_combos: ShuffleCombos
     shuffle_skills: ShuffleSkills
     shuffle_omamori: ShuffleOmamori
@@ -207,11 +243,11 @@ class HomuraHimeOptions(PerGameCommonOptions):
 
 # How the options page groups the options.
 option_groups = [
-    OptionGroup("Chapters", [LevelOrder, LevelUnlockItems, DashSkillStart, AdvancedMovementRequired]),
+    OptionGroup("Chapters", [LevelOrder, LevelUnlockItems, AdvancedMovementRequired]),
     OptionGroup("Locations", [EncounterClears, EncounterRewards, IncludeCutContent, OptionalLocationImportance]),
     OptionGroup("Shuffled Items", [ShuffleCombos, ShuffleSkills, ShuffleOmamori, ShuffleGuns, ShuffleShards,
                                    ShuffleUpgrades, ShuffleKeyItems]),
     OptionGroup("Item Pool", [MinimumKonpeito, FillerSakuraRatio, SenbeiCount, DangoCount, FullHealCount,
-                              UltimateChargeCount]),
+                              UltimateChargeCount, PufferSwarmTraps, HexedDollTrioTraps]),
     OptionGroup("Multiworld", [ShopHints, DeathLink, DeathLinkSkipRevives]),
 ]

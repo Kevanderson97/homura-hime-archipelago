@@ -45,35 +45,59 @@ internal static class CustomTexts
         }
     }
 
-    private static bool _applied;
+    private const float CheckSeconds = 1f;
 
-    private static void Write(UnityEngine.Localization.Tables.StringTable table, string key, string value)
+    private static float _nextCheck;
+    private static bool _everWritten;
+
+    /// <summary>Writes the value into the table; false when it was already there.</summary>
+    private static bool Write(UnityEngine.Localization.Tables.StringTable table, string key, string value)
     {
-        if (table.GetEntry(key) is { } entry) entry.Value = value;
-        else table.AddEntry(key, value);
+        if (table.GetEntry(key) is { } entry)
+        {
+            if (entry.Value == value) return false;
+            entry.Value = value;
+        }
+        else
+        {
+            table.AddEntry(key, value);
+        }
+
+        return true;
     }
 
     /// <summary>
-    /// Writes the entries marked "override" into the game's string tables once the strings are loaded, so every place that shows
-    /// the item (inventory, shop, pop-ups) uses the name. Called every frame until it has run.
+    /// Keeps the entries marked "override" written into the game's string tables, so every place that shows the item (inventory,
+    /// shop, pop-ups) uses the name. It is checked every second, not done once: the localization system drops a table when
+    /// nothing uses it any more (the scenes the trap setup loads and unloads at the title screen were enough) and loads it fresh
+    /// from the game's data later, which brought back the game's own wrong name (Ann's Board shown as Ann's Support). A table
+    /// that is not loaded is left alone, never loaded for this.
     /// </summary>
     internal static void ApplyOverrides()
     {
-        if (_applied || !UnityEngine.Localization.Settings.LocalizationSettings.HasSettings ||
+        if (!UnityEngine.Localization.Settings.LocalizationSettings.HasSettings ||
             !UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation.IsDone) return;
-        _applied = true;
 
-        foreach (var (definition, text) in All)
+        var now = UnityEngine.Time.unscaledTime;
+        if (now < _nextCheck) return;
+        _nextCheck = now + CheckSeconds;
+
+        var rewritten = false;
+        foreach (var tableName in new[] { "HH_InventoryItemsCollection", "HH_Codex" })
         {
-            if (!text.Override) continue;
-            foreach (var tableName in new[] { "HH_InventoryItemsCollection", "HH_Codex" })
+            var load = UnityEngine.Localization.Settings.LocalizationSettings.StringDatabase.GetTableAsync(tableName);
+            if (!load.IsDone || load.Result is not { } table) continue;
+
+            foreach (var (definition, text) in All)
             {
-                var table = UnityEngine.Localization.Settings.LocalizationSettings.StringDatabase.GetTableAsync(tableName).WaitForCompletion();
-                if (table == null) continue;
+                if (!text.Override) continue;
                 // an entry the game's table lacks (the Transformation ability has no item text at all) is added
-                if (text.Name != null) Write(table, definition, text.Name);
-                if (text.Description != null) Write(table, definition + "_Description", text.Description);
+                if (text.Name != null) rewritten |= Write(table, definition, text.Name);
+                if (text.Description != null) rewritten |= Write(table, definition + "_Description", text.Description);
             }
         }
+
+        if (rewritten && _everWritten) Plugin.Log.LogInfo("The game reloaded a text table: the item names were written again");
+        _everWritten |= rewritten;
     }
 }

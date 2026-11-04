@@ -62,8 +62,11 @@ public class SourceLintTests
             "LocationPatches.cs",   // calls LocationHooks, which checks ApClient.Active
             "DeathPatches.cs",      // DeathLinkHandler only acts when a DeathLink service exists
             "SaveSlotPatches.cs",   // binds saves; works without a connection by design
+            "SetupLoadBlockPatch.cs", // blocks loads while the trap setup runs, which only happens when connected (TrapSpawner checks)
+            "SaveLoadGatePatches.cs", // refuses to load a save that belongs to a slot unless connected to it: it acts exactly when there is no connection
             "ChapterSelectPatches.cs", // asks WorldProgress/ChapterAccess, which fall back to vanilla themselves
             "MissilePatches.cs",    // bug fixes for the missile gun's own HUD, which only exists when that gun is in use
+            "CutGunHitPatches.cs",  // fixes the damage boxes of the cut guns' bullets, which only exist when the player owns one
             "CutGunSoundPatches.cs", // sounds of the cut-content guns, which only fire when the player owns one
             "PortalPatches.cs",     // HubBoards and ChapterAccess check WorldProgress.Active; PostGameHub is about the Chapter Select the plugin exposes
         };

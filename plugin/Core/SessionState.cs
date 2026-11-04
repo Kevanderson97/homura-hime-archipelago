@@ -32,14 +32,17 @@ internal sealed class SessionState
     [JsonProperty] public HashSet<long> CheckedLocations = new();
     [JsonProperty] public HashSet<string> UnlockedChapters = new();
 
+    /// <summary>Progressive Level Keys received (level_unlock_items: linear_progression): the n-th one opens the n-th world of the order.</summary>
+    [JsonProperty] public int ProgressiveKeys;
+
     /// <summary>The worlds (chapters) whose boss has been beaten, in no particular order.</summary>
     [JsonProperty] public HashSet<string> ClearedWorlds = new();
 
+    /// <summary>The world that was cleared last, until the hub has shown its post-mission report and paid its reward (see <see cref="StageReport"/>).</summary>
+    [JsonProperty] public string PendingReport;
+
     /// <summary>Ultimate Charge items received while neither ability was owned (applied when one arrives).</summary>
     [JsonProperty] public int BankedUltimateCharge;
-
-    /// <summary>The Climax prelude (the start of the Chapter 6 world) has been cleared; its hub gate then leads to the world itself.</summary>
-    [JsonProperty] public bool PreludeCleared;
 
     /// <summary>The Level 0 tutorial has been finished in the current playthrough (reset when Level 0 starts again).</summary>
     [JsonProperty] public bool TutorialDone;
@@ -120,9 +123,10 @@ internal sealed class SessionState
         ReceivedIndex = ReceivedIndex,
         BankedUltimateCharge = BankedUltimateCharge,
         UnlockedChapters = new HashSet<string>(UnlockedChapters),
+        ProgressiveKeys = ProgressiveKeys,
         ClearedWorlds = new HashSet<string>(ClearedWorlds),
+        PendingReport = PendingReport,
         TutorialDone = TutorialDone,
-        PreludeCleared = PreludeCleared,
         CompletedSubChapters = new HashSet<string>(CompletedSubChapters),
         Unresolved = Unresolved.ToList(),
     };
@@ -133,9 +137,10 @@ internal sealed class SessionState
         ReceivedIndex = playthrough.ReceivedIndex;
         BankedUltimateCharge = playthrough.BankedUltimateCharge;
         UnlockedChapters = new HashSet<string>(playthrough.UnlockedChapters);
+        ProgressiveKeys = playthrough.ProgressiveKeys;
         ClearedWorlds = new HashSet<string>(playthrough.ClearedWorlds);
+        PendingReport = playthrough.PendingReport;
         TutorialDone = playthrough.TutorialDone;
-        PreludeCleared = playthrough.PreludeCleared;
         CompletedSubChapters = new HashSet<string>(playthrough.CompletedSubChapters);
         Unresolved = playthrough.Unresolved.ToList();
         Save();

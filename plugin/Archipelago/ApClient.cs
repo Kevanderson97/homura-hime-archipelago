@@ -57,6 +57,10 @@ internal static class ApClient
     /// <summary>The slot and seed of the connection, kept while reconnecting; null without a connection.</summary>
     private static string _connectedSlot, _connectedSeed;
 
+    /// <summary>The slot and seed of the live connection; null while not connected (the menu checks saves against them).</summary>
+    internal static string ConnectedSlot => IsConnected ? _connectedSlot : null;
+    internal static string ConnectedSeed => IsConnected ? _connectedSeed : null;
+
     private static readonly Dictionary<string, SessionState> Sessions = new();
     private static BindingDecision? _decision;
     private static int? _boundSaveSlot;
@@ -236,7 +240,7 @@ internal static class ApClient
     internal static void Rebind(bool reload = false, bool reconcile = true)
     {
         var entry = SaveBinding.CurrentEntry;
-        var decision = SaveBinding.Decide(_connectedSlot, _connectedSeed, entry);
+        var decision = SaveBinding.AtTitle ? BindingDecision.Vanilla : SaveBinding.Decide(_connectedSlot, _connectedSeed, entry);
         var saveSlot = SaveBinding.CurrentSaveSlot;
         if (decision == _decision && saveSlot == _boundSaveSlot) { UpdateStatusText(); return; }
         (_decision, _boundSaveSlot) = (decision, saveSlot);

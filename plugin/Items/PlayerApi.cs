@@ -111,8 +111,27 @@ internal static class PlayerApi
         return true;
     }
 
+    private static readonly PropertyInfo StableGround = AccessTools.Property(PlayerType, "isStableGround");
+    private static readonly PropertyInfo InAir = AccessTools.Property(PlayerType, "isAir");
+
+    /// <summary>
+    /// True when the player stands on solid ground: the character controller reports stable ground and no air time. Checked in the
+    /// game on a rail grind (Level 4 Ikai, Part 1): the motor reports no stable ground and air time then (9 m "ground distance"),
+    /// and the player has no control, so a rail needs no check of its own. Unknown flags count as "not on the ground", so a trap
+    /// that needs the ground waits rather than spawning in mid-air.
+    /// </summary>
+    internal static bool IsOnSolidGround()
+    {
+        var motor = PlayerMotor;
+        if (motor == null || StableGround == null || InAir == null) return false;
+        return StableGround.GetValue(motor) is true && InAir.GetValue(motor) is not true;
+    }
+
     /// <summary>Where the player stands, or null while there is no character.</summary>
     internal static Vector3? Position => PlayerMotor == null ? null : PlayerMotor.transform.position;
+
+    /// <summary>The player's transform (what homing enemies are aimed at), or null while there is no character.</summary>
+    internal static Transform PlayerTransform => PlayerMotor == null ? null : PlayerMotor.transform;
 
     /// <summary>Moves the player the way the game's own spawn points do. False when there is no character.</summary>
     internal static bool MoveTo(Vector3 position)

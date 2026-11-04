@@ -23,9 +23,17 @@ NAME_OF_KEY: Dict[str, str] = {loc["key"]: loc["name"] for loc in LOCATIONS}
 KEY_OF_NAME: Dict[str, str] = {loc["name"]: loc["key"] for loc in LOCATIONS}
 ITEM_NAME_TO_ID: Dict[str, int] = {item["name"]: item["id"] for item in ITEMS}
 
-# Chapters in story order (the 8 randomizable worlds), the finale is separate.
+# The worlds in story order (the 8 chapters and the climax, which is a world of its own), the finale is separate.
 CHAPTERS: List[dict] = [c for c in REGIONS["chapters"] if c["id"] != "LevelFinalP4"]
 FINALE: dict = next(c for c in REGIONS["chapters"] if c["id"] == "LevelFinalP4")
+CLIMAX_ID = "LevelFinalP0"
+# The 8 numbered chapters: what the economy of the logic counts (the climax has no flowers and no clear reward).
+NUMBERED_CHAPTERS: List[dict] = [c for c in CHAPTERS if c["id"] != CLIMAX_ID]
+# How events and unlock items name a world: "Chapter 3", "Climax".
+LABEL_OF: Dict[str, str] = {c["id"]: c["label"] for c in CHAPTERS}
+
+# The world (chapter id) each region belongs to; the hub has none.
+CHAPTER_OF_REGION: Dict[str, str] = {sub["key"]: c["id"] for c in CHAPTERS + [FINALE] for sub in c["sub_chapters"]}
 
 # Konpeito price and Senbei price of every shop location (the "price" and "senbei" fields of the data contract).
 SHOP_PRICES: Dict[str, int] = {loc["key"]: loc["price"] for loc in LOCATIONS if loc["category"] == "shop"}
@@ -39,6 +47,8 @@ SAKURA_VALUES: Dict[str, int] = {i["name"]: i["amount"] for i in CURRENCY if i["
 SENBEI_VALUES: Dict[str, int] = {i["name"]: i["amount"] for i in CURRENCY if i["game"] == "Crackers"}
 # Sizes a Konpeito filler item can be raised to when the pool has to reach the minimum total (options.MinimumKonpeito).
 KONPEITO_LADDER: List[int] = sorted(i["amount"] for i in ITEMS if i.get("ladder"))
+# The same with larger pieces on top, for a pool with fewer places (no encounter_clears) that cannot reach the total otherwise.
+KONPEITO_BIG_LADDER: List[int] = sorted(i["amount"] for i in ITEMS if i.get("ladder") or i.get("big_ladder"))
 
 # The sizes of the currency filler as first drawn, with their weights.
 SAKURA_ITEMS = ["10 Sakura Petals", "20 Sakura Petals", "30 Sakura Petals", "40 Sakura Petals", "50 Sakura Petals"]

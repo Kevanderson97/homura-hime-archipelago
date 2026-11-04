@@ -44,15 +44,26 @@ sample was not regenerated. Copy it into `Players/` and edit the values to gener
 
 - 345 locations: chests, Senbei, journals, 42 shop slots, stage clears, Harumi, hand-overs, trials, the tutorial reward,
   110 encounter clears (`encounter_clears`, default on) and 4 ambush rewards (`encounter_rewards`).
-- 97 item definitions. Pool: the fixed progression/useful items, Special Hanami Dango, Senbei (single and "2 Senbei"),
+- 103 item definitions. Pool: the fixed progression/useful items, Special Hanami Dango, Puffer Swarm and Hexed Doll Trio Traps (`puffer_swarm_traps`, `hexed_doll_trio_traps`,
+  defaults 20 and 5; sized like the Dango, lowered first when room is short), Senbei (single and "2 Senbei"),
   one Konpeito item per vanilla Konpeito payout, Full Heal / Ultimate Charge and the currency filler (Konpeito and Sakura).
 - Regions: Menu, Hub, one region per sub-chapter (chained inside a chapter) and the finale. Events: `Chapter N Entered`,
-  `Chapter N Cleared`, `Victory`.
+  `Chapter N Cleared`, `Climax Entered`, `Climax Cleared`, `Victory`. The Climax (`LevelFinalP0`, one region) is a world of
+  its own; its events do not count for the economy (`Chapters Cleared (count)`), which stays at the eight chapters.
 
 ## Logic
 
-- **Chapters**: entered in play order (vanilla or randomized); with `level_unlock_items` they need their unlock item (and,
-  in vanilla order, the previous chapter cleared). The finale needs all eight cleared.
+- **Order** (`level_order`): `off` is the story order, `full` a uniform shuffle, `balanced` a tilted one (the first world is
+  always one of Chapters 1-4, the second is one with a 66% chance and the third with a 40% chance, each of the last three
+  is a late world, Chapter 5-8 or the Climax, with a 60% chance, the middle three take the rest; `BALANCED_*_DRAW` in `__init__.py` are the
+  draw chances that come out as those odds once the limited number of early and late worlds is accounted for). The Climax is never first. With freeform keys each key may
+  only lie in a world that comes before its own in the order (`_keys_follow_the_order`; hub places count as the world whose
+  clear opens them: a stage-clear reward as that chapter, a shop slot by its tier).
+- **Worlds** (the eight chapters and the Climax): entered in play order (vanilla or randomized). `level_unlock_items` adds
+  keys: `linear_progression` keeps the order (the previous world cleared) and asks for as many Progressive Level Keys as the
+  world's place in the order (9 in all, the first held from the start); `freeform_progression` gives every world its own
+  `Chapter N Unlock` / `Climax Unlock` and the key alone opens it. The Climax is never first in a randomized order and
+  always needs a cleared chapter, whatever its key allows. The finale needs all eight chapters and the Climax cleared.
 - **Level 1** runs Area 1 -> Demonic Realm -> Areas 2 and 3 -> boss: the flower leaves Area 1, the dash skill crosses the gap at the start of Area 2 (so the Demonic Realm and its chests need no dash skill).
 - **Key items**: `SCENE_REQ` / `TRANSITION_REQ` gate parts of chapters; Level 1 also needs a dash skill (started with, or
   placed early). With `advanced_movement_required` no dash skill is required (the gap is crossed by parrying the laser), none
@@ -84,7 +95,7 @@ sample was not regenerated. Copy it into `Players/` and edit the values to gener
 
 ## Slot data
 
-`world_version`, `level_order`, `level_order_mode`, `start_dash_skill`, `dango_count` and the toggles in
+`world_version`, `level_order`, `level_order_mode`, `dango_count`, `puffer_swarm_traps`, `hexed_doll_trio_traps` and the toggles in
 `SLOT_DATA_TOGGLES`. The plugin accepts worlds of its own major.minor version (`plugin/Archipelago/SlotData.cs`).
 `interpret_slot_data` lets Universal Tracker regenerate the world from it.
 

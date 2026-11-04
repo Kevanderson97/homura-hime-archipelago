@@ -9,7 +9,7 @@ Official chapter names (key `PortalChapter_*`) and the internal categories used 
 | Chapter 3: The Holy Maiden of the Full Moon Order | Level3 | Level 3 |
 | Chapter 4: The Twin Watchdogs | Level4 | Level 4 |
 | Chapter 5: The Fallen Samurai | Level5 | Level 5 |
-| Climax: The Choice | LevelFinalP0 | Final P0 (prelude of Chapter 6) |
+| Climax: The Choice | LevelFinalP0 | Final P0 (a world of its own in the randomizer, between Chapter 5 and Chapter 6 in the story) |
 | Chapter 6: Where it All Began | LevelFinalP1 | Final P1 |
 | Chapter 7: The Brambled Path of Rebellion | LevelFinalP2 | Final P2 |
 | Chapter 8: The Future of Reunion | LevelFinalP3 | Final P3 |
