@@ -63,12 +63,18 @@ Working list for the plugin and the world. Newest items first within each sectio
   were left alone. To check: all four bombs fly at you from any distance and explode; the spiky ones still stab as before.
 - **No loads during the trap setup.** `SetupLoadBlockPatch` blocks the save panel's Continue / NewGame / difficulty buttons and
   the start screen's NewGame, NewGameDirect, ContinueDirect and StartLevel while the setup runs, and in the ~1.5 s between connecting
-  and the screen fading (`TrapSpawner.BlocksLoading`); the menu's event system is switched off as well. Exit/options stay possible.
-  A refused attempt shows "Preparing AP World Settings, please try again in a moment" when the cover is not up yet. To check:
-  press Continue / New Game / a slot right after connecting and during the black screen; nothing may start, and the menu works
-  again afterwards.
+  and the setup starting (`TrapSpawner.BlocksLoading`). Exit/options stay possible. A refused attempt shows "Preparing AP World
+  Settings, please try again in a moment". To check: press Continue / New Game / a slot while the setup runs (right at launch, or after
+  connecting to a seed whose traps were dropped); nothing may start, and the menu works again afterwards.
+- **The setup runs at launch, uncovered.** The black cover, the muted sound and the blocked menu input are commented out in
+  `TrapSpawner` (search "temporarily off"; `SetupOverlay`, `SetMuted` and `BlockInput` are still there). The first setup of a session
+  starts 0.3 s after the title scene is up, while the logos play, and copies every trap; the source scenes are switched off the moment
+  they load (`HideSourceScene`) and the sounds they start are stopped (`SceneSounds`). When a save or new game starts, the copies of traps
+  the played game does not use are destroyed; the title screen loads them again for a connected seed that has them. The Hexed Dolls come
+  from the training ground's prefabs (`Prefabs = true`), the puffers from `Level_4_Area_1_Main`. Candidates for lighter puffer sources:
+  level63 (spiky only, 21 MB) and level46 (bomb only, 36 MB) in the data folder, not yet mapped to scene names.
 - **Traps wait for a level.** No trap goes off in the hubs (HubWorld_*: enemies were buggy there); they stay queued until the player
-  is in a scene named Level*. The setup cover reads "Preparing AP World Settings".
+  is in a scene named Level*.
 - **Missile gun, round 3.** Charge sound now 0.3 s (from 1.1 s to 1.4 s of the sample) and played for every orb, no minimum gap.
   Hit particles: a released missile used to keep its flame/trail/launch particles hanging for 2 s (`Destroy(gameObject, 2f)`);
   `MissileReleaseEffectsPatch` stops and clears the `Model` and `MSL_Burst` effects at the release (the `HitFeedback` explosion

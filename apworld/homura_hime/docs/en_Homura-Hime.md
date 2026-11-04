@@ -38,8 +38,10 @@ Both traps only go off while you stand on solid ground: in the air, on a rail or
 
 A trap waits until you are in a level (never in the hub), in control (no cutscene or menu) and alive. Each option sets how many of that trap are in the
 pool (0 or `disabled` for none); they take free locations like the Special Hanami Dango do, and the counts are lowered
-when the locations in play have no room. The first time you connect at the title screen with a seed that has traps, the screen fades to black ("Preparing AP World Settings") while the game briefly loads
-level areas to copy the enemies (no prefab of them exists outside the levels), then unloads them again.
+when the locations in play have no room. The enemies are not available to the game as ready-made objects, so at launch, while the logos
+are on screen, the game briefly loads two small scenes to copy them and unloads the scenes again. If you then play a game that does not use a trap,
+its copies are removed from memory; connecting at the title screen to a seed that has them loads them again (a short hitch, on the menu only).
+No save can be loaded or game started while that runs.
 
 ## Can I keep some items in my own world, or send them to other worlds?
 

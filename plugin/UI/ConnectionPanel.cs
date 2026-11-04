@@ -16,6 +16,7 @@ internal static class ConnectionPanel
     private static readonly string[] Labels = { "Server", "Slot", "Password" };
     private static readonly string[] Values = new string[3];
     private static bool _loaded;
+    private static bool _wasConnected;
     private static int _field;
 
     internal static void Toggle() => Open = !Open;
@@ -32,6 +33,11 @@ internal static class ConnectionPanel
     /// <summary>Called every frame: keep the OS cursor free while the form is up, in case the mouse works.</summary>
     internal static void Update()
     {
+        // a successful connection closes the form (the trap setup used to, as a side effect, when it ran on connecting)
+        var connected = ApClient.Status == ConnectionStatus.Connected;
+        if (connected && !_wasConnected) Open = false;
+        _wasConnected = connected;
+
         InputBlocker.Set(Open);
         if (!Visible) return;
         Cursor.lockState = CursorLockMode.None;

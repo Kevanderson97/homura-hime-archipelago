@@ -11,11 +11,15 @@ using Random = System.Random;
 namespace HomuraHimeAP.Items;
 
 /// <summary>
-/// The traps put enemies around the player. The game keeps no prefab of these enemies (they exist only inside the scenes that
-/// use them), so a copy of each is made once per game session, in a one-time setup: a scene that holds them is loaded next to
-/// the current one, the enemies are copied into a hidden holder that survives scene changes, and the scene is unloaded again.
-/// A trap then copies from the holder, in any scene. The setup runs at the title screen, once a connection shows that the
-/// seed has traps: nothing big is loaded then, the screen is covered (see <see cref="SetupOverlay"/>) and the sound is off.
+/// The traps put enemies around the player. The game does not keep these enemies where they can be reached: the puffers exist
+/// only inside the scenes that use them, and the Hexed Dolls are prefabs that are only in memory while the training ground (whose
+/// enemy list refers to them) is loaded. So a copy of each is made once per game session, in a one-time setup: a scene that
+/// holds them is loaded next to the current one, the enemies are copied into a hidden holder that survives scene changes, and the
+/// scene is unloaded again. A trap then copies from the holder, in any scene. The first setup of a session runs at the start of
+/// the game, while the logos are on screen and nothing is known about the seed, and copies every trap. When a save or new game
+/// starts, the copies of the traps the played game does not use are dropped from memory; back at the title screen, a connection
+/// to a seed that has them runs the setup again for just those. Everything in a source scene is switched off in the frame it
+/// finishes loading, so that none of it is ever drawn.
 /// </summary>
 internal static class TrapSpawner
 {
@@ -25,6 +29,7 @@ internal static class TrapSpawner
         internal string Item;                  // the item's game key (data/items.json)
         internal string Scene;                 // a scene that holds every enemy of the trap
         internal string ComponentType;         // the enemy component the templates are found by
+        internal bool Prefabs;                 // the templates are prefab assets the scene makes available, not objects inside the scene
         internal (string Template, int Count)[] Enemies;
         internal bool Flying;                  // placed in the air around the player; otherwise a group on the ground
         internal bool NeedsGround;             // waits until the player stands on solid ground (not in the air, on a rail or in a boost)
@@ -41,7 +46,8 @@ internal static class TrapSpawner
         },
         new()
         {
-            Item = "HexedDollTrioTrap", Scene = "Level_3_Area_6_Main", ComponentType = "HonoHime.CharacterSystem.Enemy",
+            // the training ground is a small scene, and the dummy list it carries refers to a prefab of every standard enemy
+            Item = "HexedDollTrioTrap", Scene = "HubWorld_TrainingGround_Main", ComponentType = "HonoHime.CharacterSystem.Enemy", Prefabs = true,
             Enemies = new[] { ("Enemy_CursedDoll_A_Default", 1), ("Enemy_CursedDoll_B_Default", 1), ("Enemy_CursedDoll_C_Default", 1) },
             Flying = false, NeedsGround = true, InSeed = slot => slot.HexedDollTrioTraps,
         },
@@ -51,6 +57,9 @@ internal static class TrapSpawner
 
     /// <summary>The title screen has to be quiet for this long before the setup starts; the game, before a trap goes off.</summary>
     private const float TitleSettleSeconds = 1.5f, GameSettleSeconds = 6f;
+
+    /// <summary>The setup at the start of the game begins soon after the title scene is up: the logos are still playing then.</summary>
+    private const float StartupSettleSeconds = 0.3f;
 
     /// <summary>A ground trap goes off once the player has stood on solid ground for this long (not on the frame of a landing).</summary>
     private const float LandedSeconds = 0.5f;
@@ -77,6 +86,8 @@ internal static class TrapSpawner
     private static float _phaseStarted;
     private static float _groundedSince = float.MaxValue;
     private static bool _setupHinted;
+    private static bool _hideHooked;
+    private static bool _startupSetupDone;
     private static bool _wasMuted;
     private static UnityEngine.EventSystems.EventSystem _blockedInput;
 
@@ -97,7 +108,35 @@ internal static class TrapSpawner
     internal static void Tick(float time)
     {
         SetupTick(time);
-        if (_phase == Phase.Idle) TrapTick(time);
+        if (_phase != Phase.Idle) return;
+
+        if (!SaveBinding.AtTitle) Evict();
+        TrapTick(time);
+    }
+
+    /// <summary>
+    /// A save or new game has been started: the copies of the traps the played game does not use are dropped from memory (all of
+    /// them for an unrandomized game). Back at the title screen, a connection to a seed that has them loads them again.
+    /// </summary>
+    private static void Evict()
+    {
+        if (_holder == null || _holder.transform.childCount == 0) return;
+
+        var dropped = new List<string>();
+        foreach (var kind in Kinds)
+        {
+            if (Pending.GetValueOrDefault(kind) > 0 || (ApClient.State != null && kind.InSeed(ApClient.Slot) > 0)) continue;
+            foreach (var (template, _) in kind.Enemies)
+            {
+                if (_holder.transform.Find(template) is not { } copy) continue;
+                UnityEngine.Object.Destroy(copy.gameObject);
+                dropped.Add(template);
+            }
+        }
+
+        if (dropped.Count == 0) return;
+        Resources.UnloadUnusedAssets(); // what only the copies used (meshes, textures, animations) goes with them
+        Plugin.Log.LogInfo("Trap enemies the played game does not use were removed from memory: " + string.Join(", ", dropped));
     }
 
     // ---------------------------------------------------------------- the one-time setup
@@ -116,11 +155,16 @@ internal static class TrapSpawner
     /// break them). See <see cref="Patches.SetupLoadBlockPatch"/>.
     /// </summary>
     internal static bool BlocksLoading =>
-        _phase != Phase.Idle || (SaveBinding.AtTitle && ApClient.IsConnected && Missing().Any());
+        _phase != Phase.Idle || (SaveBinding.AtTitle && (!_startupSetupDone || ApClient.IsConnected) && Missing().Any());
 
-    /// <summary>The traps of this seed whose enemies have not been copied yet.</summary>
+    /// <summary>
+    /// The traps whose enemies have not been copied yet and are wanted: all of them for the first setup of the session (it runs
+    /// while the logos are shown, before anything is known about the seed), later only those of the connected seed.
+    /// </summary>
     private static IEnumerable<Kind> Missing() =>
-        Array.FindAll(Kinds, kind => !Failed.Contains(kind) && !IsCached(kind) && kind.InSeed(ApClient.Slot) > 0);
+        Array.FindAll(Kinds, kind => !Failed.Contains(kind) && !IsCached(kind) && (!_startupSetupDone || WantedBySeed(kind)));
+
+    private static bool WantedBySeed(Kind kind) => ApClient.IsConnected && kind.InSeed(ApClient.Slot) > 0;
 
     /// <summary>The source scenes the missing enemies are in, each once.</summary>
     private static void CollectMissing()
@@ -134,20 +178,29 @@ internal static class TrapSpawner
         switch (_phase)
         {
             case Phase.Idle:
-                if (!SaveBinding.AtTitle || !ApClient.IsConnected || !SceneClock.Settled(time, TitleSettleSeconds)) return;
+                // the first setup of a session does not wait for a connection: it runs while the logos are on screen
+                if (!SaveBinding.AtTitle || (_startupSetupDone && !ApClient.IsConnected)) return;
+                if (!SceneClock.Settled(time, _startupSetupDone ? TitleSettleSeconds : StartupSettleSeconds)) return;
                 CollectMissing();
-                if (Todo.Count == 0) return;
+                if (Todo.Count == 0)
+                {
+                    _startupSetupDone = true;
+                    return;
+                }
 
-                Plugin.Log.LogInfo($"Trap setup starts ({Todo.Count} source scene(s))");
+                Plugin.Log.LogInfo($"Trap setup starts ({Todo.Count} source scene(s)" + (_startupSetupDone ? ")" : ", at the start of the game)"));
+                _startupSetupDone = true;
+                SceneSounds.Remember();
                 ConnectionPanel.Open = false;
-                SetupOverlay.Show(SetupMessage);
-                BlockInput(true);
+                // temporarily off: no fade to black, no muted sound, no blocked menu input during the setup
+                // SetupOverlay.Show(SetupMessage);
+                // BlockInput(true);
                 _phase = Phase.FadingOut;
                 break;
 
             case Phase.FadingOut:
-                if (!SetupOverlay.Opaque) return; // the screen has to be black before anything is loaded
-                SetMuted(true);
+                // if (!SetupOverlay.Opaque) return; // the screen has to be black before anything is loaded
+                // SetMuted(true);
                 LoadNext(time);
                 break;
 
@@ -157,7 +210,9 @@ internal static class TrapSpawner
                 break;
 
             case Phase.Unloading:
-                if (_operation == null || _operation.isDone) LoadNext(time);
+                if (_operation != null && !_operation.isDone) return;
+                SceneSounds.StopNew(); // the scene's area ambience and wind do not end with it
+                LoadNext(time);
                 break;
 
             case Phase.Settling:
@@ -170,14 +225,15 @@ internal static class TrapSpawner
                 }
 
                 if (time - _phaseStarted < SettleBeforeFadeInSeconds) return;
-                SetupOverlay.Hide();
+                // SetupOverlay.Hide();
+                SceneSounds.StopNew();
                 _operation = null;
                 _phase = Phase.FadingIn;
                 break;
 
             case Phase.FadingIn:
-                if (SetupOverlay.Visible) return;
-                BlockInput(false);
+                // if (SetupOverlay.Visible) return;
+                // BlockInput(false);
                 _phase = Phase.Idle;
                 break;
         }
@@ -190,6 +246,12 @@ internal static class TrapSpawner
         {
             Finish(time);
             return;
+        }
+
+        if (!_hideHooked)
+        {
+            SceneManager.sceneLoaded += HideSourceScene;
+            _hideHooked = true;
         }
 
         _currentScene = Todo.Dequeue();
@@ -227,6 +289,7 @@ internal static class TrapSpawner
                     if (_holder.transform.Find(template.name) != null) continue;
                     var copy = UnityEngine.Object.Instantiate(template, _holder.transform);
                     copy.name = template.name;
+                    copy.SetActive(false); // a prefab is switched on; its copies must wake up only when a trap has placed them
                     found++;
                 }
 
@@ -239,6 +302,7 @@ internal static class TrapSpawner
             FailScene(sceneName, e.Message);
         }
 
+        SceneSounds.StopNew();
         UnloadCurrent();
     }
 
@@ -259,7 +323,7 @@ internal static class TrapSpawner
     {
         _operation = Resources.UnloadUnusedAssets(); // what the source scenes used is freed now rather than at some later load
         _phaseStarted = time;
-        SetMuted(false); // the sound comes back while the screen is still black
+        // SetMuted(false); // the sound comes back while the screen is still black
         Plugin.Log.LogInfo("Trap setup done");
         _phase = Phase.Settling;
     }
@@ -343,23 +407,51 @@ internal static class TrapSpawner
         }
     }
 
-    /// <summary>One object of each template name from a scene (they are switched off in it, so inactive objects are searched).</summary>
+    /// <summary>
+    /// One object of each template name: from the scene (they are switched off in it, and so is everything else by now, so inactive
+    /// objects are searched), or, for prefabs, the prefab assets that are in memory because the scene is loaded (root objects that
+    /// belong to no scene).
+    /// </summary>
     private static IEnumerable<GameObject> Templates(Kind kind, Scene scene)
     {
         var type = HarmonyLib.AccessTools.TypeByName(kind.ComponentType);
         var wanted = new HashSet<string>(Array.ConvertAll(kind.Enemies, e => e.Template));
         foreach (var candidate in Resources.FindObjectsOfTypeAll(type))
         {
-            if (candidate is not Component component || component.gameObject.scene != scene) continue;
-            if (wanted.Remove(component.gameObject.name)) yield return component.gameObject;
+            if (candidate is not Component component) continue;
+
+            var go = component.gameObject;
+            var wantedHere = kind.Prefabs ? !go.scene.IsValid() && go.transform.parent == null : go.scene == scene;
+            if (wantedHere && wanted.Remove(go.name)) yield return go;
         }
+    }
+
+    /// <summary>
+    /// Everything in a source scene is switched off the moment the scene has loaded: this runs after the scene's objects woke up and
+    /// before the frame is drawn (and before any of them can start), so none of it is ever on screen. The templates are still found
+    /// (inactive objects are searched) and the prefabs belong to no scene.
+    /// </summary>
+    private static void HideSourceScene(Scene scene, LoadSceneMode mode)
+    {
+        if (mode != LoadSceneMode.Additive || _phase != Phase.Loading || scene.name != _currentScene) return;
+
+        try
+        {
+            foreach (var root in scene.GetRootGameObjects()) root.SetActive(false);
+        }
+        catch (Exception e)
+        {
+            Plugin.Log.LogWarning($"Could not switch off {scene.name}: {e.Message}");
+        }
+
+        SceneSounds.StopNew(); // what woke up with the scene has already started its sounds
     }
 
     private static void Fail(Kind kind, string reason)
     {
         Failed.Add(kind);
         Plugin.Log.LogError($"{kind.Item} cannot run: {reason}");
-        Toasts.Show("This trap is not available in this game build", Toasts.Error);
+        if (WantedBySeed(kind)) Toasts.Show("This trap is not available in this game build", Toasts.Error); // not for the preload of a seed without it
     }
 
     /// <summary>Every trap that needs the scene fails with it.</summary>
