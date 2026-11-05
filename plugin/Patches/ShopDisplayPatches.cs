@@ -32,7 +32,8 @@ internal static class ShopDisplay
     /// <summary>Item types that exist as item definitions of the game (the others are currencies and plugin items).</summary>
     private static readonly HashSet<string> DefinitionTypes = new()
     {
-        "key", "ability", "dash_skill", "skill", "combo", "omamori", "gun", "upgrade", "shard", "crystal", "consumable",
+        "key", "soul_core", "ability", "dash_skill", "skill", "combo", "omamori", "gun", "upgrade", "shard", "crystal",
+        "consumable",
     };
 
     /// <summary>Stand-in shown for items that have no display of their own: a plain item whose panel is the generic one.</summary>

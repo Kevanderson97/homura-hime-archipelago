@@ -20,10 +20,10 @@ internal static class SaveFiles
     /// True when one of the game's saves was made for this slot and seed and has come as far as the ending (a save of the game
     /// being played that is still early in the story cannot stand before the choice, whatever other saves have done).
     /// </summary>
-    internal static bool AnySaveReachedFinale(string slot, string seed, int worldCount)
+    internal static bool AnySaveReachedFinale(string slot, string seed, WorldRules rules)
     {
         foreach (var record in Records())
-            if (SaveBinding.Decide(slot, seed, record) == BindingDecision.Continue && record.Progress.ReachedFinale(worldCount)) return true;
+            if (SaveBinding.Decide(slot, seed, record) == BindingDecision.Continue && record.Progress.ReachedFinale(rules)) return true;
         return false;
     }
 

@@ -208,9 +208,9 @@ HEADS = [("Level1", "Level_1_Ikai_Part_1_Main", "HP Shard"), ("Level2", "Level_2
          ("Level5", "Level_5_Ikai_Part2_Main", "Konpeitou x5000")]
 for lv, scene, vanilla in HEADS:
     add("head/" + lv, "head_chase", region_of(scene), vanilla, scene)
-# optional ambushes without a vanilla item (encounter_rewards option)
+# optional ambushes without a vanilla item
 for scene, ambush in [("Level_2_Area_3_Main", "L2C02"), ("Level_2_Ikai_Part1_Main", "L2BI01"), ("Level_4_Area_1_Main", "L4C01"), ("Level_5_Area_5_Main", "L5C01")]:
-    add("ambush/" + ambush, "ambush_reward", region_of(scene), "None", scene, option="encounter_rewards")
+    add("ambush/" + ambush, "ambush_reward", region_of(scene), "None", scene)
 
 # ---------------------------------------------------------------- Senbei on the map (37) and settlement Senbei (5)
 sen = load("locations_senbei.json")
@@ -308,7 +308,7 @@ for name, scene, vanilla in FC:
     add_rewards("trial/" + name, "trial", region_of(scene), vanilla, scene)
 # extra Senbei from the 5 settlement pickups are already in the Senbei section
 
-# ---------------------------------------------------------------- encounter clears (option encounter_clears)
+# ---------------------------------------------------------------- encounter clears
 # Every BattleRound in the game is a location sent when the round finishes. A round is identified by its scene and the
 # names of its parent objects (the "chain"), the label is the readable part of that chain.
 def encounter_label(chain):
@@ -341,7 +341,7 @@ for r in sorted((r for r in load("battlerounds.json") if r["type"] == "BattleRou
     extra = {}
     if OPTIONAL_ENCOUNTER.fullmatch(label):
         extra["optional"] = True
-    add(key, "encounter", "Hub" if r["scene"] == "Level_0_Main" else region_of(r["scene"]), "None", r["scene"], option="encounter_clears", chain=r["chain"], **extra)
+    add(key, "encounter", "Hub" if r["scene"] == "Level_0_Main" else region_of(r["scene"]), "None", r["scene"], chain=r["chain"], **extra)
 # ---------------------------------------------------------------- hand-overs and ability pickups
 # Things an NPC hands over: (key, scene, vanilla reward, kind). "gate" items open a part of a chapter, see the world's
 # SCENE_REQ / TRANSITION_REQ.
@@ -362,6 +362,13 @@ for key, scene, vanilla, hand_type in HANDOVERS:
 # instead (reaching the area needs the flower, but not the dash skill: the gap comes later in the area).
 add("handover/phantom_blade", "handover", region_of("Level_1_Area_2_Main"), "Skill_Blade Warp", "Level_1_Area_2_Main", hand_type="skill_equip", scene_req=["Pretty Little Flower"])
 add("handover/desire_circle", "handover", "Hub", "Gun_Laser", hand_type="gun")
+# The hub's stage-result screens hand over the Soul Core of the boss that was beaten (one per story chapter 1-5, "InventoryOperator_SoulCore"
+# under "StageResultFSM_LevelN"). In the randomizer the core is an item of the pool, needed to fight that boss again in Chapters 6-8.
+# The hub follows the number of cleared worlds (see WorldProgress), so the n-th cleared world shows the n-th screen and hands out
+# the n-th core, whichever world it was (verified: clearing Chapters 6, 7 and 8 first handed out the cores of Levels 1, 2 and 3).
+for number in range(1, 6):
+    # handed out by the screen of the story's n-th chapter, which the hub shows after the n-th cleared world, whichever it is
+    add("soul_core/%d" % number, "soul_core", "Hub", "Codex_Important_Level%d_SoulCore" % number, "HubWorld_Main", cleared=number)
 
 # ---------------------------------------------------------------- readable names
 # the names the game shows for items and notes (read from its localization), also used for the readable location names
@@ -432,6 +439,11 @@ for n, g in [("Pretty Little Flower", "Codex_Important_Level1_Flower"), ("Elevat
              ("Nurikabe's Hat", "Codex_Important_Level3_Nurikabe'sHat"), ("Fresh Fish", "Codex_Important_Level4_FreshFish"),
              ("Inugami Certificate", "Codex_Important_Level4_ProofOfTheLnugami"), ("Nurikabe's Gloves", "Codex_Important_Level5_Nurikabe'sGloves")]:
     item(n, "key", "progression", game=g, collection="Codex")
+# the Soul Cores of the five bosses: Chapters 6-8 fight them again and need the core of each to open the way to the fight
+for n, g in [("Agasa's Soul Core", "Codex_Important_Level1_SoulCore"), ("Ling Ling's Soul Core", "Codex_Important_Level2_SoulCore"),
+             ("Chirakuin's Soul Core", "Codex_Important_Level3_SoulCore"), ("Yumiko & Kumiko's Soul Core", "Codex_Important_Level4_SoulCore"),
+             ("Mamiya's Soul Core", "Codex_Important_Level5_SoulCore")]:
+    item(n, "soul_core", "progression", game=g, collection="Codex")  # always shuffled: their vanilla place is a clear reward
 item("Mirage Daydream: Slash", "ability", "progression", game="HH_SpecialMove")
 item("Transformation", "ability", "progression", game="TransformationAbility")
 for n, g in [("Phantom Blade", "Skill_Blade Warp"), ("Spark Rush", "Skill_Blaze Rush"), ("Quake Strike", "Skill_Quaking Strike"), ("Bloodflame Palm", "Skill_Bloodflame Palm")]:
@@ -472,7 +484,7 @@ item("Senbei", "currency", "filler", count=0, game="Crackers", amount=1)
 item("2 Senbei", "currency", "filler", count=0, game="Crackers", amount=2)
 # sizes a Konpeito filler item can be raised to when the pool has to reach options.MinimumKonpeito ("ladder": true)
 KONPEITO_LADDER = (500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7500, 10000)
-# larger pieces the ladder continues with ("big_ladder": true), used only without encounter_clears when the target does not fit
+# larger pieces the ladder continues with ("big_ladder": true), used only without optional_locations when the target does not fit
 # otherwise: there are about 110 fewer places for Konpeito items then, and the same target
 KONPEITO_BIG_LADDER = (15000, 20000, 30000)
 for amount in sorted(set(KONPEITO_LADDER) | set(KONPEITO_BIG_LADDER) | set(FIXED_KONPEITO)):
@@ -498,7 +510,6 @@ json.dump(registry, open(reg_path, "w", encoding="utf-8"), ensure_ascii=False, i
 
 # ---------------------------------------------------------------- report
 print("locations:", len(locations), dict(Counter(l["category"] for l in locations)))
-print("optional-only:", sum(1 for l in locations if l.get("option")))
 print("items:", len(ITEMS), "fixed item copies:", sum(i["count"] for i in ITEMS if i["classification"] != "filler" and "option" not in i and i["type"] != "unlock"))
 
 # ---------------------------------------------------------------- copy into the apworld package

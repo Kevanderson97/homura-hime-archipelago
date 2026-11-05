@@ -51,9 +51,9 @@ def test_many_traps_generate_with_every_filler_local():
         generate(seed * 7 + 1, {"puffer_swarm_traps": 99, "local_items": local}, 1, check=False)
 
 
-class TestTrapsGiveWayWithoutEncounterClears(HomuraHimeLogicBase):
-    """With 110 fewer locations the traps are the optional group that gives way when the Konpeito target needs room."""
-    options = {"encounter_clears": False, "minimum_konpeito": 1000000}
+class TestTrapsGiveWayWithoutOptionalLocations(HomuraHimeLogicBase):
+    """With 78 fewer locations the traps are the optional group that gives way when the Konpeito target needs room."""
+    options = {"optional_locations": False, "minimum_konpeito": 1000000}
 
     def test_only_a_few_are_left(self):
         count = [i.name for i in self.multiworld.itempool if i.player == self.player].count(TRAP)

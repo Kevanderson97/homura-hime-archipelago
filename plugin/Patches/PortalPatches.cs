@@ -41,6 +41,10 @@ internal static class TeleportPatch
             return false;
         }
 
+        // the boss fights of Chapters 6-8 need the Soul Core of the boss (doors and the walk to Agasa's tree stop earlier, see
+        // SoulCoreGate; this catches the Chapter Select and every automatic change of scene)
+        if (SoulCoreGate.Blocks(key)) return false;
+
         ChapterAccess.OnPortalUsed(key);
         return true;
     }

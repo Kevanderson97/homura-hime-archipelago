@@ -906,7 +906,6 @@
   "region": "Level2_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_3_Main",
-  "option": "encounter_rewards",
   "name": "Level 2 Area 3: Ambush Reward (C02)"
  },
  {
@@ -916,7 +915,6 @@
   "region": "Level2_Area_6_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Ikai_Part1_Main",
-  "option": "encounter_rewards",
   "name": "Level 2 Demonic Realm 1: Ambush Reward (BI01)"
  },
  {
@@ -926,7 +924,6 @@
   "region": "Level4_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_1_Main",
-  "option": "encounter_rewards",
   "name": "Level 4 Area 1: Ambush Reward (C01)"
  },
  {
@@ -936,7 +933,6 @@
   "region": "Level5_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Area_5_Main",
-  "option": "encounter_rewards",
   "name": "Level 5 Area 5: Ambush Reward (C01)"
  },
  {
@@ -2936,7 +2932,6 @@
   "region": "Level1_BossRoom_Pass1",
   "vanilla": "None",
   "scene": "Level1Boss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 1 Boss: Fight"
  },
@@ -2947,7 +2942,6 @@
   "region": "Level2_BossRoom",
   "vanilla": "None",
   "scene": "Level2Boss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 2 Boss: Fight"
  },
@@ -2958,7 +2952,6 @@
   "region": "Level3_BossRoom",
   "vanilla": "None",
   "scene": "Level3Boss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 3 Boss: Fight"
  },
@@ -2969,7 +2962,6 @@
   "region": "Level3_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level3_SecretZone_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < 詛咒小黑流程 < 中心點",
   "name": "Level 3 Secret Zone: Fight"
  },
@@ -2980,7 +2972,6 @@
   "region": "Hub",
   "vanilla": "None",
   "scene": "Level_0_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_ < FSM_最終驗收GamePlay < FSM < Gameplay_實戰練習 < GameplayRound_戰鬥教學",
   "name": "Tutorial: Fight"
  },
@@ -2991,7 +2982,6 @@
   "region": "Level1_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_1_Area_1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_ < FSM BattleRound < Gameplay_B02 < GameplayRound_B02與祭品事件 < GameplayRoundHandler",
   "name": "Level 1 Area 1: Fight"
  },
@@ -3002,7 +2992,6 @@
   "region": "Level1_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_1_Area_1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥B01 < GameplayRoundHandler",
   "name": "Level 1 Area 1: Encounter B01"
  },
@@ -3013,7 +3002,6 @@
   "region": "Level1_Area_2_Entrance",
   "vanilla": "None",
   "scene": "Level_1_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B03 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
   "name": "Level 1 Area 2: Encounter B03"
  },
@@ -3024,7 +3012,6 @@
   "region": "Level1_Area_2_Entrance",
   "vanilla": "None",
   "scene": "Level_1_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_額外戰鬥C01 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 1 Area 2: Encounter C01"
@@ -3036,7 +3023,6 @@
   "region": "Level1_Area_2_Entrance",
   "vanilla": "None",
   "scene": "Level_1_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B04 < FSM BattleRound < Gameplay_B04必要戰鬥 < GameplayRound_小梅與玩偶和B04 < GameplayRoundHandler",
   "name": "Level 1 Area 3: Encounter B04"
  },
@@ -3047,7 +3033,6 @@
   "region": "Level1_BossRoom_Pass1",
   "vanilla": "None",
   "scene": "Level_1_BossPass2",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 1 Boss (Pass 2): Fight"
  },
@@ -3058,7 +3043,6 @@
   "region": "Level1_Ikai_Part1_Entrance",
   "vanilla": "None",
   "scene": "Level_1_Ikai_Part_1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B01 < FSM BattleRound B01 < Gameplay_B01必要戰鬥 < GameplayRound_DemoBattle < GameplayRoundHandler",
   "name": "Level 1 Demonic Realm 1: Encounter B01"
  },
@@ -3069,7 +3053,6 @@
   "region": "Level2_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥B01與離開 < GameplayRoundHandler",
   "name": "Level 2 Area 2: Encounter B01"
  },
@@ -3080,7 +3063,6 @@
   "region": "Level2_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B02 < FSM BattleRound < Gameplay_B02&DE < GameplayRound_戰鬥B02&結尾DE < GameplayRoundHandler",
   "name": "Level 2 Area 3: Encounter B02"
  },
@@ -3091,7 +3073,6 @@
   "region": "Level2_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 2 Area 3: Encounter C01"
@@ -3103,7 +3084,6 @@
   "region": "Level2_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C02 < FSM BattleRound Template < Gameplay_C02 < GameplayRound_C02 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 2 Area 3: Encounter C02"
@@ -3115,7 +3095,6 @@
   "region": "Level2_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_4_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B03 < FSM < Gameplay_B03 < GameplayRound_大水與塗壁流程 < GameplayRoundHandler",
   "name": "Level 2 Area 4: Encounter B03"
  },
@@ -3126,7 +3105,6 @@
   "region": "Level2_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_4_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B04 < FSM BattleRound B04 < Gameplay_B04 < GameplayRound_大水與塗壁流程 < GameplayRoundHandler",
   "name": "Level 2 Area 4: Encounter B04"
  },
@@ -3137,7 +3115,6 @@
   "region": "Level2_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_5_2F_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
   "name": "Level 2 Area 5 2F: Encounter B05"
  },
@@ -3148,7 +3125,6 @@
   "region": "Level2_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_5_2F_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B06 < FSM BattleRound TriggerCollider < Gameplay_B06 < GameplayRound_B06與追逐環節 < GameplayRoundHandler",
   "name": "Level 2 Area 5 2F: Encounter B06"
  },
@@ -3159,7 +3135,6 @@
   "region": "Level2_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C03 < FSM BattleRound Template < Gameplay_C03 < GameplayRound_C03 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 2 Area 5: Encounter C03"
@@ -3171,7 +3146,6 @@
   "region": "Level2_Area_6_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Area_6_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B07 < FSM BattleRound < Gameplay_B07 < GameplayRound_B07與離開 < GameplayRoundHandler",
   "name": "Level 2 Area 6: Encounter B07"
  },
@@ -3182,7 +3156,6 @@
   "region": "Level2_Area_6_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_BI01 < FSM BattleRound TriggerCollider < Gameplay_BI01 < GameplayRound_戰鬥BI01與離開 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 2 Demonic Realm 1: Encounter BI01"
@@ -3194,7 +3167,6 @@
   "region": "Level2_Area_6_Entrance",
   "vanilla": "None",
   "scene": "Level_2_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C04 < FSM BattleRound TriggerCollider < Gameplay_C04 < GameplayRound_C04 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 2 Demonic Realm 1: Encounter C04"
@@ -3206,7 +3178,6 @@
   "region": "Level2_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_2_MidBoss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 2 Mid-Boss: Fight"
  },
@@ -3217,7 +3188,6 @@
   "region": "Level3_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < B01必要戰鬥 < Gameplay_B01 < GameplayRound_戰鬥B01與等待離開 < GameplayRoundHandler",
   "name": "Level 3 Area 1: Fight"
  },
@@ -3228,7 +3198,6 @@
   "region": "Level3_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B02 < FSM BattleRound TriggerCollider < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
   "name": "Level 3 Area 2: Encounter B02"
  },
@@ -3239,7 +3208,6 @@
   "region": "Level3_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 3 Area 2: Encounter C01"
@@ -3251,7 +3219,6 @@
   "region": "Level3_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B03 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
   "name": "Level 3 Area 3: Encounter B03"
  },
@@ -3262,7 +3229,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_塗壁與戰鬥B05 < GameplayRoundHandler",
   "name": "Level 3 Area 5: Encounter B05"
  },
@@ -3273,7 +3239,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_6_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B06 < B06FinalBattle < Gameplay_戰鬥B06 < GameplayRound_開場與戰鬥B06 < GameplayRoundHandler",
   "name": "Level 3 Area 6: Encounter B06"
  },
@@ -3284,7 +3249,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_7_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B07 < 開場戰鬥 < Gameplay_B07 < GameplayRound_戰鬥B07 < GameplayRoundHandler",
   "name": "Level 3 Area 7: Encounter B07"
  },
@@ -3295,7 +3259,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Area_7_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC01 < FSM BattleRound TriggerCollider < Gameplay_Battle_FC01 < GameplayRound_FC01 < ExtraChallengeController_BattleRound_FC01",
   "optional": true,
   "name": "Level 3 Area 7: Encounter FC01"
@@ -3307,7 +3270,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < BattleRound_BI01 < Gameplay_BI01 < GameplayRound_戰鬥BI01 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter BI01"
@@ -3319,7 +3281,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room1 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room1"
@@ -3331,7 +3292,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room2 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room2"
@@ -3343,7 +3303,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room3 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room3"
@@ -3355,7 +3314,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room4 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room4"
@@ -3367,7 +3325,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room5 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room5"
@@ -3379,7 +3336,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room6 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room6"
@@ -3391,7 +3347,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room7 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room7"
@@ -3403,7 +3358,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room8 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room8"
@@ -3415,7 +3369,6 @@
   "region": "Level3_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room9 < MechanicDoor",
   "optional": true,
   "name": "Level 3 Demonic Realm 1: Encounter Room9"
@@ -3427,7 +3380,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_BI02 < FSM BattleRound < Gameplay_BI01 < GameplayRound_戰鬥BI02 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter BI02"
@@ -3439,7 +3391,6 @@
   "region": "Level4_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B01 < B01Battle_FSM < Gameplay_B01BattleStart < GameplayRound_廣場事件 < GameplayRoundHandler",
   "name": "Level 4 Area 1: Encounter B01"
  },
@@ -3450,7 +3401,6 @@
   "region": "Level4_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C01 < C01Battle_FSM < Gameplay_C01Battle < GameplayRound_C01Battle < GameplayRoundHandler",
   "optional": true,
   "name": "Level 4 Area 1: Encounter C01"
@@ -3462,7 +3412,6 @@
   "region": "Level4_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B02 < FSM < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
   "name": "Level 4 Area 2: Encounter B02"
  },
@@ -3473,7 +3422,6 @@
   "region": "Level4_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B03 < FSM < Gameplay_B03 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
   "name": "Level 4 Area 2: Encounter B03"
  },
@@ -3484,7 +3432,6 @@
   "region": "Level4_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B04 < FSM < Gameplay_釣魚Dialog+B04 < GameplayRound_戰鬥B04 < GameplayRoundHandler",
   "name": "Level 4 Area 3: Encounter B04"
  },
@@ -3495,7 +3442,6 @@
   "region": "Level4_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B05 < Gameplay_路燈後B05 < GameplayRound_戰鬥B05 < GameplayRoundHandler",
   "name": "Level 4 Area 3: Encounter B05"
  },
@@ -3506,7 +3452,6 @@
   "region": "Level4_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B06 < Gameplay_B06 < GameplayRound_線人與逃跑流程 < GameplayRoundHandler",
   "name": "Level 4 Area 3: Encounter B06"
  },
@@ -3517,7 +3462,6 @@
   "region": "Level4_Area_3_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC02 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_L4A3_FC02 < ExtraChallengeController_BattleRound_L4A3_FC02",
   "optional": true,
   "name": "Level 4 Area 3: Encounter FC02"
@@ -3529,7 +3473,6 @@
   "region": "Level4_Area_4_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_Arena_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round1 < GameplayRound_武鬥大會 < GameplayRoundHandler",
   "name": "Level 4 Arena: Encounter Round1"
  },
@@ -3540,7 +3483,6 @@
   "region": "Level4_Area_4_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_Arena_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round2 < GameplayRound_武鬥大會 < GameplayRoundHandler",
   "name": "Level 4 Arena: Encounter Round2"
  },
@@ -3551,7 +3493,6 @@
   "region": "Level4_Area_4_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_Arena_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round3 < GameplayRound_武鬥大會 < GameplayRoundHandler",
   "name": "Level 4 Arena: Encounter Round3"
  },
@@ -3562,7 +3503,6 @@
   "region": "Level4_Area_4_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Area_Arena_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_ < FSM L4 Arena BattleRound < Gameplay_Round4 < GameplayRound_武鬥大會 < GameplayRoundHandler",
   "name": "Level 4 Arena: Encounter Round4"
  },
@@ -3573,7 +3513,6 @@
   "region": "Level4_BossRoom",
   "vanilla": "None",
   "scene": "Level_4_Boss",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 4 Boss: Fight"
  },
@@ -3584,7 +3523,6 @@
   "region": "Level4_BossRoom",
   "vanilla": "None",
   "scene": "Level_4_BossPhase2",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 4 Boss (Phase 2): Fight"
  },
@@ -3595,7 +3533,6 @@
   "region": "Level4_Ikai_Part1_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Ikai_Part1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_BI01 < FSM BattleRound < Gameplay_BI01 < GameplayRound_莉佳AC與戰鬥 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 4 Demonic Realm 1: Encounter BI01"
@@ -3607,7 +3544,6 @@
   "region": "Level4_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B07 < FSM < Gameplay_必要戰鬥_B07 < GameplayRound_飛船一 < GameplayRoundHandler",
   "name": "Level 4 Demonic Realm 2: Encounter B07"
  },
@@ -3618,7 +3554,6 @@
   "region": "Level4_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B08 < FSM < Gameplay_必要戰鬥B08 < GameplayRound_飛船二 < GameplayRoundHandler",
   "name": "Level 4 Demonic Realm 2: Encounter B08"
  },
@@ -3629,7 +3564,6 @@
   "region": "Level4_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_4_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B09 < FSM < Gameplay_雙子戰鬥撐45 < GameplayRound_飛船三 < GameplayRoundHandler",
   "name": "Level 4 Demonic Realm 2: Encounter B09"
  },
@@ -3640,7 +3574,6 @@
   "region": "Level5_Area_1_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Area_2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B01 < FSM BattleRound < Gameplay_B01 < GameplayRound_戰鬥 < GameplayRoundHandler",
   "name": "Level 5 Area 2: Encounter B01"
  },
@@ -3651,7 +3584,6 @@
   "region": "Level5_Area_4_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Area_4_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B02 < FSM BattleRound TriggerCollider < Gameplay_B02 < GameplayRound_戰鬥B02與離開 < GameplayRoundHandler",
   "name": "Level 5 Area 4: Encounter B02"
  },
@@ -3662,7 +3594,6 @@
   "region": "Level5_Area_4_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Area_4_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC03 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_L5A4_FC03 < ExtraChallengeController_BattleRound_L5A4_FC03",
   "optional": true,
   "name": "Level 5 Area 4: Encounter FC03"
@@ -3674,7 +3605,6 @@
   "region": "Level5_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Area_5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B3 < GameplayRound_戰鬥B03 < GameplayRoundHandler",
   "name": "Level 5 Area 5: Encounter B03"
  },
@@ -3685,7 +3615,6 @@
   "region": "Level5_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Area_5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_C01 < FSM BattleRound Template < Gameplay_C01 < GameplayRound_C01 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 5 Area 5: Encounter C01"
@@ -3697,7 +3626,6 @@
   "region": "Level5_BossRoom",
   "vanilla": "None",
   "scene": "Level_5_Boss",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Level 5 Boss: Fight"
  },
@@ -3708,7 +3636,6 @@
   "region": "Level5_Area_5_Entrance",
   "vanilla": "None",
   "scene": "Level_5_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_BI01 < FSM BattleRound TriggerCollider < Gameplay_BI01 < GameplayRound_戰鬥BI01與追頭 < GameplayRoundHandler",
   "optional": true,
   "name": "Level 5 Demonic Realm 2: Encounter BI01"
@@ -3720,7 +3647,6 @@
   "region": "LevelFinalP0_Jinguu",
   "vanilla": "None",
   "scene": "Level_FinalP0_Jinguu_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < FSM BattleRound TriggerCollider < Gameplay_必要戰鬥 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
   "name": "Climax: Fight"
  },
@@ -3731,7 +3657,6 @@
   "region": "LevelFinalP1_L1_Ikai_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP1_L1_A3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B02 < FSM BattleRound < Gameplay_B02 < GameplayRound_戰鬥B02 < GameplayRoundHandler",
   "name": "Chapter 6 (Level 1) Area 3: Encounter B02"
  },
@@ -3742,7 +3667,6 @@
   "region": "LevelFinalP1_L1_Ikai_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP1_L1_A3_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC04 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP1L1A3_FC04 < ExtraChallengeController_BattleRound_LFP1L1A3_FC04",
   "optional": true,
   "name": "Chapter 6 (Level 1) Area 3: Encounter FC04"
@@ -3754,7 +3678,6 @@
   "region": "LevelFinalP1_L1_Ikai_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP1_L1_Ikai_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B01 < FSM BattleRound B01 < Gameplay_B01必要戰鬥 < GameplayRound_B01 < GameplayRoundHandler",
   "name": "Chapter 6 (Level 1) Demonic Realm: Encounter B01"
  },
@@ -3765,7 +3688,6 @@
   "region": "LevelFinalP1_L2_Boss",
   "vanilla": "None",
   "scene": "Level_FinalP1_L2Boss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 6 (Level 2) Boss: Fight"
  },
@@ -3776,7 +3698,6 @@
   "region": "LevelFinalP1_L2_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP1_L2_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < FSM BattleRound < Gameplay_B03 < GameplayRound_黑炎姬戰鬥 < GameplayRoundHandler",
   "name": "Chapter 6 (Level 2) Area 5: Fight"
  },
@@ -3787,7 +3708,6 @@
   "region": "LevelFinalP1_L2_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP1_L2_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B03 < FSM BattleRound < Gameplay_B03 < GameplayRound_黑炎姬戰鬥 < GameplayRoundHandler",
   "name": "Chapter 6 (Level 2) Area 5: Encounter B03"
  },
@@ -3798,7 +3718,6 @@
   "region": "LevelFinalP2_L3_Boss",
   "vanilla": "None",
   "scene": "Level_FinalP2_L3Boss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 7 (Level 3) Boss: Fight"
  },
@@ -3809,7 +3728,6 @@
   "region": "LevelFinalP2_L3_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L3_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B04 < FSM BattleRound TriggerCollider < Gameplay_B04 < GameplayRound_B04 < GameplayRoundHandler",
   "name": "Chapter 7 (Level 3) Area 5: Encounter B04"
  },
@@ -3820,7 +3738,6 @@
   "region": "LevelFinalP2_L3_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L3_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B05 < FSM BattleRound TriggerCollider < Gameplay_B05 < GameplayRound_B05 < GameplayRoundHandler",
   "name": "Chapter 7 (Level 3) Area 5: Encounter B05"
  },
@@ -3831,7 +3748,6 @@
   "region": "LevelFinalP2_L3_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L3_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC05 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L3A5_FC05 < ExtraChallengeController_BattleRound_LFP2L3A5_FC05",
   "optional": true,
   "name": "Chapter 7 (Level 3) Area 5: Encounter FC05"
@@ -3843,7 +3759,6 @@
   "region": "LevelFinalP2_L3_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L3_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC06 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L3A5_FC06 < ExtraChallengeController_BattleRound_LFP2L3A5_FC06",
   "optional": true,
   "name": "Chapter 7 (Level 3) Area 5: Encounter FC06"
@@ -3855,7 +3770,6 @@
   "region": "LevelFinalP2_L4_Boss",
   "vanilla": "None",
   "scene": "Level_FinalP2_L4Boss_Phase1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 7 (Level 4) Boss Phase 1: Fight"
  },
@@ -3866,7 +3780,6 @@
   "region": "LevelFinalP2_L4_Boss",
   "vanilla": "None",
   "scene": "Level_FinalP2_L4Boss_Phase2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 7 (Level 4) Boss Phase 2: Fight"
  },
@@ -3877,7 +3790,6 @@
   "region": "LevelFinalP2_L4_A2_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L4_A2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B06 < FSM BattleRound B06 < Gameplay_B06 < GameplayRound_DE與戰鬥B06 < GameplayRoundHandler",
   "name": "Chapter 7 (Level 4) Area 2: Encounter B06"
  },
@@ -3888,7 +3800,6 @@
   "region": "LevelFinalP2_L4_A2_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L4_A2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC07 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP2L4A2_FC07 < ExtraChallengeController_BattleRound_LFP2L4A2_FC07",
   "optional": true,
   "name": "Chapter 7 (Level 4) Area 2: Encounter FC07"
@@ -3900,7 +3811,6 @@
   "region": "LevelFinalP2_L4_A2_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L4_Ikai_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_W1 < FSM BattleRound B07 < Gameplay_B07 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
   "name": "Chapter 7 (Level 4) Demonic Realm: Encounter W1"
  },
@@ -3911,7 +3821,6 @@
   "region": "LevelFinalP2_L4_A2_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP2_L4_Ikai_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_W2 < FSM BattleRound B07 < Gameplay_B07 < GameplayRound_開場與戰鬥 < GameplayRoundHandler",
   "name": "Chapter 7 (Level 4) Demonic Realm: Encounter W2"
  },
@@ -3922,7 +3831,6 @@
   "region": "LevelFinalP3_L5_Boss",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5Boss_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 8 (Level 5) Boss: Fight"
  },
@@ -3933,7 +3841,6 @@
   "region": "LevelFinalP3_L5_A2_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_A2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 8 (Level 5) Area 2: Fight"
  },
@@ -3944,7 +3851,6 @@
   "region": "LevelFinalP3_L5_A2_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_A2_Phase2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Chapter 8 (Level 5) Area 2 Phase 2: Fight"
  },
@@ -3955,7 +3861,6 @@
   "region": "LevelFinalP3_L5_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B09 < FSM BattleRound < Gameplay_B09 < GameplayRound_B09 < GameplayRoundHandler",
   "name": "Chapter 8 (Level 5) Area 5: Encounter B09"
  },
@@ -3966,7 +3871,6 @@
   "region": "LevelFinalP3_L5_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC09 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5A5_FC09 < ExtraChallengeController_BattleRound_LFP3L5A5_FC09",
   "optional": true,
   "name": "Chapter 8 (Level 5) Area 5: Encounter FC09"
@@ -3978,7 +3882,6 @@
   "region": "LevelFinalP3_L5_A5_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_A5_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC10 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5A5_FC10 < ExtraChallengeController_BattleRound_LFP3L5A5_FC10",
   "optional": true,
   "name": "Chapter 8 (Level 5) Area 5: Encounter FC10"
@@ -3990,7 +3893,6 @@
   "region": "LevelFinalP3_L5_Ikai_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_Ikai_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_B08 < FSM BattleRound TriggerCollider < Gameplay_B08 < GameplayRound_戰鬥B08 < GameplayRoundHandler",
   "name": "Chapter 8 (Level 5) Demonic Realm: Encounter B08"
  },
@@ -4001,7 +3903,6 @@
   "region": "LevelFinalP3_L5_Ikai_Entrance",
   "vanilla": "None",
   "scene": "Level_FinalP3_L5_Ikai_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound_FC08 < FSM BattleRound TriggerCollider < Gameplay_Battle < GameplayRound_EC_LFP3L5Ikai2_FC08 < ExtraChallengeController_BattleRound_LFP3L5Ikai2_FC08",
   "optional": true,
   "name": "Chapter 8 (Level 5) Demonic Realm: Encounter FC08"
@@ -4013,7 +3914,6 @@
   "region": "LevelFinalP4_Jinguu_Phase1",
   "vanilla": "None",
   "scene": "Level_FinalP4_Jinguu_Phase1_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Finale Phase 1: Fight"
  },
@@ -4024,7 +3924,6 @@
   "region": "LevelFinalP4_Jinguu_Phase1",
   "vanilla": "None",
   "scene": "Level_FinalP4_Jinguu_Phase2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound",
   "name": "Finale Phase 2: Fight"
  },
@@ -4035,7 +3934,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 1 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room1"
@@ -4047,7 +3945,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 10 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room10"
@@ -4059,7 +3956,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 11 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room11"
@@ -4071,7 +3967,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 12 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room12"
@@ -4083,7 +3978,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 13 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room13"
@@ -4095,7 +3989,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 2 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room2"
@@ -4107,7 +4000,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 3 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room3"
@@ -4119,7 +4011,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 4 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room4"
@@ -4131,7 +4022,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 5 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room5"
@@ -4143,7 +4033,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 6 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room6"
@@ -4155,7 +4044,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 7 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room7"
@@ -4167,7 +4055,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 8 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room8"
@@ -4179,7 +4066,6 @@
   "region": "Level3_Ikai_Part2_Entrance",
   "vanilla": "None",
   "scene": "Level_3_Ikai_Part2_Main",
-  "option": "encounter_clears",
   "chain": "BattleRound < DungeonRoom < DungeonRoom < Room 9 < Door",
   "optional": true,
   "name": "Level 3 Demonic Realm 2: Encounter Room9"
@@ -4300,5 +4186,55 @@
   "vanilla": "Codex_Note_FinalLevel_Ikai",
   "scene": "Level_FinalP3_L5_A5_Main",
   "name": "Chapter 8 (Level 5) Area 5: Glitched Spirit Trial 10 (Part 2)"
+ },
+ {
+  "id": 7300358,
+  "key": "soul_core/1",
+  "category": "soul_core",
+  "region": "Hub",
+  "vanilla": "Codex_Important_Level1_SoulCore",
+  "scene": "HubWorld_Main",
+  "cleared": 1,
+  "name": "Hub: Soul Core (1st World Cleared)"
+ },
+ {
+  "id": 7300359,
+  "key": "soul_core/2",
+  "category": "soul_core",
+  "region": "Hub",
+  "vanilla": "Codex_Important_Level2_SoulCore",
+  "scene": "HubWorld_Main",
+  "cleared": 2,
+  "name": "Hub: Soul Core (2nd World Cleared)"
+ },
+ {
+  "id": 7300360,
+  "key": "soul_core/3",
+  "category": "soul_core",
+  "region": "Hub",
+  "vanilla": "Codex_Important_Level3_SoulCore",
+  "scene": "HubWorld_Main",
+  "cleared": 3,
+  "name": "Hub: Soul Core (3rd World Cleared)"
+ },
+ {
+  "id": 7300361,
+  "key": "soul_core/4",
+  "category": "soul_core",
+  "region": "Hub",
+  "vanilla": "Codex_Important_Level4_SoulCore",
+  "scene": "HubWorld_Main",
+  "cleared": 4,
+  "name": "Hub: Soul Core (4th World Cleared)"
+ },
+ {
+  "id": 7300362,
+  "key": "soul_core/5",
+  "category": "soul_core",
+  "region": "Hub",
+  "vanilla": "Codex_Important_Level5_SoulCore",
+  "scene": "HubWorld_Main",
+  "cleared": 5,
+  "name": "Hub: Soul Core (5th World Cleared)"
  }
 ]

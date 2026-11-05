@@ -1,4 +1,5 @@
 ﻿{
+  "Codex_Important_Level4_SoulCore": { "name": "Yumiko & Kumiko's Soul Core", "override": true },
   "Gun_Board": { "name": "Ann's Board", "override": true },
   "Gun_Missile": { "name": "Fortunate Misfortune", "override": true },
   "Gun_Shotgun": { "name": "Ruptured Bones", "override": true },

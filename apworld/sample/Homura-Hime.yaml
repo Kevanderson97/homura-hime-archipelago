@@ -34,7 +34,7 @@ game: Homura-Hime
 requires:
   version: 0.6.6 # Version of Archipelago required for this yaml to work as expected.
   game:
-    Homura-Hime: 0.4.0 # Version of the world required for this yaml to work as expected.
+    Homura-Hime: 0.4.1 # Version of the world required for this yaml to work as expected.
 
 Homura-Hime:
   ################
@@ -68,6 +68,19 @@ Homura-Hime:
   ############
   # Chapters #
   ############
+  goal:
+    # What opens the Finale, the last area, where the goal is to defeat Ann (the Kill ending).
+    # 
+    # all_worlds: all eight chapters and the Climax are cleared.
+    # return_all_soul_cores: only Chapters 6, 7 and 8 have to be cleared. Those chapters fight the bosses of Levels 1-5
+    # again and the way to every one of those fights needs that boss's Soul Core, so the goal is to return all the
+    # Soul Cores. Chapters 1-5 and the Climax stay playable for their checks but are not needed for the goal. Worlds
+    # still open in the play order (or by their own key), so it shortens the game only when Chapters 6-8 can be reached
+    # before the others: with a randomized order, or with freeform level keys. In the story order without freeform keys
+    # every world comes before Chapter 8 anyway.
+    all_worlds: 50
+    return_all_soul_cores: 0
+
   level_order:
     # In which order the eight chapters and the Climax are played.
     # 
@@ -109,26 +122,19 @@ Homura-Hime:
   #############
   # Locations #
   #############
-  encounter_clears:
-    # Clearing any fight (every encounter, ambush, trial arena and boss phase, 110 of them) is a location.
+  optional_locations:
+    # Whether the optional content is part of the game: the ambush fights and their chests (8 of them, 4 give nothing
+    # in the base game), the glitched-spirit trials (20), the Kushinada head chases (5) and the fights of the Ikai
+    # dungeon rooms and of the optional ambushes and trials (45), 78 locations in all. Off: they are no locations, the
+    # base game hands out what it always did there and the fights count for nothing.
     'false': 0
     'true': 50
-
-  encounter_rewards:
-    # Optional Ambush fights that normally give no item (4 of them) become locations.
-    'false': 0
-    'true': 50
-
-  include_cut_content:
-    # Add content that exists in the game files but is never obtained normally: Ann's Board, Fortunate Misfortune,
-    # Ruptured Bones (guns) and the Flame-Stoking Explosion Charm (skill).
-    'false': 50
-    'true': 0
 
   optional_location_importance:
-    # How many of the optional locations (ambushes, trials, head chases, Ikai dungeon rooms) may hold progression or
-    # useful items, in percent. The default is all of them: the level select is always available, so optional fights can
-    # be replayed. Lower it to keep what you need out of optional fights; the rest then only hold filler.
+    # How many of the optional locations (see optional_locations) may hold progression or useful items, in percent.
+    # The default is all of them: the level select is always available, so optional fights can be replayed. Lower it to
+    # keep what you need out of optional fights; the rest then only hold filler. Has no effect when optional_locations
+    # is off.
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
@@ -138,6 +144,12 @@ Homura-Hime:
     random-low: 0 # random value weighted towards lower values
     random-high: 0 # random value weighted towards higher values
     random-range-0-100: 0 # random value between 0 and 100
+
+  include_cut_content:
+    # Add content that exists in the game files but is never obtained normally: Ann's Board, Fortunate Misfortune,
+    # Ruptured Bones (guns) and the Flame-Stoking Explosion Charm (skill).
+    'false': 50
+    'true': 0
 
   ##################
   # Shuffled Items #
@@ -187,8 +199,8 @@ Homura-Hime:
     # (which the randomizer takes away and hands out as items) plus Konpeito filler, which grows in size when more is
     # needed. The hub currency boards pay nothing; enemies, boxes and other pickups on the map still drop Konpeito on top.
     # 550,000 is a little more than S-ranking every mission in the base game pays; 750,000 is the in-game achievement.
-    # With fewer locations (encounter_clears off) the pool may not have room for high values; the most it can hold is used
-    # and a warning is logged.
+    # With fewer locations (optional_locations off) the pool may not have room for high values; the most it can hold is
+    # used and a warning is logged.
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
@@ -228,8 +240,8 @@ Homura-Hime:
 
   dango_count:
     # How many Special Hanami Dango are added to the item pool. The shop's Dango slot is a single location
-    # regardless. When the locations in play cannot hold the count (without encounter_clears there are about 110
-    # fewer), it is lowered to what fits and the generation log says so.
+    # regardless. When the locations in play cannot hold the count (without optional_locations there are 78 fewer), it
+    # is lowered to what fits and the generation log says so.
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
@@ -267,7 +279,7 @@ Homura-Hime:
   puffer_swarm_traps:
     # How many Puffer Swarm Traps are added to the item pool. A trap spawns 4 flying bombs and 4 flying spiky enemies
     # around you, 6 to 20 metres away. 0 has no traps. When the locations in play cannot hold the count (without
-    # encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so.
+    # optional_locations there are 78 fewer), it is lowered to what fits and the generation log says so.
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
@@ -282,7 +294,7 @@ Homura-Hime:
   hexed_doll_trio_traps:
     # How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each
     # colour, 4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play
-    # cannot hold the count (without encounter_clears there are about 110 fewer), it is lowered to what fits and the
+    # cannot hold the count (without optional_locations there are 78 fewer), it is lowered to what fits and the
     # generation log says so.
     #
     # You can define additional values between the minimum and maximum values.

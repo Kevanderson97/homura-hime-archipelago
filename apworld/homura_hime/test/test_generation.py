@@ -53,7 +53,7 @@ class TestLinearKeysRandom(HomuraHimeTestBase):
 class TestEverything(HomuraHimeTestBase):
     options = {
         "level_unlock_items": "linear_progression", "level_order": "randomized", "include_cut_content": True,
-        "encounter_rewards": True, "dango_count": 99,
+        "dango_count": 99,
     }
 
 
@@ -87,16 +87,16 @@ class KonpeitoPoolTestBase(HomuraHimeTestBase):
         return sum(1 for item in self.owned_items() if item.name == name)
 
 
-class TestWithoutEncounterClearsTheKonpeitoTargetIsLower(KonpeitoPoolTestBase):
-    """The fights still pay Konpeito in the game (at least 1000 each), so with 110 fewer places in the pool the target
-    is 110,000 lower, and the Full Heal / Ultimate Charge filler and the Dango keep their room (without traps: they take
-    room too, see TestTrapsGiveWayWithoutEncounterClears)."""
-    options = {"encounter_clears": False, "puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}
+class TestWithoutOptionalLocationsTheKonpeitoTargetIsLower(KonpeitoPoolTestBase):
+    """The optional fights still pay Konpeito in the game (at least 1000 each), so with 78 fewer places in the pool,
+    45 of them fights, the target is 45,000 lower, and the Full Heal / Ultimate Charge filler and the Dango keep their
+    room (without traps: they take room too, see TestTrapsGiveWayWithoutOptionalLocations)."""
+    options = {"optional_locations": False, "puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}
 
-    def test_the_target_is_110000_lower(self):
+    def test_the_target_is_45000_lower(self):
         total = sum(self.konpeito())
-        self.assertGreaterEqual(total, 440000)
-        self.assertLess(total, 440000 + 30000)  # raised pieces overshoot the target by less than a piece
+        self.assertGreaterEqual(total, 505000)
+        self.assertLess(total, 505000 + 30000)  # raised pieces overshoot the target by less than a piece
 
     def test_the_filler_is_kept_where_the_target_fits(self):
         self.assertEqual(self.count("Special Hanami Dango"), 15)
@@ -107,11 +107,12 @@ class TestWithoutEncounterClearsTheKonpeitoTargetIsLower(KonpeitoPoolTestBase):
         self.assertNotIn(30000, self.konpeito())
 
 
-class TestWithoutEncounterClearsAndTheHighestTarget(KonpeitoPoolTestBase):
-    """Where lowering the target is not enough, the filler gives way step by step and the pieces may grow to 30000."""
+class TestWithoutOptionalLocationsAndTheHighestTarget(KonpeitoPoolTestBase):
+    """Where lowering the target is not enough, the filler gives way step by step (the pieces may grow to 30000 only
+    where that is still not enough, which the 78 fewer locations never need: the highest target fits without them)."""
 
     options = {
-        "encounter_clears": False,
+        "optional_locations": False,
         "minimum_konpeito": 1000000,
         "full_heal_count": 50,
         "ultimate_charge_count": 50,
@@ -125,11 +126,11 @@ class TestWithoutEncounterClearsAndTheHighestTarget(KonpeitoPoolTestBase):
         self.assertEqual(self.count("Full Heal") + self.count("Ultimate Charge"), 0)
         self.assertEqual(self.count("Special Hanami Dango"), 3)
         self.assertEqual(self.world.options.dango_count.value, 3)
-        self.assertIn(30000, self.konpeito())
+        self.assertNotIn(30000, self.konpeito())
 
 
-class TestWithEncounterClearsTheUsualPieces(KonpeitoPoolTestBase):
-    """The larger pieces are only for the pool without encounter clears: every other seed is built as before."""
+class TestWithOptionalLocationsTheUsualPieces(KonpeitoPoolTestBase):
+    """The larger pieces are only for the pool without optional locations: every other seed is built as before."""
     options = {"minimum_konpeito": 1000000}
 
     def test_no_piece_above_the_usual_largest(self):
@@ -184,9 +185,9 @@ class TestNonLocalGroupThatIsNotShuffled(HomuraHimeTestBase):
 
 
 class TestDangoGivesWayToFewLocations(HomuraHimeTestBase):
-    """Without encounter clears (about 110 fewer locations) the most Dango do not fit; the count is lowered instead of
+    """Without optional locations (78 fewer locations) the most Dango may not fit; the count is lowered instead of
     the generation of every player's game stopping, and the Senbei the shops cost keep their room."""
-    options = {"encounter_clears": False, "dango_count": 99, "senbei_count": 80}
+    options = {"optional_locations": False, "dango_count": 99, "senbei_count": 80}
 
     def test_the_dango_count_is_lowered_to_what_fits(self):
         self.assertLess(self.world.options.dango_count.value, 99)
@@ -201,7 +202,7 @@ class TestDangoGivesWayToFewLocations(HomuraHimeTestBase):
 class TestExcludedLocationsNeedFiller(HomuraHimeTestBase):
     """Only filler can fill an excluded location, so a low importance of the optional locations cannot exclude more of
     them than the pool has filler items (this combination used to stop the fill)."""
-    options = {"encounter_clears": False, "encounter_rewards": True, "optional_location_importance": 0}
+    options = {"optional_location_importance": 0}
 
     def test_no_more_excluded_than_filler(self):
         excluded = [loc for loc in self.multiworld.get_locations(self.player)
@@ -224,7 +225,7 @@ class TestTutorialLocations(HomuraHimeTestBase):
 
 
 class TestEncounterClears(HomuraHimeTestBase):
-    options = {"encounter_clears": True}
+    """Every fight is a location, whatever the options say."""
 
     def test_encounter_locations_present(self):
         names = self.location_keys()

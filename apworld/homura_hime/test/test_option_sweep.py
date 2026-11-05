@@ -14,8 +14,8 @@ from . import test_generation  # the base class is used through the module so th
 SWEEP_SIZE = int(os.environ.get("HH_SWEEP", "24"))
 SWEEP_SEED = int(os.environ.get("HH_SWEEP_SEED", "20261022"))
 
-TOGGLES = ["advanced_movement_required", "include_cut_content", "encounter_rewards",
-           "encounter_clears", "death_link", "death_link_skip_revives", "shop_hints",
+TOGGLES = ["advanced_movement_required", "include_cut_content",
+           "optional_locations", "death_link", "death_link_skip_revives", "shop_hints",
            "shuffle_combos", "shuffle_skills", "shuffle_omamori", "shuffle_guns", "shuffle_shards",
            "shuffle_upgrades", "shuffle_key_items"]
 # (name, lowest, highest, the values worth trying besides a random one)
@@ -31,7 +31,8 @@ ITEM_GROUPS = ["Key Items", "Dash Skills", "Chapter Unlocks", "Guns", "Omamori",
 
 
 def combination(rng: random.Random) -> dict:
-    options = {"level_order": rng.choice(["off", "balanced", "full"]),
+    options = {"goal": rng.choice(["all_worlds", "return_all_soul_cores"]),
+               "level_order": rng.choice(["off", "balanced", "full"]),
                "level_unlock_items": rng.choice(["off", "linear_progression", "freeform_progression"])}
     for name in TOGGLES:
         options[name] = rng.random() < 0.5

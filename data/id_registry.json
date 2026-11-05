@@ -357,7 +357,12 @@
   "trial/FC07#2": 7300354,
   "trial/FC08#2": 7300355,
   "trial/FC09#2": 7300356,
-  "trial/FC10#2": 7300357
+  "trial/FC10#2": 7300357,
+  "soul_core/1": 7300358,
+  "soul_core/2": 7300359,
+  "soul_core/3": 7300360,
+  "soul_core/4": 7300361,
+  "soul_core/5": 7300362
  },
  "items": {
   "Nurikabe's Hat": 7200003,
@@ -462,6 +467,11 @@
   "Climax Unlock": 7200099,
   "Progressive Level Key": 7200100,
   "Puffer Swarm Trap": 7200101,
-  "Hexed Doll Trio Trap": 7200102
+  "Hexed Doll Trio Trap": 7200102,
+  "Agasa's Soul Core": 7200103,
+  "Ling Ling's Soul Core": 7200104,
+  "Chirakuin's Soul Core": 7200105,
+  "Yumiko & Kumiko's Soul Core": 7200106,
+  "Mamiya's Soul Core": 7200107
  }
 }

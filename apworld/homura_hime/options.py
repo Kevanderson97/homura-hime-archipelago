@@ -4,6 +4,22 @@ from dataclasses import dataclass
 from Options import Choice, DeathLink, DefaultOnToggle, NamedRange, OptionGroup, PerGameCommonOptions, Range, Toggle
 
 
+class Goal(Choice):
+    """What opens the Finale, the last area, where the goal is to defeat Ann (the Kill ending).
+
+    all_worlds: all eight chapters and the Climax are cleared.
+    return_all_soul_cores: only Chapters 6, 7 and 8 have to be cleared. Those chapters fight the bosses of Levels 1-5
+    again and the way to every one of those fights needs that boss's Soul Core, so the goal is to return all the
+    Soul Cores. Chapters 1-5 and the Climax stay playable for their checks but are not needed for the goal. Worlds
+    still open in the play order (or by their own key), so it shortens the game only when Chapters 6-8 can be reached
+    before the others: with a randomized order, or with freeform level keys. In the story order without freeform keys
+    every world comes before Chapter 8 anyway."""
+    display_name = "Goal"
+    option_all_worlds = 0
+    option_return_all_soul_cores = 1
+    default = 0
+
+
 class LevelOrder(Choice):
     """In which order the eight chapters and the Climax are played.
 
@@ -54,8 +70,8 @@ class AdvancedMovementRequired(Toggle):
 
 class DangoCount(Range):
     """How many Special Hanami Dango are added to the item pool. The shop's Dango slot is a single location
-    regardless. When the locations in play cannot hold the count (without encounter_clears there are about 110
-    fewer), it is lowered to what fits and the generation log says so."""
+    regardless. When the locations in play cannot hold the count (without optional_locations there are 78 fewer), it
+    is lowered to what fits and the generation log says so."""
     display_name = "Special Hanami Dango In Pool"
     range_start = 0
     range_end = 99
@@ -68,20 +84,19 @@ class IncludeCutContent(Toggle):
     display_name = "Include Cut Content"
 
 
-class EncounterRewards(DefaultOnToggle):
-    """Optional Ambush fights that normally give no item (4 of them) become locations."""
-    display_name = "Optional Encounter Rewards"
-
-
-class EncounterClears(DefaultOnToggle):
-    """Clearing any fight (every encounter, ambush, trial arena and boss phase, 110 of them) is a location."""
-    display_name = "Encounter Clears"
+class OptionalLocations(DefaultOnToggle):
+    """Whether the optional content is part of the game: the ambush fights and their chests (8 of them, 4 give nothing
+    in the base game), the glitched-spirit trials (20), the Kushinada head chases (5) and the fights of the Ikai
+    dungeon rooms and of the optional ambushes and trials (45), 78 locations in all. Off: they are no locations, the
+    base game hands out what it always did there and the fights count for nothing."""
+    display_name = "Optional Locations"
 
 
 class OptionalLocationImportance(Range):
-    """How many of the optional locations (ambushes, trials, head chases, Ikai dungeon rooms) may hold progression or
-    useful items, in percent. The default is all of them: the level select is always available, so optional fights can
-    be replayed. Lower it to keep what you need out of optional fights; the rest then only hold filler."""
+    """How many of the optional locations (see optional_locations) may hold progression or useful items, in percent.
+    The default is all of them: the level select is always available, so optional fights can be replayed. Lower it to
+    keep what you need out of optional fights; the rest then only hold filler. Has no effect when optional_locations
+    is off."""
     display_name = "Important Items In Optional Locations"
     range_start = 0
     range_end = 100
@@ -128,8 +143,8 @@ class MinimumKonpeito(Range):
     (which the randomizer takes away and hands out as items) plus Konpeito filler, which grows in size when more is
     needed. The hub currency boards pay nothing; enemies, boxes and other pickups on the map still drop Konpeito on top.
     550,000 is a little more than S-ranking every mission in the base game pays; 750,000 is the in-game achievement.
-    With fewer locations (encounter_clears off) the pool may not have room for high values; the most it can hold is used
-    and a warning is logged."""
+    With fewer locations (optional_locations off) the pool may not have room for high values; the most it can hold is
+    used and a warning is logged."""
     display_name = "Minimum Konpeito In The Pool"
     range_start = 0
     range_end = 1000000
@@ -139,7 +154,7 @@ class MinimumKonpeito(Range):
 class PufferSwarmTraps(NamedRange):
     """How many Puffer Swarm Traps are added to the item pool. A trap spawns 4 flying bombs and 4 flying spiky enemies
     around you, 6 to 20 metres away. 0 has no traps. When the locations in play cannot hold the count (without
-    encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so."""
+    optional_locations there are 78 fewer), it is lowered to what fits and the generation log says so."""
     display_name = "Puffer Swarm Traps In Pool"
     range_start = 0
     range_end = 99
@@ -150,7 +165,7 @@ class PufferSwarmTraps(NamedRange):
 class HexedDollTrioTraps(NamedRange):
     """How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each
     colour, 4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play
-    cannot hold the count (without encounter_clears there are about 110 fewer), it is lowered to what fits and the
+    cannot hold the count (without optional_locations there are 78 fewer), it is lowered to what fits and the
     generation log says so."""
     display_name = "Hexed Doll Trio Traps In Pool"
     range_start = 0
@@ -215,12 +230,12 @@ class ShopHints(DefaultOnToggle):
 
 @dataclass
 class HomuraHimeOptions(PerGameCommonOptions):
+    goal: Goal
     level_order: LevelOrder
     level_unlock_items: LevelUnlockItems
     dango_count: DangoCount
     include_cut_content: IncludeCutContent
-    encounter_rewards: EncounterRewards
-    encounter_clears: EncounterClears
+    optional_locations: OptionalLocations
     optional_location_importance: OptionalLocationImportance
     senbei_count: SenbeiCount
     full_heal_count: FullHealCount
@@ -244,8 +259,8 @@ class HomuraHimeOptions(PerGameCommonOptions):
 
 # How the options page groups the options.
 option_groups = [
-    OptionGroup("Chapters", [LevelOrder, LevelUnlockItems, AdvancedMovementRequired]),
-    OptionGroup("Locations", [EncounterClears, EncounterRewards, IncludeCutContent, OptionalLocationImportance]),
+    OptionGroup("Chapters", [Goal, LevelOrder, LevelUnlockItems, AdvancedMovementRequired]),
+    OptionGroup("Locations", [OptionalLocations, OptionalLocationImportance, IncludeCutContent]),
     OptionGroup("Shuffled Items", [ShuffleCombos, ShuffleSkills, ShuffleOmamori, ShuffleGuns, ShuffleShards,
                                    ShuffleUpgrades, ShuffleKeyItems]),
     OptionGroup("Item Pool", [MinimumKonpeito, FillerSakuraRatio, SenbeiCount, DangoCount, FullHealCount,

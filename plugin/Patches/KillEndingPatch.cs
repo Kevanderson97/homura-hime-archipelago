@@ -61,9 +61,9 @@ internal static class KillEndingPatch
         if (!KillEnding.IsKill(fsmEvent.Name, __instance.GameObjectName, __instance.ActiveStateName)) return;
 
         var state = ApClient.State;
-        var worlds = WorldProgress.WorldCount;
-        var played = SaveBinding.CurrentSaveSlot.HasValue && state.CapturePlaythrough().ReachedFinale(worlds);
-        if (!KillEnding.CountsForGoal(played, () => SaveFiles.AnySaveReachedFinale(state.Slot, state.Seed, worlds)))
+        var rules = WorldProgress.CurrentRules;
+        var played = SaveBinding.CurrentSaveSlot.HasValue && state.CapturePlaythrough().ReachedFinale(rules);
+        if (!KillEnding.CountsForGoal(played, () => SaveFiles.AnySaveReachedFinale(state.Slot, state.Seed, rules)))
         {
             Plugin.Log.LogInfo($"The goal was not reported: no save of this game (slot {state.Slot}, seed {state.Seed}) has reached the ending");
             UI.Toasts.Show("Goal not reported: none of your saves of this Archipelago game has reached the ending", UI.Toasts.Error);

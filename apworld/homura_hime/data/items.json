@@ -63,6 +63,51 @@
   "collection": "Codex"
  },
  {
+  "id": 7200103,
+  "name": "Agasa's Soul Core",
+  "type": "soul_core",
+  "classification": "progression",
+  "count": 1,
+  "game": "Codex_Important_Level1_SoulCore",
+  "collection": "Codex"
+ },
+ {
+  "id": 7200104,
+  "name": "Ling Ling's Soul Core",
+  "type": "soul_core",
+  "classification": "progression",
+  "count": 1,
+  "game": "Codex_Important_Level2_SoulCore",
+  "collection": "Codex"
+ },
+ {
+  "id": 7200105,
+  "name": "Chirakuin's Soul Core",
+  "type": "soul_core",
+  "classification": "progression",
+  "count": 1,
+  "game": "Codex_Important_Level3_SoulCore",
+  "collection": "Codex"
+ },
+ {
+  "id": 7200106,
+  "name": "Yumiko & Kumiko's Soul Core",
+  "type": "soul_core",
+  "classification": "progression",
+  "count": 1,
+  "game": "Codex_Important_Level4_SoulCore",
+  "collection": "Codex"
+ },
+ {
+  "id": 7200107,
+  "name": "Mamiya's Soul Core",
+  "type": "soul_core",
+  "classification": "progression",
+  "count": 1,
+  "game": "Codex_Important_Level5_SoulCore",
+  "collection": "Codex"
+ },
+ {
   "id": 7200007,
   "name": "Mirage Daydream: Slash",
   "type": "ability",

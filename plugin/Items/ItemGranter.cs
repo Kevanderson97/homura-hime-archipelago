@@ -180,6 +180,7 @@ internal static class ItemGranter
         switch (item.Type)
         {
             case "key":
+            case "soul_core":
             case "ability":
             case "dash_skill":
             case "skill":

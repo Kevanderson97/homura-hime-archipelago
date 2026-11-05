@@ -47,7 +47,7 @@ SAKURA_VALUES: dict[str, int] = {i["name"]: i["amount"] for i in CURRENCY if i["
 SENBEI_VALUES: dict[str, int] = {i["name"]: i["amount"] for i in CURRENCY if i["game"] == "Crackers"}
 # Sizes a Konpeito filler item can be raised to when the pool has to reach the minimum total (options.MinimumKonpeito).
 KONPEITO_LADDER: list[int] = sorted(i["amount"] for i in ITEMS if i.get("ladder"))
-# The same with larger pieces on top, for a pool with fewer places (no encounter_clears) that cannot reach the total
+# The same with larger pieces on top, for a pool with fewer places (no optional_locations) that cannot reach the total
 # otherwise.
 KONPEITO_BIG_LADDER: list[int] = sorted(i["amount"] for i in ITEMS if i.get("ladder") or i.get("big_ladder"))
 
@@ -62,12 +62,18 @@ LOCATION_GROUPS = {
     "Chests": {"chest", "ambush_chest", "head_chase"}, "Senbei": {"senbei"}, "Journals": {"journal"}, "Shop": {"shop"},
     "Encounters": {"encounter"}, "Trials": {"trial"}, "Ambushes": {"ambush_chest", "ambush_reward"},
     "Hand-overs": {"handover", "tournament", "stall"}, "Harumi": {"harumi"},
-    "Clear Rewards": {"stage_clear", "tutorial_clear"},
+    "Clear Rewards": {"stage_clear", "soul_core", "tutorial_clear"},
 }
 
 # Location categories that are optional content (ambushes, trials = glitched-spirit challenges, Kushinada head chases).
 # Encounter locations carry their own "optional" flag, bosses and regular encounters are mandatory.
 OPTIONAL_CATEGORIES = {"ambush_chest", "ambush_reward", "trial", "head_chase"}
+
+
+def is_optional(loc: dict) -> bool:
+    """Whether a location is optional content: the ones the options optional_locations and
+    optional_location_importance are about."""
+    return loc["category"] in OPTIONAL_CATEGORIES or bool(loc.get("optional"))
 
 DASH_SKILLS = ["Skill Phantom Blade", "Skill Spark Rush", "Skill Quake Strike", "Skill Bloodflame Palm"]
 

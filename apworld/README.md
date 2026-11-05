@@ -41,18 +41,22 @@ was not regenerated. Copy it into `Players/` and edit the values to generate a s
 
 ## Content
 
-- 345 locations: chests, Senbei, journals, 42 shop slots, stage clears, Harumi, hand-overs, trials, the tutorial reward,
-  110 encounter clears (`encounter_clears`, default on) and 4 ambush rewards (`encounter_rewards`, default on).
-- 103 item definitions. Pool: the fixed progression/useful items, Special Hanami Dango, Puffer Swarm and Hexed Doll Trio
-  Traps (`puffer_swarm_traps`, `hexed_doll_trio_traps`, defaults 20 and 5; sized like the Dango, lowered first when room
-  is short), Senbei (single and "2 Senbei"), one Konpeito item per vanilla Konpeito payout, Full Heal / Ultimate Charge
-  and the currency filler (Konpeito and Sakura).
+- 350 locations: chests, Senbei, journals, 42 shop slots, stage clears, Harumi, hand-overs, the five Soul Cores, trials,
+  the tutorial reward, 110 encounter clears and 4 ambush rewards. The 78 optional ones (`is_optional` in `game_data.py`:
+  ambushes, trials, head chases, optional fights) exist only with `optional_locations` (default on).
+- 108 item definitions (five of them the Soul Cores that open the Chapter 6-8 boss fights). Pool: the fixed
+  progression/useful items, Special Hanami Dango, Puffer Swarm and Hexed Doll Trio Traps (`puffer_swarm_traps`,
+  `hexed_doll_trio_traps`, defaults 20 and 5; sized like the Dango, lowered first when room is short), Senbei (single
+  and "2 Senbei"), one Konpeito item per vanilla Konpeito payout, Full Heal / Ultimate Charge and the currency filler
+  (Konpeito and Sakura).
 - Regions: Menu, Hub, one region per sub-chapter (chained inside a chapter) and the finale. Events: `Chapter N Entered`,
   `Chapter N Cleared`, `Climax Entered`, `Climax Cleared`, `Victory`. The Climax (`LevelFinalP0`, one region) is a world
   of its own; its events do not count for the economy (`Chapters Cleared (count)`), which stays at the eight chapters.
 
 ## Logic
 
+- **Goal** (`goal`): `all_worlds` needs every chapter and the Climax cleared to enter the Finale;
+  `return_all_soul_cores` only Chapters 6, 7 and 8 (`SOUL_CORE_WORLDS`, `_can_enter_finale`).
 - **Order** (`level_order`): `off` is the story order, `full` a uniform shuffle, `balanced` a tilted one (the first
   world is always one of Chapters 1-4, the second is one with a 66% chance and the third with a 40% chance, each of the
   last three is a late world, Chapter 5-8 or the Climax, with a 60% chance, the middle three take the rest;
@@ -97,11 +101,13 @@ was not regenerated. Copy it into `Players/` and edit the values to generate a s
   have `flags` 0, so clients see filler. Cleared chapters are counted the same way.- **Stage clears** need the chapter
   cleared; the festival stall needs the Inugami Certificate; Desire Circle's hand-over waits for the first cleared
   chapter.
-- `optional_location_importance` below 100 excludes that share of optional locations from progression/useful items.
+- `optional_location_importance` below 100 excludes that share of optional locations from progression/useful items. With
+  `optional_locations` off those locations are gone, the base game hands out what it always did there, and the fixed
+  items they held (`_items_of_missing_locations`) leave the pool.
 
 ## Slot data
 
-`world_version`, `level_order`, `level_order_mode`, `dango_count`, `puffer_swarm_traps`, `hexed_doll_trio_traps` and the
+`world_version`, `goal`, `level_order`, `level_order_mode`, `dango_count`, `puffer_swarm_traps`, `hexed_doll_trio_traps` and the
 toggles in `SLOT_DATA_TOGGLES`. The plugin accepts worlds of its own major.minor version
 (`plugin/Archipelago/SlotData.cs`). `interpret_slot_data` lets Universal Tracker regenerate the world from it.
 

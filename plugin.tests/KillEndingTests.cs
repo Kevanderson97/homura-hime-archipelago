@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using HomuraHimeAP.Patches;
 using Xunit;
 
@@ -46,13 +47,28 @@ public class KillEndingTests
     }
 
     [Theory]
-    [InlineData(9, 9, true)]   // all eight chapters and the Climax
-    [InlineData(8, 9, false)]  // a world still to clear
-    [InlineData(0, 9, false)]  // a new game
-    public void ASaveIsAtTheEndingOnceEveryWorldIsCleared(int clearedWorlds, int worldCount, bool atFinale)
+    [InlineData(9, true)]   // all eight chapters and the Climax
+    [InlineData(8, false)]  // a world still to clear
+    [InlineData(0, false)]  // a new game
+    public void ASaveIsAtTheEndingOnceEveryWorldIsCleared(int clearedWorlds, bool atFinale)
     {
+        var order = HomuraHimeAP.Core.WorldRules.VanillaOrder.ToList();
         var progress = new HomuraHimeAP.Core.Playthrough();
-        for (var i = 0; i < clearedWorlds; i++) progress.ClearedWorlds.Add("World" + i);
-        Assert.Equal(atFinale, progress.ReachedFinale(worldCount));
+        foreach (var world in order.Take(clearedWorlds)) progress.ClearedWorlds.Add(world);
+        var rules = new HomuraHimeAP.Core.WorldRules(order, HomuraHimeAP.Core.UnlockMode.Off);
+        Assert.Equal(atFinale, progress.ReachedFinale(rules));
+    }
+
+    [Fact]
+    public void WithTheSoulCoreGoalASaveIsAtTheEndingOnceChapters6To8AreCleared()
+    {
+        var order = HomuraHimeAP.Core.WorldRules.VanillaOrder.ToList();
+        var rules = new HomuraHimeAP.Core.WorldRules(order, HomuraHimeAP.Core.UnlockMode.Freeform,
+            HomuraHimeAP.Core.WorldRules.SoulCoreWorlds);
+        var progress = new HomuraHimeAP.Core.Playthrough();
+        Assert.False(progress.ReachedFinale(rules));
+
+        progress.ClearedWorlds.UnionWith(HomuraHimeAP.Core.WorldRules.SoulCoreWorlds);
+        Assert.True(progress.ReachedFinale(rules)); // Chapters 1-5 and the Climax do not matter
     }
 }

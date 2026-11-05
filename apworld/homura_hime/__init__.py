@@ -52,13 +52,13 @@ from .game_data import (
     LOCATIONS,
     NAME_OF_KEY,
     NUMBERED_CHAPTERS,
-    OPTIONAL_CATEGORIES,
     SAKURA_ITEMS,
     SAKURA_VALUES,
     SAKURA_WEIGHTS,
     SENBEI_VALUES,
     SHOP_PRICES,
     SHOP_SENBEI,
+    is_optional,
 )
 from .options import HomuraHimeOptions, option_groups
 from .presets import options_presets
@@ -98,18 +98,18 @@ PETALS_PER_CHAPTER = 280
 HARUMI_MAX_PETALS = max(loc["petals"] for loc in LOCATIONS if loc["category"] == "harumi")
 MIN_SAKURA_IN_POOL = HARUMI_MAX_PETALS - PETALS_PER_CHAPTER * len(NUMBERED_CHAPTERS)
 
-# Without encounter_clears (110 fewer locations) the fights still pay their Konpeito in the game, which the logic does
-# not count: at least this much per fight (the amount depends on the rating), so the pool is asked for that much less
-# Konpeito. Where the target still does not fit, the Full Heal / Ultimate Charge filler goes first, then all but
-# CLEARS_OFF_DANGO of the Special Hanami Dango, then all but CLEARS_OFF_TRAPS of each trap, then the Konpeito pieces may
-# grow past the usual largest (see HomuraHimeWorld.create_items).
-CLEARS_OFF_KONPEITO_PER_FIGHT = 1000
-CLEARS_OFF_DANGO = 3
-CLEARS_OFF_TRAPS = 5
-CLEARS_OFF_STEPS = [("no_heals", "no Full Heal / Ultimate Charge filler"),
-                    ("few_dango", f"only {CLEARS_OFF_DANGO} Special Hanami Dango"),
-                    ("few_traps", f"only {CLEARS_OFF_TRAPS} of each trap"),
-                    ("big_pieces", f"Konpeito pieces up to {KONPEITO_BIG_LADDER[-1]}")]
+# Without optional_locations (78 fewer locations, 45 of them fights) the optional fights still pay their Konpeito in the
+# game, which the logic does not count: at least this much per fight (the amount depends on the rating), so the pool is
+# asked for that much less Konpeito. Where the target still does not fit, the Full Heal / Ultimate Charge filler goes
+# first, then all but FEW_DANGO of the Special Hanami Dango, then all but FEW_TRAPS of each trap, then the Konpeito
+# pieces may grow past the usual largest (see HomuraHimeWorld.create_items).
+KONPEITO_PER_OPTIONAL_FIGHT = 1000
+FEW_DANGO = 3
+FEW_TRAPS = 5
+FEWER_LOCATIONS_STEPS = [("no_heals", "no Full Heal / Ultimate Charge filler"),
+                         ("few_dango", f"only {FEW_DANGO} Special Hanami Dango"),
+                         ("few_traps", f"only {FEW_TRAPS} of each trap"),
+                         ("big_pieces", f"Konpeito pieces up to {KONPEITO_BIG_LADDER[-1]}")]
 
 # Only the large currency pieces count for the logic: every counted item is an advancement item the fill has to place,
 # and fill time grows with their number. The counted pieces stand for the whole pool: what they add up to is scaled by
@@ -162,6 +162,14 @@ TRANSITION_REQ: dict[str, list[str]] = {
     "Level4_Area_3_Entrance": ["Fresh Fish"],
     "Level4_Area_4_Entrance": ["Inugami Certificate"],
     "Level5_Area_5_Entrance": ["Nurikabe's Gloves"],
+    # Chapters 6-8 fight the bosses of Levels 1-5 again, and the way to each fight needs the Soul Core of that boss (the
+    # plugin keeps the door shut without it): Ling Ling and the Corpse Princess, Nozomi, Yumiko & Kumiko, Agasa (the
+    # first area of Chapter 8) and Mamiya.
+    "LevelFinalP1_L2_A5_Entrance": ["Ling Ling's Soul Core"],
+    "LevelFinalP2_L3_A5_Entrance": ["Chirakuin's Soul Core"],
+    "LevelFinalP2_L4_A2_Entrance": ["Yumiko & Kumiko's Soul Core"],
+    "LevelFinalP3_L5_Ikai_Entrance": ["Agasa's Soul Core"],
+    "LevelFinalP3_L5_A5_Entrance": ["Mamiya's Soul Core"],
 }
 
 # Gate items must not be placed in the part of their own area where we cannot yet tell front from behind.
@@ -180,9 +188,12 @@ SHUFFLE_GROUPS = {
     "shuffle_shards": {"shard", "crystal"}, "shuffle_upgrades": {"upgrade"}, "shuffle_key_items": {"key"},
 }
 
+# Chapters 6, 7 and 8: the goal "return_all_soul_cores" opens the Finale once these are cleared.
+SOUL_CORE_WORLDS = ["LevelFinalP1", "LevelFinalP2", "LevelFinalP3"]
+
 # Options the plugin and Universal Tracker read from the slot data (sent as they are, booleans for toggles).
-SLOT_DATA_TOGGLES = ["include_cut_content", "encounter_rewards", "encounter_clears",
-                     "advanced_movement_required", "death_link", "death_link_skip_revives", "shop_hints"]
+SLOT_DATA_TOGGLES = ["include_cut_content", "optional_locations", "advanced_movement_required", "death_link",
+                     "death_link_skip_revives", "shop_hints"]
 
 
 CURRENCY_NAMES = set(KONPEITO_VALUES) | set(SAKURA_VALUES) | set(SENBEI_VALUES)
@@ -242,6 +253,7 @@ class HomuraHimeWorld(World):
     location_name_to_id = LOCATION_NAME_TO_ID
     item_name_groups: ClassVar[dict[str, set[str]]] = {
         "Key Items": set(GATE_ITEMS),
+        "Soul Cores": {i["name"] for i in ITEMS if i["type"] == "soul_core"},
         "Dash Skills": set(DASH_SKILLS),
         "Chapter Unlocks": {i["name"] for i in ITEMS if i["type"] in ("unlock", "unlock_progressive")},
         "Guns": {i["name"] for i in ITEMS if i["type"] == "gun"},
@@ -353,6 +365,7 @@ class HomuraHimeWorld(World):
     def _apply_passthrough(self, slot_data: dict[str, Any]) -> None:
         """Universal Tracker regenerates the world from the slot data: the same chapter order and options."""
         self.order = list(slot_data["level_order"])
+        self.options.goal.value = self.options.goal.options[slot_data.get("goal", "all_worlds")]
         self.options.level_order.value = self.options.level_order.options[slot_data["level_order_mode"]]
         self.options.level_unlock_items.value = self.options.level_unlock_items.options[slot_data["level_unlock_items"]]
         for name in SLOT_DATA_TOGGLES:
@@ -364,10 +377,8 @@ class HomuraHimeWorld(World):
         return slot_data
 
     def _active_locations(self) -> list[dict]:
-        """The location records in play: the optional encounter locations only exist when their option is on."""
-        return [loc for loc in LOCATIONS
-                if not (loc.get("option") == "encounter_rewards" and not self.options.encounter_rewards)
-                and not (loc.get("option") == "encounter_clears" and not self.options.encounter_clears)]
+        """The location records in play: the optional ones (see is_optional) exist when optional_locations is on."""
+        return [loc for loc in LOCATIONS if self.options.optional_locations or not is_optional(loc)]
 
     def create_item(self, name: str) -> HomuraHimeItem:
         """Creates an item of this world; the classification depends on the options (see the comments below)."""
@@ -407,6 +418,24 @@ class HomuraHimeWorld(World):
                     break
         return placed
 
+    def _items_of_missing_locations(self) -> list[str]:
+        """
+        The fixed items (not currency) that the base game hands out at the locations that are not in play: they stay
+        where the game puts them, so the pool does not hold a second copy.
+        """
+        by_definition = {i["game"]: i["name"] for i in ITEMS
+                         if i["classification"] != "filler" and i["type"] not in ("currency", "unlock")}
+        active = {loc["key"] for loc in self.active_locations}
+        missing = []
+        for loc in LOCATIONS:
+            if loc["key"] in active:
+                continue
+            for part in (loc.get("vanilla") or "").split(";"):
+                name = by_definition.get(re.sub(r"\s+x\d+$", "", part.strip()))
+                if name is not None:
+                    missing.append(name)
+        return missing
+
     def create_items(self) -> None:
         """
         Builds the item pool: the fixed items of the game, the Konpeito the base game pays at its locations, the
@@ -423,7 +452,7 @@ class HomuraHimeWorld(World):
             if item.get("option") == "cut_content" and not self.options.include_cut_content:
                 continue
             pool += [item["name"]] * item["count"]
-        for item_name in locked.values():
+        for item_name in [*locked.values(), *self._items_of_missing_locations()]:
             if item_name in pool:
                 pool.remove(item_name)
         if self.options.level_unlock_items == self.options.level_unlock_items.option_freeform_progression:
@@ -435,9 +464,9 @@ class HomuraHimeWorld(World):
         pool += [f"{amount} Konpeito" for amount in fixed_konpeito]
 
         # The Dango count is the one large group the player sizes freely, so it gives way when the locations in play
-        # (fewer without encounter_clears) cannot hold it, after the Senbei the shops cost and the Sakura Harumi's last
-        # reward needs (see _currency_filler). An error here would stop the generation of every player's game, not only
-        # this one.
+        # (fewer without optional_locations) cannot hold it, after the Senbei the shops cost and the Sakura Harumi's
+        # last reward needs (see _currency_filler). An error here would stop the generation of every player's game, not
+        # only this one.
         slots = len(self.active_locations) - len(locked)
         total = self.options.senbei_count.value
         senbei_slots = min(
@@ -491,13 +520,13 @@ class HomuraHimeWorld(World):
         minimum = self.options.minimum_konpeito.value
         heals, charges = self.options.full_heal_count.value, self.options.ultimate_charge_count.value
         ladder = KONPEITO_LADDER
-        if not self.options.encounter_clears:
-            # The fights still pay their Konpeito in the game, the logic just does not count it, and there are about 110
-            # fewer places for Konpeito items. So the pool is asked for less, and where that still does not fit the
-            # Konpeito target, the rest of the filler gives way, one step at a time (see CLEARS_OFF_STEPS).
-            fights = sum(1 for loc in LOCATIONS if loc.get("option") == "encounter_clears")
-            minimum = max(0, minimum - CLEARS_OFF_KONPEITO_PER_FIGHT * fights)
-            for step, adjust in CLEARS_OFF_STEPS:
+        if not self.options.optional_locations:
+            # The optional fights still pay their Konpeito in the game, the logic just does not count it, and there are
+            # 78 fewer places for items. So the pool is asked for less, and where that still does not fit the Konpeito
+            # target, the rest of the filler gives way, one step at a time (see FEWER_LOCATIONS_STEPS).
+            fights = sum(1 for loc in LOCATIONS if loc["category"] == "encounter" and is_optional(loc))
+            minimum = max(0, minimum - KONPEITO_PER_OPTIONAL_FIGHT * fights)
+            for step, adjust in FEWER_LOCATIONS_STEPS:
                 state = self.random.getstate()
                 missing = assemble(dango, traps, heals, charges, minimum, ladder)[1]
                 self.random.setstate(state)  # a trial: the real pool is built from the same random state
@@ -506,12 +535,12 @@ class HomuraHimeWorld(World):
                 if step == "no_heals":
                     heals = charges = 0
                 elif step == "few_dango":
-                    dango = min(dango, CLEARS_OFF_DANGO)
+                    dango = min(dango, FEW_DANGO)
                 elif step == "few_traps":
-                    traps = {name: min(count, CLEARS_OFF_TRAPS) for name, count in traps.items()}
+                    traps = {name: min(count, FEW_TRAPS) for name, count in traps.items()}
                 else:
                     ladder = KONPEITO_BIG_LADDER
-                logging.info("Homura-Hime (%s): without encounter clears the Konpeito target needs more room: %s",
+                logging.info("Homura-Hime (%s): without optional locations the Konpeito target needs more room: %s",
                              self.player_name, adjust)
         pool, missing = assemble(dango, traps, heals, charges, minimum, ladder)
         if missing > 0:
@@ -588,7 +617,7 @@ class HomuraHimeWorld(World):
     def _limit_exclusions(self, pool: list[str]) -> None:
         """
         Only filler fills an excluded location (the last step of Archipelago's fill), so there cannot be more excluded
-        locations than filler items: with few locations in play (no encounter clears) and a low importance of the
+        locations than filler items: with few locations in play (no optional locations) and a low importance of the
         optional ones there could be, and that stops the generation of every player's game. The surplus is not excluded
         after all.
         """
@@ -765,11 +794,7 @@ class HomuraHimeWorld(World):
             self._event(regions[subs[-1]["key"]], f"{chapter['label']} Cleared")
 
         finale = FINALE["sub_chapters"]
-        hub.connect(
-            regions[finale[0]["key"]],
-            "Enter Finale",
-            lambda state: self._cleared(state) >= len(NUMBERED_CHAPTERS) and state.has("Climax Cleared", self.player),
-        )
+        hub.connect(regions[finale[0]["key"]], "Enter Finale", self._can_enter_finale)
         for a, b in itertools.pairwise(finale):
             regions[a["key"]].connect(regions[b["key"]], f"{a['key']} -> {b['key']}")
         self._event(regions[finale[-1]["key"]], "Victory")
@@ -794,7 +819,7 @@ class HomuraHimeWorld(World):
     def _apply_optional_importance(self, location: HomuraHimeLocation, loc: dict) -> None:
         """Optional content (ambushes, trials, head chases, Ikai rooms) hides important items less often: only a share
         of those locations may hold progression or useful items, the rest are excluded from them."""
-        if loc["category"] not in OPTIONAL_CATEGORIES and not loc.get("optional"):
+        if not is_optional(loc):
             return
         if self.random.randrange(100) >= self.options.optional_location_importance.value:
             location.progress_type = LocationProgressType.EXCLUDED
@@ -832,6 +857,15 @@ class HomuraHimeWorld(World):
             return False
         return True
 
+    def _can_enter_finale(self, state) -> bool:
+        """
+        Whether the Finale can be entered: every world cleared, or with the goal "return_all_soul_cores" only
+        Chapters 6, 7 and 8 (the chapters that fight the bosses again, which takes the Soul Core of every boss).
+        """
+        if self.options.goal == self.options.goal.option_return_all_soul_cores:
+            return all(state.has(f"{LABEL_OF[world]} Cleared", self.player) for world in SOUL_CORE_WORLDS)
+        return self._cleared(state) >= len(NUMBERED_CHAPTERS) and state.has("Climax Cleared", self.player)
+
     def set_rules(self) -> None:
         """Applies the access rule of every location and the completion condition (the finale's Victory event)."""
         # freeform keys: the place of each key's world in the play order ("Chapter 3 Unlock" -> 4)
@@ -859,11 +893,17 @@ class HomuraHimeWorld(World):
             # the shop is paid for with Konpeito, so selling it there is a wasted purchase (Senbei may be sold: they are
             # scarce, and the budget check counts them when they sit in a slot)
             add_item_rule(location, lambda item: not (item.player == self.player and item.name in KONPEITO_VALUES))
-        elif category == "stage_clear":
+        elif category == "stage_clear":  # the hub hands it out when the chapter is cleared
             label = LABEL_OF[loc["chapter"]]
 
             def rule(state, label=label) -> bool:
                 return state.has(f"{label} Cleared", self.player)
+
+        elif category == "soul_core":
+            # the hub hands out the n-th Soul Core when the n-th world is cleared, whichever world that is (the game's
+            # hub follows the number of cleared worlds, not which ones; the Climax counts as a world)
+            def rule(state, need=loc["cleared"]) -> bool:
+                return self._cleared(state) + state.has("Climax Cleared", self.player) >= need
 
         elif category == "harumi":
 
@@ -906,6 +946,8 @@ class HomuraHimeWorld(World):
             return len(self.order) if chapter == FINALE["id"] else self.order.index(chapter)
         if loc["category"] == "stage_clear":
             return self.order.index(loc["chapter"])
+        if loc["category"] == "soul_core":
+            return loc["cleared"] - 1  # opens once that many worlds are cleared: the soonest is the n-th of the order
         if loc["category"] == "shop":
             return min(max(loc["tier"], SHOP_MIN_CLEARED) - 1, len(self.order) - 1)
         return 0
@@ -925,6 +967,7 @@ class HomuraHimeWorld(World):
         """What the plugin (and Universal Tracker) need to know about this slot beyond the item and location tables."""
         return {
             "world_version": self.world_version.as_simple_string(),
+            "goal": self.options.goal.current_key,
             "level_order": self.order,
             "level_order_mode": self.options.level_order.current_key,
             "level_unlock_items": self.options.level_unlock_items.current_key,

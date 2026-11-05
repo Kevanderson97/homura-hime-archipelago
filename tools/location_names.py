@@ -135,6 +135,9 @@ def base_location_name(rec, localized):
         return f"Shop: {name} ({stage})" if stage else f"Shop: {name}"
     if category == "stage_clear":
         return f"{chapter_label(tail)} Clear Reward"
+    if category == "soul_core":
+        ordinal = {"1": "1st", "2": "2nd", "3": "3rd"}.get(tail, f"{tail}th")
+        return f"Hub: Soul Core ({ordinal} World Cleared)"
     if category == "harumi":
         return f"Harumi: Stage {tail}"
     if category == "tournament":

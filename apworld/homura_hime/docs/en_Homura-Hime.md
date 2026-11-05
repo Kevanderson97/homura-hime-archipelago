@@ -7,7 +7,15 @@ config file.
 
 ## What is the goal?
 
-Clear all eight chapters and the Climax, then finish the Finale.
+Finish the Finale by defeating Ann (the Kill ending). What opens the Finale is the `goal` option:
+
+- `all_worlds` (the default): all eight chapters and the Climax are cleared.
+- `return_all_soul_cores`: only Chapters 6, 7 and 8 have to be cleared. Those chapters fight the bosses of Levels 1-5
+  again and the way to each fight needs that boss's Soul Core (see below), so the goal is to return all the Soul
+  Cores. Chapters 1-5 and the Climax stay playable for their checks but the Finale does not wait for them. Worlds
+  still open in the play order (or by their own key), so this shortens the game when Chapters 6-8 can come before the
+  other worlds: with a randomized order, or with freeform level keys. In the story order without freeform keys every
+  world comes before Chapter 8 anyway.
 
 ## What is randomized?
 
@@ -18,8 +26,13 @@ Every item the game hands out becomes a location, and its item is shuffled into 
 - every shop slot (combos, skills, omamori, shards, crystals, cost upgrades, the Dango)
 - stage-clear rewards, Harumi's seven rewards, the tutorial reward
 - the glitched-spirit trials, the tournament, the festival stall and story hand-overs (key items, dash skills)
-- optionally, clearing each fight (`encounter_clears`, on by default: 110 locations) and the four optional ambushes that
-  normally give nothing (`encounter_rewards`, also on by default)
+- clearing each fight (every encounter, ambush, trial arena and boss phase: 110 locations) and the four optional
+  ambushes that normally give nothing
+- the five Soul Cores the hub hands out as worlds are cleared (see below)
+
+The optional content (the ambush fights and their chests, the trials, the Kushinada head chases and the fights of the
+Ikai dungeon rooms and optional ambushes: 78 locations) can be left out with `optional_locations`, and
+`optional_location_importance` limits how many of them may hold important items.
 
 The pool holds the game's items (skills, combos, omamori, Blessed Shots, HP/SP shards and crystals, key items, dash
 skills) plus Konpeito, Sakura Petals, Senbei, Special Hanami Dango, Full Heals and Ultimate Charges. Each item group
@@ -95,6 +108,18 @@ Seven key items open the way in specific areas: Pretty Little Flower (Level 1), 
 of them is placed early, in your world or in another player's world. With `advanced_movement_required` the logic asks
 for no dash skill at all: that gap can be crossed by parrying the laser of the enemy shooting across it, and the dash
 skills become ordinary useful items.
+
+## What are the Soul Cores?
+
+Each boss of Levels 1-5 leaves a Soul Core, and Chapters 6-8 are fights against the same five bosses again. The five
+cores are items of the multiworld (Agasa's, Ling Ling's, Chirakuin's, Yumiko & Kumiko's and Mamiya's Soul Core). The
+hub used to hand them out as worlds were cleared, and those five hand-overs are locations now: the hub follows the
+number of cleared worlds, so the 1st core's location is checked after the first world you clear, the 2nd after the
+second, and so on up to the 5th (whichever worlds they are; the Climax counts). The cores are always shuffled,
+whatever `shuffle_key_items` says. The way to each of the five fights needs the core of that boss: Ling Ling
+and the Corpse Princess, Nozomi, Yumiko & Kumiko and Mamiya at the door of their fight, and Agasa at the memory tree at
+the end of the Ikai in Chapter 8 (the first area of that chapter is her fight). Without the core the door or the tree
+does nothing and the game says "<Name>'s Soul Core required to continue".
 
 ## How do money and the shops work?
 

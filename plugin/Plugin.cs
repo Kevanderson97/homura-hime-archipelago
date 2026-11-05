@@ -18,7 +18,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PluginGuid = "com.homurahime.archipelago";
     public const string PluginName = "Homura-Hime Archipelago";
-    public const string PluginVersion = "0.4.0";
+    public const string PluginVersion = "0.4.1";
 
     /// <summary>The plugin's log source (BepInEx/LogOutput.log); set in <see cref="Awake"/>.</summary>
     internal static ManualLogSource Log;
@@ -77,6 +77,7 @@ public class Plugin : BaseUnityPlugin
         // come last so no hook can fire before the state it reads exists.
         Catalog.Load();
         SceneClock.Init();
+        Patches.SoulCoreGate.Init();
         SaveBinding.Init();
         if (!IsDisabled("NOTRACKER")) TutorialTracker.Init();
         WorldProgress.Init();

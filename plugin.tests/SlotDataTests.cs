@@ -27,7 +27,7 @@ public class SlotDataTests
             ["puffer_swarm_traps"] = 7L,
             ["hexed_doll_trio_traps"] = 3L,
             ["include_cut_content"] = false,
-            ["encounter_rewards"] = 1L,
+            ["optional_locations"] = 1L,
             ["advanced_movement_required"] = true,
             ["death_link"] = true,
             ["death_link_skip_revives"] = false,
@@ -44,7 +44,7 @@ public class SlotDataTests
         Assert.Equal(7, data.PufferSwarmTraps);
         Assert.Equal(3, data.HexedDollTrioTraps);
         Assert.False(data.IncludeCutContent);
-        Assert.True(data.EncounterRewards);
+        Assert.True(data.OptionalLocations);
         Assert.True(data.AdvancedMovementRequired);
         Assert.True(data.DeathLink);
         Assert.False(data.DeathLinkSkipRevives);
@@ -135,6 +135,27 @@ public class SlotDataTests
         raw["level_unlock_items"] = value;
         var data = SlotData.Parse(raw);
         Assert.Equal(expected, data.UnlockMode.ToString());
+        Assert.Equal(warnings, data.Warnings.Count);
+    }
+
+    [Theory]
+    [InlineData("0.4.0", false)] // seeds of this world have no Soul Cores, so nothing may wait for them
+    [InlineData("0.4.1", true)]
+    [InlineData("0.4.9", true)]
+    public void OnlySeedsFromTheSoulCoreVersionOnHaveSoulCores(string version, bool expected) =>
+        Assert.Equal(expected, SlotData.Parse(Raw(version)).SoulCores);
+
+    [Theory]
+    [InlineData(null, "AllWorlds", 0)] // seeds from before the option
+    [InlineData("all_worlds", "AllWorlds", 0)]
+    [InlineData("return_all_soul_cores", "ReturnAllSoulCores", 0)]
+    [InlineData("kill_everything", "AllWorlds", 1)] // unknown: all worlds, with a warning
+    public void TheGoalIsReadFromTheSlotData(string value, string expected, int warnings)
+    {
+        var raw = Raw();
+        if (value != null) raw["goal"] = value;
+        var data = SlotData.Parse(raw);
+        Assert.Equal(expected, data.Goal.ToString());
         Assert.Equal(warnings, data.Warnings.Count);
     }
 

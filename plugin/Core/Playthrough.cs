@@ -23,8 +23,8 @@ internal sealed class Playthrough
     /// <summary>Received items the game could not take (see ItemGranter); tried again after the next load.</summary>
     [JsonProperty] public List<UnresolvedItem> Unresolved = new();
 
-    /// <summary>True when every world before the finale (the eight chapters and the Climax) has been cleared, so the save can stand before the ending's choice.</summary>
-    internal bool ReachedFinale(int worldCount) => ClearedWorlds.Count >= worldCount;
+    /// <summary>True when the worlds the Finale needs (all eight chapters and the Climax, or Chapters 6-8 with the Soul Core goal) have been cleared, so the save can stand before the ending's choice.</summary>
+    internal bool ReachedFinale(WorldRules rules) => rules.FinaleOpen(ClearedWorlds);
 }
 
 /// <summary>A received item that could not be granted, and why.</summary>

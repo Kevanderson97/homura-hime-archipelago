@@ -30,6 +30,16 @@ internal readonly struct HubWrite
     }
 }
 
+/// <summary>What the seed asks for before the Finale opens (the world's option goal).</summary>
+internal enum GoalMode
+{
+    /// <summary>The eight chapters and the Climax are all cleared.</summary>
+    AllWorlds,
+
+    /// <summary>Chapters 6, 7 and 8 are cleared (which takes the Soul Core of every boss), the rest does not matter.</summary>
+    ReturnAllSoulCores,
+}
+
 /// <summary>What the level keys of the seed do (the world's option level_unlock_items).</summary>
 internal enum UnlockMode
 {
@@ -53,16 +63,29 @@ internal sealed class WorldRules
     internal const string Climax = "LevelFinalP0";
     internal const string Finale = "LevelFinalP4";
 
+    /// <summary>Chapters 6, 7 and 8: the worlds that fight the bosses again and need their Soul Cores (see <see cref="SoulCores"/>).</summary>
+    internal static readonly string[] SoulCoreWorlds = { "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" };
+
     private readonly List<string> _order;
     private readonly UnlockMode _mode;
+    private readonly HashSet<string> _finaleNeeds;
 
     /// <param name="order">The nine worlds in play order.</param>
     /// <param name="mode">What the level keys do.</param>
-    internal WorldRules(IEnumerable<string> order, UnlockMode mode)
+    /// <param name="finaleNeeds">The worlds that must be cleared to open the Finale; null means all nine.</param>
+    internal WorldRules(IEnumerable<string> order, UnlockMode mode, IEnumerable<string> finaleNeeds = null)
     {
         _order = order.ToList();
         _mode = mode;
+        _finaleNeeds = finaleNeeds?.ToHashSet();
     }
+
+    /// <summary>
+    /// Whether the cleared worlds open the Finale: all nine, or (the goal "Return All Soul Cores") Chapters 6, 7 and 8 whatever
+    /// else has been cleared.
+    /// </summary>
+    internal bool FinaleOpen(ICollection<string> cleared) =>
+        _finaleNeeds == null ? cleared.Count >= _order.Count : _finaleNeeds.All(cleared.Contains);
 
     /// <summary>The order of the unshuffled game, used when the slot did not send one.</summary>
     internal static IEnumerable<string> VanillaOrder => ChapterData.All.Where(c => c.Id != Finale).Select(c => c.Id);
@@ -106,7 +129,7 @@ internal sealed class WorldRules
     /// </summary>
     internal bool IsAvailable(Chapter chapter, ICollection<string> cleared, ICollection<string> unlocked, int progressiveKeys = 0)
     {
-        if (chapter.Id == Finale) return cleared.Count >= _order.Count;
+        if (chapter.Id == Finale) return FinaleOpen(cleared);
 
         var world = chapter.Id;
         if (cleared.Contains(world)) return true;

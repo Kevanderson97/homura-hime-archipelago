@@ -285,4 +285,29 @@ public class WorldRulesTests
     {
         Assert.Equal(expected, WorldRules.HubCorrection(current, Set(Vanilla.Take(worlds).ToArray())));
     }
+
+    [Fact]
+    public void TheFinaleNeedsEveryWorldUnlessTheGoalSaysOtherwise()
+    {
+        var rules = new WorldRules(Vanilla, UnlockMode.Freeform);
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP4"), Set(WorldRules.SoulCoreWorlds), Set()));
+        Assert.False(rules.IsAvailable(Chapter("LevelFinalP4"), Set(Vanilla.Take(8).ToArray()), Set()));
+        Assert.True(rules.IsAvailable(Chapter("LevelFinalP4"), Set(Vanilla), Set()));
+    }
+
+    [Fact]
+    public void WithTheSoulCoreGoalTheFinaleNeedsChaptersSixToEightOnly()
+    {
+        var rules = new WorldRules(Vanilla, UnlockMode.Freeform, WorldRules.SoulCoreWorlds);
+        var finale = Chapter("LevelFinalP4");
+        Assert.False(rules.IsAvailable(finale, Set(), Set()));
+        Assert.False(rules.IsAvailable(finale, Set("LevelFinalP1", "LevelFinalP2"), Set())); // Chapter 8 still to clear
+        Assert.False(rules.IsAvailable(finale, Set(Vanilla.Take(8).ToArray()), Set()));       // everything but Chapter 8
+        Assert.True(rules.IsAvailable(finale, Set(WorldRules.SoulCoreWorlds), Set()));        // Chapters 1-5 and the Climax do not matter
+        Assert.True(rules.IsAvailable(finale, Set(Vanilla), Set()));
+    }
+
+    [Fact]
+    public void TheSoulCoreWorldsAreChaptersSixToEight() =>
+        Assert.Equal(new[] { "LevelFinalP1", "LevelFinalP2", "LevelFinalP3" }, WorldRules.SoulCoreWorlds);
 }

@@ -19,18 +19,18 @@ internal static class WorldProgress
 
     private static SessionState State => ApClient.State;
 
-    private static WorldRules Rules
+    private static WorldRules Rules => CurrentRules;
+
+    /// <summary>The rules of the connected seed: its world order, its level keys and the worlds its goal needs before the Finale.</summary>
+    internal static WorldRules CurrentRules
     {
         get
         {
             var slot = ApClient.Slot;
             var order = slot.LevelOrder.Count > 0 ? slot.LevelOrder : new System.Collections.Generic.List<string>(WorldRules.VanillaOrder);
-            return new WorldRules(order, slot.UnlockMode);
+            return new WorldRules(order, slot.UnlockMode, slot.Goal == GoalMode.ReturnAllSoulCores ? WorldRules.SoulCoreWorlds : null);
         }
     }
-
-    /// <summary>How many worlds the seed has (the vanilla eight unless the order says otherwise).</summary>
-    internal static int WorldCount => Rules.WorldCount;
 
     internal static void Init()
     {

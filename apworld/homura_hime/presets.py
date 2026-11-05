@@ -3,11 +3,11 @@
 # Every option at its default, so that choosing a preset also resets what an earlier choice changed. The world test
 # test_presets.py checks that this stays equal to the defaults in options.py.
 STANDARD = {
+    "goal": "all_worlds",
     "level_order": "off",
     "level_unlock_items": "off",
     "advanced_movement_required": False,
-    "encounter_clears": True,
-    "encounter_rewards": True,
+    "optional_locations": True,
     "include_cut_content": False,
     "optional_location_importance": 100,
     "shuffle_combos": True,
@@ -45,10 +45,10 @@ options_presets = {
     # everything that can be random is, and every extra location is in
     "Chaos": {
         **STANDARD,
+        "goal": "return_all_soul_cores",
         "level_order": "full",
         "level_unlock_items": "freeform_progression",
         "advanced_movement_required": True,
-        "encounter_rewards": True,
         "include_cut_content": True,
         "death_link": True,
         "minimum_konpeito": "random",
