@@ -38,7 +38,7 @@ Everything you need is in the [latest release](../../releases/latest):
 The full guides are in [`apworld/homura_hime/docs/`](apworld/homura_hime/docs/):
 [setup](apworld/homura_hime/docs/setup_en.md) and [what is randomized and how the logic
 works](apworld/homura_hime/docs/en_Homura-Hime.md). The plugin and the world must have the same major.minor version
-(both are 0.3.x in this release).
+(both are 0.4.x in this release).
 
 ## Building from source
 
