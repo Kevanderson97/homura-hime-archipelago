@@ -1,8 +1,8 @@
 # Homura Hime for Archipelago
 
 An unofficial [Archipelago](https://archipelago.gg) multiworld randomizer for **Homura Hime**. Every item the game hands
-out (chests, Senbei, journals, shop slots, stage rewards, quest hand-overs, optionally every fight) becomes a check whose
-reward is shuffled into the multiworld, and the rewards of other players' games arrive in yours.
+out (chests, Senbei, journals, shop slots, stage rewards, quest hand-overs, optionally every fight) becomes a check
+whose reward is shuffled into the multiworld, and the rewards of other players' games arrive in yours.
 
 It has two halves that talk through the Archipelago server:
 
@@ -26,7 +26,8 @@ Everything you need is in the [latest release](../../releases/latest):
 
 1. Install **BepInEx 5** (x64, 5.4.x) into the game folder (the one with `HomuraHime.exe`): extract the BepInEx release
    there, start the game once, close it.
-2. Extract `HomuraHimeArchipelago-plugin-<version>.zip` into the game folder. It contains `BepInEx/plugins/HomuraHimeArchipelago/`.
+2. Extract `HomuraHimeArchipelago-plugin-<version>.zip` into the game folder. It contains
+   `BepInEx/plugins/HomuraHimeArchipelago/`.
 3. Install [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases) 0.6.6 or newer and put
    `homura_hime.apworld` into its `custom_worlds` folder (or double-click it with the Archipelago Launcher).
 4. Edit `Homura-Hime.yaml` (set `name:` and the options you want) and generate a multiworld with it, or send it to the
@@ -34,22 +35,26 @@ Everything you need is in the [latest release](../../releases/latest):
 5. In the game, press **F10** on the title screen, enter server, slot name and password, and press **F11** to connect.
    Start a new game for a new seed.
 
-The full guides are in [`apworld/homura_hime/docs/`](apworld/homura_hime/docs/): [setup](apworld/homura_hime/docs/setup_en.md)
-and [what is randomized and how the logic works](apworld/homura_hime/docs/en_Homura-Hime.md). The plugin and the world must
-have the same major.minor version (both are 0.3.x in this release).
+The full guides are in [`apworld/homura_hime/docs/`](apworld/homura_hime/docs/):
+[setup](apworld/homura_hime/docs/setup_en.md) and [what is randomized and how the logic
+works](apworld/homura_hime/docs/en_Homura-Hime.md). The plugin and the world must have the same major.minor version
+(both are 0.3.x in this release).
 
 ## Building from source
 
-Requirements: the game with BepInEx 5 installed (the plugin is compiled against the game's own assemblies), the .NET SDK
-and Python 3.
+Requirements: the game with BepInEx 5 installed (the plugin is compiled against the game's own assemblies), the .NET
+SDK, and an Archipelago source checkout with its Python environment. The world is packaged by Archipelago's own "Build
+APWorlds" component, so `<Archipelago>\worlds\homura_hime` has to be a link to `apworld/homura_hime` (see
+[apworld/](apworld/README.md)).
 
 ```powershell
 # everything a release contains, into dist/
-tools\build_release.ps1 -GameDir "D:\Games\Homura Hime"     # GameDir defaults to the usual Steam location
+tools\build_release.ps1 -GameDir "D:\Games\Homura Hime" -ArchipelagoDir "D:\Archipelago" -Python "D:\Archipelago\.venv\Scripts\python.exe"
+# GameDir defaults to the usual Steam location; ArchipelagoDir to the ARCHIPELAGO_DIR environment variable
 
 # or piece by piece
 dotnet build plugin -c Release -p:GameDir="D:\Games\Homura Hime"
-python tools/build_apworld.py
+python tools/build_apworld.py --ap-root "D:\Archipelago"     # run with the Python of Archipelago's environment
 ```
 
 ## Repository layout
@@ -72,7 +77,8 @@ How the data flows: `tools/extract` reads the game once -> `data/locations_*.jso
 
 ## Testing
 
-`tools/run_tests.ps1` runs the world tests, the plugin unit tests and the in-game tests. See [`docs/TESTING.md`](docs/TESTING.md).
+`tools/run_tests.ps1` runs the world tests, the plugin unit tests and the in-game tests. See
+[`docs/TESTING.md`](docs/TESTING.md).
 
 ## License
 

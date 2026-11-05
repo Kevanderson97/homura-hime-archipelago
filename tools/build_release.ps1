@@ -10,11 +10,16 @@
     them end up in the release). Default: the HOMURA_HIME_DIR environment variable, else the usual Steam location.
 
 .PARAMETER Python
-    A Python 3 interpreter for tools/build_apworld.py (default: python).
+    The Python 3 interpreter of the Archipelago source folder's environment, for tools/build_apworld.py (default: python).
+
+.PARAMETER ArchipelagoDir
+    The Archipelago source folder (the one with Launcher.py) whose worlds/homura_hime is this repository's apworld/homura_hime.
+    The world is packaged by Archipelago's own "Build APWorlds" component. Default: the ARCHIPELAGO_DIR environment variable.
 #>
 param(
     [string]$GameDir = $(if ($env:HOMURA_HIME_DIR) { $env:HOMURA_HIME_DIR } else { "C:\Program Files (x86)\Steam\steamapps\common\Homura Hime" }),
-    [string]$Python = "python"
+    [string]$Python = "python",
+    [string]$ArchipelagoDir = $env:ARCHIPELAGO_DIR
 )
 
 $ErrorActionPreference = "Stop"
@@ -47,7 +52,7 @@ foreach ($file in Get-ChildItem $staging -Recurse -File) {
 $zip.Dispose()
 
 # 2. the world
-& $Python (Join-Path $root "tools\build_apworld.py")
+& $Python (Join-Path $root "tools\build_apworld.py") --ap-root "$ArchipelagoDir"
 if ($LASTEXITCODE -ne 0) { throw "apworld build failed" }
 
 # 3. the sample yaml

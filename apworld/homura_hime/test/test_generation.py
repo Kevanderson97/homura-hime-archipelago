@@ -88,8 +88,8 @@ class KonpeitoPoolTestBase(HomuraHimeTestBase):
 
 
 class TestWithoutEncounterClearsTheKonpeitoTargetIsLower(KonpeitoPoolTestBase):
-    """The fights still pay Konpeito in the game (at least 1000 each), so with 110 fewer places in the pool the target is
-    110,000 lower, and the Full Heal / Ultimate Charge filler and the Dango keep their room (without traps: they take
+    """The fights still pay Konpeito in the game (at least 1000 each), so with 110 fewer places in the pool the target
+    is 110,000 lower, and the Full Heal / Ultimate Charge filler and the Dango keep their room (without traps: they take
     room too, see TestTrapsGiveWayWithoutEncounterClears)."""
     options = {"encounter_clears": False, "puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}
 
@@ -109,8 +109,14 @@ class TestWithoutEncounterClearsTheKonpeitoTargetIsLower(KonpeitoPoolTestBase):
 
 class TestWithoutEncounterClearsAndTheHighestTarget(KonpeitoPoolTestBase):
     """Where lowering the target is not enough, the filler gives way step by step and the pieces may grow to 30000."""
-    options = {"encounter_clears": False, "minimum_konpeito": 1000000, "full_heal_count": 50, "ultimate_charge_count": 50,
-               "dango_count": 99}
+
+    options = {
+        "encounter_clears": False,
+        "minimum_konpeito": 1000000,
+        "full_heal_count": 50,
+        "ultimate_charge_count": 50,
+        "dango_count": 99,
+    }
 
     def test_the_target_is_reached(self):
         self.assertGreaterEqual(sum(self.konpeito()), 890000)
@@ -134,9 +140,9 @@ class TestWithEncounterClearsTheUsualPieces(KonpeitoPoolTestBase):
 
 
 class TestLocalKonpeitoThatNoShopTakesIsPlacedDirectly(KonpeitoPoolTestBase):
-    """The player's own small Konpeito pieces, which shop slots refuse, are put into this world's locations at once when they
-    are local, not left to Archipelago's fill, which can strand them. Whatever fits a shop stays in the pool: it fills the
-    shop slots. The counted (progression) pieces also still go through the fill."""
+    """The player's own small Konpeito pieces, which shop slots refuse, are put into this world's locations at once when
+    they are local, not left to Archipelago's fill, which can strand them. Whatever fits a shop stays in the pool: it
+    fills the shop slots. The counted (progression) pieces also still go through the fill."""
     # the generator expands item groups into item names before the world sees them; the test hands over the names
     # (minimum_konpeito 0: the filler pieces stay small instead of being raised to meet the target)
     options = {"local_items": {i["name"] for i in ITEMS if i["type"] in ("utility", "currency", "consumable")},
@@ -178,8 +184,8 @@ class TestNonLocalGroupThatIsNotShuffled(HomuraHimeTestBase):
 
 
 class TestDangoGivesWayToFewLocations(HomuraHimeTestBase):
-    """Without encounter clears (about 110 fewer locations) the most Dango do not fit; the count is lowered instead of the
-    generation of every player's game stopping, and the Senbei the shops cost keep their room."""
+    """Without encounter clears (about 110 fewer locations) the most Dango do not fit; the count is lowered instead of
+    the generation of every player's game stopping, and the Senbei the shops cost keep their room."""
     options = {"encounter_clears": False, "dango_count": 99, "senbei_count": 80}
 
     def test_the_dango_count_is_lowered_to_what_fits(self):
@@ -193,8 +199,8 @@ class TestDangoGivesWayToFewLocations(HomuraHimeTestBase):
 
 
 class TestExcludedLocationsNeedFiller(HomuraHimeTestBase):
-    """Only filler can fill an excluded location, so a low importance of the optional locations cannot exclude more of them
-    than the pool has filler items (this combination used to stop the fill)."""
+    """Only filler can fill an excluded location, so a low importance of the optional locations cannot exclude more of
+    them than the pool has filler items (this combination used to stop the fill)."""
     options = {"encounter_clears": False, "encounter_rewards": True, "optional_location_importance": 0}
 
     def test_no_more_excluded_than_filler(self):
@@ -246,7 +252,11 @@ class TestFixedItemsExactlyOnce(HomuraHimeTestBase):
 
     def test_counts_match_the_catalogue(self):
         owned = Counter(item.name for item in self.owned_items())
-        fixed = [i for i in ITEMS if i["classification"] != "filler" and i["type"] not in ("unlock", "trap") and not i.get("option")]
+        fixed = [
+            i
+            for i in ITEMS
+            if i["classification"] != "filler" and i["type"] not in ("unlock", "trap") and not i.get("option")
+        ]
         self.assertGreater(len(fixed), 50)
         for item in fixed:
             self.assertEqual(owned[item["name"]], item["count"], item["name"])

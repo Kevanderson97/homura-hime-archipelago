@@ -59,9 +59,9 @@ class TestRules(HomuraHimeLogicBase):
             self.assertTrue(location.can_reach(self.state_with(flower)), f"{location.name} needs no dash skill")
             self.assertTrue(location.item_rule(self.world.create_item(DASH_SKILLS[0])), location.name)
         self.assertFalse(area_2_chest.can_reach(self.state_with(flower)))
-        self.assertTrue(area_2_chest.can_reach(self.state_with(flower + [DASH_SKILLS[0]])))
+        self.assertTrue(area_2_chest.can_reach(self.state_with([*flower, DASH_SKILLS[0]])))
         self.assertFalse(boss.can_reach(self.state_with(flower)))
-        self.assertTrue(boss.can_reach(self.state_with(flower + [DASH_SKILLS[0]])))
+        self.assertTrue(boss.can_reach(self.state_with([*flower, DASH_SKILLS[0]])))
 
     def test_any_dash_skill_works(self):
         loc = scene_location("Level_1_Area_3_Main")
@@ -83,7 +83,7 @@ class TestRules(HomuraHimeLogicBase):
         base = ["Pretty Little Flower", DASH_SKILLS[0], "Elevator Lever"]
         # chapters 1 and 2 reachable, but Sannomaru Palace sits behind the Nurikabe
         self.assertFalse(self.can_reach(loc, self.state_with(base)))
-        self.assertTrue(self.can_reach(loc, self.state_with(base + ["Nurikabe's Shoe"])))
+        self.assertTrue(self.can_reach(loc, self.state_with([*base, "Nurikabe's Shoe"])))
 
     def test_shop_tier_follows_cleared_count(self):
         # Needle Rain is a tier-5 skill: it needs five cleared chapters
@@ -119,7 +119,7 @@ class TestShopMoney(HomuraHimeLogicBase):
         return self.multiworld.get_location(NAME_OF_KEY[key], self.player)
 
     def reachable(self, key, items):
-        return self.slot(key).access_rule(self.state_with(["Chapter 1 Cleared"] + items, sweep=False))
+        return self.slot(key).access_rule(self.state_with(["Chapter 1 Cleared", *items], sweep=False))
 
     def test_price_is_covered_by_one_and_a_half_times_the_konpeito_items(self):
         # ComboB costs 8,000: 5,334 Konpeito items are enough, 5,000 are not
@@ -130,8 +130,8 @@ class TestShopMoney(HomuraHimeLogicBase):
         konpeito = ["3000 Konpeito"] * 8  # 24,000 x 1.5 = 36,000, enough for any price
         # Blaze Rush costs 8,000 Konpeito and 1 Senbei, Suzaku 36,000 and 3
         self.assertFalse(self.reachable("shop/Skill_Blaze Rush", konpeito))
-        self.assertTrue(self.reachable("shop/Skill_Blaze Rush", konpeito + ["2 Senbei"]))
-        self.assertFalse(self.reachable("shop/Skill_Suzaku", konpeito + ["2 Senbei"]))
+        self.assertTrue(self.reachable("shop/Skill_Blaze Rush", [*konpeito, "2 Senbei"]))
+        self.assertFalse(self.reachable("shop/Skill_Suzaku", [*konpeito, "2 Senbei"]))
         self.assertTrue(self.reachable("shop/Skill_Suzaku", konpeito + ["2 Senbei"] * 2))
 
     def test_slots_without_a_senbei_price_need_none(self):
@@ -165,7 +165,7 @@ class TestShopMoney(HomuraHimeLogicBase):
         self.assertEqual(self.world._money(state), 0)
 
     def test_counted_pieces_stand_for_the_whole_pool(self):
-        from .. import KONPEITO_VALUES, COUNTED_KONPEITO
+        from .. import COUNTED_KONPEITO, KONPEITO_VALUES
         pool = [item.name for item in self.multiworld.itempool if item.player == self.player]
         pool += [loc.item.name for loc in self.multiworld.get_locations(self.player)
                  if loc.item is not None and loc.item.player == self.player and loc.address is not None]
@@ -187,7 +187,7 @@ class TestSenbeiUnit(HomuraHimeLogicBase):
     """The logic counts the "2 Senbei" pieces, or the single Senbei when the pool has no pairs."""
 
     def total(self, names):
-        """All items of the player (pool and locked) and the Senbei they add up to. 
+        """All items of the player (pool and locked) and the Senbei they add up to.
 ames is unused."""
         pool = [item.name for item in self.multiworld.itempool if item.player == self.player]
         pool += [loc.item.name for loc in self.multiworld.get_locations(self.player)
@@ -245,8 +245,8 @@ class TestHarumi(HomuraHimeLogicBase):
     def test_last_reward_needs_sakura_items(self):
         # 2,300: all eight chapters give 2,240, the other 60 must come from items
         chapters = [f"Chapter {n} Cleared" for n in range(1, 9)]
-        self.assertFalse(self.harumi(7).access_rule(self.state_with(chapters + ["50 Sakura Petals"], sweep=False)))
-        self.assertTrue(self.harumi(7).access_rule(self.state_with(chapters + ["50 Sakura Petals", "30 Sakura Petals"],
+        self.assertFalse(self.harumi(7).access_rule(self.state_with([*chapters, "50 Sakura Petals"], sweep=False)))
+        self.assertTrue(self.harumi(7).access_rule(self.state_with([*chapters, "50 Sakura Petals", "30 Sakura Petals"],
                                                                    sweep=False)))
 
     def test_removing_sakura_takes_it_out_of_the_count(self):

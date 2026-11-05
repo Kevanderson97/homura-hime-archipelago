@@ -52,7 +52,8 @@ class TestBalancedOrder(HomuraHimeLogicBase):
             self.assertAlmostEqual(0.60, late / self.RUNS, delta=0.03, msg=f"slot {slot}")
 
     def test_the_middle_worlds_are_what_is_left(self):
-        """Most early worlds are used up by the places before, so the middle three are mostly late worlds (about 25% early)."""
+        """Most early worlds are used up by the places before, so the middle three are mostly late worlds (about 25%
+        early)."""
         for slot in (3, 4, 5):
             early = sum(order[slot] in EARLY_WORLDS for order in self.orders())
             self.assertGreater(early / self.RUNS, 0.15, f"slot {slot}")
@@ -61,12 +62,18 @@ class TestBalancedOrder(HomuraHimeLogicBase):
     def test_any_other_world_can_be_anywhere(self):
         """Only the first place is closed to the late worlds; everywhere else both kinds can turn up."""
         seen = {(w, i) for order in self.orders() for i, w in enumerate(order)}
-        missing = [(w, i) for w in STORY_ORDER for i in range(len(STORY_ORDER)) if (w, i) not in seen and not (i == 0 and w in LATE_WORLDS)]
+        missing = [
+            (w, i)
+            for w in STORY_ORDER
+            for i in range(len(STORY_ORDER))
+            if (w, i) not in seen and not (i == 0 and w in LATE_WORLDS)
+        ]
         self.assertEqual([], missing)
 
 
 class TestFreeformKeysFollowTheOrder(HomuraHimeLogicBase):
-    """With a key per world the order is the order the keys turn up in: a world's key is never in that world or a later one."""
+    """With a key per world the order is the order the keys turn up in: a world's key is never in that world or a later
+    one."""
 
     def key_places(self, multiworld, world):
         """[(key world position, location world position)] of the keys that lie in this world's own locations."""
@@ -74,7 +81,12 @@ class TestFreeformKeysFollowTheOrder(HomuraHimeLogicBase):
         found = []
         for location in multiworld.get_locations(world.player):
             item = location.item
-            if item is None or item.player != world.player or not item.name.endswith(" Unlock") or location.address is None:
+            if (
+                item is None
+                or item.player != world.player
+                or not item.name.endswith(" Unlock")
+                or location.address is None
+            ):
                 continue
             key_position = next(i for i, w in enumerate(order) if f"{LABEL_OF[w]} Unlock" == item.name)
             found.append((item.name, key_position, world._world_index(LOCATION_BY_NAME[location.name]), location.name))
@@ -88,7 +100,11 @@ class TestFreeformKeysFollowTheOrder(HomuraHimeLogicBase):
                 world = multiworld.worlds[player]
                 for name, key_position, place, where in self.key_places(multiworld, world):
                     checked += 1
-                    self.assertLess(place, key_position, f"seed {seed}: {name} (world {key_position} of the order) is at {where} (world {place})")
+                    self.assertLess(
+                        place,
+                        key_position,
+                        f"seed {seed}: {name} (world {key_position} of the order) is at {where} (world {place})",
+                    )
         self.assertGreater(checked, 0)
 
     def test_full_order(self):
@@ -115,12 +131,16 @@ class TestTheWorldOfALocation(HomuraHimeLogicBase):
 
     def test_hub_places_follow_the_clear_that_opens_them(self):
         world = self.world
-        for stage_clear in (l for l in LOCATIONS if l["category"] == "stage_clear" and l.get("chapter") in world.order):
+        for stage_clear in (
+            loc for loc in LOCATIONS if loc["category"] == "stage_clear" and loc.get("chapter") in world.order
+        ):
             # (the Climax has no clear reward)
-            self.assertEqual(world.order.index(stage_clear["chapter"]), world._world_index(stage_clear), stage_clear["name"])
-        first_tier_shop = next(l for l in LOCATIONS if l["category"] == "shop" and l["tier"] <= 1)
+            self.assertEqual(
+                world.order.index(stage_clear["chapter"]), world._world_index(stage_clear), stage_clear["name"]
+            )
+        first_tier_shop = next(loc for loc in LOCATIONS if loc["category"] == "shop" and loc["tier"] <= 1)
         self.assertEqual(0, world._world_index(first_tier_shop))
-        late_shop = max((l for l in LOCATIONS if l["category"] == "shop"), key=lambda l: l["tier"])
+        late_shop = max((loc for loc in LOCATIONS if loc["category"] == "shop"), key=lambda loc: loc["tier"])
         self.assertEqual(late_shop["tier"] - 1, world._world_index(late_shop))
 
     def test_places_in_a_world_follow_the_order(self):

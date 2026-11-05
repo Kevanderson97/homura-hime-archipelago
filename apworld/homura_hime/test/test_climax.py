@@ -52,18 +52,18 @@ class TestFreeformKeys(HomuraHimeLogicBase):
     def test_the_climax_needs_a_cleared_chapter_even_with_its_key(self):
         keys = self.all_keys_but_the_first_world()
         self.assertFalse(self.climax_region().can_reach(self.state_with(keys, sweep=False)))
-        self.assertTrue(self.climax_region().can_reach(self.state_with(keys + ["Chapter 1 Cleared"], sweep=False)))
+        self.assertTrue(self.climax_region().can_reach(self.state_with([*keys, "Chapter 1 Cleared"], sweep=False)))
 
     def test_the_climax_needs_its_key(self):
         keys = [k for k in self.all_keys_but_the_first_world() if k != "Climax Unlock"]
-        self.assertFalse(self.climax_region().can_reach(self.state_with(keys + ["Chapter 1 Cleared"], sweep=False)))
+        self.assertFalse(self.climax_region().can_reach(self.state_with([*keys, "Chapter 1 Cleared"], sweep=False)))
 
     def test_the_finale_needs_the_climax_and_all_eight_chapters(self):
         finale = self.multiworld.get_region("LevelFinalP4_Passage_Entrance", self.player)
         self.assertFalse(finale.can_reach(self.state_with(CHAPTER_CLEARS, sweep=False)), "the climax is missing")
-        self.assertFalse(finale.can_reach(self.state_with(CHAPTER_CLEARS[:-1] + ["Climax Cleared"], sweep=False)),
+        self.assertFalse(finale.can_reach(self.state_with([*CHAPTER_CLEARS[:-1], "Climax Cleared"], sweep=False)),
                          "a chapter is missing")
-        self.assertTrue(finale.can_reach(self.state_with(CHAPTER_CLEARS + ["Climax Cleared"], sweep=False)))
+        self.assertTrue(finale.can_reach(self.state_with([*CHAPTER_CLEARS, "Climax Cleared"], sweep=False)))
 
 
 class TestVanillaOrderWithoutKeys(HomuraHimeLogicBase):
@@ -73,4 +73,4 @@ class TestVanillaOrderWithoutKeys(HomuraHimeLogicBase):
         self.assertTrue(region.can_reach(self.state_with(CHAPTER_CLEARS[:5], sweep=False)))
         chapter_6 = self.multiworld.get_region("LevelFinalP1_L1_Ikai_Entrance", self.player)
         self.assertFalse(chapter_6.can_reach(self.state_with(CHAPTER_CLEARS[:5], sweep=False)))
-        self.assertTrue(chapter_6.can_reach(self.state_with(CHAPTER_CLEARS[:5] + ["Climax Cleared"], sweep=False)))
+        self.assertTrue(chapter_6.can_reach(self.state_with([*CHAPTER_CLEARS[:5], "Climax Cleared"], sweep=False)))

@@ -31,7 +31,7 @@ before the spheres that hold a purchase (where replays start), and a repair resu
 again.
 """
 import logging
-from typing import Dict, List, Optional, Sequence, Tuple
+from collections.abc import Sequence
 
 from BaseClasses import CollectionState, Item, Location, MultiWorld
 
@@ -62,15 +62,16 @@ class Playthrough:
         self.multiworld = multiworld
         self.worlds = worlds
         self.shop_slots = {slot for world in worlds for slot in world.shop_slots}
-        self.sphere_of: Dict[Location, int] = {}
-        self.spheres: List[List[Location]] = []
-        self.states: Dict[int, CollectionState] = {}
-        self.money: Dict[int, List[int]] = {world.player: [] for world in worlds}
-        self.senbei: Dict[int, List[int]] = {world.player: [] for world in worlds}
+        self.sphere_of: dict[Location, int] = {}
+        self.spheres: list[list[Location]] = []
+        self.states: dict[int, CollectionState] = {}
+        self.money: dict[int, list[int]] = {world.player: [] for world in worlds}
+        self.senbei: dict[int, list[int]] = {world.player: [] for world in worlds}
         self._play(CollectionState(multiworld), list(multiworld.get_locations()))
 
-    def _play(self, state: CollectionState, remaining: List[Location]) -> None:
-        """Plays sphere by sphere from state until no more locations can be reached, recording what each sphere holds."""
+    def _play(self, state: CollectionState, remaining: list[Location]) -> None:
+        """Plays sphere by sphere from state until no more locations can be reached, recording what each sphere
+        holds."""
         while remaining:
             reachable = [location for location in remaining if location.can_reach(state)]
             if not reachable:
@@ -107,14 +108,15 @@ class Playthrough:
         """Whether the player buys this location: a shop slot that holds an item somebody needs."""
         return location in self.shop_slots and location.item is not None and needed(location.item)
 
-    def collect(self, state: CollectionState, location: Location, removed: Optional[Item] = None) -> None:
-        """Adds the item of a location to the state, as the player would have it (emoved is pretended not to exist)."""
+    def collect(self, state: CollectionState, location: Location, removed: Item | None = None) -> None:
+        """Adds the item of a location to the state, as the player would have it (
+emoved is pretended not to exist)."""
         item = location.item
         if item is None or item is removed or (location in self.shop_slots and not needed(item)):
             return  # nothing there, the item taken out, or a shop item nobody needs (not bought)
         state.collect(item, True, location)
 
-    def first_delay(self, slot: Location, until: int) -> Optional[int]:
+    def first_delay(self, slot: Location, until: int) -> int | None:
         """
         The first sphere that cannot be completed without the item in this slot, or None if there is none up to
         `until`. Nothing changes before the slot's own sphere, so the replay starts from the state saved there.
@@ -131,8 +133,8 @@ class Playthrough:
         return None
 
 
-def violations(required: Dict[Location, int], money: List[int],
-               senbei: Optional[List[int]] = None) -> List[Tuple[int, List[Location], str]]:
+def violations(required: dict[Location, int], money: list[int],
+               senbei: list[int] | None = None) -> list[tuple[int, list[Location], str]]:
     """
     Every sphere whose required purchases cost more than the money (or, if given, the Senbei) before it: the sphere,
     those purchases and the resource that is short ("konpeito" or "senbei").
@@ -147,8 +149,8 @@ def violations(required: Dict[Location, int], money: List[int],
     return found
 
 
-def first_violation(required: Dict[Location, int], money: List[int],
-                    senbei: Optional[List[int]] = None) -> Optional[Tuple[int, List[Location]]]:
+def first_violation(required: dict[Location, int], money: list[int],
+                    senbei: list[int] | None = None) -> tuple[int, list[Location]] | None:
     """The first sphere whose required purchases cost more than the money before it, with those purchases."""
     found = violations(required, money, senbei)
     return found[0][:2] if found else None
@@ -157,11 +159,11 @@ def first_violation(required: Dict[Location, int], money: List[int],
 class Violation:
     """A world whose shops ask for more than the money or the Senbei before a sphere."""
 
-    def __init__(self, world, sphere: int, due: List[Location], resource: str, available: int):
+    def __init__(self, world, sphere: int, due: list[Location], resource: str, available: int):
         self.world, self.sphere, self.due, self.resource, self.available = world, sphere, due, resource, available
 
 
-def check(run: Playthrough) -> Optional[Violation]:
+def check(run: Playthrough) -> Violation | None:
     """The first world that breaks the budget (in Konpeito or in Senbei), or None."""
     for world in run.worlds:
         # the shop slots of this world whose item is bought by the players
@@ -172,8 +174,8 @@ def check(run: Playthrough) -> Optional[Violation]:
         # Cheap first: an item cannot be needed before the sphere after its own, so counting every purchase from there
         # on asks for at least as much as the exact answer. Only the spheres where that fails can fail at all, so only
         # up to the last of them is it worked out which purchases are really due.
-        cheap = violations({slot: run.sphere_of[slot] + 1 for slot in bought}, money + [money[-1]],
-                           senbei + [senbei[-1]])
+        cheap = violations({slot: run.sphere_of[slot] + 1 for slot in bought}, [*money, money[-1]],
+                           [*senbei, senbei[-1]])
         if not cheap:
             continue
         until = cheap[-1][0]
@@ -191,7 +193,7 @@ def swap(a: Location, b: Location) -> None:
     a.item.location, b.item.location = a, b
 
 
-def repair(multiworld: MultiWorld, run: Playthrough, violation: Violation) -> Optional[int]:
+def repair(multiworld: MultiWorld, run: Playthrough, violation: Violation) -> int | None:
     """
     Moves the dearest purchase due (in the resource that is short) out of its shop slot. Returns the sphere of the
     location it went to (the playthrough is unchanged before it), or None when no location can take it.

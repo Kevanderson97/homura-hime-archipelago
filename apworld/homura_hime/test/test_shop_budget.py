@@ -50,7 +50,7 @@ class TestBudgetArithmetic(unittest.TestCase):
     def test_what_is_needed_together_must_fit_the_money_by_then(self):
         self.assertIsNone(shop_budget.first_violation(self.required, self.money))  # A + B = 30,000
 
-    def test_one_more_Konpeito_of_price_breaks_it(self):
+    def test_one_more_konpeito_of_price_breaks_it(self):
         self.a.price = 18001
         sphere, due = shop_budget.first_violation(self.required, self.money)
         self.assertEqual(sphere, 3)
@@ -115,7 +115,8 @@ class TestGeneratedShops(unittest.TestCase):
     SEEDS = range(10)
 
     def assert_affordable(self, multiworld):
-        """The generated multiworld respects the shop budget, is beatable, and no shop sells its own world's Konpeito."""
+        """The generated multiworld respects the shop budget, is beatable, and no shop sells its own world's
+        Konpeito."""
         run = shop_budget.Playthrough(multiworld, homura_hime_worlds(multiworld))
         self.assertIsNone(shop_budget.check(run),
                           "shop purchases exceed the Konpeito available by the time they are needed")
@@ -132,7 +133,9 @@ class TestGeneratedShops(unittest.TestCase):
 
     def test_randomized_order_with_unlock_items(self):
         for seed in self.SEEDS:
-            self.assert_affordable(generate(seed, {"level_order": "randomized", "level_unlock_items": "freeform_progression"}, 1))
+            self.assert_affordable(
+                generate(seed, {"level_order": "randomized", "level_unlock_items": "freeform_progression"}, 1)
+            )
 
     def test_two_homura_hime_players(self):
         for seed in self.SEEDS:
@@ -150,8 +153,10 @@ class TestGeneratedShops(unittest.TestCase):
             original(a, b)
 
         with mock.patch.object(shop_budget, "swap", counting):
-            for seed in (2, 7):
-                self.assert_affordable(generate(seed, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}, 2))  # the seeds were found without traps
+            for seed in (9, 11):
+                self.assert_affordable(
+                    generate(seed, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}, 2)
+                )  # the seeds were found without traps
         self.assertGreater(swaps, 0, "nothing needed repairing, the test shows nothing (pick other seeds)")
 
 
@@ -187,7 +192,9 @@ class TestShortcutsMatchFullReplays(unittest.TestCase):
         self.assertGreater(compared, 10)
 
     def test_a_resumed_playthrough_matches_a_new_one(self):
-        multiworld = generate(2, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}, 2, check=False)  # needs a repair (see test_the_fill_repairs_...)
+        multiworld = generate(
+            9, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}, 2, check=False
+        )  # needs a repair (see test_the_fill_repairs_...)
         run = shop_budget.Playthrough(multiworld, homura_hime_worlds(multiworld))
         violation = shop_budget.check(run)
         self.assertIsNotNone(violation)

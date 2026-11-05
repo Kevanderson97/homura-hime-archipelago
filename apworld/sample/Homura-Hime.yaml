@@ -73,8 +73,8 @@ Homura-Hime:
     # 
     # off: story order (the Climax comes between Chapters 5 and 6).
     # balanced: a random order that keeps the story's pacing in mind. The first world is always one of Chapters 1-4, the
-    # second is one of them 66% of the time, the third 40% of the time, and each of the last three is one of Chapters 5-8 or
-    # the Climax 60% of the time. The three in the middle are whatever is left.
+    # second is one of them 66% of the time, the third 40% of the time, and each of the last three is one of Chapters 5-8
+    # or the Climax 60% of the time. The three in the middle are whatever is left.
     # full: any order is equally likely (the Climax is never the first one).
     # The Finale always stays last. The Chapter Select is always available; see the level keys option for how worlds open.
     # With freeform level keys the order also decides the order the keys turn up in: the key of a world is never in that
@@ -87,12 +87,12 @@ Homura-Hime:
     # Whether the chapters and the Climax need keys, items that can be anywhere in the multiworld.
     # 
     # off: no keys. A world opens when the one before it in the play order is beaten.
-    # linear_progression: Progressive Level Keys (nine in all, one is yours from the start). A world needs the previous one
-    # beaten and one more key than the world before it needed, so the worlds are played strictly in order. Nothing that a
-    # world needs can be hidden in a world that comes after it.
-    # freeform_progression: every world has its own key ("Chapter N Unlock", "Climax Unlock") and opens as soon as you have
-    # it, whatever the order; you may have to jump between worlds with the Chapter Select. The first world's key is yours from
-    # the start.
+    # linear_progression: Progressive Level Keys (nine in all, one is yours from the start). A world needs the previous
+    # one beaten and one more key than the world before it needed, so the worlds are played strictly in order. Nothing
+    # that a world needs can be hidden in a world that comes after it.
+    # freeform_progression: every world has its own key ("Chapter N Unlock", "Climax Unlock") and opens as soon as you
+    # have it, whatever the order; you may have to jump between worlds with the Chapter Select. The first world's key is
+    # yours from the start.
     # The Climax is never the first world you can play.
     'off': 50
     linear_progression: 0
@@ -116,8 +116,8 @@ Homura-Hime:
 
   encounter_rewards:
     # Optional Ambush fights that normally give no item (4 of them) become locations.
-    'false': 50
-    'true': 0
+    'false': 0
+    'true': 50
 
   include_cut_content:
     # Add content that exists in the game files but is never obtained normally: Ann's Board, Fortunate Misfortune,
@@ -280,9 +280,10 @@ Homura-Hime:
     disabled: 0 # equivalent to 0
 
   hexed_doll_trio_traps:
-    # How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each colour,
-    # 4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play cannot hold the count (without
-    # encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so.
+    # How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each
+    # colour, 4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play
+    # cannot hold the count (without encounter_clears there are about 110 fewer), it is lowered to what fits and the
+    # generation log says so.
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0

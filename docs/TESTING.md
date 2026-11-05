@@ -20,6 +20,16 @@ python -m pytest worlds/homura_hime -q
 
 `test_generation.py` generates a world per option set, `test_rules.py` checks the access logic, `test_shop_budget.py`
 the post-fill shop affordability check and `test_sample_yaml.py` that `apworld/sample/Homura-Hime.yaml` is current.
+`test_presets.py` checks the option presets of the options page (and generates them with many random rolls),
+`test_package.py` the package rules of Archipelago's "adding games" and APWorld documents, and `test_local_items.py`
+the `local_items` / `non_local_items` lists through Archipelago's real generator.
+
+### Style
+
+The Python of the world follows Archipelago's style guide (PEP8, 120 columns, double quotes, new-style type annotations).
+`ruff.toml` in the repository root is Archipelago's own lint configuration; `uvx ruff check` (or `ruff check`) has to
+report nothing for `apworld/` and the packaging scripts in `tools/` (the scripts that read the game's files are left
+out). Markdown is wrapped at 120 columns as well.
 
 ## Plugin tests
 

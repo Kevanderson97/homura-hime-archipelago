@@ -44,7 +44,8 @@ class TestTraps(HomuraHimeLogicBase):
 
 
 def test_many_traps_generate_with_every_filler_local():
-    """The most traps with all filler kept local still generates (traps are sized like the Dango and take free locations, not the room of needed items); the count is lowered to fit."""
+    """The most traps with all filler kept local still generates (traps are sized like the Dango and take free
+    locations, not the room of needed items); the count is lowered to fit."""
     local = {i["name"] for i in ITEMS if i["type"] in ("utility", "currency", "consumable", "trap")}
     for seed in range(5):
         generate(seed * 7 + 1, {"puffer_swarm_traps": 99, "local_items": local}, 1, check=False)

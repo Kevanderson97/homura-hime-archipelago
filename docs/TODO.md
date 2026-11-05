@@ -11,9 +11,7 @@ Working list for the plugin and the world. Newest items first within each sectio
   when the option was chosen right before a teleport to the title screen. Check whether the prompt object can be gone by then.
 - **Error after teleporting to the title screen:** "Can't remove UtageDialogCommander (Script) because DialogRTHook (Script)
   depends on it". Find out if it is ours (the debug teleport) or the game's.
-- **One solo generation failure in 2,500 option combinations** (seed 60606, sweep `solo4`). Not investigated.
-- **Local and non-local item lists that need more items than a world has room for** can still fail to generate (about 11 in
-  300 two-to-many-player test multiworlds). Left alone on purpose; document it in the setup guide if it comes up.
+
 
 ## Built, waiting for a deploy and a test in the game
 
@@ -115,6 +113,11 @@ Working list for the plugin and the world. Newest items first within each sectio
 - Ship the multiworld generation sweep (`multi_sweep.py`) as an optional tool.
 
 ## Done
+
+- **Generation failures looked into (unreleased).** The solo failure (seed 60606, 2,500 combinations) no longer reproduces: the sweep passes
+  with 7,500 tests. The local / non-local failures are impossible requests, not bugs: in 25 of 150 random multiworlds a player sent
+  more items away than the other worlds had spots free of their own local items (checked by counting the pools); `local_items`
+  alone never failed, and no configuration failed with neither list. Documented in the game doc; `test_local_items.py` guards it.
 
 - Built for 0.4.0: reconnecting to another slot from the title screen. The title screen has no played save, so a connection made
   there is no longer judged against the save that was played before (`SaveBinding.AtTitle`, with a test).

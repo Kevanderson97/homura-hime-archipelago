@@ -1,4 +1,6 @@
-"""The shape of the location table: what is left out of the randomizer, and one location per thing a reward hands out."""
+"""The shape of the location table: what is left out of the randomizer, and one location per thing a reward hands
+out."""
+
 import json
 import unittest
 from pathlib import Path
@@ -41,9 +43,9 @@ class TestLocationTable(unittest.TestCase):
             self.assertTrue(parts[1]["vanilla"].startswith("Codex_Note_"), base)
 
     def test_the_tournament_pays_three_things_and_the_first_chapter_board_two(self):
-        self.assertEqual(len([l for l in LOCATIONS if l["key"].partition("#")[0] == "tournament/reward"]), 3)
-        self.assertEqual(len([l for l in LOCATIONS if l["key"].partition("#")[0] == "stage/Level1"]), 2)
+        self.assertEqual(len([loc for loc in LOCATIONS if loc["key"].partition("#")[0] == "tournament/reward"]), 3)
+        self.assertEqual(len([loc for loc in LOCATIONS if loc["key"].partition("#")[0] == "stage/Level1"]), 2)
 
     def test_names_and_ids_stay_unique(self):
-        self.assertEqual(len({l["name"] for l in LOCATIONS}), len(LOCATIONS))
-        self.assertEqual(len({l["id"] for l in LOCATIONS}), len(LOCATIONS))
+        self.assertEqual(len({loc["name"] for loc in LOCATIONS}), len(LOCATIONS))
+        self.assertEqual(len({loc["id"] for loc in LOCATIONS}), len(LOCATIONS))

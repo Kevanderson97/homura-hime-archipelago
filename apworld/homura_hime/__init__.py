@@ -12,15 +12,17 @@ Logic in short:
   randomizer, MONEY_FACTOR) and the Senbei they cost (some slots charge Senbei too; those cannot be farmed, so the
   logic counts exactly the Senbei received). Shop slots never hold this world's own Konpeito (a wasted purchase).
   What a finished seed makes everybody buy in the shops is checked against that budget in shop_budget.py.
-- Harumi needs a cleared chapter (HARUMI_MIN_CLEARED) and Sakura Petals: PETALS_PER_CHAPTER for every cleared chapter plus the
-  Sakura items held.
+- Harumi needs a cleared chapter (HARUMI_MIN_CLEARED) and Sakura Petals: PETALS_PER_CHAPTER for every cleared chapter
+plus the Sakura items held.
 The large Konpeito and Sakura items are progression for the generator (only advancement items are counted by the
 logic) and stand for all of that currency in the pool (COUNTED_KONPEITO_MIN); clients see every currency item as filler
 (HomuraHimeItem.flags).
 """
+import itertools
 import logging
 import re
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from collections.abc import Callable
+from typing import Any, ClassVar
 
 from BaseClasses import Item, ItemClassification, Location, LocationProgressType, Region, Tutorial
 from Options import OptionError
@@ -28,11 +30,38 @@ from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule, set_rule
 
 from . import shop_budget
-from .game_data import (CHAPTER_OF_REGION, CHAPTERS, CLIMAX_ID, DASH_SKILLS, FINALE, GAME_NAME, GATE_ITEMS, ITEM_BY_NAME, ITEM_NAME_TO_ID, ITEMS,
-                        KONPEITO_BIG_LADDER, KONPEITO_ITEMS, KONPEITO_LADDER, KONPEITO_VALUES, KONPEITO_WEIGHTS, LABEL_OF,
-                        LOCATION_GROUPS, LOCATION_NAME_TO_ID, LOCATIONS, NAME_OF_KEY, NUMBERED_CHAPTERS, OPTIONAL_CATEGORIES,
-                        SAKURA_ITEMS, SAKURA_VALUES, SAKURA_WEIGHTS, SENBEI_VALUES, SHOP_PRICES, SHOP_SENBEI)
+from .game_data import (
+    CHAPTER_OF_REGION,
+    CHAPTERS,
+    CLIMAX_ID,
+    DASH_SKILLS,
+    FINALE,
+    GAME_NAME,
+    GATE_ITEMS,
+    ITEM_BY_NAME,
+    ITEM_NAME_TO_ID,
+    ITEMS,
+    KONPEITO_BIG_LADDER,
+    KONPEITO_ITEMS,
+    KONPEITO_LADDER,
+    KONPEITO_VALUES,
+    KONPEITO_WEIGHTS,
+    LABEL_OF,
+    LOCATION_GROUPS,
+    LOCATION_NAME_TO_ID,
+    LOCATIONS,
+    NAME_OF_KEY,
+    NUMBERED_CHAPTERS,
+    OPTIONAL_CATEGORIES,
+    SAKURA_ITEMS,
+    SAKURA_VALUES,
+    SAKURA_WEIGHTS,
+    SENBEI_VALUES,
+    SHOP_PRICES,
+    SHOP_SENBEI,
+)
 from .options import HomuraHimeOptions, option_groups
+from .presets import options_presets
 
 CLASSIFICATION = {
     "progression": ItemClassification.progression,
@@ -47,11 +76,13 @@ PUFFER_TRAP = "Puffer Swarm Trap"  # puffer_swarm_traps
 DOLL_TRAP = "Hexed Doll Trio Trap"  # hexed_doll_trio_traps
 TRAP_OPTIONS = {PUFFER_TRAP: "puffer_swarm_traps", DOLL_TRAP: "hexed_doll_trio_traps"}
 
-# level_order: balanced. Chapters 1-4 are the early worlds, Chapters 5-8 and the Climax the late ones. The first world is
-# always an early one, the second is early with a 66% chance, the third with a 40% chance, the last three are late with a
-# 60% chance each, the three in the middle are whatever is left. The numbers below are the chances a slot is drawn as early /
-# late: there are only four early and five late worlds, so drawings that need more are thrown away and drawn again, which
-# moves the odds; these values were found by simulation (150,000 orders) so that the odds that come out are 66%, 40% and 60%.
+# level_order: balanced. Chapters 1-4 are the early worlds, Chapters 5-8 and the Climax the late ones. The first world
+# is always an early one, the second is early with a 66% chance, the third with a 40% chance, the last three are late
+# with a 60% chance each, the three in the middle are whatever is left. The numbers below are the chances a slot is
+# drawn as early /
+# late: there are only four early and five late worlds, so drawings that need more are thrown away and drawn again,
+# which moves the odds; these values were found by simulation (150,000 orders) so that the odds that come out are 66%,
+# 40% and 60%.
 EARLY_WORLDS = ("Level1", "Level2", "Level3", "Level4")
 BALANCED_SECOND_DRAW = 0.727  # the second world is drawn as an early world (comes out as 66%)
 BALANCED_THIRD_DRAW = 0.501   # the third world is drawn as an early world (comes out as 40%)
@@ -67,17 +98,18 @@ PETALS_PER_CHAPTER = 280
 HARUMI_MAX_PETALS = max(loc["petals"] for loc in LOCATIONS if loc["category"] == "harumi")
 MIN_SAKURA_IN_POOL = HARUMI_MAX_PETALS - PETALS_PER_CHAPTER * len(NUMBERED_CHAPTERS)
 
-# Without encounter_clears (110 fewer locations) the fights still pay their Konpeito in the game, which the logic does not count:
-# at least this much per fight (the amount depends on the rating), so the pool is asked for that much less Konpeito. Where the
-# target still does not fit, the Full Heal / Ultimate Charge filler goes first, then all but CLEARS_OFF_DANGO of the Special
-# Hanami Dango, then all but CLEARS_OFF_TRAPS of each trap, then the Konpeito pieces may grow past the usual largest (see HomuraHimeWorld.create_items).
+# Without encounter_clears (110 fewer locations) the fights still pay their Konpeito in the game, which the logic does
+# not count: at least this much per fight (the amount depends on the rating), so the pool is asked for that much less
+# Konpeito. Where the target still does not fit, the Full Heal / Ultimate Charge filler goes first, then all but
+# CLEARS_OFF_DANGO of the Special Hanami Dango, then all but CLEARS_OFF_TRAPS of each trap, then the Konpeito pieces may
+# grow past the usual largest (see HomuraHimeWorld.create_items).
 CLEARS_OFF_KONPEITO_PER_FIGHT = 1000
 CLEARS_OFF_DANGO = 3
 CLEARS_OFF_TRAPS = 5
 CLEARS_OFF_STEPS = [("no_heals", "no Full Heal / Ultimate Charge filler"),
-                    ("few_dango", "only %d Special Hanami Dango" % CLEARS_OFF_DANGO),
-                    ("few_traps", "only %d of each trap" % CLEARS_OFF_TRAPS),
-                    ("big_pieces", "Konpeito pieces up to %d" % KONPEITO_BIG_LADDER[-1])]
+                    ("few_dango", f"only {CLEARS_OFF_DANGO} Special Hanami Dango"),
+                    ("few_traps", f"only {CLEARS_OFF_TRAPS} of each trap"),
+                    ("big_pieces", f"Konpeito pieces up to {KONPEITO_BIG_LADDER[-1]}")]
 
 # Only the large currency pieces count for the logic: every counted item is an advancement item the fill has to place,
 # and fill time grows with their number. The counted pieces stand for the whole pool: what they add up to is scaled by
@@ -94,7 +126,7 @@ SENBEI_COUNTER = "Senbei (total)"
 CLEARED_COUNTER = "Chapters Cleared (count)"
 COUNTED_KONPEITO = {name: amount for name, amount in KONPEITO_VALUES.items() if amount >= COUNTED_KONPEITO_MIN}
 COUNTED_SAKURA = {name: amount for name, amount in SAKURA_VALUES.items() if amount >= COUNTED_SAKURA_MIN}
-COUNTED: Dict[str, Tuple[str, int]] = {
+COUNTED: dict[str, tuple[str, int]] = {
     **{name: (MONEY_COUNTER, amount) for name, amount in COUNTED_KONPEITO.items()},
     **{name: (PETAL_COUNTER, amount) for name, amount in COUNTED_SAKURA.items()},
     **{f"{c['label']} Cleared": (CLEARED_COUNTER, 1) for c in NUMBERED_CHAPTERS},  # the climax is not counted
@@ -111,7 +143,7 @@ HUB_CLEARS_REQUIRED = {"handover/desire_circle": 1}  # the merchant hands over D
 
 # Requirements that apply to every location in a scene (the part of a sub-chapter behind a gate).
 # "dash" = any of the four dash skills; everything else is an item name.
-SCENE_REQ: Dict[str, List[str]] = {
+SCENE_REQ: dict[str, list[str]] = {
     "Level_1_Area_2_Main": ["Pretty Little Flower", "dash"], "Level_1_Area_3_Main": ["Pretty Little Flower", "dash"],
     "Level_2_Area_2_Main": ["Elevator Lever"],
     "Level_3_Area_5_Boss_Main": ["Nurikabe's Hat"], "Level_3_Area_6_Main": ["Nurikabe's Hat"],
@@ -119,7 +151,7 @@ SCENE_REQ: Dict[str, List[str]] = {
 }
 
 # Requirements to walk from a sub-chapter to the next one inside a chapter (the exit of the gated area).
-TRANSITION_REQ: Dict[str, List[str]] = {
+TRANSITION_REQ: dict[str, list[str]] = {
     # Level 1: Area 1 -> Demonic Realm -> Areas 2 and 3 -> boss. The flower leaves Area 1; the dash crosses the gap at
     # the start of Area 2, so it is needed to get on to the boss (nothing is needed to leave the Demonic Realm)
     "Level1_Area_1_Entrance": ["Pretty Little Flower"],
@@ -189,8 +221,10 @@ class HomuraHimeWebWorld(WebWorld):
         "How to set up the Homura-Hime randomizer plugin and connect to an Archipelago server.",
         "English", "setup_en.md", "setup/en", ["Kevin Anderson"],
     )
-    tutorials = [setup_en]
+    tutorials = [setup_en]  # noqa: RUF012 (the WebWorld attribute is a plain list)
     option_groups = option_groups
+    options_presets = options_presets
+    bug_report_page = "https://github.com/Kevanderson97/homura-hime-archipelago/issues"
 
 
 class HomuraHimeWorld(World):
@@ -206,7 +240,7 @@ class HomuraHimeWorld(World):
 
     item_name_to_id = ITEM_NAME_TO_ID
     location_name_to_id = LOCATION_NAME_TO_ID
-    item_name_groups = {
+    item_name_groups: ClassVar[dict[str, set[str]]] = {
         "Key Items": set(GATE_ITEMS),
         "Dash Skills": set(DASH_SKILLS),
         "Chapter Unlocks": {i["name"] for i in ITEMS if i["type"] in ("unlock", "unlock_progressive")},
@@ -221,16 +255,16 @@ class HomuraHimeWorld(World):
         "Utility": {i["name"] for i in ITEMS if i["type"] == "utility"},
         "Traps": {i["name"] for i in ITEMS if i["type"] == "trap"},
     }
-    location_name_groups = {
+    location_name_groups: ClassVar[dict[str, set[str]]] = {
         label: {loc["name"] for loc in LOCATIONS if loc["category"] in categories}
         for label, categories in LOCATION_GROUPS.items()
     }
 
-    order: List[str]
+    order: list[str]
     # freeform level keys: the place of each key's world in the order (empty before set_rules)
-    key_position: Dict[str, int] = {}
-    active_locations: List[dict]
-    shop_slots: List[HomuraHimeShopLocation]
+    key_position: dict[str, int] = {}  # noqa: RUF012 (replaced by set_rules, never changed in place)
+    active_locations: list[dict]
+    shop_slots: list[HomuraHimeShopLocation]
     # whether the logic asks for a dash skill (not with advanced_movement_required); item link groups keep this
     dash_required: bool = True
     # all Konpeito / Sakura / Senbei of the pool per counted unit (see COUNTED_KONPEITO_MIN), set by create_items
@@ -245,7 +279,7 @@ class HomuraHimeWorld(World):
         """Decides the chapter order and the starting items before the item pool and the regions are built."""
         self.shop_slots = []
         self.order = [c["id"] for c in CHAPTERS]
-        passthrough: Optional[Dict[str, Any]] = getattr(self.multiworld, "re_gen_passthrough", {}).get(GAME_NAME)
+        passthrough: dict[str, Any] | None = getattr(self.multiworld, "re_gen_passthrough", {}).get(GAME_NAME)
         if passthrough:
             self._apply_passthrough(passthrough)
         elif self.options.level_order == self.options.level_order.option_full:
@@ -270,22 +304,27 @@ class HomuraHimeWorld(World):
         elif self.options.level_unlock_items == self.options.level_unlock_items.option_linear_progression:
             self.multiworld.push_precollected(self.create_item(PROGRESSIVE_KEY))
 
-    def _balanced_order(self) -> List[str]:
+    def _balanced_order(self) -> list[str]:
         """
-        level_order: balanced. The first world is one of Chapters 1-4, the second is one of them with a 66% chance, the third
-        with a 40% chance, each of the last three is one of Chapters 5-8 or the Climax with a 60% chance (see BALANCED_*_DRAW).
-        The Climax is therefore never first. First the kind of the six constrained places is drawn (again when it needs more
-        worlds of a kind than exist), then the worlds of each kind are put in at random, and the three in the middle take the
-        rest.
+        level_order: balanced. The first world is one of Chapters 1-4, the second is one of them with a 66% chance, the
+        third with a 40% chance, each of the last three is one of Chapters 5-8 or the Climax with a 60% chance (see
+        BALANCED_*_DRAW). The Climax is therefore never first. First the kind of the six constrained places is drawn
+        (again when it needs more worlds of a kind than exist), then the worlds of each kind are put in at random, and
+        the three in the middle take the rest.
         """
         worlds = [c["id"] for c in CHAPTERS]
         early = [w for w in worlds if w in EARLY_WORLDS]
         late = [w for w in worlds if w not in EARLY_WORLDS]
         while True:
-            kinds = (["early"]
-                     + ["early" if self.random.random() < chance else "late" for chance in (BALANCED_SECOND_DRAW, BALANCED_THIRD_DRAW)]
-                     + [None] * 3
-                     + ["late" if self.random.random() < BALANCED_LATE_DRAW else "early" for _ in range(3)])
+            kinds = (
+                ["early"]
+                + [
+                    "early" if self.random.random() < chance else "late"
+                    for chance in (BALANCED_SECOND_DRAW, BALANCED_THIRD_DRAW)
+                ]
+                + [None] * 3
+                + ["late" if self.random.random() < BALANCED_LATE_DRAW else "early" for _ in range(3)]
+            )
             if kinds.count("early") <= len(early) and kinds.count("late") <= len(late):
                 break
         self.random.shuffle(early)
@@ -305,10 +344,13 @@ class HomuraHimeWorld(World):
         dropped = self.options.non_local_items.value & {i["name"] for i in ITEMS if i["type"] in unshuffled}
         if dropped:
             self.options.non_local_items.value -= dropped
-            logging.warning("Homura-Hime (%s): %d non_local_items are not shuffled (shuffle_* is off), they stay in this world",
-                            self.player_name, len(dropped))
+            logging.warning(
+                "Homura-Hime (%s): %d non_local_items are not shuffled (shuffle_* is off), they stay in this world",
+                self.player_name,
+                len(dropped),
+            )
 
-    def _apply_passthrough(self, slot_data: Dict[str, Any]) -> None:
+    def _apply_passthrough(self, slot_data: dict[str, Any]) -> None:
         """Universal Tracker regenerates the world from the slot data: the same chapter order and options."""
         self.order = list(slot_data["level_order"])
         self.options.level_order.value = self.options.level_order.options[slot_data["level_order_mode"]]
@@ -317,11 +359,11 @@ class HomuraHimeWorld(World):
             getattr(self.options, name).value = int(slot_data.get(name, 0))
 
     @staticmethod
-    def interpret_slot_data(slot_data: Dict[str, Any]) -> Dict[str, Any]:
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
         """Universal Tracker: the slot data is all that is needed to regenerate the world (see _apply_passthrough)."""
         return slot_data
 
-    def _active_locations(self) -> List[dict]:
+    def _active_locations(self) -> list[dict]:
         """The location records in play: the optional encounter locations only exist when their option is on."""
         return [loc for loc in LOCATIONS
                 if not (loc.get("option") == "encounter_rewards" and not self.options.encounter_rewards)
@@ -342,7 +384,7 @@ class HomuraHimeWorld(World):
     def get_filler_item_name(self) -> str:
         return "Full Heal"  # a real filler item: the currency items count in the logic
 
-    def _vanilla_placements(self) -> Dict[str, str]:
+    def _vanilla_placements(self) -> dict[str, str]:
         """
         Location key -> item name for the groups that are not shuffled: each item goes to the first location whose
         base-game reward it is (a location holds one item, so a location that pays a bundle keeps the first item of an
@@ -355,7 +397,7 @@ class HomuraHimeWorld(World):
             return {}
         by_definition = {i["game"]: i for i in ITEMS if i["type"] in item_types and not i.get("option")}
         remaining = {i["name"]: i["count"] for i in by_definition.values()}
-        placed: Dict[str, str] = {}
+        placed: dict[str, str] = {}
         for loc in self.active_locations:
             for part in (loc.get("vanilla") or "").split(";"):
                 item = by_definition.get(re.sub(r"\s+x\d+$", "", part.strip()))
@@ -374,7 +416,7 @@ class HomuraHimeWorld(World):
         locked = self._vanilla_placements()
         for key, item_name in locked.items():
             self.get_location(NAME_OF_KEY[key]).place_locked_item(self.create_item(item_name))
-        pool: List[str] = []
+        pool: list[str] = []
         for item in ITEMS:
             if item["classification"] == "filler" or item["type"] == "unlock":
                 continue
@@ -392,12 +434,15 @@ class HomuraHimeWorld(World):
         fixed_konpeito = [loc["konpeito"] for loc in self.active_locations if "konpeito" in loc]
         pool += [f"{amount} Konpeito" for amount in fixed_konpeito]
 
-        # The Dango count is the one large group the player sizes freely, so it gives way when the locations in play (fewer
-        # without encounter_clears) cannot hold it, after the Senbei the shops cost and the Sakura Harumi's last reward needs
-        # (see _currency_filler). An error here would stop the generation of every player's game, not only this one.
+        # The Dango count is the one large group the player sizes freely, so it gives way when the locations in play
+        # (fewer without encounter_clears) cannot hold it, after the Senbei the shops cost and the Sakura Harumi's last
+        # reward needs (see _currency_filler). An error here would stop the generation of every player's game, not only
+        # this one.
         slots = len(self.active_locations) - len(locked)
         total = self.options.senbei_count.value
-        senbei_slots = min(-(-total // 2), SENBEI_PIECES)  # the fewest items that hold the total (single and "2 Senbei")
+        senbei_slots = min(
+            -(-total // 2), SENBEI_PIECES
+        )  # the fewest items that hold the total (single and "2 Senbei")
         sakura_slots = -(-MIN_SAKURA_IN_POOL // COUNTED_SAKURA[SAKURA_ITEMS[-1]])
         room = slots - len(pool) - senbei_slots - sakura_slots
         if room < 0:
@@ -405,23 +450,36 @@ class HomuraHimeWorld(World):
                               f"{slots} free locations")
         dango = min(self.options.dango_count.value, room)
         if dango < self.options.dango_count.value:
-            logging.warning("Homura-Hime (%s): dango_count lowered from %d to %d, the locations in play have no room for more",
-                            self.player_name, self.options.dango_count.value, dango)
+            logging.warning(
+                "Homura-Hime (%s): dango_count lowered from %d to %d, the locations in play have no room for more",
+                self.player_name,
+                self.options.dango_count.value,
+                dango,
+            )
 
         # The traps are sized the same way, after the Dango (the pool's other optional group), one trap after the other.
-        traps: Dict[str, int] = {}
+        traps: dict[str, int] = {}
         left = room - dango
         for trap, option in TRAP_OPTIONS.items():
             wanted = getattr(self.options, option).value
             traps[trap] = min(wanted, left)
             left -= traps[trap]
             if traps[trap] < wanted:
-                logging.warning("Homura-Hime (%s): %s lowered from %d to %d, the locations in play have no room for more",
-                                self.player_name, option, wanted, traps[trap])
+                logging.warning(
+                    "Homura-Hime (%s): %s lowered from %d to %d, the locations in play have no room for more",
+                    self.player_name,
+                    option,
+                    wanted,
+                    traps[trap],
+                )
 
-        def assemble(dango: int, traps: Dict[str, int], heals: int, charges: int, minimum: int, ladder: List[int]) -> Tuple[List[str], int]:
+        def assemble(
+            dango: int, traps: dict[str, int], heals: int, charges: int, minimum: int, ladder: list[int]
+        ) -> tuple[list[str], int]:
             """The rest of the pool for these choices, and how many Konpeito short of the minimum it is."""
-            rest = pool + ["Special Hanami Dango"] * dango + [name for name, count in traps.items() for _ in range(count)]
+            rest = (
+                pool + ["Special Hanami Dango"] * dango + [name for name, count in traps.items() for _ in range(count)]
+            )
             free = slots - len(rest)
             # the Senbei total is handed out as single Senbei and, above SENBEI_PIECES, as "2 Senbei" items
             pieces = min(total, SENBEI_PIECES, free - sakura_slots)
@@ -471,29 +529,35 @@ class HomuraHimeWorld(World):
         self._limit_exclusions(pool)
 
     def _refused_by_shops(self, name: str) -> bool:
-        """Whether the shop slots refuse this item of the player's: their own Konpeito, and their dash skills when one is required."""
+        """Whether the shop slots refuse this item of the player's: their own Konpeito, and their dash skills when one
+        is required."""
         return name in KONPEITO_VALUES or (self.dash_required and name in DASH_SKILLS)
 
-    def _place_local_filler(self, pool: List[str]) -> List[str]:
+    def _place_local_filler(self, pool: list[str]) -> list[str]:
         """
-        Local items (local_items) that could never go into a shop slot anyway, and that the logic does not depend on, are put
-        into this world's locations right away instead of going through Archipelago's fill. That is this player's own small
-        Konpeito pieces: shop slots refuse them (a shop paid for with Konpeito would sell Konpeito), so they can only go to
-        the other locations, and the fill can strand them when the free locations left belong to other players or are shops,
-        which stops the generation of every player's game. Excluded locations get them first (only filler may go there
-        anyway), then the places that are reached last in the play order: these pieces are filler, and the early places are
-        the ones the fill needs for the progression items (random places took about 57 of them and starved the first world,
-        which stopped the generation for about one seed in eight when every filler item was local). Everything that does fit
-        a shop stays in the pool: those items fill the shop slots, and taking them out left the fill with shop slots nothing
-        could go into. Items the logic counts (the large Konpeito, Sakura and Senbei pieces) and anything that is progression
-        also stay in the pool and the fill. Returns the pool without the placed items.
+        Local items (local_items) that could never go into a shop slot anyway, and that the logic does not depend on,
+        are put into this world's locations right away instead of going through Archipelago's fill. That is this
+        player's own small Konpeito pieces: shop slots refuse them (a shop paid for with Konpeito would sell Konpeito),
+        so they can only go to the other locations, and the fill can strand them when the free locations left belong to
+        other players or are shops, which stops the generation of every player's game. Excluded locations get them first
+        (only filler may go there anyway), then the places that are reached last in the play order: these pieces are
+        filler, and the early places are the ones the fill needs for the progression items (random places took about 57
+        of them and starved the first world, which stopped the generation for about one seed in eight when every filler
+        item was local). Everything that does fit a shop stays in the pool: those items fill the shop slots, and taking
+        them out left the fill with shop slots nothing could go into. Items the logic counts (the large Konpeito, Sakura
+        and Senbei pieces) and anything that is progression also stay in the pool and the fill. Returns the pool without
+        the placed items.
         """
         local = set()
         for name in self.options.local_items.value:
             local |= self.item_name_groups.get(name, {name})
         # (the shop slots get their item rules in set_rules, after this: what they refuse is stated here, see
         # _apply_location_rules)
-        candidates = [name for name in pool if name in local and self._refused_by_shops(name) and not self.create_item(name).advancement]
+        candidates = [
+            name
+            for name in pool
+            if name in local and self._refused_by_shops(name) and not self.create_item(name).advancement
+        ]
         if not candidates:
             return pool
 
@@ -502,7 +566,9 @@ class HomuraHimeWorld(World):
         self.random.shuffle(spots)
         record = {loc["name"]: loc for loc in self.active_locations}
         # excluded ones first, then the latest in the play order first; the shuffle above breaks the ties
-        spots.sort(key=lambda loc: (loc.progress_type != LocationProgressType.EXCLUDED, -self._world_index(record[loc.name])))
+        spots.sort(
+            key=lambda loc: (loc.progress_type != LocationProgressType.EXCLUDED, -self._world_index(record[loc.name]))
+        )
 
         remaining = list(pool)
         placed = 0
@@ -519,32 +585,41 @@ class HomuraHimeWorld(World):
             logging.info("Homura-Hime (%s): %d local Konpeito pieces placed directly", self.player_name, placed)
         return remaining
 
-    def _limit_exclusions(self, pool: List[str]) -> None:
+    def _limit_exclusions(self, pool: list[str]) -> None:
         """
         Only filler fills an excluded location (the last step of Archipelago's fill), so there cannot be more excluded
-        locations than filler items: with few locations in play (no encounter clears) and a low importance of the optional
-        ones there could be, and that stops the generation of every player's game. The surplus is not excluded after all.
+        locations than filler items: with few locations in play (no encounter clears) and a low importance of the
+        optional ones there could be, and that stops the generation of every player's game. The surplus is not excluded
+        after all.
         """
         fillers = sum(1 for name in pool if self.create_item(name).classification == ItemClassification.filler)
-        excluded = [loc for loc in self.get_locations()
-                    if loc.address is not None and loc.item is None and loc.progress_type == LocationProgressType.EXCLUDED]
+        excluded = [
+            loc
+            for loc in self.get_locations()
+            if loc.address is not None and loc.item is None and loc.progress_type == LocationProgressType.EXCLUDED
+        ]
         surplus = len(excluded) - fillers
         if surplus <= 0:
             return
         for location in self.random.sample(excluded, surplus):
             location.progress_type = LocationProgressType.DEFAULT
-        logging.warning("Homura-Hime (%s): %d optional locations are not excluded after all, the pool has only %d filler items "
-                        "for them", self.player_name, surplus, fillers)
+        logging.warning(
+            "Homura-Hime (%s): %d optional locations are not excluded after all, the pool has only %d filler items "
+            "for them",
+            self.player_name,
+            surplus,
+            fillers,
+        )
 
     @staticmethod
-    def _scale_currency(pool: List[str], values: Dict[str, int], counted: Dict[str, int]) -> float:
+    def _scale_currency(pool: list[str], values: dict[str, int], counted: dict[str, int]) -> float:
         """All of a currency in the pool per unit of its counted pieces (1 when nothing of it is counted)."""
         total = sum(values.get(name, 0) for name in pool)
         counted_total = sum(counted.get(name, 0) for name in pool)
         return total / counted_total if counted_total else 1.0
 
     def _currency_filler(self, free: int, fixed_konpeito: int, minimum: int, heals: int, charges: int,
-                         ladder: List[int]) -> Tuple[List[str], int]:
+                         ladder: list[int]) -> tuple[list[str], int]:
         """
         Fills the remaining slots: the Full Heal and Ultimate Charge items, then Sakura Petals and Konpeito. Returns the
         items and how many Konpeito short of `minimum` they are (0 when it is reached).
@@ -556,7 +631,7 @@ class HomuraHimeWorld(World):
         """
         utility = ["Full Heal"] * heals
         utility += ["Ultimate Charge"] * charges
-        slots: List[Optional[str]] = utility[:free]  # None = a Konpeito slot, its size is decided below
+        slots: list[str | None] = utility[:free]  # None = a Konpeito slot, its size is decided below
         for _ in range(free - len(slots)):
             if self.random.randrange(100) < self.options.filler_sakura_ratio.value:
                 slots.append(self.random.choices(SAKURA_ITEMS, SAKURA_WEIGHTS)[0])
@@ -600,11 +675,11 @@ class HomuraHimeWorld(World):
         return [slot if slot is not None else f"{amounts[i]} Konpeito" for i, slot in enumerate(slots)], max(0, missing)
 
     # ------------------------------------------------------------------ counted items
-    def _counted_senbei(self) -> Dict[str, int]:
+    def _counted_senbei(self) -> dict[str, int]:
         """The Senbei item the logic counts (see senbei_unit) and its value."""
         return {self.senbei_unit: SENBEI_VALUES[self.senbei_unit]}
 
-    def _counted(self, name: str) -> Optional[Tuple[str, int]]:
+    def _counted(self, name: str) -> tuple[str, int] | None:
         """The running total an item adds to and by how much, or None when the logic does not count it."""
         if name in self._counted_senbei():
             return SENBEI_COUNTER, SENBEI_VALUES[name]
@@ -672,8 +747,8 @@ class HomuraHimeWorld(World):
         self.multiworld.regions += [menu, hub]
         menu.connect(hub, "Start")
 
-        regions: Dict[str, Region] = {"Hub": hub}
-        for chapter in CHAPTERS + [FINALE]:
+        regions: dict[str, Region] = {"Hub": hub}
+        for chapter in [*CHAPTERS, FINALE]:
             for sub in chapter["sub_chapters"]:
                 regions[sub["key"]] = Region(sub["key"], self.player, self.multiworld)
                 self.multiworld.regions.append(regions[sub["key"]])
@@ -682,7 +757,7 @@ class HomuraHimeWorld(World):
             cid = chapter["id"]
             subs = chapter["sub_chapters"]
             hub.connect(regions[subs[0]["key"]], f"Enter {cid}", lambda state, cid=cid: self._can_enter(state, cid))
-            for a, b in zip(subs, subs[1:]):
+            for a, b in itertools.pairwise(subs):
                 reqs = TRANSITION_REQ.get(a["key"], [])
                 regions[a["key"]].connect(regions[b["key"]], f"{a['key']} -> {b['key']}",
                                           (lambda state, reqs=reqs: self._req(state, reqs)) if reqs else None)
@@ -690,9 +765,12 @@ class HomuraHimeWorld(World):
             self._event(regions[subs[-1]["key"]], f"{chapter['label']} Cleared")
 
         finale = FINALE["sub_chapters"]
-        hub.connect(regions[finale[0]["key"]], "Enter Finale",
-                    lambda state: self._cleared(state) >= len(NUMBERED_CHAPTERS) and state.has("Climax Cleared", self.player))
-        for a, b in zip(finale, finale[1:]):
+        hub.connect(
+            regions[finale[0]["key"]],
+            "Enter Finale",
+            lambda state: self._cleared(state) >= len(NUMBERED_CHAPTERS) and state.has("Climax Cleared", self.player),
+        )
+        for a, b in itertools.pairwise(finale):
             regions[a["key"]].connect(regions[b["key"]], f"{a['key']} -> {b['key']}")
         self._event(regions[finale[-1]["key"]], "Victory")
 
@@ -722,7 +800,7 @@ class HomuraHimeWorld(World):
             location.progress_type = LocationProgressType.EXCLUDED
 
     # ------------------------------------------------------------------ rules
-    def _req(self, state, reqs: List[str]) -> bool:
+    def _req(self, state, reqs: list[str]) -> bool:
         """Whether the state has every requirement; "dash" stands for any dash skill (see SCENE_REQ)."""
         for r in reqs:
             if r == "dash":
@@ -765,14 +843,16 @@ class HomuraHimeWorld(World):
 
     def _apply_location_rules(self, location: Location, loc: dict) -> None:
         """The access rule and item rules of one location, built from its category and the requirement tables."""
-        reqs: List[str] = list(loc["scene_req"] if "scene_req" in loc else SCENE_REQ.get(loc.get("scene", ""), []))
+        reqs: list[str] = list(loc["scene_req"] if "scene_req" in loc else SCENE_REQ.get(loc.get("scene", ""), []))
         category = loc["category"]
-        rule: Optional[Callable] = None
+        rule: Callable | None = None
         if category == "shop":
             # the tier of the slot in cleared chapters, and the price in Konpeito and Senbei
             tier, price, senbei = max(loc["tier"], SHOP_MIN_CLEARED), loc["price"], loc["senbei"]
-            rule = lambda state, tier=tier, price=price, senbei=senbei: \
-                self._cleared(state) >= tier and self._money(state) >= price and self._senbei(state) >= senbei
+
+            def rule(state, tier=tier, price=price, senbei=senbei) -> bool:
+                return self._cleared(state) >= tier and self._money(state) >= price and self._senbei(state) >= senbei
+
             if self.dash_required:
                 # a dash skill is needed early in Level 1; shop prices (8000+ Konpeito) would make that a grind
                 add_item_rule(location, lambda item: not (item.player == self.player and item.name in DASH_SKILLS))
@@ -781,17 +861,28 @@ class HomuraHimeWorld(World):
             add_item_rule(location, lambda item: not (item.player == self.player and item.name in KONPEITO_VALUES))
         elif category == "stage_clear":
             label = LABEL_OF[loc["chapter"]]
-            rule = lambda state, label=label: state.has(f"{label} Cleared", self.player)
+
+            def rule(state, label=label) -> bool:
+                return state.has(f"{label} Cleared", self.player)
+
         elif category == "harumi":
-            rule = lambda state, need=loc["petals"]: \
-                self._cleared(state) >= HARUMI_MIN_CLEARED and self._petals(state) >= need
+
+            def rule(state, need=loc["petals"]) -> bool:
+                return self._cleared(state) >= HARUMI_MIN_CLEARED and self._petals(state) >= need
+
         elif loc["key"] in HUB_CLEARS_REQUIRED:
-            rule = lambda state, clears=HUB_CLEARS_REQUIRED[loc["key"]]: self._cleared(state) >= clears
+
+            def rule(state, clears=HUB_CLEARS_REQUIRED[loc["key"]]) -> bool:
+                return self._cleared(state) >= clears
+
         elif category == "stall":
             reqs.append("Inugami Certificate")
         if reqs:
             base = rule
-            rule = lambda state, reqs=reqs, base=base: self._req(state, reqs) and (base is None or base(state))
+
+            def rule(state, reqs=reqs, base=base) -> bool:
+                return self._req(state, reqs) and (base is None or base(state))
+
         if rule is not None:
             set_rule(location, rule)
 
@@ -807,8 +898,8 @@ class HomuraHimeWorld(World):
 
     def _world_index(self, loc: dict) -> int:
         """
-        How far into the play order a location of this world is reached: the index of the world it is in, or for a place in
-        the hub the index of the world whose clear opens it (a stage-clear reward, a shop slot by its tier), else 0.
+        How far into the play order a location of this world is reached: the index of the world it is in, or for a place
+        in the hub the index of the world whose clear opens it (a stage-clear reward, a shop slot by its tier), else 0.
         """
         chapter = CHAPTER_OF_REGION.get(loc["region"])
         if chapter is not None:
@@ -821,16 +912,16 @@ class HomuraHimeWorld(World):
 
     def _keys_follow_the_order(self, location: Location, loc: dict) -> None:
         """
-        Freeform level keys: the order of the worlds is also the order the keys turn up in. The key of a world may only lie
-        in a world that comes before it (or in the hub where an earlier world's clear leads), never in its own world or a
-        later one; keys sent to another player's world are not limited.
+        Freeform level keys: the order of the worlds is also the order the keys turn up in. The key of a world may only
+        lie in a world that comes before it (or in the hub where an earlier world's clear leads), never in its own world
+        or a later one; keys sent to another player's world are not limited.
         """
         index, position = self._world_index(loc), self.key_position
         add_item_rule(location, lambda item: not (item.player == self.player and item.name in position
                                                   and position[item.name] <= index))
 
     # ------------------------------------------------------------------ slot data
-    def fill_slot_data(self) -> Dict[str, Any]:
+    def fill_slot_data(self) -> dict[str, Any]:
         """What the plugin (and Universal Tracker) need to know about this slot beyond the item and location tables."""
         return {
             "world_version": self.world_version.as_simple_string(),

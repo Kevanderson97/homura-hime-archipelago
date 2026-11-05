@@ -4,7 +4,9 @@
 
 - Homura-Hime (Windows, Steam)
 - [BepInEx 5](https://github.com/BepInEx/BepInEx/releases) (the x64 Mono build, version 5.4.x)
-- The Homura-Hime Archipelago plugin (`HomuraHimeArchipelago.dll` and `Archipelago.MultiClient.Net.dll`), from the\n  `HomuraHimeArchipelago-plugin-<version>.zip` of the GitHub release. Extracting that zip into the game folder does step 2\n  below for you.
+- The Homura-Hime Archipelago plugin (`HomuraHimeArchipelago.dll` and `Archipelago.MultiClient.Net.dll`), from the\n
+  `HomuraHimeArchipelago-plugin-<version>.zip` of the GitHub release. Extracting that zip into the game folder does step
+  2\n  below for you.
 - The `homura_hime.apworld`, for generating (put it into the `custom_worlds` folder of your Archipelago install)
 
 ## Installing the plugin
@@ -16,8 +18,11 @@
 
 ## Creating a config file
 
-Use the options page on the website, or the template from the Archipelago Launcher ("Generate Template Options") once
-the apworld is installed, and save your yaml into the `Players` folder for generating.
+On the options page of the website, the presets *Standard* (the defaults), *Balanced Random* (a world order that keeps
+the story's pacing, progressive keys, few traps) and *Chaos* (everything random, every extra location in, advanced
+movement required, Death Link on) are a quick start. Instead of the website you can use the template from the
+Archipelago Launcher ("Generate Template Options") once the apworld is installed. Save your yaml into the `Players`
+folder for generating.
 
 ## Connecting
 
@@ -26,8 +31,8 @@ the apworld is installed, and save your yaml into the `Players` folder for gener
 2. Fill in **Server** (`host:port`, e.g. `archipelago.gg:38281`), **Slot** (your player name) and **Password** if the
    room has one. Tab or Up/Down switches fields, Ctrl+V pastes.
 3. Press **F11** to connect (F12 disconnects, F10 closes the form). The status line under the form shows the result.
-4. Start a **new game** for a new seed. The randomizer's progress is stored in that save file, so later sessions continue
-   where you left off: load the save and connect again.
+4. Start a **new game** for a new seed. The randomizer's progress is stored in that save file, so later sessions
+   continue where you left off: load the save and connect again.
 
 The server, slot and (optionally) the password are remembered in `BepInEx/config/com.homurahime.archipelago.cfg`. Set
 `AutoConnect = true` there to connect when the game starts.

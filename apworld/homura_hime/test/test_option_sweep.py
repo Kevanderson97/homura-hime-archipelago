@@ -1,8 +1,9 @@
 """
 Generates the world with many random combinations of its options. Every combination is a test of its own (the checks of
-WorldTestBase: all locations reachable, the game beatable, nothing left over), so an option set that cannot be generated or
-completed shows up with its options in the name. A fixed number of combinations runs by default, built from a fixed seed so
-a failure repeats; for a long sweep set HH_SWEEP (how many) and HH_SWEEP_SEED (which sequence) in the environment.
+WorldTestBase: all locations reachable, the game beatable, nothing left over), so an option set that cannot be generated
+or completed shows up with its options in the name. A fixed number of combinations runs by default, built from a fixed
+seed so a failure repeats; for a long sweep set HH_SWEEP (how many) and HH_SWEEP_SEED (which sequence) in the
+environment.
 """
 import os
 import random
@@ -52,8 +53,11 @@ def _make_tests() -> None:
     for index in range(SWEEP_SIZE):
         options = combination(rng)
         name = f"TestSweep{index:03d}"
-        globals()[name] = type(name, (test_generation.HomuraHimeTestBase,), {"options": options, "seed": SWEEP_SEED + index,
-                                                             "__doc__": describe(options), "__module__": __name__})
+        globals()[name] = type(
+            name,
+            (test_generation.HomuraHimeTestBase,),
+            {"options": options, "seed": SWEEP_SEED + index, "__doc__": describe(options), "__module__": __name__},
+        )
 
 
 _make_tests()

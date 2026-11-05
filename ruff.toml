@@ -1,0 +1,37 @@
+# The Python style of this repository: Archipelago's own ruff configuration (its ruff.toml), so that the world follows what
+# Archipelago asks of a world (docs/style.md there: PEP8, 120 columns, double quotes, new-style type annotations).
+#
+#     uvx ruff check            (or: ruff check)
+#
+# It covers the world (apworld/) and the scripts that package it. The scripts that read the game's files and generate the
+# data contract are development tools of this repository, not part of the world, and are left out. The few differences
+# from Archipelago's file are marked below.
+line-length = 120
+indent-width = 4
+target-version = "py311"
+extend-exclude = [
+    "tools/extract",
+    "tools/gametest_seed",
+    "tools/build_data.py",
+    "tools/location_names.py",
+    "tools/serve_test_seed.py",
+]
+
+[lint]
+select = ["B", "C", "E", "F", "W", "I", "N", "Q", "UP", "RET", "RSE", "RUF", "ISC", "PLC", "PLE", "PLW", "T20", "PERF"]
+ignore = [
+    "B011",  # In AP, the use of assert False is essential because we optimise out these statements for release builds.
+    "C901",  # Author disagrees with limiting branch complexity
+    "N818",  # Author agrees with this rule, but Core AP violates this and changing it would be a hassle.
+    "PLC0415",  # In AP, we consider local imports totally fine & necessary
+    "PLC1802",  # Author agrees with this rule, but it literally changes the functionality of the code, which is unsafe.
+    "PLC1901",  # This is just not equivalent
+    "PLE1141",  # Gives false positives when the dict keys are tuples, but does not mention this in the suggested fix.
+    "UP015",  # Explicit is better than implicit, so we'd prefer to keep "r" in open() calls.
+]
+
+[lint.per-file-ignores]
+# the packaging scripts print their results
+"tools/*.py" = ["T201"]
+# the options of a test class are the class attributes of Archipelago's WorldTestBase, as in all of its world tests
+"apworld/homura_hime/test/*.py" = ["RUF012"]

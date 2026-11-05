@@ -9,8 +9,8 @@ class LevelOrder(Choice):
 
     off: story order (the Climax comes between Chapters 5 and 6).
     balanced: a random order that keeps the story's pacing in mind. The first world is always one of Chapters 1-4, the
-    second is one of them 66% of the time, the third 40% of the time, and each of the last three is one of Chapters 5-8 or
-    the Climax 60% of the time. The three in the middle are whatever is left.
+    second is one of them 66% of the time, the third 40% of the time, and each of the last three is one of Chapters 5-8
+    or the Climax 60% of the time. The three in the middle are whatever is left.
     full: any order is equally likely (the Climax is never the first one).
     The Finale always stays last. The Chapter Select is always available; see the level keys option for how worlds open.
     With freeform level keys the order also decides the order the keys turn up in: the key of a world is never in that
@@ -28,12 +28,12 @@ class LevelUnlockItems(Choice):
     """Whether the chapters and the Climax need keys, items that can be anywhere in the multiworld.
 
     off: no keys. A world opens when the one before it in the play order is beaten.
-    linear_progression: Progressive Level Keys (nine in all, one is yours from the start). A world needs the previous one
-    beaten and one more key than the world before it needed, so the worlds are played strictly in order. Nothing that a
-    world needs can be hidden in a world that comes after it.
-    freeform_progression: every world has its own key ("Chapter N Unlock", "Climax Unlock") and opens as soon as you have
-    it, whatever the order; you may have to jump between worlds with the Chapter Select. The first world's key is yours from
-    the start.
+    linear_progression: Progressive Level Keys (nine in all, one is yours from the start). A world needs the previous
+    one beaten and one more key than the world before it needed, so the worlds are played strictly in order. Nothing
+    that a world needs can be hidden in a world that comes after it.
+    freeform_progression: every world has its own key ("Chapter N Unlock", "Climax Unlock") and opens as soon as you
+    have it, whatever the order; you may have to jump between worlds with the Chapter Select. The first world's key is
+    yours from the start.
     The Climax is never the first world you can play."""
     display_name = "Level Keys"
     option_off = 0
@@ -68,7 +68,7 @@ class IncludeCutContent(Toggle):
     display_name = "Include Cut Content"
 
 
-class EncounterRewards(Toggle):
+class EncounterRewards(DefaultOnToggle):
     """Optional Ambush fights that normally give no item (4 of them) become locations."""
     display_name = "Optional Encounter Rewards"
 
@@ -144,18 +144,19 @@ class PufferSwarmTraps(NamedRange):
     range_start = 0
     range_end = 99
     default = 20
-    special_range_names = {"disabled": 0}
+    special_range_names = {"disabled": 0}  # noqa: RUF012 (the attribute of Archipelago's NamedRange, a plain dict)
 
 
 class HexedDollTrioTraps(NamedRange):
-    """How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each colour,
-    4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play cannot hold the count (without
-    encounter_clears there are about 110 fewer), it is lowered to what fits and the generation log says so."""
+    """How many Hexed Doll Trio Traps are added to the item pool. A trap spawns a trio of Hexed Dolls, one of each
+    colour, 4 to 8 metres away from you, once you stand on solid ground. 0 has no traps. When the locations in play
+    cannot hold the count (without encounter_clears there are about 110 fewer), it is lowered to what fits and the
+    generation log says so."""
     display_name = "Hexed Doll Trio Traps In Pool"
     range_start = 0
     range_end = 99
     default = 5
-    special_range_names = {"disabled": 0}
+    special_range_names = {"disabled": 0}  # noqa: RUF012 (the attribute of Archipelago's NamedRange, a plain dict)
 
 
 # ---------------------------------------------------------------- shuffle groups

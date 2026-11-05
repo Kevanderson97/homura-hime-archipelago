@@ -1,0 +1,3 @@
+# What the "Build APWorlds" launcher component leaves out of homura_hime.apworld, on top of its own GLOBAL.apignore
+# (__pycache__, archipelago.json, .git, ...): the tests are for development only, players do not need them.
+/test

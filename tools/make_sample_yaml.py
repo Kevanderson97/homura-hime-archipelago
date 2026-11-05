@@ -1,6 +1,6 @@
 """
-Regenerates apworld/sample/Homura-Hime.yaml: a yaml with every option of the world, written by Archipelago's own template
-generator (so the options, their values and their descriptions are exactly what the world defines).
+Regenerates apworld/sample/Homura-Hime.yaml: a yaml with every option of the world, written by Archipelago's own
+template generator (so the options, their values and their descriptions are exactly what the world defines).
 
     python tools/make_sample_yaml.py <path to the Archipelago source>
 
