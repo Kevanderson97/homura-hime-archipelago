@@ -107,9 +107,21 @@ was not regenerated. Copy it into `Players/` and edit the values to generate a s
 
 ## Slot data
 
-`world_version`, `goal`, `level_order`, `level_order_mode`, `dango_count`, `puffer_swarm_traps`, `hexed_doll_trio_traps` and the
+`world_version`, `goal`, `level_order`, `level_order_mode`, `money_scale`, `petal_scale`, `senbei_scale`, `senbei_unit`,
+`dango_count`, `puffer_swarm_traps`, `hexed_doll_trio_traps` and the
 toggles in `SLOT_DATA_TOGGLES`. The plugin accepts worlds of its own major.minor version
 (`plugin/Archipelago/SlotData.cs`). `interpret_slot_data` lets Universal Tracker regenerate the world from it.
+
+## Universal Tracker
+
+UT generates the world again from the slot data, with other random draws than the real generation. What the logic
+depends on and the options do not fix has to be in the slot data: the order of the worlds and the three currency scales
+with the Senbei piece the logic counts (`money_scale`, `petal_scale`, `senbei_scale`, `senbei_unit`, which come from
+the random filler of the pool; `_apply_passthrough` and the end of `create_items` restore them). The world sets
+`ut_can_gen_without_yaml`: everything else the logic reads is an option in the slot data (`SLOT_DATA_TOGGLES`, `goal`,
+the two level options), so UT needs no yaml. `test/test_universal_tracker.py` replays generated seeds against a
+regenerated world sphere by sphere, like the fuzzer's `check-ut`, and runs the tracker's own core when it is installed
+(put `tracker.apworld` into `custom_worlds`).
 
 ## Known simplifications
 

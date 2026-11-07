@@ -38,6 +38,10 @@ Nothing at the moment.
 
 ## Done
 
+### 0.4.2
+
+- **Universal Tracker support.** The Waimea report (0.4.1) failed `check-ut` for 67 of 500 seeds: UT regenerates the world with other random draws, and the currency scales the logic uses (`money_scale`, `petal_scale`, `senbei_scale`, `senbei_unit`) come from the random filler of the pool, so Harumi's stages (and twice a shop) were in logic at other times. They are in the slot data now and restored in the regeneration (`SCALE_SLOT_DATA`); the world sets `ut_can_gen_without_yaml`. `test_universal_tracker.py` replays seeds sphere by sphere against a regeneration, and runs the tracker's own core when it is installed. The 67 failing yamls and 1,900 random ones pass the tracker's `check-ut` hook, with and without a yaml. Passes the full test bench of the world index.
+
 ### 0.4.1
 
 - **Soul Cores gate the Chapter 6-8 boss fights.** Five items of type `soul_core` (always shuffled) and five hub locations

@@ -18,7 +18,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PluginGuid = "com.homurahime.archipelago";
     public const string PluginName = "Homura-Hime Archipelago";
-    public const string PluginVersion = "0.4.1";
+    public const string PluginVersion = "0.4.2";
 
     /// <summary>The plugin's log source (BepInEx/LogOutput.log); set in <see cref="Awake"/>.</summary>
     internal static ManualLogSource Log;

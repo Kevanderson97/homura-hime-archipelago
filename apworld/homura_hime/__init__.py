@@ -191,6 +191,10 @@ SHUFFLE_GROUPS = {
 # Chapters 6, 7 and 8: the goal "return_all_soul_cores" opens the Finale once these are cleared.
 SOUL_CORE_WORLDS = ["LevelFinalP1", "LevelFinalP2", "LevelFinalP3"]
 
+# What the pool drew that the logic depends on (see HomuraHimeWorld.create_items): the slot data carries it for
+# Universal Tracker, which regenerates the world with other random draws.
+SCALE_SLOT_DATA = ["money_scale", "petal_scale", "senbei_scale", "senbei_unit"]
+
 # Options the plugin and Universal Tracker read from the slot data (sent as they are, booleans for toggles).
 SLOT_DATA_TOGGLES = ["include_cut_content", "optional_locations", "advanced_movement_required", "death_link",
                      "death_link_skip_revives", "shop_hints"]
@@ -248,6 +252,8 @@ class HomuraHimeWorld(World):
     options: HomuraHimeOptions
     topology_present = True
     required_client_version = (0, 5, 0)
+    # Universal Tracker needs no yaml: the slot data holds everything the logic depends on (see _apply_passthrough)
+    ut_can_gen_without_yaml = True
 
     item_name_to_id = ITEM_NAME_TO_ID
     location_name_to_id = LOCATION_NAME_TO_ID
@@ -285,6 +291,9 @@ class HomuraHimeWorld(World):
     senbei_scale: float = 1.0
     # the one Senbei item that counts for the logic: the "2 Senbei" pieces when the pool has them, else "Senbei"
     senbei_unit: str = "2 Senbei"
+    # Universal Tracker regenerates the world with other random draws: the values above, which depend on them, come from
+    # the slot data then (see _apply_passthrough)
+    passed_scales: dict[str, Any] | None = None
 
     # ------------------------------------------------------------------ generation
     def generate_early(self) -> None:
@@ -370,6 +379,7 @@ class HomuraHimeWorld(World):
         self.options.level_unlock_items.value = self.options.level_unlock_items.options[slot_data["level_unlock_items"]]
         for name in SLOT_DATA_TOGGLES:
             getattr(self.options, name).value = int(slot_data.get(name, 0))
+        self.passed_scales = {name: slot_data[name] for name in SCALE_SLOT_DATA if name in slot_data}
 
     @staticmethod
     def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
@@ -553,6 +563,9 @@ class HomuraHimeWorld(World):
         self.money_scale = self._scale_currency(pool, KONPEITO_VALUES, COUNTED_KONPEITO)
         self.petal_scale = self._scale_currency(pool, SAKURA_VALUES, COUNTED_SAKURA)
         self.senbei_scale = self._scale_currency(pool, SENBEI_VALUES, self._counted_senbei())
+        if self.passed_scales:  # Universal Tracker: what the real generation drew, not what this one drew
+            for name, value in self.passed_scales.items():
+                setattr(self, name, value)
         pool = self._place_local_filler(pool)
         self.multiworld.itempool += [self.create_item(name) for name in pool]
         self._limit_exclusions(pool)
@@ -972,6 +985,7 @@ class HomuraHimeWorld(World):
             "level_order_mode": self.options.level_order.current_key,
             "level_unlock_items": self.options.level_unlock_items.current_key,
             "dango_count": self.options.dango_count.value,
+            **{name: getattr(self, name) for name in SCALE_SLOT_DATA},
             **{option: getattr(self.options, option).value for option in TRAP_OPTIONS.values()},
             **{name: bool(getattr(self.options, name)) for name in SLOT_DATA_TOGGLES},
         }
