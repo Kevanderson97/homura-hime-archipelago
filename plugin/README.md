@@ -63,8 +63,9 @@ cut-content guns (names, missile HUD fix, game sound samples via `Core/GameSampl
 
 ## Controls
 
-F10 opens the connection form (the title screen shows it read-only until then; while open, the game ignores the keyboard), Tab/arrows
-switch field, Ctrl+V pastes, F11 connect, F12 disconnect.
+F10 opens the connection form (or Start + Select + LB + RB + LT + RT held together on a controller; while open, the game ignores
+the keyboard), Up/Down/Tab switch field, Right and Left move to and from the box for commands, Ctrl+V pastes, Enter or F11 connects,
+F12 disconnects, Esc or Start closes it.
 
 ## Config (BepInEx/config/com.homurahime.archipelago.cfg)
 

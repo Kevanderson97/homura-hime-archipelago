@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using global::Archipelago.MultiClient.Net;
 using global::Archipelago.MultiClient.Net.Enums;
 using global::Archipelago.MultiClient.Net.Helpers;
+using global::Archipelago.MultiClient.Net.MessageLog.Messages;
 using global::Archipelago.MultiClient.Net.Models;
 using HomuraHimeAP.Core;
 using HomuraHimeAP.Items;
@@ -64,6 +65,8 @@ internal static class ApClient
     private static readonly Dictionary<string, SessionState> Sessions = new();
     private static BindingDecision? _decision;
     private static int? _boundSaveSlot;
+    private static SessionState _appliedState; // whose progress was last switched to that of the played save ...
+    private static int? _appliedSaveSlot;      // ... and which save that was: connecting again must not roll the live progress back to the save file
 
     /// <summary>
     /// Counts manual connects and disconnects. A network task started under an older generation finds out it was superseded
@@ -89,6 +92,7 @@ internal static class ApClient
         Disconnect(rebind: false);
         Sessions.Clear();
         (_decision, _boundSaveSlot, Refusal) = (null, null, null);
+        (_appliedState, _appliedSaveSlot) = (null, null);
         Status = ConnectionStatus.Disconnected;
         StatusText = "Not connected";
         Slot = new SlotData();
@@ -99,7 +103,13 @@ internal static class ApClient
 
     internal static void Connect(string address, string slotName, string password)
     {
-        if (Status == ConnectionStatus.Connecting) return;
+        if (Status == ConnectionStatus.Connecting)
+        {
+            Plugin.Log.LogInfo("Connect ignored: a connection attempt is already running");
+            return;
+        }
+
+        Plugin.Log.LogInfo($"Connecting to \"{address}\" as \"{slotName}\"");
         Disconnect(rebind: false);
         (_address, _slotName, _password) = (address, slotName, password);
         Status = ConnectionStatus.Connecting;
@@ -175,9 +185,11 @@ internal static class ApClient
         (_connectedSlot, _connectedSeed) = (null, null);
         DeathLinkHandler.Disconnect();
         Status = ConnectionStatus.Disconnected;
+        SyncMessageListener();
 
         if (session != null)
         {
+            Plugin.Log.LogInfo("Disconnected from Archipelago");
             session.Items.ItemReceived -= OnItemReceived;
             session.Locations.CheckedLocationsUpdated -= OnServerChecked;
             Task.Run(() => { try { session.Socket.DisconnectAsync(); } catch { /* already closed */ } });
@@ -209,6 +221,7 @@ internal static class ApClient
         ScoutCache.Reload(session, entries => { stored.Scouted = entries; stored.Save(); });
         session.Items.ItemReceived += OnItemReceived;
         session.Locations.CheckedLocationsUpdated += OnServerChecked;
+        SyncMessageListener();
 
         Plugin.Log.LogInfo($"{(reconnect ? "Reconnected" : "Connected")} to Archipelago as {_slotName} (seed {outcome.Seed})");
         if (!reconnect) foreach (var line in Slot.Describe()) Plugin.Log.LogInfo("  " + line);
@@ -253,7 +266,7 @@ internal static class ApClient
             case BindingDecision.Continue:
             case BindingDecision.Offline:
                 SetState(StateFor(entry.Slot, entry.Seed));
-                if (reload || State != previous) State.ApplyPlaythrough(entry.Progress);
+                if (ApplyFromSave(reload, saveSlot)) State.ApplyPlaythrough(entry.Progress);
                 TutorialTracker.SaveApplied();
                 if (decision == BindingDecision.Offline) UseStoredSlotData();
                 Plugin.Log.LogInfo($"Save {saveSlot}: {decision}, {State.ReceivedIndex} items already granted");
@@ -261,7 +274,7 @@ internal static class ApClient
 
             case BindingDecision.Adopt:
                 SetState(StateFor(_connectedSlot, _connectedSeed));
-                if (reload || State != previous) State.ApplyPlaythrough(new Playthrough { TutorialDone = GameApi.HubProgress > 0 });
+                if (ApplyFromSave(reload, saveSlot)) State.ApplyPlaythrough(new Playthrough { TutorialDone = GameApi.HubProgress > 0 });
                 Plugin.Log.LogInfo(saveSlot.HasValue ? $"Save {saveSlot} has no slot yet, it now belongs to {_connectedSlot}" : $"New game for {_connectedSlot}");
                 break;
 
@@ -280,6 +293,17 @@ internal static class ApClient
         if (wasRefused && Refusal == null) Plugin.Log.LogInfo("The loaded save can be played as a randomizer game again");
         if (reconcile && State != null && State != previous && Session != null) Reconcile(Session);
         UpdateStatusText();
+    }
+
+    /// <summary>
+    /// Whether the progress stored with the played save replaces the live one: when the game loaded a save, or the played save or the
+    /// slot changed. Not when only the connection did: a (re)connect while playing keeps what happened since the save was written.
+    /// </summary>
+    private static bool ApplyFromSave(bool reload, int? saveSlot)
+    {
+        var apply = SaveBinding.ShouldApplyPlaythrough(reload, State, _appliedState, saveSlot, _appliedSaveSlot);
+        (_appliedState, _appliedSaveSlot) = (State, saveSlot);
+        return apply;
     }
 
     private static string Short(string seed) => seed != null && seed.Length > 8 ? seed.Substring(0, 8) : seed;
@@ -420,6 +444,57 @@ internal static class ApClient
         if (fullList && session != null) CheckSender.Send(session, difference.ToSend);
     }
 
+    /// <summary>What the server says (command results, chat, hints) goes to the connection form; the sending of items between other players does not.</summary>
+    internal static readonly ConsoleLog ServerLog = new();
+
+    private static bool _wantMessages;
+    private static ArchipelagoSession _logSession;
+
+    /// <summary>
+    /// The client library only reads the messages of the server (and looks the items and players in them up, which can mean fetching
+    /// the data of the other games) while something listens to them. In a large multiworld thousands of them go by, so the form
+    /// listens only while it is open and the game does nothing for them otherwise.
+    /// </summary>
+    internal static void ListenToMessages(bool wanted)
+    {
+        _wantMessages = wanted;
+        SyncMessageListener();
+    }
+
+    private static void SyncMessageListener()
+    {
+        var target = _wantMessages ? Session : null;
+        if (_logSession == target) return;
+
+        if (_logSession != null) _logSession.MessageLog.OnMessageReceived -= OnLogMessage;
+        _logSession = target;
+        if (_logSession != null) _logSession.MessageLog.OnMessageReceived += OnLogMessage;
+    }
+
+    private static void OnLogMessage(LogMessage message)
+    {
+        if (message is ItemSendLogMessage item && !item.IsRelatedToActivePlayer) return;
+        if (message is TagsChangedLogMessage) return;
+
+        var text = message.ToString();
+        MainThread.Run(() => ServerLog.Add(text));
+    }
+
+    /// <summary>Sends a chat message, or a command that starts with "!", to the server as the connected slot. False when there is no connection.</summary>
+    internal static bool Say(string text)
+    {
+        var session = Session;
+        if (!IsConnected || session == null || string.IsNullOrWhiteSpace(text)) return false;
+
+        // the client library must not be called from the game thread
+        Task.Run(() =>
+        {
+            try { session.Say(text); }
+            catch (Exception e) { Plugin.Log.LogWarning("Could not send the message: " + e.Message); }
+        });
+        return true;
+    }
+
     private static void OnItemReceived(ReceivedItemsHelper helper)
     {
         // Granting happens in ItemGranter.Tick on the game thread; nothing to do beyond waking it.
@@ -466,3 +541,4 @@ internal static class ApClient
         });
     }
 }
+

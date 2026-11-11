@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using HomuraHimeAP.Archipelago;
 using HomuraHimeAP.Core;
 using Xunit;
@@ -30,6 +30,17 @@ public class SaveBindingTests : System.IDisposable
     {
         var entry = hasRecord ? Entry("Alice", "s1") : null;
         Assert.Equal(allowed, SaveBinding.MayLoad(connectedSlot, connectedSeed, entry));
+    }
+
+    [Fact]
+    public void ReconnectingDoesNotRollTheLiveProgressBackToTheSaveFile()
+    {
+        var state = new object();
+        Assert.True(SaveBinding.ShouldApplyPlaythrough(false, state, null, 1, null)); // first time this save is played
+        Assert.False(SaveBinding.ShouldApplyPlaythrough(false, state, state, 1, 1)); // connect again, same state and save
+        Assert.True(SaveBinding.ShouldApplyPlaythrough(true, state, state, 1, 1)); // the game loaded the save
+        Assert.True(SaveBinding.ShouldApplyPlaythrough(false, state, state, 2, 1)); // another save
+        Assert.True(SaveBinding.ShouldApplyPlaythrough(false, new object(), state, 1, 1)); // another slot
     }
 
     [Fact]
@@ -321,3 +332,4 @@ public class SaveBindingTests : System.IDisposable
         Assert.Equal(HomuraHimeAP.Core.WorldRules.VanillaOrder.Reverse(), slot.LevelOrder);
     }
 }
+

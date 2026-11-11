@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -18,7 +18,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PluginGuid = "com.homurahime.archipelago";
     public const string PluginName = "Homura-Hime Archipelago";
-    public const string PluginVersion = "0.4.2";
+    public const string PluginVersion = "0.4.3";
 
     /// <summary>The plugin's log source (BepInEx/LogOutput.log); set in <see cref="Awake"/>.</summary>
     internal static ManualLogSource Log;
@@ -131,7 +131,13 @@ public class Plugin : BaseUnityPlugin
         var now = Time.unscaledTime;
         // method groups and lambdas without captures are cached by the compiler: nothing is allocated per frame
         TickGuard.Run("main-thread queue", now, MainThread.Drain);
-        TickGuard.Run("connection panel", now, () => { if (Input.GetKeyDown(KeyCode.F10) && !UI.SetupOverlay.Visible) UI.ConnectionPanel.Toggle(); });
+        TickGuard.Run("connection panel", now, () =>
+        {
+            if (UI.SetupOverlay.Visible) return;
+            if (Input.GetKeyDown(KeyCode.F10)) UI.ConnectionPanel.Toggle();
+            if (UI.ControllerChord.Completed() && !UI.ConnectionPanel.Open) UI.ConnectionPanel.OpenFromController();
+            UI.ConnectionPanel.PollKeys();
+        });
         TickGuard.Run("item granter", now, Items.ItemGranter.Tick);
         TickGuard.Run("save panel", now, Patches.SavePanelGate.Tick);
         TickGuard.Run("gun sounds", now, Patches.GunSoundPreload.Tick);
@@ -153,8 +159,7 @@ public class Plugin : BaseUnityPlugin
     /// <summary>Draws the version label, the connection form and the item notifications (IMGUI, on top of the game).</summary>
     private void OnGUI()
     {
-        if (CfgShowLabel.Value) GUI.Label(new Rect(8, 4, 360, 20), $"{PluginName} v{PluginVersion}");
-        if (!UI.SetupOverlay.Visible) UI.ConnectionPanel.Draw();
+        if (!UI.SetupOverlay.Visible) UI.ConnectionPanel.HandleGui();
         UI.Toasts.Draw();
         if (!UI.SetupOverlay.Visible) UI.MenuNotice.Draw();
         UI.SetupOverlay.Draw(); // last: it covers everything else

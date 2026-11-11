@@ -32,7 +32,7 @@ Everything you need is in the [latest release](../../releases/latest):
    `homura_hime.apworld` into its `custom_worlds` folder (or double-click it with the Archipelago Launcher).
 4. Edit `Homura-Hime.yaml` (set `name:` and the options you want) and generate a multiworld with it, or send it to the
    host of your multiworld.
-5. In the game, press **F10** on the title screen, enter server, slot name and password, and press **F11** to connect.
+5. In the game, press **F10** (or hold Start, Select, LB, RB, LT and RT on a controller), enter server, slot name and password, and press **Enter** to connect.
    Start a new game for a new seed.
 
 The full guides are in [`apworld/homura_hime/docs/`](apworld/homura_hime/docs/):

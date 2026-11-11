@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using BepInEx;
 using Newtonsoft.Json;
@@ -103,6 +103,10 @@ internal static class SaveBinding
     }
 
     /// <summary>The decision table. <paramref name="connectedSlot"/> is null when there is no connection.</summary>
+    /// <summary>See <c>ApClient.ApplyFromSave</c>: the stored progress of a save is applied on a load, or when the state or the save is not the one applied last.</summary>
+    internal static bool ShouldApplyPlaythrough(bool reload, object state, object appliedState, int? saveSlot, int? appliedSaveSlot) =>
+        reload || !ReferenceEquals(state, appliedState) || saveSlot != appliedSaveSlot;
+
     internal static BindingDecision Decide(string connectedSlot, string connectedSeed, SaveEntry entry)
     {
         if (entry == null) return connectedSlot != null ? BindingDecision.Adopt : BindingDecision.Vanilla;
@@ -231,3 +235,4 @@ internal static class SaveBinding
         (AtTitle, CurrentSaveSlot) = (false, null);
     }
 }
+

@@ -70,8 +70,14 @@ internal static class DeathLinkHandler
 
     // ------------------------------------------------------------------ sending
 
+    private static readonly System.Random Dice = new();
+
     /// <summary>The player has died and the game is showing the death menu.</summary>
-    internal static void OnPlayerDied() => Act(Machine.PlayerDied());
+    internal static void OnPlayerDied()
+    {
+        Patches.DamageSource.Killer(Time.unscaledTime); // only logged for now: the cause of the death is a generic message
+        Act(Machine.PlayerDied());
+    }
 
     /// <summary>The player chose to give up after dying (continue from the last checkpoint or go back to the menu).</summary>
     internal static void OnPlayerGaveUp() => Act(Machine.PlayerGaveUp());
@@ -82,8 +88,7 @@ internal static class DeathLinkHandler
 
         // the client library must not be called from the game thread
         var service = _service;
-        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        var death = new DeathLink(_slotName, $"{_slotName} died in {scene}");
+        var death = new DeathLink(_slotName, DeathCause.GenericMessage(_slotName, Dice.Next()));
         Task.Run(() =>
         {
             try { service.SendDeathLink(death); }
