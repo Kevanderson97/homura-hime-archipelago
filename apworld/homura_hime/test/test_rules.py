@@ -38,7 +38,9 @@ class HomuraHimeLogicBase(WorldTestBase):
 
 
 class TestRules(HomuraHimeLogicBase):
-    """The gates of the chapters and the shop tiers."""
+    """The gates of the chapters and the shop tiers, with the Flower as an item (see test_early_macguffin.py)."""
+    options = {"skip_early_macguffin_checks": False}
+
     def test_level1_needs_flower_and_dash(self):
         loc = scene_location("Level_1_Area_3_Main")
         self.assertFalse(self.can_reach(loc, self.state_with([])))
@@ -269,7 +271,7 @@ class TestSakuraInThePool(HomuraHimeLogicBase):
 
 class TestAdvancedMovement(HomuraHimeLogicBase):
     """With advanced_movement_required the logic asks for no dash skill: the gap is crossed by parrying the laser."""
-    options = {"advanced_movement_required": True}
+    options = {"advanced_movement_required": True, "skip_early_macguffin_checks": False}
 
     def test_level1_needs_only_the_flower(self):
         loc = scene_location("Level_1_Area_3_Main")

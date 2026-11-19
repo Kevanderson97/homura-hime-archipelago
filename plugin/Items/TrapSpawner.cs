@@ -33,6 +33,7 @@ internal static class TrapSpawner
         internal (string Template, int Count)[] Enemies;
         internal bool Flying;                  // placed in the air around the player; otherwise a group on the ground
         internal bool NeedsGround;             // waits until the player stands on solid ground (not in the air, on a rail or in a boost)
+        internal bool BringsBlueDoll;          // spawns a Blue Hexed Doll, so it waits while another one is alive (see BlueDollAlive)
         internal Func<SlotData, int> InSeed;   // how many of this trap the seed asked for
     }
 
@@ -49,7 +50,7 @@ internal static class TrapSpawner
             // the training ground is a small scene, and the dummy list it carries refers to a prefab of every standard enemy
             Item = "HexedDollTrioTrap", Scene = "HubWorld_TrainingGround_Main", ComponentType = "HonoHime.CharacterSystem.Enemy", Prefabs = true,
             Enemies = new[] { ("Enemy_CursedDoll_A_Default", 1), ("Enemy_CursedDoll_B_Default", 1), ("Enemy_CursedDoll_C_Default", 1) },
-            Flying = false, NeedsGround = true, InSeed = slot => slot.HexedDollTrioTraps,
+            Flying = false, NeedsGround = true, BringsBlueDoll = true, InSeed = slot => slot.HexedDollTrioTraps,
         },
     };
 
@@ -63,6 +64,37 @@ internal static class TrapSpawner
 
     /// <summary>A ground trap goes off once the player has stood on solid ground for this long (not on the frame of a landing).</summary>
     private const float LandedSeconds = 0.5f;
+
+    /// <summary>
+    /// At most this many traps go off in any <see cref="SpawnWindowFrames"/> frames. A flood of traps (hundreds sent at once) is all
+    /// read in and kept in the queue, and let out at this pace: each one puts several enemies into the scene, and all of them
+    /// at once is a long frame and, in the worst case, a crash.
+    /// </summary>
+    internal const int MaxSpawnsPerWindow = 2, SpawnWindowFrames = 5;
+
+    private static readonly SpawnLimiter Pace = new(MaxSpawnsPerWindow, SpawnWindowFrames);
+
+    /// <summary>
+    /// At most this many traps are out at once. A trap counts until every enemy it spawned has been defeated; only then does the
+    /// next one of the queue go off. Many enemies at once is what costs the frame rate, however slowly they are let in.
+    /// </summary>
+    internal const int MaxActiveTraps = 6;
+
+    private static readonly ActiveTraps<Component> Active = new(MaxActiveTraps);
+    private const int PruneEveryFrames = 10;
+    private static int _nextPruneFrame;
+
+    private static readonly Type EnemyType = HarmonyLib.AccessTools.TypeByName("HonoHime.CharacterSystem.Enemy");
+
+    // the dead flag every enemy of the game has (CharacterMotor.isDead); without it only a destroyed or switched-off enemy is defeated
+    private static readonly System.Reflection.PropertyInfo IsDeadProperty = HarmonyLib.AccessTools.Property(EnemyType, "isDead");
+
+    /// <summary>An enemy is defeated when it is gone, switched off (the game does that on a death) or marked dead.</summary>
+    private static bool IsDefeated(Component enemy)
+    {
+        if (enemy == null || !enemy.gameObject.activeInHierarchy) return true;
+        return IsDeadProperty != null && IsDeadProperty.DeclaringType.IsInstanceOfType(enemy) && IsDeadProperty.GetValue(enemy) is true;
+    }
 
     /// <summary>A source scene that is not loaded after this long is given up on.</summary>
     private const float LoadTimeoutSeconds = 90f;
@@ -369,6 +401,8 @@ internal static class TrapSpawner
 
     private static void TrapTick(float time)
     {
+        PruneTraps(); // before the checks below: leaving the level (to the hub, a loading screen) already counts
+
         if (!ApClient.CanReceive || !PlayerApi.InGame || !SceneClock.Settled(time, GameSettleSeconds)) return;
 
         // the hub (Mihare Shrine) is no place for them: the enemies behaved badly there, so the traps wait for a level
@@ -398,13 +432,91 @@ internal static class TrapSpawner
             }
 
             var grounded = !kind.NeedsGround || time - _groundedSince >= LandedSeconds;
-            if (grounded && PlayerApi.IsPlayerAlive() && PlayerApi.HasControl() && PlayerApi.Position is { } at)
+            if (grounded && Active.HasRoom && Pace.CanAcquire(Time.frameCount) && PlayerApi.IsPlayerAlive() && PlayerApi.HasControl()
+                && PlayerApi.Position is { } at && NoBlueDollBlocks(kind))
             {
-                Spawn(kind, at);
+                var enemies = Spawn(kind, at);
+                Active.Add(enemies);
+                if (kind.BringsBlueDoll) _lastTrioFrame = Time.frameCount;
+                _blueDollCheckedFrame = int.MinValue; // what the last search found is out of date now
+                Pace.Acquired(Time.frameCount);
                 Pending[kind] = waiting - 1;
-                return; // one trap per tick
+                return; // one trap per frame, and no more than the pace allows (the rest wait in Pending)
             }
         }
+    }
+
+    /// <summary>How often the scene is searched for a living Blue Hexed Doll while a trio of dolls is waiting for it to be gone.</summary>
+    private const int BlueDollCheckFrames = 15;
+
+    private static int _blueDollCheckedFrame = int.MinValue, _lastTrioFrame = int.MinValue;
+    private static bool _blueDollAlive, _blueDollWaitLogged;
+
+    /// <summary>
+    /// False while the trap has to wait for a Blue Hexed Doll (Aoi) to be defeated: one in the scene, from an earlier trio of this
+    /// kind or from a fight of the game itself, would shield the one of the new trio and the other way round, and neither can be
+    /// killed. The search is made a few times a second at most, and only when a trio is the next trap to go off.
+    /// </summary>
+    private static bool NoBlueDollBlocks(Kind kind)
+    {
+        if (!kind.BringsBlueDoll || EnemyType == null) return true;
+
+        // the Blue doll of a trio of ours is known from the moment it spawns (by its template), whatever the game has set up yet
+        OurBlueDolls.RemoveAll(IsDefeated);
+        if (OurBlueDolls.Count > 0)
+        {
+            if (!_blueDollWaitLogged) Plugin.Log.LogInfo($"{kind.Item} waits: the Blue Hexed Doll (Aoi) of the trio before it is alive and two of them shield each other");
+            _blueDollWaitLogged = true;
+            return false;
+        }
+
+        // one trio per frame, so that the search below (made again after each one) always sees the Blue doll of the one before
+        if (Time.frameCount == _lastTrioFrame) return false;
+
+        if (Time.frameCount - _blueDollCheckedFrame >= BlueDollCheckFrames)
+        {
+            _blueDollCheckedFrame = Time.frameCount;
+            _blueDollAlive = false;
+            // (only enemies that are switched on: the copies kept for the traps and the game's waiting ones are switched off)
+            foreach (var found in UnityEngine.Object.FindObjectsByType(EnemyType, FindObjectsSortMode.None))
+            {
+                if (found is Component enemy && !IsDefeated(enemy) && IsBlueDoll(enemy)) { _blueDollAlive = true; break; }
+            }
+        }
+
+        var may = TrapPlacement.MayGoOff(kind.BringsBlueDoll, _blueDollAlive);
+        if (!may && !_blueDollWaitLogged) Plugin.Log.LogInfo($"{kind.Item} waits: a Blue Hexed Doll (Aoi) is alive and two of them shield each other");
+        _blueDollWaitLogged = !may;
+        return may;
+    }
+
+    /// <summary>Whether this enemy is the Blue Hexed Doll: its codex entry (the same for the game's own and for our copies).</summary>
+    private static bool IsBlueDoll(Component enemy)
+    {
+        var handler = HarmonyLib.Traverse.Create(enemy).Field("enemyDataHandler").GetValue();
+        var data = handler == null ? null : HarmonyLib.Traverse.Create(handler).Field("enemyData").GetValue();
+        var definition = data == null ? null : HarmonyLib.Traverse.Create(data).Property("codexItemDefinition").GetValue<UnityEngine.Object>();
+
+        // once per kind of doll, what the search found (to see in a log that the Blue one is recognised)
+        if (enemy.gameObject.name.Contains("CursedDoll") && SeenDolls.Add(enemy.gameObject.name))
+            Plugin.Log.LogInfo($"Hexed Doll {enemy.gameObject.name}: codex entry {(definition == null ? "(none yet)" : definition.name)}");
+
+        return definition != null && definition.name == TrapPlacement.BlueDollCodex;
+    }
+
+    private static readonly HashSet<string> SeenDolls = new();
+
+    /// <summary>The Blue Hexed Doll of every trio of ours that is out.</summary>
+    private static readonly List<Component> OurBlueDolls = new();
+
+    /// <summary>
+    /// A defeated enemy that the game has already switched off is destroyed: the game only switches a dead enemy off, so the ones
+    /// of hundreds of traps would stay in the scene for good (a scene seen with over 250 of them), each a full set of components.
+    /// An enemy that is dead but still playing its death is left to finish; it is destroyed with the scene at the latest.
+    /// </summary>
+    private static void ForgetEnemy(Component enemy)
+    {
+        if (enemy != null && !enemy.gameObject.activeInHierarchy) UnityEngine.Object.Destroy(enemy.gameObject);
     }
 
     /// <summary>
@@ -462,10 +574,12 @@ internal static class TrapSpawner
 
     // ---------------------------------------------------------------- the trap
 
-    private static void Spawn(Kind kind, Vector3 around)
+    /// <summary>Lets one trap out; returns what stands for its enemies (see <see cref="Active"/>).</summary>
+    private static List<Component> Spawn(Kind kind, Vector3 around)
     {
         var scene = SceneManager.GetActiveScene();
         var spawned = 0;
+        var enemies = new List<Component>();
 
         // a group of ground enemies stands together; flying ones are placed one by one
         var group = kind.Flying ? null : TrapPlacement.Group(Dice, TotalEnemies(kind));
@@ -482,11 +596,40 @@ internal static class TrapSpawner
                 Aim(enemy);
                 enemy.SetActive(true);
                 ShowHud(enemy);
+                var tracked = EnemyType != null && enemy.GetComponent(EnemyType) is { } motor ? motor : enemy.transform;
+                enemies.Add(tracked);
+                if (kind.BringsBlueDoll && template == TrapPlacement.BlueDollTemplate) OurBlueDolls.Add(tracked);
                 spawned++;
             }
         }
 
-        Plugin.Log.LogInfo($"{kind.Item}: {spawned} enemies around the player");
+        Plugin.Log.LogInfo($"{kind.Item}: {spawned} enemies around the player ({Active.Count + 1} of at most {MaxActiveTraps} traps out)");
+        return enemies;
+    }
+
+    private static int _seenSceneChanges;
+
+    /// <summary>
+    /// The traps that are out and have no enemy left give their place to the next ones. Looked at six times a second (reading
+    /// every enemy's dead flag on every frame is not needed), and at once when a scene has loaded or unloaded: the enemies of a trap
+    /// go with their scene, so a trap that the player left behind (a teleport, the hub, a death and a restart) stops counting.
+    /// </summary>
+    private static void PruneTraps()
+    {
+        var sceneChanged = _seenSceneChanges != SceneClock.Changes;
+        _seenSceneChanges = SceneClock.Changes;
+        if (Active.Count == 0 || (!sceneChanged && Time.frameCount < _nextPruneFrame)) return;
+
+        _nextPruneFrame = Time.frameCount + PruneEveryFrames;
+        if (Active.Prune(IsDefeated, ForgetEnemy) is var cleared and > 0 && Plugin.CfgVerbose.Value)
+            Plugin.Log.LogInfo($"{cleared} trap(s) defeated or left behind, {Active.Count} out, {QueuedTraps()} waiting");
+    }
+
+    private static int QueuedTraps()
+    {
+        var total = 0;
+        foreach (var kind in Kinds) total += Pending.GetValueOrDefault(kind);
+        return total;
     }
 
     private static int TotalEnemies(Kind kind)

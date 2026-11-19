@@ -47,4 +47,24 @@ public class QuestFetchTests : IClassFixture<QuestFetchTests.Fixture>
         TestEnvironment.Ensure();
         Assert.All(QuestFetch.All, step => Assert.Contains(Catalog.AllItems, item => item.Game == step.Item));
     }
+
+    [Theory]
+    [InlineData("Level_1_Area_1_Main", "Gameplay_交付玩偶和花", true)]   // the doll and flower quest of Level 1
+    [InlineData("Level_2_Area_1_Main", "Gameplay_交付玩偶和花", false)]  // the same node name in another scene
+    [InlineData("Level_1_Area_1_Main", "Gameplay_B01", false)]
+    [InlineData(null, null, false)]
+    public void OnlyTheQuestsThatPayAHandOverAreFoundAtTheirEnd(string scene, string node, bool found)
+    {
+        Assert.Equal(found, QuestFetch.FindCompletion(scene, node) != null);
+    }
+
+    [Fact]
+    public void FinishingTheFlowerQuestChecksTheFlowerHandOver()
+    {
+        TestEnvironment.Ensure();
+        var quest = QuestFetch.FindCompletion("Level_1_Area_1_Main", "Gameplay_交付玩偶和花");
+
+        Assert.Equal(new[] { "handover/flower" }, quest.Locations);
+        Assert.Equal("Level 1 Area 1: Pretty Little Flower", Catalog.Location("handover/flower").Name);
+    }
 }

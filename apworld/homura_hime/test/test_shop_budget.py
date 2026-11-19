@@ -155,8 +155,9 @@ class TestGeneratedShops(unittest.TestCase):
         with mock.patch.object(shop_budget, "swap", counting):
             for seed in (1,):
                 self.assert_affordable(
-                    generate(seed, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}, 2)
-                )  # the seeds were found without traps
+                    generate(seed, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0,
+                                    "skip_early_macguffin_checks": False}, 2)
+                )  # the seeds were found without traps and with the Flower in the pool
         self.assertGreater(swaps, 0, "nothing needed repairing, the test shows nothing (pick other seeds)")
 
 
@@ -193,7 +194,8 @@ class TestShortcutsMatchFullReplays(unittest.TestCase):
 
     def test_a_resumed_playthrough_matches_a_new_one(self):
         multiworld = generate(
-            1, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0}, 2, check=False
+            1, {"puffer_swarm_traps": 0, "hexed_doll_trio_traps": 0, "skip_early_macguffin_checks": False}, 2,
+            check=False,
         )  # needs a repair (see test_the_fill_repairs_...)
         run = shop_budget.Playthrough(multiworld, homura_hime_worlds(multiworld))
         violation = shop_budget.check(run)

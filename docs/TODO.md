@@ -4,6 +4,13 @@ Working list for the plugin and the world. Newest items first within each sectio
 
 ## To fix
 
+- **A key that a quest uses up is given back by the key-item repair.** The Flower quest's take-over
+  (`InventoryOperator_TakeOver_小花`) removes the Flower, so `OwnedItems.IsPermanent` makes the repair give it back after the next
+  reload or item batch once the quest is done. Harmless, but wrong: a key that a quest consumes needs a "spent" record, or an
+  exception in the repair. (Noted 2026-11-14, together with `Progress/CountReceivedItems`, which makes the NPC item checks and
+  the Soul Core gates count received items: `PlayerApi.HasOrRestore`, `NpcItemFlagPatch.GiveReceivedItems`.)
+- **`handover/flower` fired four times across reloads of one save** in a player's log. The location is only recorded once
+  (`ApClient.CheckLocation` ignores a repeat), but find out what repeats the hand-over. Noted 2026-11-14, not started.
 - **Quest item pop-up for items that were not found.** Doing the Nurikabe's Hat quest showed the "found the hat" picture
   although the hat was not received (it is a randomized item now). Probably the same for the other quest items. Find the
   pop-up and decide whether to hide it for randomized quest items or to show the real reward. Noted 2026-11-03, not started.
@@ -17,7 +24,18 @@ Working list for the plugin and the world. Newest items first within each sectio
 
 ## To test in the game
 
-Nothing at the moment.
+- **The Blue Hexed Doll rule of the Hexed Doll Trio Trap** (noted 2026-11-19, built and deployed but not tried in the game).
+  The Blue doll is the C one (`Enemy_CursedDoll_C_Default`, codex `Codex_Enemy_CursedDollBlue`). A trio only goes off while no
+  Blue doll is alive: the Blue doll of our own trios is tracked from the spawn (`OurBlueDolls`), a Blue doll of a normal fight is
+  found by a scene search (`NoBlueDollBlocks`). Send many `Hexed Doll Trio Trap` (the batch script sends 15) and check that only
+  one trio is out at a time, the log says `HexedDollTrioTrap waits: ...`, and that the dead trap enemies are destroyed instead
+  of piling up in the scene (`ForgetEnemy`, was over 250 switched-off objects).
+- **Finishing the Level 1 Area 1 quest checks the Flower hand-over** (`QuestCompletionPatch`, new, not tried): with
+  `skip_early_macguffin_checks` off, give the Flower with `!getitem`, finish the doll and flower quest without taking the story's
+  Flower, and the log should say `Quest ... finished without Level 1 Area 1: Pretty Little Flower: checking it now`.
+- **`skip_early_macguffin_checks`** (new world option, on by default, tried only in the world tests): with Chapter 1 first, a new
+  seed has no Flower item and no `Level 1 Area 1: Pretty Little Flower` location, and the story hands the Flower over as in the
+  base game. The plugin needs no change for it, but a game with it has not been played.
 
 ## Planned
 
@@ -37,6 +55,14 @@ Nothing at the moment.
 - Ship the multiworld generation sweep (`multi_sweep.py`) as an optional tool.
 
 ## Done
+
+### 0.4.4
+
+- **Large batches over frames.** `ItemGranter.ItemsPerFrame` = 5; traps: `SpawnLimiter` (2 per 5 frames, by frame), `ActiveTraps` (at most 6 traps out, a trap counts until all its enemies are defeated, forgotten at a scene change), dead trap enemies destroyed (`ForgetEnemy`), and the Hexed Doll Trio Trap waits while a Blue doll (the C one, `Codex_Enemy_CursedDollBlue`) is alive.
+- **Key items and Soul Cores are repaired** like equipment (`OwnedItems.IsPermanent`), after a load and 3 s after a batch; Soul Core gates and NPC item checks count received items (`Progress/CountReceivedItems`, `PlayerApi.HasOrRestore`).
+- **Finishing the Level 1 Area 1 quest checks `handover/flower`** (`QuestCompletionPatch`, `QuestFetch.Completion`).
+- **World option `skip_early_macguffin_checks`** (on): the Flower is left to the story when Chapter 1 comes first (no item, no location, an event for the logic). The game tests' seed turns it off.
+- Not tried in the game when released: the Blue doll rule, the quest completion, the option in a played game (see "To test in the game").
 
 ### 0.4.3
 

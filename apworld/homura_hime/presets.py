@@ -17,6 +17,7 @@ STANDARD = {
     "shuffle_shards": True,
     "shuffle_upgrades": True,
     "shuffle_key_items": True,
+    "skip_early_macguffin_checks": True,
     "minimum_konpeito": 550000,
     "filler_sakura_ratio": 20,
     "senbei_count": 55,
@@ -38,8 +39,9 @@ options_presets = {
         **STANDARD,
         "level_order": "balanced",
         "level_unlock_items": "linear_progression",
-        "puffer_swarm_traps": 5,
-        "hexed_doll_trio_traps": 2,
+        "puffer_swarm_traps": 20,
+        "hexed_doll_trio_traps": 5,
+        "skip_early_macguffin_checks": True,
     },
 
     # everything that can be random is, and every extra location is in

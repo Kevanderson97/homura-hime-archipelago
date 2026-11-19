@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -18,7 +18,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PluginGuid = "com.homurahime.archipelago";
     public const string PluginName = "Homura-Hime Archipelago";
-    public const string PluginVersion = "0.4.3";
+    public const string PluginVersion = "0.4.4";
 
     /// <summary>The plugin's log source (BepInEx/LogOutput.log); set in <see cref="Awake"/>.</summary>
     internal static ManualLogSource Log;
@@ -35,6 +35,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<UI.ToastVerbosity> CfgItemNotifications;
     internal static ConfigEntry<bool> CfgShopHints, CfgTextAudit;
     internal static ConfigEntry<string> CfgDisabledPatches;
+    internal static ConfigEntry<bool> CfgCountReceived;
 
     private Harmony _harmony;
 
@@ -70,6 +71,8 @@ public class Plugin : BaseUnityPlugin
         UI.Toasts.Verbosity = CfgItemNotifications.Value;
         CfgItemNotifications.SettingChanged += (_, _) => UI.Toasts.Verbosity = CfgItemNotifications.Value;
 
+        CfgCountReceived = Config.Bind("Progress", "CountReceivedItems", true,
+            "A Soul Core gate or an NPC that asks for an item also counts items the multiworld has sent that are missing from the inventory, and gives the missing item at that moment.");
         CfgDisabledPatches = Config.Bind("Debug", "DisabledPatches", "",
             "Comma-separated patch class names to skip (for troubleshooting), or ALL. Example: ProgressGuardPatch,TeleportPatch. Use NOTRACKER to skip the tutorial tracker.");
 

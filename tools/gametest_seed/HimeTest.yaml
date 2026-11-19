@@ -1,7 +1,8 @@
-﻿name: HimeTest
+name: HimeTest
 game: Homura-Hime
 Homura-Hime:
   level_order: vanilla
   level_unlock_items: false
   include_cut_content: true
   death_link: true
+  skip_early_macguffin_checks: false  # the tests expect every location of the catalogue, the Flower hand-over included

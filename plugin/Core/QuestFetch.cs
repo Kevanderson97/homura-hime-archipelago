@@ -34,6 +34,31 @@ internal static class QuestFetch
                 Locations = new[] { "handover/hat", "encounter/Level_3_Area_5_Main/B05" } },
     };
 
+    /// <summary>A quest whose locations are paid when the quest is finished, if the player has not done what pays them on the way.</summary>
+    internal sealed class Completion
+    {
+        internal string Scene;
+        /// <summary>The name of the story node (<c>Gameplay</c>) of the quest.</summary>
+        internal string Node;
+        /// <summary>The locations the quest pays on the way (a hand-over) that finishing it without them must still check.</summary>
+        internal string[] Locations;
+    }
+
+    private static readonly Completion[] Completions =
+    {
+        // Level 1 Area 1: the quest to bring the doll and the flower. The Pretty Little Flower is handed over at its start, but the
+        // quest can be finished without it when the flower was received from the multiworld
+        new() { Scene = "Level_1_Area_1_Main", Node = "Gameplay_交付玩偶和花", Locations = new[] { "handover/flower" } },
+    };
+
+    /// <summary>The quest that is this story node, if it is one whose locations are paid at its end.</summary>
+    internal static Completion FindCompletion(string scene, string node)
+    {
+        foreach (var completion in Completions)
+            if (completion.Scene == scene && completion.Node == node) return completion;
+        return null;
+    }
+
     /// <summary>The fetch step that is this story node, if it is one.</summary>
     internal static Step Find(string scene, string node)
     {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -73,6 +73,35 @@ internal static class ApClient
     /// and drops its result.
     /// </summary>
     internal static int Generation { get; private set; }
+
+    private static readonly HashSet<string> ReceivedDefinitions = new();
+    private static ArchipelagoSession _receivedSession;
+    private static int _receivedCount;
+
+    /// <summary>
+    /// Whether the multiworld has sent the player this item (by its game definition): the "AP inventory", as opposed to the
+    /// game's. A door can ask this every frame, so the definitions are kept in a set that only takes in the items that arrived
+    /// since the last call. Nothing here waits for the server: the list is the library's own cached copy and only the item ids
+    /// are read (names are the part that can block, see SourceLintTests).
+    /// </summary>
+    internal static bool HasReceived(string definition)
+    {
+        var session = Session;
+        var items = session?.Items.AllItemsReceived;
+        if (items == null) return false;
+
+        // a new session, or the server sent the whole list again (the library clears and rebuilds it): start over
+        if (!ReferenceEquals(session, _receivedSession) || items.Count < _receivedCount)
+        {
+            (_receivedSession, _receivedCount) = (session, 0);
+            ReceivedDefinitions.Clear();
+        }
+
+        for (; _receivedCount < items.Count; _receivedCount++)
+            if (Catalog.Item(items[_receivedCount].ItemId)?.Game is { } game) ReceivedDefinitions.Add(game);
+
+        return ReceivedDefinitions.Contains(definition);
+    }
 
     /// <summary>True while a live session exists (items can be received, checks sent now).</summary>
     internal static bool IsConnected => Status == ConnectionStatus.Connected && Session != null;

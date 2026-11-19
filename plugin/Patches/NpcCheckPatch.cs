@@ -2,6 +2,9 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using HomuraHimeAP.Archipelago;
+using HomuraHimeAP.Core;
+using HomuraHimeAP.Items;
+using UnityEngine;
 using HutongGames.PlayMaker;
 using Opsive.UltimateInventorySystem.Core.InventoryCollections;
 
@@ -63,7 +66,32 @@ internal static class NpcItemFlagPatch
         if (asker == null) return;
 
         var has = Traverse.Create(asker).Method("CheckItems_Default").GetValue<bool>();
+        if (!has && Plugin.CfgCountReceived.Value && GiveReceivedItems(asker, owner.name))
+            has = Traverse.Create(asker).Method("CheckItems_Default").GetValue<bool>();
         if (has != flag.Value) Plugin.Log.LogInfo($"{owner.name}: {Flag} was {flag.Value}, the inventory check says {has}");
         flag.Value = has;
+    }
+
+    /// <summary>
+    /// An NPC that asks for an item also counts what the multiworld has sent (the CountReceivedItems setting). An item on the
+    /// NPC's list that the player lacks but has received is given now, so the quest can go on (the NPC takes it next, as it
+    /// would in the original game). Returns whether anything was given.
+    /// </summary>
+    private static bool GiveReceivedItems(Component asker, string ownerName)
+    {
+        var self = Traverse.Create(asker);
+        var listName = self.Field("m_CheckItems").GetValue<string>();
+        var collection = self.Field("m_Inventory").GetValue<Inventory>()?.GetItemCollection(listName);
+        if (collection == null) return false;
+
+        var asked = collection.GetAllItemStacks().Select(stack => stack.Item?.ItemDefinition?.name).Where(name => name != null);
+        var missing = OwnedItems.ReceivedButNotOwned(asked, PlayerApi.Has, ApClient.HasReceived);
+        foreach (var definition in missing)
+        {
+            Plugin.Log.LogWarning($"{ownerName} asks for {definition}, which was received but is not in the inventory: given now");
+            PlayerApi.Add(definition);
+        }
+
+        return missing.Count > 0;
     }
 }

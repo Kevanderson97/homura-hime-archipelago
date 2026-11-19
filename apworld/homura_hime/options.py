@@ -215,6 +215,15 @@ class ShuffleKeyItems(DefaultOnToggle):
     display_name = "Shuffle Key Items"
 
 
+class SkipEarlyMacguffinChecks(DefaultOnToggle):
+    """On: when Chapter 1 is the first world you play, the Pretty Little Flower is left to the story. It is not an item
+    of the multiworld and its hand-over in Level 1 Area 1 is not a location: you get the Flower the way the base game
+    gives it, and the logic counts on it from the start of the chapter. It has no effect when another world comes first
+    (a randomized order, or the first world of a freeform key setup). Off: the Flower is an item like the other key
+    items, and its hand-over is a location."""
+    display_name = "Skip Early Macguffin Checks"
+
+
 class DeathLinkSkipRevives(Toggle):
     """Off: a death is sent as soon as you die. On: reviving with a Special Hanami Dango does not send it, the death
     is only sent when you pick any other option in the death menu."""
@@ -251,6 +260,7 @@ class HomuraHimeOptions(PerGameCommonOptions):
     shuffle_shards: ShuffleShards
     shuffle_upgrades: ShuffleUpgrades
     shuffle_key_items: ShuffleKeyItems
+    skip_early_macguffin_checks: SkipEarlyMacguffinChecks
     advanced_movement_required: AdvancedMovementRequired
     death_link: DeathLink
     death_link_skip_revives: DeathLinkSkipRevives
@@ -260,7 +270,8 @@ class HomuraHimeOptions(PerGameCommonOptions):
 # How the options page groups the options.
 option_groups = [
     OptionGroup("Chapters", [Goal, LevelOrder, LevelUnlockItems, AdvancedMovementRequired]),
-    OptionGroup("Locations", [OptionalLocations, OptionalLocationImportance, IncludeCutContent]),
+    OptionGroup("Locations", [OptionalLocations, OptionalLocationImportance, IncludeCutContent,
+                              SkipEarlyMacguffinChecks]),
     OptionGroup("Shuffled Items", [ShuffleCombos, ShuffleSkills, ShuffleOmamori, ShuffleGuns, ShuffleShards,
                                    ShuffleUpgrades, ShuffleKeyItems]),
     OptionGroup("Item Pool", [MinimumKonpeito, FillerSakuraRatio, SenbeiCount, DangoCount, FullHealCount,

@@ -188,6 +188,12 @@ SHUFFLE_GROUPS = {
     "shuffle_shards": {"shard", "crystal"}, "shuffle_upgrades": {"upgrade"}, "shuffle_key_items": {"key"},
 }
 
+# Skip Early Macguffin Checks: the key item that the story hands over at the start of the first world, by that world's
+# id: the location key (not in play with the option on) and the item (not in the pool then; the logic gets it as an
+# event instead).
+EARLY_MACGUFFINS = {"Level1": [("handover/flower", "Pretty Little Flower")]}
+LOCATION_REGION = {loc["key"]: loc["region"] for loc in LOCATIONS}
+
 # Chapters 6, 7 and 8: the goal "return_all_soul_cores" opens the Finale once these are cleared.
 SOUL_CORE_WORLDS = ["LevelFinalP1", "LevelFinalP2", "LevelFinalP3"]
 
@@ -197,7 +203,7 @@ SCALE_SLOT_DATA = ["money_scale", "petal_scale", "senbei_scale", "senbei_unit"]
 
 # Options the plugin and Universal Tracker read from the slot data (sent as they are, booleans for toggles).
 SLOT_DATA_TOGGLES = ["include_cut_content", "optional_locations", "advanced_movement_required", "death_link",
-                     "death_link_skip_revives", "shop_hints"]
+                     "death_link_skip_revives", "shop_hints", "skip_early_macguffin_checks"]
 
 
 CURRENCY_NAMES = set(KONPEITO_VALUES) | set(SAKURA_VALUES) | set(SENBEI_VALUES)
@@ -386,9 +392,20 @@ class HomuraHimeWorld(World):
         """Universal Tracker: the slot data is all that is needed to regenerate the world (see _apply_passthrough)."""
         return slot_data
 
+    def _early_macguffins(self) -> list[tuple[str, str]]:
+        """(location key, item name) of the key item the story hands over at the start of the first world, when the
+        option leaves it to the story (it only exists for a first world that has one: Chapter 1)."""
+        if not self.options.skip_early_macguffin_checks:
+            return []
+        return EARLY_MACGUFFINS.get(self.order[0], [])
+
     def _active_locations(self) -> list[dict]:
-        """The location records in play: the optional ones (see is_optional) exist when optional_locations is on."""
-        return [loc for loc in LOCATIONS if self.options.optional_locations or not is_optional(loc)]
+        """The location records in play: the optional ones (see is_optional) exist when optional_locations is on, and
+        what the story hands over at the start of the first world does not when skip_early_macguffin_checks leaves it
+        to the story."""
+        skipped = {key for key, _ in self._early_macguffins()}
+        return [loc for loc in LOCATIONS
+                if (self.options.optional_locations or not is_optional(loc)) and loc["key"] not in skipped]
 
     def create_item(self, name: str) -> HomuraHimeItem:
         """Creates an item of this world; the classification depends on the options (see the comments below)."""
@@ -823,9 +840,13 @@ class HomuraHimeWorld(World):
             region.locations.append(location)
             self._apply_optional_importance(location, loc)
 
-    def _event(self, region: Region, name: str) -> None:
+        # what the story hands over is not in the pool, but the logic needs it: it is a progress marker of the region
+        for key, item_name in self._early_macguffins():
+            self._event(regions[LOCATION_REGION[key]], item_name, f"{item_name} (from the story)")
+
+    def _event(self, region: Region, name: str, location_name: str | None = None) -> None:
         """Adds a locked event item with a matching event location to a region (the logic's progress markers)."""
-        location = HomuraHimeLocation(self.player, name, None, region)
+        location = HomuraHimeLocation(self.player, location_name or name, None, region)
         region.locations.append(location)
         location.place_locked_item(HomuraHimeItem(name, ItemClassification.progression, None, self.player))
 

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using HarmonyLib;
+using HomuraHimeAP.Archipelago;
 using Opsive.UltimateInventorySystem.Core;
 using Opsive.UltimateInventorySystem.Core.InventoryCollections;
 using UnityEngine;
@@ -45,6 +46,21 @@ internal static class PlayerApi
         var inv = Inventory;
         var def = InventorySystemManager.GetItemDefinition(definitionName);
         return inv != null && def != null && inv.GetItemAmount(def, true, false) > 0;
+    }
+
+    /// <summary>
+    /// Whether the player has the item, counting what the multiworld has sent: an item that was received but is not in the
+    /// inventory (lost, or not kept by the game) is given now. A door, a boss gate or an NPC that asks for a key item should not
+    /// refuse a player the multiworld says has it (the CountReceivedItems setting).
+    /// </summary>
+    internal static bool HasOrRestore(string definitionName)
+    {
+        if (Has(definitionName)) return true;
+        if (!Plugin.CfgCountReceived.Value || !ApClient.HasReceived(definitionName)) return false;
+
+        if (!Add(definitionName)) return false; // no inventory to give it to yet: the asker waits, and nothing is logged every frame
+        Plugin.Log.LogWarning($"{definitionName} was asked for, and was received but is not in the inventory: given now");
+        return true;
     }
 
     internal static int AmountOwned(string definitionName)

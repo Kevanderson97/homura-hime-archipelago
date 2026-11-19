@@ -8,10 +8,13 @@ internal static class SceneClock
 {
     private static float _lastChange;
 
+    /// <summary>Counts every scene that loaded or unloaded, so something that holds objects of a scene can tell that they may be gone.</summary>
+    internal static int Changes { get; private set; }
+
     internal static void Init()
     {
-        SceneManager.sceneLoaded += (_, _) => _lastChange = Time.unscaledTime;
-        SceneManager.sceneUnloaded += _ => _lastChange = Time.unscaledTime;
+        SceneManager.sceneLoaded += (_, _) => (_lastChange, Changes) = (Time.unscaledTime, Changes + 1);
+        SceneManager.sceneUnloaded += _ => (_lastChange, Changes) = (Time.unscaledTime, Changes + 1);
     }
 
     /// <summary>True when no scene has loaded or unloaded for <paramref name="seconds"/>.</summary>

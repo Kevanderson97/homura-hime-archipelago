@@ -30,7 +30,7 @@ internal static class SoulCoreGate
     {
         if (!ApClient.Active || !ApClient.Slot.SoulCores) return false;
 
-        var missing = SoulCores.MissingFor(portalKey, PlayerApi.Has);
+        var missing = SoulCores.MissingFor(portalKey, PlayerApi.HasOrRestore);
         if (missing == null) return false;
 
         Notify(missing);

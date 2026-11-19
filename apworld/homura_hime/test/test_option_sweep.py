@@ -17,7 +17,7 @@ SWEEP_SEED = int(os.environ.get("HH_SWEEP_SEED", "20261022"))
 TOGGLES = ["advanced_movement_required", "include_cut_content",
            "optional_locations", "death_link", "death_link_skip_revives", "shop_hints",
            "shuffle_combos", "shuffle_skills", "shuffle_omamori", "shuffle_guns", "shuffle_shards",
-           "shuffle_upgrades", "shuffle_key_items"]
+           "shuffle_upgrades", "shuffle_key_items", "skip_early_macguffin_checks"]
 # (name, lowest, highest, the values worth trying besides a random one)
 RANGES = [("dango_count", 0, 99, (0, 15, 99)),
           ("optional_location_importance", 0, 100, (0, 50, 100)),

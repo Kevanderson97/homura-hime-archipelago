@@ -13,6 +13,22 @@ internal static class TrapPlacement
     /// </summary>
     internal static bool IsLevel(string scene) => scene != null && scene.StartsWith("Level", StringComparison.Ordinal);
 
+    /// <summary>
+    /// The codex entry of the Blue Hexed Doll (Aoi). It puts a shield around the other enemies near it, so two of it in one fight
+    /// shield each other and cannot be killed: a trio of dolls never goes off while one is alive.
+    /// </summary>
+    internal const string BlueDollCodex = "Codex_Enemy_CursedDollBlue";
+
+    /// <summary>
+    /// The doll of the trio that is the Blue one: "Enemy_CursedDoll_C_Default" (A is Red, B is Yellow; read from the codex entries of
+    /// the game's own dolls). A trap knows its own Blue doll by this name the moment it spawns, without waiting for the game to set
+    /// the enemy up.
+    /// </summary>
+    internal const string BlueDollTemplate = "Enemy_CursedDoll_C_Default";
+
+    /// <summary>A trap that brings its own Blue Hexed Doll waits while another one is alive.</summary>
+    internal static bool MayGoOff(bool bringsBlueDoll, bool blueDollAlive) => !(bringsBlueDoll && blueDollAlive);
+
     /// <summary>The highest a flying enemy may spawn above the player's height, as an angle: never straight overhead.</summary>
     internal const float MaxElevationDegrees = 40f;
 

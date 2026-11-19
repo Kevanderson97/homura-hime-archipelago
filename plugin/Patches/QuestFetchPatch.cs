@@ -70,3 +70,39 @@ internal static class QuestFetchPatch
         }
     }
 }
+
+/// <summary>
+/// A quest that is finished without the hand-over it pays a location for (see <see cref="QuestFetch.Completion"/>) still checks
+/// that location: the Level 1 Area 1 quest can be finished with a Pretty Little Flower that the multiworld sent, and nothing else
+/// would ever report the hand-over of the one the story gives. Finishing the quest the usual way has checked it already, so this
+/// does nothing then.
+/// </summary>
+[HarmonyPatch]
+internal static class QuestCompletionPatch
+{
+    private static MethodBase TargetMethod() => AccessTools.Method(AccessTools.TypeByName("Gameplay"), "Finish", Type.EmptyTypes);
+
+    private static bool Prepare()
+    {
+        if (TargetMethod() != null) return true;
+        Plugin.Log.LogWarning("Gameplay.Finish was not found: a quest finished early will not check its hand-over location");
+        return false;
+    }
+
+    private static void Postfix(MonoBehaviour __instance)
+    {
+        if (!ApClient.Active || ApClient.State == null) return;
+
+        var quest = QuestFetch.FindCompletion(__instance.gameObject.scene.name, __instance.name);
+        if (quest == null) return;
+
+        foreach (var key in quest.Locations)
+        {
+            // only a location of this slot (Catalog.Location leaves out what the options switched off) that is not checked yet
+            if (Catalog.Location(key) is not { } loc || ApClient.State.CheckedLocations.Contains(loc.Id)) continue;
+            Plugin.Log.LogInfo($"Quest {__instance.name} finished without {loc.Name}: checking it now");
+            LocationHooks.Report(loc);
+        }
+    }
+}
+

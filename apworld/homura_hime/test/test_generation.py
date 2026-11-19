@@ -319,7 +319,8 @@ class TestSenbeiTotal(HomuraHimeTestBase):
 class TestUnshuffledGroups(HomuraHimeTestBase):
     """A group that is not shuffled keeps its items at the locations that give them in the base game."""
     options = {"shuffle_combos": False, "shuffle_skills": False, "shuffle_omamori": False, "shuffle_guns": False,
-               "shuffle_shards": False, "shuffle_upgrades": False, "shuffle_key_items": False}
+               "shuffle_shards": False, "shuffle_upgrades": False, "shuffle_key_items": False,
+               "skip_early_macguffin_checks": False}  # (see test_early_macguffin.py)
 
     def _held(self):
         return {KEY_OF_NAME[loc.name]: loc.item.name for loc in self.multiworld.get_locations(self.player)
